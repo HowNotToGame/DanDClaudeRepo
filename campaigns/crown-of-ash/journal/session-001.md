@@ -4,3 +4,4 @@
 
 ## Log
 - [05:57] Highharvestide 1491 DR, dawn: Ivoard Hask's funeral burning in Pyre Square. Chadickith works the rope line for Watch-Captain Halda Barrowe (hired on Okton's word). All three heirs present under funeral truce; Okton watching from the square's edge.
+- [06:04] During the lighting of the pyre, Chadickith held the line and watched for Okton (Perception check to spot trouble in the crowd).
