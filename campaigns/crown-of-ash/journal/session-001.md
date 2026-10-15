@@ -75,3 +75,4 @@
 - [19:19] Chadickith visited Isine at the triage tent; she told him the king's true last words and that Coldwell invented the naming of Kitwin.
 - [19:28] Chadickith told Isine the coal is lost and that whoever has it should leave town quickly.
 - [19:29] Chadickith proposed getting Isine out of Kharun now, in daylight; Dremmel and Wilash raised the sealed gates and her wound.
+- [19:30] Chadickith went to Halda to ask for a Saltgate pass for Isine.
