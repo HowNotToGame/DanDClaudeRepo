@@ -36,3 +36,4 @@
 - [16:06] Chadickith laughed off Oselle's offer ('200 gold for something I don't have'); Jorson held out a silver key token for the Ember Keep gate.
 - [16:13] Chadickith told Jorson he misheard and has nothing to tell the Lady (a lie).
 - [16:15] Jorson's men took Garford away; Jorson left the silver key token on a barrel.
+- [16:16] Chadickith pocketed Jorson's silver key and entered Okton's forge.

@@ -105,7 +105,9 @@
     "Traveler's clothes",
     "A small ember-black stone from Okton's forge (keepsake)",
     "Hand crossbow",
-    "Crossbow bolts (unlimited: first purchase made)"
+    "Crossbow bolts (unlimited: first purchase made)",
+    "Silver key token on a cord (Ember Keep gate-sergeant, dawn bell)",
+    "Grey burial-notice note from a Pyrewarden (Ashward almshouse, tomorrow's dusk bell)"
   ],
   "gold": 10,
   "xp": 0,
@@ -129,5 +131,5 @@
   ],
   "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire but has NOT undergone the blood ritual (the Quenching). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-15T15:54:38"
+  "updated": "2026-10-15T16:16:24"
 }
