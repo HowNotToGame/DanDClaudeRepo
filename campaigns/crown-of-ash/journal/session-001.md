@@ -26,3 +26,4 @@
 - [15:32] Chadickith read the grey note left by the Pyrewarden: meet at the Ashward almshouse at tomorrow's dusk bell.
 - [15:43] Chadickith pocketed the Pyrewarden's note, finished eating, and walked back to Okton's forge at night.
 - [15:46] Chadickith tried to ambush the man in the brown coat tailing him in the dye-works; Stealth failed and he grappled with his trunk anyway.
+- [15:48] Chadickith interrogated the grappled man who had been tailing him from the Blind Barrel.
