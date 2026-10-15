@@ -76,3 +76,6 @@
 - [19:28] Chadickith told Isine the coal is lost and that whoever has it should leave town quickly.
 - [19:29] Chadickith proposed getting Isine out of Kharun now, in daylight; Dremmel and Wilash raised the sealed gates and her wound.
 - [19:30] Chadickith went to Halda to ask for a Saltgate pass for Isine.
+- [19:32] New quest: Hold Halda's rope line at the Great Pyre
+- [19:32] New quest: Get Isine out through the Saltgate at the dusk rotation
+- [19:32] Chadickith accepted Halda's rope-line job and took the Saltgate pass for Isine.
