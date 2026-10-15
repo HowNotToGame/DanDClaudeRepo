@@ -4,11 +4,11 @@ type: creature
 summary: "The blood-raged roc of the Cinder Hills, fattened on the Sky Gallows' condemned; scarred by Okton, still at large and hungrier since the hangings stopped."
 tags: [roc, monster, ashblood, cinder-hills, chadickith-backstory]
 status: alive
-related: [okton, hadrun, sky-gallows, ashblood, heartcoal, ivoard-hask]
+related: [okton, hadrun, sky-gallows, ashblood, heartcoal, ivoard-hask, okton-s-hunters-name-pending]
 aliases: [the Gallows-Roc, the King's Hawk]
 canon: true
 created_session: 0
-updated: "2026-10-15T05:40:26"
+updated: "2026-10-15T05:43:45"
 ---
 
 # The Gallowsbird
@@ -24,7 +24,7 @@ A roc. Use the Monster Manual **roc** (MM p.260) with its statistics unchanged. 
 Rocs kill to eat. This one kills past eating, scatters its prey, and comes back to circle places where people have died. Shepherds say it screams when a battle starts, from miles away.
 
 ## Playing it
-At CR 11 it is far beyond a 3rd-level barbarian in a straight fight. Until the party has Okton, the Answer (Okton's spear) or an army behind them, use it as a looming terror, a chase or a set piece to survive, not a fight to win.
+At CR 11 it is far beyond a 3rd-level barbarian in a straight fight. Until the party has Okton, the hunters of his order (see okton-s-hunters-name-pending) or an army behind them, use it as a looming terror, a chase or a set piece to survive, not a fight to win.
 
 ## DM secrets
 - It is the most deeply infected creature alive: fully **Glad** (see ashblood). For thirty years it ate flesh anointed with pyre-ash from the coal's victims.

@@ -4,11 +4,11 @@ type: location
 summary: "A basalt needle three miles south of Kharun where the condemned were chained, ash-anointed, for the roc; empty since the Quiet Year."
 tags: [location, execution, roc, ash-reign]
 status: abandoned
-related: [gallowsbird, ivoard-hask, ashblood, pyrewardens, kharun-watch, ossmaar, hadrun]
+related: [gallowsbird, ivoard-hask, ashblood, pyrewardens, kharun-watch, ossmaar, hadrun, okton-s-hunters-name-pending]
 aliases: [the Gallows Spire]
 canon: true
 created_session: 0
-updated: "2026-10-15T05:40:26"
+updated: "2026-10-15T05:43:45"
 ---
 
 # The Sky Gallows
@@ -20,4 +20,4 @@ A black basalt spire two hundred feet tall, three miles south of Kharun at the e
 
 ## DM secrets
 - Near the top is an inscription scratched in 1472 by a condemned Pyrewarden acolyte: *"The ash is not for the dead. The ash is for the bird."* It is the first clue that the anointing was deliberate.
-- Fresh death will lure the roc here. It is the one place a party could set a trap for it, with Okton and the Answer.
+- Fresh death will lure the roc here. It is the one place a party could set a trap for it, with Okton and his hunters. Hunters can feel it coming.
