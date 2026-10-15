@@ -48,3 +48,4 @@
 - [16:46] Chadickith told Junie, a ragged Ashward girl, how Okton saved him from the roc; Junie mentioned night carts at the dead-house that the sisters are not allowed to look at.
 - [16:48] Chadickith checked the time: the dusk bell had just finished; the woman left the almshouse side door ajar.
 - [16:53] Chadickith crossed to the almshouse side door at dusk and entered, following the Warden's note.
+- [16:56] At the almshouse, the Warden told Chadickith about the knife-bearer from the Pyrehouse's inner circle and the night carts.
