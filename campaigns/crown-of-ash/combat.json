@@ -1,8 +1,8 @@
 {
   "active": true,
   "name": "Dead-house ambush",
-  "round": 1,
-  "turn": 2,
+  "round": 2,
+  "turn": 0,
   "order": [
     "peret",
     "choir-brother-2",
@@ -30,12 +30,23 @@
         "wis": 1,
         "cha": 0
       },
-      "resist": [],
+      "resist": [
+        "bludgeoning",
+        "piercing",
+        "slashing"
+      ],
       "immune": [],
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "raging",
+          "tick": "end",
+          "rounds": 9,
+          "source": "Rage: resist B/P/S, +2 melee damage, adv. STR checks/saves"
+        }
+      ],
       "concentration": null,
       "status": "ok",
       "death_saves": {
@@ -101,7 +112,7 @@
       "init_bonus": 2,
       "dex": 15,
       "ac": 12,
-      "hp": 27,
+      "hp": 25,
       "max_hp": 27,
       "temp_hp": 0,
       "saves": {
@@ -185,14 +196,7 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [
-        {
-          "name": "surprised",
-          "tick": "end",
-          "rounds": 1,
-          "source": "Chadickith's ambush"
-        }
-      ],
+      "conditions": [],
       "concentration": null,
       "status": "ok",
       "death_saves": {
@@ -233,7 +237,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 9,
+      "hp": 7,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -300,7 +304,15 @@
     "R1:   surprised on Peret has expired.",
     "R1: ▶ Choir Brother 2's turn (HP 9/9, AC 12, surprised 1r)",
     "R1:   surprised on Choir Brother 2 has expired.",
-    "R1: ▶ Chadickith's turn (HP 35/35, AC 15)"
+    "R1: ▶ Chadickith's turn (HP 35/35, AC 15)",
+    "R1: Chadickith is now raging 10r (Rage: resist B/P/S, +2 melee damage, adv. STR checks/saves)",
+    "R1: Storm Aura (Desert): 2 fire damage to each other creature within 10 ft.",
+    "R1: 🩸 Peret takes 2 damage from Storm Aura → HP 25/27",
+    "R1: 🩸 Choir Brother 2 takes 2 damage from Storm Aura → HP 7/9",
+    "R1: ▶ Choir Brother 1's turn (HP 9/9, AC 12, surprised 1r)",
+    "R1:   surprised on Choir Brother 1 has expired.",
+    "R2: Round 2",
+    "R2: ▶ Peret's turn (HP 25/27, AC 12)"
   ],
   "xp_defeated": 0,
   "defeated": [],

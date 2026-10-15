@@ -55,3 +55,4 @@
 - [17:11] Chadickith hid in the dead-house coffin racks with Kaselle nearby to wait for the midnight cart.
 - [17:16] Chadickith stayed hidden in the coffin racks and watched Peret's Choir wash and anoint a murdered pauper; overheard talk of Coldwell, the servant who lived, and the smith's boy.
 - [17:26] Combat in the almshouse dead-house: Chadickith ambushed Peret and two Choir brothers (all surprised), failed to grapple Peret (13 vs 15), and trumpeted/shouted for Okton in Giant.
+- [17:28] Chadickith entered a Rage (Storm Aura: Desert burned Peret and one Choir brother for 2 fire each).
