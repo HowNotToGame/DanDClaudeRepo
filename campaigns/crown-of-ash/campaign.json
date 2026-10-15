@@ -10,13 +10,7 @@
     "rules_audit": "always",
     "crit_rule": "double_dice",
     "advancement": "milestone",
-    "sources": [
-      "PHB",
-      "MM",
-      "DMG",
-      "XGE",
-      "TCE"
-    ],
+    "sources": [],
     "narration": "standard",
     "hide_monster_hp": true
   },
@@ -34,5 +28,5 @@
   },
   "last_summary": null,
   "dm_notes": "",
-  "updated": "2026-10-15T05:07:53"
+  "updated": "2026-10-15T05:17:54"
 }
