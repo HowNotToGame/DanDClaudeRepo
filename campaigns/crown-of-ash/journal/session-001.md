@@ -14,3 +14,4 @@
 - [06:38] Chadickith told the runner they were on their way and asked Okton whether to hide the Heartcoal or carry it.
 - [06:40] Chadickith and Okton walked to the Collarhouse to meet Watch-Captain Halda Barrowe.
 - [06:44] Chadickith told Halda he had to pass off the item in the commotion, true but evasive.
+- [06:46] Chadickith told Halda only that the killer wore a Pyrewarden's hood and was quick with a knife.
