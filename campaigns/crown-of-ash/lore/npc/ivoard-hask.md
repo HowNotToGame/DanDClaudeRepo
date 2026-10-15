@@ -18,7 +18,7 @@ King of Ossmaar from 1453 to 1491 DR. Born a nobody somewhere in Tethyr, he capt
 - The last Velun king hired him to break the raiders of the South March. He broke them, then turned on his employer in the **Night of Cinders** (1453 DR). The old palace burned, the Velun king and his sons died, and the Velun princess Ylia became his queen.
 - He was crowned with the **Crown of Ash**, and no head but his could make its burning Heartcoal kindle. He then proclaimed the **Ember Law**: no one wears the crown unless the Coal kindles for them.
 - **What people credit him with:** walls for Kharun, the Watch, safe roads, an end to raiding, honest weights in the markets, brimstone wealth.
-- **What they whisper about:** the **Sky Gallows**, where hundreds or thousands (it depends who's counting) were chained for the roc. Purges of the old nobility, above all the Velun Plot of 1474. The Thornwater Tithe. A queen who died of "fever" in 1480.
+- **What they whisper about:** the **Sky Gallows**, built by the Velun kings but made into a machine by Hask, where hundreds or thousands (it depends who's counting) were chained for the roc. Purges of the old nobility, above all the Velun Plot of 1474. The Thornwater Tithe. A queen who died of "fever" in 1480.
 - **The Quiet Year:** in Flamerule 1490 he suddenly stopped every execution in the realm and was seen less and less. People assumed he was ill.
 
 ## Family
@@ -34,4 +34,5 @@ He died in his sleep on the night of 26 Eleint 1491 DR, "taken by the fever of a
 - **Oselle's poison** (pale tincture, DMG p.258, supplied by House Mostana) had been weakening him for months. She believes she killed him. She didn't, though she hastened his death.
 - **His true last words** were heard only by his cupbearer, Isine Kettle: *"Break it. Not them, none of them. Break it."* He never named Kitwin. High Pyrewarden Tamius Coldwell reached the chamber after the king was dead and invented the deathbed designation.
 - **What he knew about Lorard:** that the boy was not his blood (see lorard-hask). He acknowledged him anyway, out of love for Mara, and never told anyone. It may be the only wholly decent thing he ever did.
-- **Ylia's death (1480):** the queen tried to pry the coal out of the crown to destroy it. It burned her, and she died of the burns over nine days. Hask called it fever and sent the physicians who knew the truth to the Spire. Oselle was there and burned her hands pulling her mother away.
+- **Where the coal came from:** not from Hask. The Velun kings had kept it hidden in the Pyrehouse crypt since about 1398 (see heartcoal). The Pyrewardens' Glad Choir judged the last Velun king too sparing with his executions, so they told the sellsword about it and opened the Pyrehouse to him on the Night of Cinders. Hask let everyone believe the coal was his own.
+- **Ylia's death (1480):** the queen knew her own Velun forebears had fed the coal for half a century. She tried to pry it out of the crown and destroy it. It burned her, and she died of the burns over nine days. Hask called it fever and sent the physicians who knew the truth to the Spire. Oselle was there and burned her hands pulling her mother away.

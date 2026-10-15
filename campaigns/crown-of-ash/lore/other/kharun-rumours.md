@@ -3,10 +3,10 @@ name: Kharun Rumours
 type: other
 summary: "Gossip going round sealed Kharun at Highharvestide 1491 DR; some of it true, some of it poison."
 tags: [rumours, hooks, kharun]
-related: [kharun, ivoard-hask, lorard-hask, oselle-velun, kitwin, okton, gallowsbird, heartcoal, house-mostana, okton-s-hunters-name-pending]
+related: [kharun, ivoard-hask, lorard-hask, oselle-velun, kitwin, okton, gallowsbird, heartcoal, house-mostana, order-of-the-banked-fire, hadrun]
 canon: true
 created_session: 0
-updated: "2026-10-15T05:44:57"
+updated: "2026-10-15T05:59:40"
 ---
 
 # Rumours in Kharun (Highharvestide 1491 DR)
@@ -19,6 +19,7 @@ Hand these out in taverns, bathhouses, Watch barracks and bread queues.
 5. "The old giant at the Vents made the Crown of Ash with his own hands. Ask him what he put in it."
 6. "Whoever holds the Coal can't be lied to. That's why the heirs are so desperate."
 7. "The giant's been bleeding into his quench-tubs. Steamside says he's making something that isn't armour."
+8. "The Sky Gallows is older than the Ash King. The princess's great-grandfather built it. Funny how she never mentions that."
 
 ## DM secrets
 - **1, partly true.** Oselle did poison him with Calishite pale tincture, but that isn't what killed him. The taster is at the bottom of the harbour.
@@ -27,4 +28,5 @@ Hand these out in taverns, bathhouses, Watch barracks and bread queues.
 - **4, true**, and worse than it sounds (see kitwin).
 - **5, true.** Chadickith has never heard it. Let it land on the know-it-all.
 - **6, false.** Pure invention, but people will act on it.
-- **7, true.** It's the hunter ritual (see okton-s-hunters-name-pending). Whoever hears this first starts asking questions at the forge.
+- **7, true.** It's the Quenching, the ritual that makes the Banked (see order-of-the-banked-fire). Whoever hears this first starts asking questions at the forge.
+- **8, true.** King Uzhar Velun raised it around 1401. The rumour doesn't know the worse part: why he built it, and what it did to Hadrun in 1423 (see oselle-velun).

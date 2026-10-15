@@ -8,7 +8,7 @@ related: [ivoard-hask, pyrewardens, kharun, lorard-hask, oselle-velun, heartcoal
 aliases: [Kitwin the Pyre-Born, the Gentle Heir]
 canon: true
 created_session: 0
-updated: "2026-10-15T05:41:37"
+updated: "2026-10-15T05:59:40"
 ---
 
 # Kitwin, the Pyre-Born
@@ -36,4 +36,3 @@ Soft-spoken, humble, seemingly uninterested in power. He promises "mercy": an en
 - **The coal really did kindle for him.** During the Quiet Year the king summoned him in secret, put the crown in his hands and watched it glow, then sent him away horrified. Kitwin thinks it was a blessing. By the Ember Law he may well be the "true" king, which tells you everything about the Ember Law.
 - **He doesn't know the deathbed naming was invented** by High Pyrewarden Tamius Coldwell, and he believes it completely. Proving the lie would break him, and might break his gentleness too.
 - If the coal is destroyed while he is Glad, he dies. If it is destroyed while he is only Kindled, he lives, hollow, and for the first time he will know which of his mercies were murders.
-- *Optional tie:* as a boy he ran errands from the Pyrehouse to Okton's forge for iron fittings, so he and young Chadickith know each other's faces. Kitwin remembers the loxodon boy fondly. Okton never let the acolyte inside.

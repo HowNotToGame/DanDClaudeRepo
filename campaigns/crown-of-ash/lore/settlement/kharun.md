@@ -13,11 +13,11 @@ updated: "2026-10-15T05:41:03"
 # Kharun
 The capital of Ossmaar and its only real city, home to about 9,000 people. It climbs in tiers up black basalt terraces above the steaming Ossar Shore. The lower city smells of sulphur, the upper city of woodsmoke and pyre-smoke. Most days, fine grey ash drifts down from the Pyrehouse chimney. Locals call it "the king's snow" and keep their shutters closed.
 
-Chadickith grew up here, at Okton's forge in Steamside, and knows the city well. (He has done odd jobs and hired-sword work for the Watch.)
+Chadickith has lived here for 68 years, since Okton brought him from Hadrun at age eight. He grew up at Okton's forge in Steamside and knows the city better than almost anyone alive. (He has done odd jobs and hired-sword work for the Watch.)
 
 ## Districts
 - **The Ember Keep** (top terrace): a squat fortress-palace of black basalt with red-glazed roof tiles. It holds the throne hall, the treasury, the chancery and the royal seal. Oselle Velun's household guard has held it since the king died.
-- **The Pyrehouse:** the Pyrewardens' domed temple-crematorium beside the Keep, under the "Long Smoke," a chimney that has burned for 38 years. The Crown of Ash lies here under guard, and the Great Pyre stands in Pyre Square in front of it. Kitwin lives inside.
+- **The Pyrehouse:** the Pyrewardens' domed temple-crematorium beside the Keep, under the "Long Smoke," a chimney that has burned for nearly ninety years. The Crown of Ash lies here under guard, and the Great Pyre stands in Pyre Square in front of it. Kitwin lives inside.
 - **The Lamp Market** (middle terrace): the guild quarter, home to lamp-oil sellers, alum dyers, moneychangers and brimstone brokers. These are Oselle's people. Hanging lamps burn day and night to keep off the ash-gloom.
 - **The Collarhouse:** the Kharun Watch's fortified hall and gaol, beside the Saltgate.
 - **The Ashward** (lowest terrace): the poorest district, directly under the smoke. Rag-pickers, pit-labourers and coughing children live here. Kitwin is beloved in the Ashward.

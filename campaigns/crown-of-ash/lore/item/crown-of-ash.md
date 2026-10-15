@@ -17,5 +17,5 @@ A plain, heavy circlet of black iron, cold to the touch even beside a fire. It h
 - **Now:** it rests on a black cushion in the Pyrehouse sanctum under a guard of twelve Pyrewardens. Kitwin keeps vigil beside it every night.
 
 ## DM secrets
-- Okton forged it, and the band is cold iron. He believed, partly rightly, that it would bind the coal's hunger to its wearer alone. While the coal sat in the crown, Ashblood spread only through the deaths it was fed. Out of the crown, the coal is loose and leaking. Short of destroying it, putting it back in the crown is the only way to muffle it from the Gallowsbird.
+- Okton forged it in 1453, reforging the band from the cold-iron reliquary in which the Velun kings had kept the coal hidden in the Pyrehouse crypt for half a century. He believed, partly rightly, that it would bind the coal's hunger to its wearer alone. While the coal sat in the crown, Ashblood spread only through the deaths it was fed. Out of the crown, the coal is loose and leaking. Short of destroying it, putting it back in the crown is the only way to muffle it from the Gallowsbird.
 - The claws around the socket still carry a faint smear of Queen Ylia's burned skin from 1480. Kitwin has noticed the stain and thinks it holy.
