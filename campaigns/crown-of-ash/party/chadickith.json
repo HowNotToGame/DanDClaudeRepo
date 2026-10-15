@@ -91,25 +91,20 @@
     "fail": 0
   },
   "features": [
-    "Rage (+2 damage",
-    "3/long rest)",
-    "Unarmored Defense",
+    "Rage (+2 melee damage; 3/long rest)",
+    "Unarmored Defense (not used: Natural Armor is higher)",
     "Reckless Attack",
     "Danger Sense",
-    "Storm Aura: Desert (10 ft",
-    "2 fire on rage / bonus action)",
-    "Natural Armor",
-    "Loxodon Serenity",
-    "Trunk",
+    "Storm Aura: Desert (10 ft; 2 fire to ALL other creatures in aura incl. allies; on entering rage and as a bonus action; no save)",
+    "Natural Armor (AC 12 + CON)",
+    "Loxodon Serenity (adv. vs charmed/frightened)",
+    "Trunk (5 ft reach; grapple/lift/unarmed strike; can't wield weapons)",
     "Keen Smell",
     "Powerful Build",
-    "Strike of the Giants: Fire (+1d10 fire once per turn",
-    "PB/long rest)",
-    "Languages: Common",
-    "Loxodon",
-    "Giant"
+    "Strike of the Giants: Fire (+1d10 fire once per turn on melee or thrown weapon hit; PB uses/long rest)",
+    "Languages: Common; Loxodon; Giant; +1 pending"
   ],
   "notes": "Egotistical know-it-all who gets humbled often. Raised by Okton, a fire giant smith of Kharun, after a blood-raged roc destroyed his village. 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON); beats Unarmored Defense (14).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-15T05:34:11"
+  "updated": "2026-10-15T05:38:57"
 }
