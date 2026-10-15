@@ -86,3 +86,4 @@
 - [19:57] The Great Pyre rite began: Coldwell crowned Kneeling Kitwin with grains in the socket; the Choir led a smiling old volunteer onto the dais and Brother Garn drew a narrow blade.
 - [20:02] Chadickith held the line and watched Garn kill the old volunteer on the dais; the Crown of Ash kindled and the crowd erupted.
 - [20:08] Chadickith held the rope line against the surging crowd after the crown kindled.
+- [20:12] Chadickith pushed through the surging crowd toward the dais steps to hold the stair.
