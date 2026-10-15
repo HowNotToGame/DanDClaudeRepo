@@ -65,3 +65,5 @@
 - [17:43] Chadickith told Okton what happened and bound Peret's wounds. Okton examined the dead man's ash wafer and said the Watch, Pyrehouse and Keep are all unsafe places for the prisoners.
 - [17:45] Chadickith asked Okton about the wafer, then interrogated the two Choir brothers together.
 - [17:49] Chadickith pressed the Choir brothers further about the crypt, the Choir's size and Coldwell's plan.
+- [18:07] Chadickith searched Peret and announced he will turn Peret in to the Collarhouse; Okton to keep Kaselle safe and handle the brothers.
+- [18:08] Kaselle helped Chadickith search Peret a second time; they took a minute while Okton watched the brothers.
