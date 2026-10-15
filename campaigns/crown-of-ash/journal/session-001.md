@@ -12,3 +12,4 @@
 - [06:29] Chadickith followed Okton from Pyre Square to the Steamside forge, leaving Wilash Redhand to guard the wounded servant Isine at the Watch triage tent.
 - [06:31] At the forge, Okton told Chadickith the ember is the Heartcoal from the Crown of Ash and feeds the gladness; Halda's runner summons both to the Collarhouse.
 - [06:38] Chadickith told the runner they were on their way and asked Okton whether to hide the Heartcoal or carry it.
+- [06:40] Chadickith and Okton walked to the Collarhouse to meet Watch-Captain Halda Barrowe.
