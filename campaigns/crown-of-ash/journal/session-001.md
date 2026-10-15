@@ -32,3 +32,4 @@
 - [15:57] Chadickith punched Garford and tightened his trunk around Garford's neck to silence him.
 - [15:58] Chadickith punched Garford again, aiming to knock him out.
 - [15:58] Garford was knocked unconscious. A thin man in a plain coat with a silver key pin (Oselle's household) approached, asking for a quiet word on the Lady's behalf.
+- [16:01] Chadickith asked Oselle's emissary for the Lady's offer and sized him up.
