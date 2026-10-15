@@ -28,3 +28,4 @@
 - [15:46] Chadickith tried to ambush the man in the brown coat tailing him in the dye-works; Stealth failed and he grappled with his trunk anyway.
 - [15:48] Chadickith interrogated the grappled man who had been tailing him from the Blind Barrel.
 - [15:52] Chadickith surveyed the dye-works lane while holding Garford (Perception nat 1: noticed nothing beyond the obvious).
+- [15:54] Chadickith slammed the grappled Garford Whitlock into the lane wall to knock him out.
