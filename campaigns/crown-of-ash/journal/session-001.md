@@ -53,3 +53,4 @@
 - [17:07] Kaselle told Chadickith that Brother Peret usually rides with the midnight cart and is likely to come tonight.
 - [17:08] Chadickith went down into the almshouse dead-house cellar with Kaselle to wait for the midnight cart.
 - [17:11] Chadickith hid in the dead-house coffin racks with Kaselle nearby to wait for the midnight cart.
+- [17:16] Chadickith stayed hidden in the coffin racks and watched Peret's Choir wash and anoint a murdered pauper; overheard talk of Coldwell, the servant who lived, and the smith's boy.
