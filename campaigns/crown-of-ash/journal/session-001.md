@@ -84,3 +84,4 @@
 - [19:44] Chadickith rested and prepared; Okton loaned him a Redcollar gorget; Wilash's runner reported Isine through the Saltgate at the dusk rotation.
 - [19:45] Chadickith reported to Halda at Pyre Square and took the north rail by the dais for the Great Pyre rite.
 - [19:57] The Great Pyre rite began: Coldwell crowned Kneeling Kitwin with grains in the socket; the Choir led a smiling old volunteer onto the dais and Brother Garn drew a narrow blade.
+- [20:02] Chadickith held the line and watched Garn kill the old volunteer on the dais; the Crown of Ash kindled and the crowd erupted.
