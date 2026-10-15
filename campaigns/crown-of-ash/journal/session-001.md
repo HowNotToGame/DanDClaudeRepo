@@ -79,3 +79,4 @@
 - [19:32] New quest: Hold Halda's rope line at the Great Pyre
 - [19:32] New quest: Get Isine out through the Saltgate at the dusk rotation
 - [19:32] Chadickith accepted Halda's rope-line job and took the Saltgate pass for Isine.
+- [19:34] Chadickith gave Isine the Saltgate pass, helped ready her cart, then returned to the forge to brief Okton.
