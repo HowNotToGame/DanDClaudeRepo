@@ -43,3 +43,4 @@
 - [16:30] Chadickith told Okton he is heading to the Ashward almshouse; the meeting is tomorrow at dusk, so DM asked whether to scout now or rest and spend the day.
 - [16:32] Chadickith slept at Okton's forge; the dawn bell passed with no answer given to Oselle. Day 2 of the interregnum begins; the almshouse meeting is at dusk.
 - [16:36] Chadickith scouted the Ashward almshouse in daylight.
+- [16:39] Chadickith watched the Ashward almshouse from a hiding place from noon until dusk.
