@@ -1,0 +1,17 @@
+# Local 5etools data — fetched on demand with `./dm rules fetch`, never committed
+data/
+# Build output (claude.ai skill bundle, exports)
+dist/
+*.robodm.json
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+# Atomic-write temp files
+.*.tmp
+*-digest.md
