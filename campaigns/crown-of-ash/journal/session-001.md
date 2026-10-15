@@ -72,3 +72,4 @@
 - [19:13] Chadickith asked Kaselle to wait outside and prepared to hide Peret's tin of wafers away from the Heartcoal's hiding place.
 - [19:14] Chadickith hid the tin of wafers in the forge's roof-beams and let Kaselle back in.
 - [19:17] Chadickith slept at the forge from dawn until mid-afternoon of Highharvestide's second day (long rest); Okton relayed news from Wilash at midday.
+- [19:19] Chadickith visited Isine at the triage tent; she told him the king's true last words and that Coldwell invented the naming of Kitwin.
