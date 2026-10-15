@@ -45,3 +45,4 @@
 - [16:36] Chadickith scouted the Ashward almshouse in daylight.
 - [16:39] Chadickith watched the Ashward almshouse from a hiding place from noon until dusk.
 - [16:44] Chadickith offered to tell a ragged girl at the stakeout a story about the giant he knows (Okton).
+- [16:46] Chadickith told Junie, a ragged Ashward girl, how Okton saved him from the roc; Junie mentioned night carts at the dead-house that the sisters are not allowed to look at.
