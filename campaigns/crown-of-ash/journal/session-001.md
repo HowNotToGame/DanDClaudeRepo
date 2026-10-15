@@ -17,3 +17,4 @@
 - [06:46] Chadickith told Halda only that the killer wore a Pyrewarden's hood and was quick with a knife.
 - [06:52] Chadickith went to the triage tent; Isine woke at dusk and asked whether the giant took it.
 - [14:15] Chadickith told the waking Isine that he threw the ember into the king's pyre (a lie).
+- [14:31] Chadickith sent Kitwin away from the triage tent at Isine's request.
