@@ -68,3 +68,4 @@
 - [18:07] Chadickith searched Peret and announced he will turn Peret in to the Collarhouse; Okton to keep Kaselle safe and handle the brothers.
 - [18:08] Kaselle helped Chadickith search Peret a second time; they took a minute while Okton watched the brothers.
 - [18:11] Chadickith carried unconscious Peret to the Collarhouse and handed him to Halda, naming him the attacker without revealing the Choir, Kaselle, or the plague road.
+- [19:06] Chadickith checked on Okton in the forge cellar with the bound Choir brothers; Okton asked him to keep the tin of ash wafers away from him.
