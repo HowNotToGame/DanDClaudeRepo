@@ -49,3 +49,4 @@
 - [16:48] Chadickith checked the time: the dusk bell had just finished; the woman left the almshouse side door ajar.
 - [16:53] Chadickith crossed to the almshouse side door at dusk and entered, following the Warden's note.
 - [16:56] At the almshouse, the Warden told Chadickith about the knife-bearer from the Pyrehouse's inner circle and the night carts.
+- [17:03] Chadickith sent word to Okton (watching from a rooftop across the street) that Kaselle proposes waiting in the dead-house cellar for the midnight cart; Okton agreed to hold the street and told Chadickith to leave if he smelled hot iron.
