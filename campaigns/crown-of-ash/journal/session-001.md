@@ -21,3 +21,4 @@
 - [14:40] Chadickith wandered Kharun at dusk looking for a place to eat.
 - [15:03] At the Blind Barrel in the Vents, midwife Kaslo Ashdown repeated the rumour that Okton made the Crown of Ash; Chadickith joked it off and asked keeper Nesan Furrow what was on offer.
 - [15:13] Chadickith ordered flatbread at the Blind Barrel; overheard Calishite dockhands mention a galley sailing at the first tide after the gates open.
+- [15:26] Chadickith held a staring contest with a silent grey-hooded Pyrewarden in the Blind Barrel while eating.
