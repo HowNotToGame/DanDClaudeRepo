@@ -16,3 +16,4 @@
 - [06:44] Chadickith told Halda he had to pass off the item in the commotion, true but evasive.
 - [06:46] Chadickith told Halda only that the killer wore a Pyrewarden's hood and was quick with a knife.
 - [06:52] Chadickith went to the triage tent; Isine woke at dusk and asked whether the giant took it.
+- [14:15] Chadickith told the waking Isine that he threw the ember into the king's pyre (a lie).
