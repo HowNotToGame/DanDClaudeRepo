@@ -70,3 +70,4 @@
 - [18:11] Chadickith carried unconscious Peret to the Collarhouse and handed him to Halda, naming him the attacker without revealing the Choir, Kaselle, or the plague road.
 - [19:06] Chadickith checked on Okton in the forge cellar with the bound Choir brothers; Okton asked him to keep the tin of ash wafers away from him.
 - [19:13] Chadickith asked Kaselle to wait outside and prepared to hide Peret's tin of wafers away from the Heartcoal's hiding place.
+- [19:14] Chadickith hid the tin of wafers in the forge's roof-beams and let Kaselle back in.
