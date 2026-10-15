@@ -58,3 +58,4 @@
 - [17:28] Chadickith entered a Rage (Storm Aura: Desert burned Peret and one Choir brother for 2 fire each).
 - [17:33] Chadickith hit Peret with an opportunity attack (greataxe + Fire Strike, 20 damage) and tried to intimidate the Choir.
 - [17:33] DM slip: advanced past Chadickith's round-2 turn by mistake and restored it. Peret (badly hurt) is unbarring the ramp door to flee; Choir Brother 2 backs toward it; Choir Brother 1 hesitates by the stacks near Kaselle.
+- [17:38] Chadickith charged Peret at the ramp door and ordered the brothers not to move.
