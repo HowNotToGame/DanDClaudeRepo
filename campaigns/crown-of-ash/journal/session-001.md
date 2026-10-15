@@ -7,3 +7,4 @@
 - [06:04] During the lighting of the pyre, Chadickith held the line and watched for Okton (Perception check to spot trouble in the crowd).
 - [06:07] Chadickith hauled the grey-haired servant behind the rope with his trunk and shouted a warning to Okton (in Giant) and to the nearby Watch.
 - [06:10] Chadickith handed the hot cloth-wrapped lump to Okton and tried to save the dying servant.
+- [06:18] Chadickith shielded the wounded servant at the Watch triage tent and bellowed at the heirs' envoys (Lorard's quartermaster, Oselle's steward, Kitwin) to get back.
