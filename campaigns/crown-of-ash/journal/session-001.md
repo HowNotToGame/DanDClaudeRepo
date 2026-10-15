@@ -22,3 +22,5 @@
 - [15:03] At the Blind Barrel in the Vents, midwife Kaslo Ashdown repeated the rumour that Okton made the Crown of Ash; Chadickith joked it off and asked keeper Nesan Furrow what was on offer.
 - [15:13] Chadickith ordered flatbread at the Blind Barrel; overheard Calishite dockhands mention a galley sailing at the first tide after the gates open.
 - [15:26] Chadickith held a staring contest with a silent grey-hooded Pyrewarden in the Blind Barrel while eating.
+- [15:32] New quest: Meet the Warden at the Ashward almshouse
+- [15:32] Chadickith read the grey note left by the Pyrewarden: meet at the Ashward almshouse at tomorrow's dusk bell.
