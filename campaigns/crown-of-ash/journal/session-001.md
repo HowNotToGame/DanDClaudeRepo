@@ -51,3 +51,4 @@
 - [16:56] At the almshouse, the Warden told Chadickith about the knife-bearer from the Pyrehouse's inner circle and the night carts.
 - [17:03] Chadickith sent word to Okton (watching from a rooftop across the street) that Kaselle proposes waiting in the dead-house cellar for the midnight cart; Okton agreed to hold the street and told Chadickith to leave if he smelled hot iron.
 - [17:07] Kaselle told Chadickith that Brother Peret usually rides with the midnight cart and is likely to come tonight.
+- [17:08] Chadickith went down into the almshouse dead-house cellar with Kaselle to wait for the midnight cart.
