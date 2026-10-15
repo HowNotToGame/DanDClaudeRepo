@@ -82,3 +82,4 @@
 - [19:34] Chadickith gave Isine the Saltgate pass, helped ready her cart, then returned to the forge to brief Okton.
 - [19:42] Chadickith decided to honor Halda's rope-line job tonight and not raid the crypt; Okton agreed to watch from the edges, with a trumpet blast as the signal.
 - [19:44] Chadickith rested and prepared; Okton loaned him a Redcollar gorget; Wilash's runner reported Isine through the Saltgate at the dusk rotation.
+- [19:45] Chadickith reported to Halda at Pyre Square and took the north rail by the dais for the Great Pyre rite.
