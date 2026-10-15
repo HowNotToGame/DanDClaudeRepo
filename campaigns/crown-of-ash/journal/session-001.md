@@ -19,3 +19,4 @@
 - [14:15] Chadickith told the waking Isine that he threw the ember into the king's pyre (a lie).
 - [14:31] Chadickith sent Kitwin away from the triage tent at Isine's request.
 - [14:40] Chadickith wandered Kharun at dusk looking for a place to eat.
+- [15:03] At the Blind Barrel in the Vents, midwife Kaslo Ashdown repeated the rumour that Okton made the Crown of Ash; Chadickith joked it off and asked keeper Nesan Furrow what was on offer.
