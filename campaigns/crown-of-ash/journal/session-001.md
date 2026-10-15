@@ -1,0 +1,6 @@
+# Session 1 — The King Burns
+
+*2026-10-15*
+
+## Log
+- [05:57] Highharvestide 1491 DR, dawn: Ivoard Hask's funeral burning in Pyre Square. Chadickith works the rope line for Watch-Captain Halda Barrowe (hired on Okton's word). All three heirs present under funeral truce; Okton watching from the square's edge.
