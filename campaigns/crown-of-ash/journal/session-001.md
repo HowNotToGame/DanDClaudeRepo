@@ -33,3 +33,4 @@
 - [15:58] Chadickith punched Garford again, aiming to knock him out.
 - [15:58] Garford was knocked unconscious. A thin man in a plain coat with a silver key pin (Oselle's household) approached, asking for a quiet word on the Lady's behalf.
 - [16:01] Chadickith asked Oselle's emissary for the Lady's offer and sized him up.
+- [16:06] Chadickith laughed off Oselle's offer ('200 gold for something I don't have'); Jorson held out a silver key token for the Ember Keep gate.
