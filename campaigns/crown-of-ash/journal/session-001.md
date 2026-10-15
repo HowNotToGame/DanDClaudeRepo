@@ -9,3 +9,4 @@
 - [06:10] Chadickith handed the hot cloth-wrapped lump to Okton and tried to save the dying servant.
 - [06:18] Chadickith shielded the wounded servant at the Watch triage tent and bellowed at the heirs' envoys (Lorard's quartermaster, Oselle's steward, Kitwin) to get back.
 - [06:23] Chadickith let Oselle's steward through to the wounded servant (named Isine by the steward), brushed off Lorard's quartermaster with a lie that was not believed, and ignored Kitwin.
+- [06:29] Chadickith followed Okton from Pyre Square to the Steamside forge, leaving Wilash Redhand to guard the wounded servant Isine at the Watch triage tent.
