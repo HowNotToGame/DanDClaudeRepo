@@ -4,10 +4,10 @@
   "created": "2026-10-15T04:54:40",
   "premise": "The tyrant king is dead and three heirs claim the throne. The party are hired swords who suddenly hold the one item all three heirs want.",
   "setting": "Forgotten Realms — a small realm in the Border Kingdoms, south of the Lake of Steam, 1491 DR",
-  "tone": "Political intrigue with heroic adventure",
+  "tone": "Grimdark political intrigue: morally grey, every victory costs something",
   "settings": {
     "dice_mode": "auto",
-    "rules_audit": "key",
+    "rules_audit": "always",
     "crit_rule": "double_dice",
     "advancement": "milestone",
     "sources": [
@@ -20,11 +20,19 @@
     "narration": "standard",
     "hide_monster_hp": true
   },
-  "enabled_blocks": [],
+  "enabled_blocks": [
+    "tone-grimdark",
+    "solo-play",
+    "rules-as-written",
+    "safety-lines-and-veils",
+    "hidden-rolls",
+    "mobile-friendly"
+  ],
   "session": {
     "number": 0,
     "active": false
   },
   "last_summary": null,
-  "dm_notes": ""
+  "dm_notes": "",
+  "updated": "2026-10-15T05:07:53"
 }
