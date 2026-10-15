@@ -2,7 +2,7 @@
   "active": true,
   "name": "Dead-house ambush",
   "round": 2,
-  "turn": 0,
+  "turn": 2,
   "order": [
     "peret",
     "choir-brother-2",
@@ -112,7 +112,7 @@
       "init_bonus": 2,
       "dex": 15,
       "ac": 12,
-      "hp": 25,
+      "hp": 5,
       "max_hp": 27,
       "temp_hp": 0,
       "saves": {
@@ -164,7 +164,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 200,
-      "notes": "",
+      "notes": "at the ramp door, unbarring it (fleeing)",
       "ref": {
         "name": "Spy",
         "source": "MM",
@@ -221,7 +221,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 25,
-      "notes": "",
+      "notes": "by the shroud-stacks with lantern, hesitating near Kaselle",
       "ref": {
         "name": "Cultist",
         "source": "MM",
@@ -278,7 +278,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 25,
-      "notes": "",
+      "notes": "backing toward the ramp door",
       "ref": {
         "name": "Cultist",
         "source": "MM",
@@ -312,7 +312,12 @@
     "R1: ▶ Choir Brother 1's turn (HP 9/9, AC 12, surprised 1r)",
     "R1:   surprised on Choir Brother 1 has expired.",
     "R2: Round 2",
-    "R2: ▶ Peret's turn (HP 25/27, AC 12)"
+    "R2: ▶ Peret's turn (HP 25/27, AC 12)",
+    "R2: Opportunity attack: Chadickith's greataxe hits Peret (19 vs AC 12) with Fire Strike.",
+    "R2: 🩸 Peret takes 20 damage from Chadickith's opportunity attack → HP 5/27",
+    "R2: ▶ Choir Brother 2's turn (HP 7/9, AC 12)",
+    "R2: ▶ Chadickith's turn (HP 35/35, AC 15, raging 9r)",
+    "R2: ▶ Choir Brother 1's turn (HP 9/9, AC 12)"
   ],
   "xp_defeated": 0,
   "defeated": [],
