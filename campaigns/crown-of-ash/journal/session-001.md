@@ -52,3 +52,4 @@
 - [17:03] Chadickith sent word to Okton (watching from a rooftop across the street) that Kaselle proposes waiting in the dead-house cellar for the midnight cart; Okton agreed to hold the street and told Chadickith to leave if he smelled hot iron.
 - [17:07] Kaselle told Chadickith that Brother Peret usually rides with the midnight cart and is likely to come tonight.
 - [17:08] Chadickith went down into the almshouse dead-house cellar with Kaselle to wait for the midnight cart.
+- [17:11] Chadickith hid in the dead-house coffin racks with Kaselle nearby to wait for the midnight cart.
