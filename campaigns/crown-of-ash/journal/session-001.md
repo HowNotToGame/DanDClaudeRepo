@@ -44,3 +44,4 @@
 - [16:32] Chadickith slept at Okton's forge; the dawn bell passed with no answer given to Oselle. Day 2 of the interregnum begins; the almshouse meeting is at dusk.
 - [16:36] Chadickith scouted the Ashward almshouse in daylight.
 - [16:39] Chadickith watched the Ashward almshouse from a hiding place from noon until dusk.
+- [16:44] Chadickith offered to tell a ragged girl at the stakeout a story about the giant he knows (Okton).
