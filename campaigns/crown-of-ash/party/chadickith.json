@@ -35,7 +35,8 @@
     "athletics",
     "perception",
     "intimidation",
-    "survival"
+    "survival",
+    "nature"
   ],
   "expertise": [],
   "jack_of_all_trades": false,
@@ -63,6 +64,16 @@
           "bludgeoning"
         ]
       ]
+    },
+    {
+      "name": "Hand crossbow",
+      "to_hit": 3,
+      "damage": [
+        [
+          "1d6+1",
+          "piercing"
+        ]
+      ]
     }
   ],
   "resources": {
@@ -82,7 +93,9 @@
     "Greataxe",
     "Explorer's pack (backpack, bedroll, mess kit, tinderbox, 10 torches, waterskin, 50 ft hempen rope)",
     "Traveler's clothes",
-    "A small ember-black stone from Okton's forge (keepsake)"
+    "A small ember-black stone from Okton's forge (keepsake)",
+    "Hand crossbow",
+    "Crossbow bolts (unlimited: first purchase made)"
   ],
   "gold": 10,
   "xp": 0,
@@ -106,5 +119,5 @@
   ],
   "notes": "Egotistical know-it-all who gets humbled often. Raised by Okton, a fire giant smith of Kharun, after a blood-raged roc destroyed his village. 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON); beats Unarmored Defense (14).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-15T05:38:57"
+  "updated": "2026-10-15T05:41:35"
 }
