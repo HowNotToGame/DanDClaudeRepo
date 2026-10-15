@@ -24,3 +24,4 @@
 - [15:26] Chadickith held a staring contest with a silent grey-hooded Pyrewarden in the Blind Barrel while eating.
 - [15:32] New quest: Meet the Warden at the Ashward almshouse
 - [15:32] Chadickith read the grey note left by the Pyrewarden: meet at the Ashward almshouse at tomorrow's dusk bell.
+- [15:43] Chadickith pocketed the Pyrewarden's note, finished eating, and walked back to Okton's forge at night.
