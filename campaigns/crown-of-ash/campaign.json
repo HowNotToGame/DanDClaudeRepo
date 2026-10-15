@@ -1,0 +1,30 @@
+{
+  "name": "Crown of Ash",
+  "slug": "crown-of-ash",
+  "created": "2026-10-15T04:54:40",
+  "premise": "The tyrant king is dead and three heirs claim the throne. The party are hired swords who suddenly hold the one item all three heirs want.",
+  "setting": "Forgotten Realms — a small realm in the Border Kingdoms, south of the Lake of Steam, 1491 DR",
+  "tone": "Political intrigue with heroic adventure",
+  "settings": {
+    "dice_mode": "auto",
+    "rules_audit": "key",
+    "crit_rule": "double_dice",
+    "advancement": "milestone",
+    "sources": [
+      "PHB",
+      "MM",
+      "DMG",
+      "XGE",
+      "TCE"
+    ],
+    "narration": "standard",
+    "hide_monster_hp": true
+  },
+  "enabled_blocks": [],
+  "session": {
+    "number": 0,
+    "active": false
+  },
+  "last_summary": null,
+  "dm_notes": ""
+}
