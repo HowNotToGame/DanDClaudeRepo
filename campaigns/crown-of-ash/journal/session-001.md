@@ -13,3 +13,4 @@
 - [06:31] At the forge, Okton told Chadickith the ember is the Heartcoal from the Crown of Ash and feeds the gladness; Halda's runner summons both to the Collarhouse.
 - [06:38] Chadickith told the runner they were on their way and asked Okton whether to hide the Heartcoal or carry it.
 - [06:40] Chadickith and Okton walked to the Collarhouse to meet Watch-Captain Halda Barrowe.
+- [06:44] Chadickith told Halda he had to pass off the item in the commotion, true but evasive.
