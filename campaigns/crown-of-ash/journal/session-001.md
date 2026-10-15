@@ -18,3 +18,4 @@
 - [06:52] Chadickith went to the triage tent; Isine woke at dusk and asked whether the giant took it.
 - [14:15] Chadickith told the waking Isine that he threw the ember into the king's pyre (a lie).
 - [14:31] Chadickith sent Kitwin away from the triage tent at Isine's request.
+- [14:40] Chadickith wandered Kharun at dusk looking for a place to eat.
