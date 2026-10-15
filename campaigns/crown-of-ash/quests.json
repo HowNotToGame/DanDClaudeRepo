@@ -6,6 +6,11 @@
     "notes": "Note says: tomorrow's dusk bell, come alone, tell no one in a red collar.",
     "giver": "Unnamed Pyrewarden",
     "opened_session": 1,
-    "updates": []
+    "updates": [
+      {
+        "session": 1,
+        "note": "Done: met Warden Kaselle; captured Peret, Vesan and Wyn; Peret in the Collarhouse, brothers and Kaselle at Okton's forge."
+      }
+    ]
   }
 ]
