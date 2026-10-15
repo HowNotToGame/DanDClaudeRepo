@@ -40,3 +40,4 @@
 - [16:17] Chadickith told Okton about the tail, Oselle's offer, the silver key and the Pyrewarden's note; Okton advised keeping the key unused and said he would shadow Chadickith to the almshouse.
 - [16:24] Chadickith asked Okton if he made the Crown of Ash; Okton confessed he forged it and set the Heartcoal in it.
 - [16:29] Okton explained what it would take to break the Heartcoal (a giant's forge and a giant's blood) and the risk to himself.
+- [16:30] Chadickith told Okton he is heading to the Ashward almshouse; the meeting is tomorrow at dusk, so DM asked whether to scout now or rest and spend the day.
