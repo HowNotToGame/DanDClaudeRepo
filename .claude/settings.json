@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./dm:*)",
+      "Bash(python3 -m robodm:*)",
+      "Bash(python3 -m unittest:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/rules-audit.py"
+          }
+        ]
+      }
+    ]
+  }
+}
