@@ -1,0 +1,115 @@
+{
+  "name": "Chadickith",
+  "slug": "chadickith",
+  "player": "",
+  "race": "Loxodon (Dodrud variant)",
+  "class": "Barbarian",
+  "subclass": "Storm Herald (Desert)",
+  "level": 3,
+  "background": "Giant Foundling",
+  "abilities": {
+    "str": 15,
+    "dex": 13,
+    "con": 16,
+    "int": 8,
+    "wis": 13,
+    "cha": 10
+  },
+  "ac": 15,
+  "speed": 30,
+  "hp": {
+    "max": 35,
+    "current": 35,
+    "temp": 0
+  },
+  "hit_dice": {
+    "die": 12,
+    "max": 3,
+    "used": 0
+  },
+  "save_proficiencies": [
+    "str",
+    "con"
+  ],
+  "skill_proficiencies": [
+    "athletics",
+    "perception",
+    "intimidation",
+    "survival"
+  ],
+  "expertise": [],
+  "jack_of_all_trades": false,
+  "initiative_bonus": null,
+  "spellcasting_ability": "",
+  "spell_slots": {},
+  "spells": [],
+  "attacks": [
+    {
+      "name": "Greataxe",
+      "to_hit": 4,
+      "damage": [
+        [
+          "1d12+2",
+          "slashing"
+        ]
+      ]
+    },
+    {
+      "name": "Unarmed strike (trunk)",
+      "to_hit": 4,
+      "damage": [
+        [
+          "3",
+          "bludgeoning"
+        ]
+      ]
+    }
+  ],
+  "resources": {
+    "Rage": {
+      "max": 3,
+      "used": 0,
+      "reset": "long"
+    },
+    "Strike of the Giants (Fire)": {
+      "max": 2,
+      "used": 0,
+      "reset": "long"
+    }
+  },
+  "conditions": [],
+  "inventory": [
+    "Greataxe",
+    "Explorer's pack (backpack, bedroll, mess kit, tinderbox, 10 torches, waterskin, 50 ft hempen rope)",
+    "Traveler's clothes",
+    "A small ember-black stone from Okton's forge (keepsake)"
+  ],
+  "gold": 10,
+  "xp": 0,
+  "death_saves": {
+    "success": 0,
+    "fail": 0
+  },
+  "features": [
+    "Rage (+2 damage",
+    "3/long rest)",
+    "Unarmored Defense",
+    "Reckless Attack",
+    "Danger Sense",
+    "Storm Aura: Desert (10 ft",
+    "2 fire on rage / bonus action)",
+    "Natural Armor",
+    "Loxodon Serenity",
+    "Trunk",
+    "Keen Smell",
+    "Powerful Build",
+    "Strike of the Giants: Fire (+1d10 fire once per turn",
+    "PB/long rest)",
+    "Languages: Common",
+    "Loxodon",
+    "Giant"
+  ],
+  "notes": "Egotistical know-it-all who gets humbled often. Raised by Okton, a fire giant smith of Kharun, after a blood-raged roc destroyed his village. 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON); beats Unarmored Defense (14).",
+  "created": "2026-10-15T05:34:10",
+  "updated": "2026-10-15T05:34:11"
+}
