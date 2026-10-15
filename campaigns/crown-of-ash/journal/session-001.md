@@ -30,3 +30,5 @@
 - [15:52] Chadickith surveyed the dye-works lane while holding Garford (Perception nat 1: noticed nothing beyond the obvious).
 - [15:54] Chadickith slammed the grappled Garford Whitlock into the lane wall to knock him out.
 - [15:57] Chadickith punched Garford and tightened his trunk around Garford's neck to silence him.
+- [15:58] Chadickith punched Garford again, aiming to knock him out.
+- [15:58] Garford was knocked unconscious. A thin man in a plain coat with a silver key pin (Oselle's household) approached, asking for a quiet word on the Lady's behalf.
