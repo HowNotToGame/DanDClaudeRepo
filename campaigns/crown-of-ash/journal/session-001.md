@@ -115,3 +115,4 @@
 - [06:44] Chadickith, frustrated, proposed breaking the Saltgate and admitted he does not know what to do; Okton cautioned that forcing the gate means war, and hinted the roc worsened once the Heartcoal was loose.
 - [06:50] Chadickith held the city: led the evacuation of the square (Intimidation 21 vs DC 12) with Lorard's men and the Watch. Two hours passed; the engine crews are arriving through the Saltgate wicket, carrying broken-down bolt-throwers.
 - [06:52] Chadickith helped assemble the bolt-throwers (Athletics 11 vs DC 12, fail): a winch pin seated wrong, costing time. Two engines ready, two still half-built when the roc noticed the work and began a stoop on the crews at the square's edge.
+- [06:55] COMBAT vs the Gallowsbird R1: Chadickith finished engine 3. Two ballistae hit (17+10); roc killed the firing crews with beak and talons; Okton's thrown rock hit for 36. Roc at 185/248. Round 2, Chadickith's turn; engine 3 ready, engine 4 half-built.

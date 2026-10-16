@@ -1,11 +1,312 @@
 {
-  "active": false,
-  "name": "",
-  "round": 0,
+  "active": true,
+  "name": "The Gallowsbird over the Great Pyre",
+  "round": 2,
   "turn": 0,
-  "order": [],
-  "combatants": {},
-  "log": [],
+  "order": [
+    "chadickith",
+    "engine-crews-ballistae",
+    "the-gallowsbird",
+    "okton"
+  ],
+  "combatants": {
+    "chadickith": {
+      "id": "chadickith",
+      "name": "Chadickith",
+      "kind": "pc",
+      "side": "party",
+      "init": 19,
+      "init_bonus": 1,
+      "dex": 13,
+      "ac": 15,
+      "hp": 23,
+      "max_hp": 35,
+      "temp_hp": 0,
+      "saves": {
+        "str": 4,
+        "dex": 1,
+        "con": 5,
+        "int": -1,
+        "wis": 1,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Greataxe",
+          "to_hit": 4,
+          "damage": [
+            [
+              "1d12+2",
+              "slashing"
+            ]
+          ]
+        },
+        {
+          "name": "Unarmed strike (trunk)",
+          "to_hit": 4,
+          "damage": [
+            [
+              "3",
+              "bludgeoning"
+            ]
+          ]
+        },
+        {
+          "name": "Hand crossbow",
+          "to_hit": 3,
+          "damage": [
+            [
+              "1d6+1",
+              "piercing"
+            ]
+          ]
+        },
+        {
+          "name": "Trunk slam",
+          "to_hit": 4,
+          "damage": [
+            [
+              "3",
+              "bludgeoning"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 0,
+      "notes": "",
+      "pc": "chadickith"
+    },
+    "okton": {
+      "id": "okton",
+      "name": "Okton",
+      "kind": "monster",
+      "side": "ally",
+      "init": 4,
+      "init_bonus": -1,
+      "dex": 9,
+      "ac": 18,
+      "hp": 162,
+      "max_hp": 162,
+      "temp_hp": 0,
+      "saves": {
+        "str": 7,
+        "dex": 3,
+        "con": 10,
+        "int": 0,
+        "wis": 2,
+        "cha": 5
+      },
+      "resist": [],
+      "immune": [
+        "fire"
+      ],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Greatsword",
+          "section": "action",
+          "to_hit": 11,
+          "damage": [
+            [
+              "6d6+7",
+              "slashing"
+            ]
+          ]
+        },
+        {
+          "name": "Rock",
+          "section": "action",
+          "to_hit": 11,
+          "damage": [
+            [
+              "4d10+7",
+              "bludgeoning"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 5000,
+      "notes": "",
+      "ref": {
+        "name": "Fire Giant",
+        "source": "MM",
+        "cr": "9"
+      }
+    },
+    "the-gallowsbird": {
+      "id": "the-gallowsbird",
+      "name": "The Gallowsbird",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 9,
+      "init_bonus": 0,
+      "dex": 10,
+      "ac": 15,
+      "hp": 185,
+      "max_hp": 248,
+      "temp_hp": 0,
+      "saves": {
+        "str": 9,
+        "dex": 4,
+        "con": 9,
+        "int": -4,
+        "wis": 4,
+        "cha": 3
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Beak",
+          "section": "action",
+          "to_hit": 13,
+          "damage": [
+            [
+              "4d8+9",
+              "piercing"
+            ]
+          ]
+        },
+        {
+          "name": "Talons",
+          "section": "action",
+          "to_hit": 13,
+          "damage": [
+            [
+              "4d6+9",
+              "slashing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 7200,
+      "notes": "",
+      "ref": {
+        "name": "Roc",
+        "source": "MM",
+        "cr": "11"
+      }
+    },
+    "engine-crews-ballistae": {
+      "id": "engine-crews-ballistae",
+      "name": "Engine crews (ballistae)",
+      "kind": "npc",
+      "side": "ally",
+      "init": 14,
+      "init_bonus": 2,
+      "dex": 10,
+      "ac": 12,
+      "hp": 0,
+      "max_hp": 40,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 0,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "dead",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 0,
+      "notes": ""
+    }
+  },
+  "log": [
+    "R0: ⚔️ Combat started: The Gallowsbird over the Great Pyre. Add combatants, then roll initiative.",
+    "R0: Added Chadickith (PC) — HP 23/35, AC 15, init +1",
+    "R0: Added Okton (CR 9) — HP 162, AC 18, init -1",
+    "R0: Added The Gallowsbird (CR 11) — HP 248, AC 15, init +0",
+    "R0: Added Engine crews (ballistae) — HP 40, AC 12, init +2",
+    "R0: Chadickith initiative: 1d20+1 → 1d20[18] + 1 = 19",
+    "R0: Okton initiative: 1d20-1 → 1d20[5] - 1 = 4",
+    "R0: The Gallowsbird initiative: 1d20 → 1d20[9] = 9",
+    "R0: Engine crews (ballistae) initiative: 1d20+2 → 1d20[12] + 2 = 14",
+    "R1: Round 1 — initiative order: Chadickith (19), Engine crews (ballistae) (14), The Gallowsbird (9), Okton (4)",
+    "R1: ▶ Chadickith's turn (HP 23/35, AC 15)",
+    "R1: ▶ Engine crews (ballistae)'s turn (HP 40/40, AC 12)",
+    "R1: 🩸 The Gallowsbird takes 27 damage from Ballistae → HP 221/248",
+    "R1: ▶ The Gallowsbird's turn (HP 221/248, AC 15)",
+    "R1: 🎯 The Gallowsbird → Engine crews (ballistae) (Beak): 1d20+13 → 1d20[10] + 13 = 23 vs AC 12 → hit",
+    "R1:   Damage: 4d8+9 → 4d8[2, 3, 4, 5] + 9 = 23 piercing",
+    "R1: 🩸 Engine crews (ballistae) takes 23 damage from The Gallowsbird's Beak → HP 17/40",
+    "R1: 🎯 The Gallowsbird → Engine crews (ballistae) (Talons): 1d20+13 → 1d20[6] + 13 = 19 vs AC 12 → hit",
+    "R1:   Damage: 4d6+9 → 4d6[3, 4, 3, 2] + 9 = 21 slashing",
+    "R1: 🩸 Engine crews (ballistae) takes 21 damage from The Gallowsbird's Talons → HP 0/40",
+    "R1: 💀 Engine crews (ballistae) dies (reduced to 0 HP).",
+    "R1: ▶ Okton's turn (HP 162/162, AC 18)",
+    "R1: 🎯 Okton → The Gallowsbird (Rock): 1d20+11 → 1d20[9] + 11 = 20 vs AC 15 → hit",
+    "R1:   Damage: 4d10+7 → 4d10[5, 9, 5, 10] + 7 = 36 bludgeoning",
+    "R1: 🩸 The Gallowsbird takes 36 damage from Okton's Rock → HP 185/248",
+    "R2: Round 2",
+    "R2: ▶ Chadickith's turn (HP 23/35, AC 15)"
+  ],
   "xp_defeated": 0,
-  "defeated": []
+  "defeated": [
+    {
+      "name": "Engine crews (ballistae)",
+      "ref": null,
+      "xp": 0
+    }
+  ],
+  "started": "2026-10-16T06:54:39"
 }
