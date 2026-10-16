@@ -3,8 +3,8 @@
   "slug": "chadickith",
   "player": "",
   "race": "Loxodon (Dodrud variant)",
-  "class": "Barbarian",
-  "subclass": "Storm Herald (Desert)",
+  "class": "Blood Hunter (Alternate, laserllama v2.2)",
+  "subclass": "Order of the Pale Moon (Giant Owl curse)",
   "level": 3,
   "background": "Giant Foundling",
   "abilities": {
@@ -28,15 +28,16 @@
     "used": 0
   },
   "save_proficiencies": [
-    "str",
-    "con"
+    "con",
+    "cha"
   ],
   "skill_proficiencies": [
     "athletics",
-    "perception",
+    "investigation",
     "intimidation",
     "survival",
-    "nature"
+    "nature",
+    "arcana"
   ],
   "expertise": [],
   "jack_of_all_trades": false,
@@ -51,6 +52,26 @@
       "damage": [
         [
           "1d12+2",
+          "slashing"
+        ]
+      ]
+    },
+    {
+      "name": "Hybrid talons (Rite Die d4)",
+      "to_hit": 4,
+      "damage": [
+        [
+          "1d4+2",
+          "slashing"
+        ]
+      ]
+    },
+    {
+      "name": "Beast Form talons (giant owl; Rite Die)",
+      "to_hit": 3,
+      "damage": [
+        [
+          "2d4+1",
           "slashing"
         ]
       ]
@@ -74,28 +95,28 @@
           "piercing"
         ]
       ]
-    },
-    {
-      "name": "Trunk slam",
-      "to_hit": 4,
-      "damage": [
-        [
-          "3",
-          "bludgeoning"
-        ]
-      ]
     }
   ],
   "resources": {
-    "Rage": {
-      "max": 3,
-      "used": 2,
-      "reset": "long"
-    },
     "Strike of the Giants (Fire)": {
       "max": 2,
       "used": 0,
       "reset": "long"
+    },
+    "Rite of Binding (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Rite of Revelation (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Lycanthropic Shift (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
     }
   },
   "conditions": [
@@ -124,20 +145,27 @@
     "fail": 0
   },
   "features": [
-    "Rage (+2 melee damage; 3/long rest)",
-    "Unarmored Defense (not used: Natural Armor is higher)",
-    "Reckless Attack",
-    "Danger Sense",
-    "Storm Aura: Desert (10 ft; 2 fire to ALL other creatures in aura incl. allies; on entering rage and as a bonus action; no save)",
     "Natural Armor (AC 12 + CON)",
     "Loxodon Serenity (adv. vs charmed/frightened)",
-    "Trunk (5 ft reach; grapple/lift/unarmed strike; can't wield weapons)",
+    "Trunk (5 ft reach; grapple/lift/unarmed strike; can't wield weapons; in Hybrid Form it is a tail)",
     "Keen Smell",
     "Powerful Build",
     "Strike of the Giants: Fire (+1d10 fire once per turn on melee or thrown weapon hit; PB uses/long rest)",
+    "BLOOD HUNTER 3 (Alternate, laserllama v2.2; see Books/alternate-blood-hunter-notes.md). Rite Die d4, Rite save DC 13 (8+PB+CON), 2 Blood Rites",
+    "Fighting Style: Great Weapon Fighting (heavy melee weapon damage dice that roll below average count as average: d12 min 6)",
+    "Hunter's Bane: Occult Lore (Arcana proficiency); Sinister Insight (bonus action, CON check with Arcana/Nature/Religion by creature type, DC 8+CR)",
+    "Blood Rite: Binding (bonus action, Large or smaller, STR save or speed 0 and no reactions until end of your next turn; free once per rest, then Vital Sacrifice)",
+    "Blood Rite: Revelation (when using Sinister Insight, auto-succeed; empowered: ignore one damage Immunity/Resistance for 1 minute)",
+    "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; weapon deals Rite Die extra acid/cold/fire/lightning/poison damage)",
+    "Vital Sacrifice (reduce current AND max HP by Rite Die until long rest; cannot be done if it would reduce current HP to 0)",
+    "Pale Moon: Feral Senses (add Rite Die to Perception/Survival checks by sight/hearing/smell; Sinister Insight vs Beast/Monstrosity/Shapeshifter)",
+    "Pale Moon: Lycanthropic Curse (Giant Owl; bonus action Shift into Beast Form or Hybrid Form; once per rest free, else Vital Sacrifice; up to 1 hour)",
+    "Hybrid Form: +10 ft speed, climb speed = walk, unarmed strikes finesse for Rite Die piercing/slashing, bonus action unarmed strike or Dash (Wild Fury)",
+    "Beast Form (Giant Owl): beast statistics but keep HP, INT/WIS/CHA, skills and Blood Rites; Large, fly 60 ft, talons use Rite Die and Rite DC",
+    "Proficiencies: light and medium armor, shields, simple and martial weapons, alchemist's supplies",
     "Languages: Common; Loxodon; Giant; Draconic"
   ],
-  "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire but has NOT undergone the blood ritual (the Quenching). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON).",
+  "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire and now HAS undergone the blood ritual: Okton quenched him in round 6 of the roc fight (class changed from Barbarian 3 / Storm Herald to Blood Hunter 3 / Pale Moon, giant owl curse). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-16T16:03:35"
+  "updated": "2026-10-16T22:53:49"
 }

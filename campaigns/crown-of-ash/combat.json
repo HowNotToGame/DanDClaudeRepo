@@ -2,7 +2,7 @@
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
   "round": 6,
-  "turn": 3,
+  "turn": 4,
   "order": [
     "chadickith",
     "engine-crews-ballistae",
@@ -24,12 +24,12 @@
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
-        "str": 4,
+        "str": 2,
         "dex": 1,
         "con": 5,
         "int": -1,
         "wis": 1,
-        "cha": 0
+        "cha": 2
       },
       "resist": [],
       "immune": [],
@@ -60,6 +60,26 @@
           ]
         },
         {
+          "name": "Hybrid talons (Rite Die d4)",
+          "to_hit": 4,
+          "damage": [
+            [
+              "1d4+2",
+              "slashing"
+            ]
+          ]
+        },
+        {
+          "name": "Beast Form talons (giant owl; Rite Die)",
+          "to_hit": 3,
+          "damage": [
+            [
+              "2d4+1",
+              "slashing"
+            ]
+          ]
+        },
+        {
           "name": "Unarmed strike (trunk)",
           "to_hit": 4,
           "damage": [
@@ -78,16 +98,6 @@
               "piercing"
             ]
           ]
-        },
-        {
-          "name": "Trunk slam",
-          "to_hit": 4,
-          "damage": [
-            [
-              "3",
-              "bludgeoning"
-            ]
-          ]
         }
       ],
       "legendary_max": 0,
@@ -95,7 +105,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 0,
-      "notes": "Instant death voided by the Quenching bargain (player choice 3): 1 success, 1 failure; Okton must break free and perform the rite.",
+      "notes": "Quenched: now Blood Hunter 3 (Pale Moon, giant owl). 1 HP, prone.",
       "pc": "chadickith"
     },
     "okton": {
@@ -415,7 +425,8 @@
     "R6:   Damage: 4d8+9 → 4d8[6, 8, 6, 2] + 9 = 31 piercing",
     "R6: 🩸 Okton takes 31 damage from The Gallowsbird's Beak → HP 77/162",
     "R6: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[2] + 13 = 15 vs AC 18 → miss",
-    "R6: 💚 Chadickith heals 1 → HP 1/35 — back on their feet (still prone)"
+    "R6: 💚 Chadickith heals 1 → HP 1/35 — back on their feet (still prone)",
+    "R6: ▶ Okton's turn (HP 77/162, AC 18)"
   ],
   "xp_defeated": 0,
   "defeated": [
