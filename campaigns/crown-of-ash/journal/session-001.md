@@ -90,3 +90,4 @@
 - [04:03] Chadickith bellowed for the crowd to disperse (Intimidation 5 vs DC 15, fail) and asked Lorard to help clear the square (Persuasion 12 vs DC 13, fail): the roar swallowed him, Lorard refused to move his men while the 'fraud' stands unchallenged; Oselle's halberds advance.
 - [04:14] Chadickith let Lorard and one shield-man up the dais stair; the rest of Lorard's men turned to hold the crowd. Oselle's grey halberds reached the stair foot as Lorard moved to question Kitwin.
 - [04:26] Chadickith watched Brother Garn (Perception 12 vs DC 13, fail): saw only the hand leave the sleeve apparently empty; Kitwin's laughter stopped abruptly. Lorard still awaiting Kitwin's answer; halberd captain awaiting orders.
+- [04:43] Chadickith publicly accused Garn of stabbing the old volunteer. Crowd stirred; Lorard moved to arrest Garn; Garn answered that the man gave himself; Kitwin (strangely calm) told Lorard to stand away. Halberd captain undecided.
