@@ -109,3 +109,4 @@
 - [06:22] Chadickith urged Lorard to send for the bolt-throwers and said Halda deserves execution if she refuses; Lorard dispatched a rider, Okton went to press Halda to open the Saltgate. Garn stays unconscious (wakes in ~3 hours unless healed); the Marshal's surgeon says shaking won't rouse him.
 - [06:26] Surgeon used her last brine-salve on Garn; he woke bound and gagged in the guildhall, with Lorard's shield-men watching. Interrogation next.
 - [06:30] Chadickith removed Garn's gag and asked how he controlled the roc; Garn denied controlling it and claimed the bird recognises the chosen.
+- [06:33] Player's 1d2 roll came up 2: Chadickith asked Garn where they took Kitwin. Garn: the Pyrehouse sanctum and the crypt below, the crown 'kept warm' until the dawn bell; Coldwell will meet them.
