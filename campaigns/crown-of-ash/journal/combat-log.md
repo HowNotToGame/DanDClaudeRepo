@@ -37,3 +37,126 @@
 - R2:   Peret is knocked out (nonlethal).
 
 **Result:** Combat 'Dead-house ambush' ended after 2 round(s).
+
+## The Great Pyre — Garn at the stair foot — 2026-10-16T06:02
+- R0: ⚔️ Combat started: The Great Pyre — Garn at the stair foot. Add combatants, then roll initiative.
+- R0: Added Chadickith (PC) — HP 29/35, AC 15, init +1
+- R0: Added Brother Garn (CR 2) — HP 33, AC 13, init +2
+- R0: Added Choir Cultist 1 (CR 1/8) — HP 9, AC 12, init +1
+- R0: Added Choir Cultist 2 (CR 1/8) — HP 9, AC 12, init +1
+- R0: Added Choir Cultist 3 (CR 1/8) — HP 9, AC 12, init +1
+- R0: Added Choir Cultist 4 (CR 1/8) — HP 9, AC 12, init +1
+- R0: Added Okton (CR 9) — HP 162, AC 18, init -1
+- R0: Added The Gallowsbird (CR 11) — HP 248, AC 15, init +0
+- R0: Chadickith initiative: 1d20+1 → 1d20[7] + 1 = 8
+- R0: Brother Garn initiative: 1d20+2 → 1d20[4] + 2 = 6
+- R0: Choir Cultist 1 initiative: 1d20+1 → 1d20[16] + 1 = 17
+- R0: Choir Cultist 2 initiative: 1d20+1 → 1d20[20] + 1 = 21 — NAT 20!
+- R0: Choir Cultist 3 initiative: 1d20+1 → 1d20[7] + 1 = 8
+- R0: Choir Cultist 4 initiative: 1d20+1 → 1d20[14] + 1 = 15
+- R0: Okton initiative: 1d20-1 → 1d20[1] - 1 = 0 — nat 1
+- R0: The Gallowsbird initiative: 1d20 → 1d20[15] = 15
+- R1: Round 1 — initiative order: Choir Cultist 2 (21), Choir Cultist 1 (17), Choir Cultist 4 (15), The Gallowsbird (15), Chadickith (8), Choir Cultist 3 (8), Brother Garn (6), Okton (0)
+- R1: ▶ Choir Cultist 2's turn (HP 9/9, AC 12)
+- R1: ▶ Choir Cultist 1's turn (HP 9/9, AC 12)
+- R1: ▶ Choir Cultist 4's turn (HP 9/9, AC 12)
+- R1: ▶ The Gallowsbird's turn (HP 248/248, AC 15)
+- R1: ▶ Chadickith's turn (HP 29/35, AC 15)
+- R1: Chadickith is now raging
+- R1: 🩸 Brother Garn takes 2 damage from Storm Aura → HP 31/33
+- R1: 🩸 Choir Cultist 1 takes 2 damage from Storm Aura → HP 7/9
+- R1: 🩸 Choir Cultist 2 takes 2 damage from Storm Aura → HP 7/9
+- R1: 🩸 Choir Cultist 3 takes 2 damage from Storm Aura → HP 7/9
+- R1: 🩸 Choir Cultist 4 takes 2 damage from Storm Aura → HP 7/9
+- R1: ▶ Choir Cultist 3's turn (HP 7/9, AC 12)
+- R1: 🎯 Choir Cultist 3 → Chadickith (Scimitar): 1d20+3 → 1d20[7] + 3 = 10 vs AC 15 → miss
+- R1: ▶ Brother Garn's turn (HP 31/33, AC 13)
+- R1: Chadickith is now paralyzed 10r
+- R1: ▶ Okton's turn (HP 162/162, AC 18)
+- R1: 🎯 Okton → Brother Garn (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 13 → hit
+- R1:   Damage: 6d6+7 → 6d6[5, 1, 5, 1, 6, 3] + 7 = 28 slashing
+- R1: 🩸 Brother Garn takes 28 damage from Okton's Greatsword → HP 3/33
+- R1: Chadickith is no longer paralyzed.
+- R1: 🎯 Okton → Brother Garn (Greatsword): 1d20+11 → 1d20[5] + 11 = 16 vs AC 13 → hit
+- R1:   Damage: 6d6+7 → 6d6[2, 1, 2, 6, 1, 6] + 7 = 25 slashing
+- R1: 🩸 Brother Garn takes 25 damage from Okton's Greatsword → HP 0/33
+- R1:   Brother Garn is knocked out (nonlethal).
+- R2: Round 2
+- R2: ▶ Choir Cultist 2's turn (HP 7/9, AC 12)
+- R2: 🎯 Choir Cultist 2 → Chadickith (Scimitar): 1d20+3 → 1d20[17] + 3 = 20 vs AC 15 → hit
+- R2:   Damage: 1d6+1 → 1d6[5] + 1 = 6 slashing
+- R2: 🩸 Chadickith takes 6 damage from Choir Cultist 2's Scimitar → HP 23/35
+- R2: ▶ Choir Cultist 1's turn (HP 7/9, AC 12)
+- R2: 🎯 Choir Cultist 1 → Chadickith (Scimitar): 1d20+3 → 1d20[13] + 3 = 16 vs AC 15 → hit
+- R2:   Damage: 1d6+1 → 1d6[1] + 1 = 2 slashing
+- R2: 🩸 Chadickith takes 2 damage from Choir Cultist 1's Scimitar → HP 21/35
+- R2: ▶ Choir Cultist 4's turn (HP 7/9, AC 12)
+- R2: 🎯 Choir Cultist 4 → Chadickith (Scimitar): 1d20+3 → 1d20[1] + 3 = 4 — nat 1 vs AC 15 → miss (nat 1)
+- R2: ▶ The Gallowsbird's turn (HP 248/248, AC 15)
+- R2: 💚 Chadickith heals 4 → HP 25/35
+- R2: ▶ Chadickith's turn (HP 25/35, AC 15, raging)
+- R2: 🎯 Chadickith → Choir Cultist 2 (Greataxe): 1d20+4 → 1d20[7] + 4 = 11 vs AC 12 → miss
+- R2: ▶ Choir Cultist 3's turn (HP 7/9, AC 12)
+- R2: 🎯 Choir Cultist 3 → Chadickith (Scimitar): 1d20+3 → 1d20[11] + 3 = 14 vs AC 15 → miss
+- R2: ▶ Brother Garn's turn (HP 0/33, AC 13, unconscious)
+- R2:   Brother Garn is incapacitated and can't take actions or reactions this turn.
+- R2: ▶ Okton's turn (HP 162/162, AC 18)
+- R2: 🎯 Okton → Choir Cultist 2 (Greatsword): 1d20+11 → 1d20[12] + 11 = 23 vs AC 12 → hit
+- R2:   Damage: 6d6+7 → 6d6[1, 2, 1, 6, 5, 4] + 7 = 26 slashing
+- R2: 🩸 Choir Cultist 2 takes 26 damage from Okton's Greatsword → HP 0/9
+- R2:   Choir Cultist 2 is knocked out (nonlethal).
+- R2: 🎯 Okton → Choir Cultist 1 (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 12 → hit
+- R2:   Damage: 6d6+7 → 6d6[3, 2, 5, 3, 2, 5] + 7 = 27 slashing
+- R2: 🩸 Choir Cultist 1 takes 27 damage from Okton's Greatsword → HP 0/9
+- R2:   Choir Cultist 1 is knocked out (nonlethal).
+- R3: Round 3
+- R3: ▶ Choir Cultist 2's turn (HP 0/9, AC 12, unconscious)
+- R3:   Choir Cultist 2 is incapacitated and can't take actions or reactions this turn.
+- R3: ▶ Choir Cultist 1's turn (HP 0/9, AC 12, unconscious)
+- R3:   Choir Cultist 1 is incapacitated and can't take actions or reactions this turn.
+- R3: ▶ Choir Cultist 4's turn (HP 7/9, AC 12)
+- R3: 🎯 Choir Cultist 4 → Chadickith (Scimitar): 1d20+3 → 1d20[15] + 3 = 18 vs AC 15 → hit
+- R3:   Damage: 1d6+1 → 1d6[4] + 1 = 5 slashing
+- R3: 🩸 Chadickith takes 5 damage from Choir Cultist 4's Scimitar → HP 20/35
+- R3: ▶ The Gallowsbird's turn (HP 248/248, AC 15)
+- R3: ▶ Chadickith's turn (HP 20/35, AC 15, raging)
+- R3: 💚 Chadickith heals 3 → HP 23/35
+- R3: 🎯 Chadickith → Choir Cultist 3 (Greataxe): 1d20+4 → 1d20[5] + 4 = 9 vs AC 12 → miss
+- R3: ▶ Choir Cultist 3's turn (HP 7/9, AC 12)
+- R3: 🎯 Choir Cultist 3 → Chadickith (Scimitar): 1d20+3 → 1d20[3] + 3 = 6 vs AC 15 → miss
+- R3: ▶ Brother Garn's turn (HP 0/33, AC 13, unconscious)
+- R3:   Brother Garn is incapacitated and can't take actions or reactions this turn.
+- R3: ▶ Okton's turn (HP 162/162, AC 18)
+- R3: 🎯 Okton → Choir Cultist 3 (Greatsword): 1d20+11 → 1d20[4] + 11 = 15 vs AC 12 → hit
+- R3:   Damage: 6d6+7 → 6d6[2, 1, 4, 4, 6, 4] + 7 = 28 slashing
+- R3: 🩸 Choir Cultist 3 takes 28 damage from Okton's Greatsword → HP 0/9
+- R3:   Choir Cultist 3 is knocked out (nonlethal).
+- R3: 🎯 Okton → Choir Cultist 4 (Greatsword): 1d20+11 → 1d20[10] + 11 = 21 vs AC 12 → hit
+- R3:   Damage: 6d6+7 → 6d6[2, 5, 3, 3, 1, 5] + 7 = 26 slashing
+- R3: 🩸 Choir Cultist 4 takes 26 damage from Okton's Greatsword → HP 0/9
+- R3:   Choir Cultist 4 is knocked out (nonlethal).
+- R4: Round 4
+- R4: ▶ Choir Cultist 2's turn (HP 0/9, AC 12, unconscious)
+- R4:   Choir Cultist 2 is incapacitated and can't take actions or reactions this turn.
+- R4: ▶ Choir Cultist 1's turn (HP 0/9, AC 12, unconscious)
+- R4:   Choir Cultist 1 is incapacitated and can't take actions or reactions this turn.
+- R4: ▶ Choir Cultist 4's turn (HP 0/9, AC 12, unconscious)
+- R4:   Choir Cultist 4 is incapacitated and can't take actions or reactions this turn.
+- R4: ▶ The Gallowsbird's turn (HP 248/248, AC 15)
+- R4: ▶ Chadickith's turn (HP 23/35, AC 15, raging)
+- R4: ▶ Choir Cultist 3's turn (HP 0/9, AC 12, unconscious)
+- R4:   Choir Cultist 3 is incapacitated and can't take actions or reactions this turn.
+- R4: ▶ Brother Garn's turn (HP 0/33, AC 13, unconscious)
+- R4:   Brother Garn is incapacitated and can't take actions or reactions this turn.
+- R4: ▶ Okton's turn (HP 162/162, AC 18)
+- R5: Round 5
+- R5: ▶ Choir Cultist 2's turn (HP 0/9, AC 12, unconscious)
+- R5:   Choir Cultist 2 is incapacitated and can't take actions or reactions this turn.
+- R5: ▶ Choir Cultist 1's turn (HP 0/9, AC 12, unconscious)
+- R5:   Choir Cultist 1 is incapacitated and can't take actions or reactions this turn.
+- R5: ▶ Choir Cultist 4's turn (HP 0/9, AC 12, unconscious)
+- R5:   Choir Cultist 4 is incapacitated and can't take actions or reactions this turn.
+- R5: ▶ The Gallowsbird's turn (HP 248/248, AC 15)
+- R5: ▶ Chadickith's turn (HP 23/35, AC 15, raging)
+
+**Result:** Combat 'The Great Pyre — Garn at the stair foot' ended after 5 round(s).
