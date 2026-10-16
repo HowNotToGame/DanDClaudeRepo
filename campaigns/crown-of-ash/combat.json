@@ -1,8 +1,8 @@
 {
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
-  "round": 4,
-  "turn": 0,
+  "round": 5,
+  "turn": 3,
   "order": [
     "chadickith",
     "engine-crews-ballistae",
@@ -20,7 +20,7 @@
       "init_bonus": 1,
       "dex": 13,
       "ac": 15,
-      "hp": 9,
+      "hp": 0,
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
@@ -38,14 +38,19 @@
       "condition_immune": [],
       "conditions": [
         {
-          "name": "raging",
+          "name": "unconscious",
+          "tick": "end",
+          "auto": "dying"
+        },
+        {
+          "name": "prone",
           "tick": "end"
         }
       ],
       "concentration": null,
-      "status": "ok",
+      "status": "dead",
       "death_saves": {
-        "success": 0,
+        "success": 1,
         "fail": 0
       },
       "attacks": [
@@ -177,7 +182,7 @@
       "init_bonus": 0,
       "dex": 10,
       "ac": 15,
-      "hp": 112,
+      "hp": 84,
       "max_hp": 248,
       "temp_hp": 0,
       "saves": {
@@ -379,7 +384,30 @@
     "R3: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[1] + 11 = 12 — nat 1 vs AC 15 → miss (nat 1)",
     "R3: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 15 → miss",
     "R4: Round 4",
-    "R4: ▶ Chadickith's turn (HP 9/35, AC 15, raging)"
+    "R4: ▶ Chadickith's turn (HP 9/35, AC 15, raging)",
+    "R4: 🎯 Chadickith → The Gallowsbird (Greataxe): 1d20+4 → 1d20[5] + 4 = 9 vs AC 15 → miss",
+    "R4: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)",
+    "R4: ▶ The Gallowsbird's turn (HP 112/248, AC 15)",
+    "R4: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 1d20[11] + 13 = 24 vs AC 15 → hit",
+    "R4:   Damage: 4d8+9 → 4d8[5, 3, 2, 8] + 9 = 27 piercing",
+    "R4: 🩸 Chadickith takes 27 damage from The Gallowsbird's Beak → HP 0/35",
+    "R4:   Chadickith drops to 0 HP and falls unconscious! Death saves begin on their turn.",
+    "R4: ▶ Okton's turn (HP 108/162, AC 18)",
+    "R4: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[1] + 11 = 12 — nat 1 vs AC 15 → miss (nat 1)",
+    "R4: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[16] + 11 = 27 vs AC 15 → hit",
+    "R4:   Damage: 6d6+7 → 6d6[2, 4, 4, 3, 4, 4] + 7 = 28 slashing",
+    "R4: 🩸 The Gallowsbird takes 28 damage from Okton's Greatsword → HP 84/248",
+    "R5: Round 5",
+    "R5: ▶ Chadickith's turn (HP 0/35, AC 15, raging, unconscious, prone)",
+    "R5: ☠️ Death save: Chadickith death save: 1d20 → 1d20[16] = 16 → 1✓ / 0✗",
+    "R5:   Chadickith is incapacitated and can't take actions or reactions this turn.",
+    "R5: Chadickith is no longer raging.",
+    "R5: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)",
+    "R5: ▶ The Gallowsbird's turn (HP 84/248, AC 15)",
+    "R5: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 2d20kh1[~~8~~, 13] + 13 = 26 (advantage) vs AC 15 → CRITICAL HIT! [adv: target unconscious, target prone (within 5 ft) | dis: —] (auto-crit: melee hit on paralyzed/unconscious target)",
+    "R5:   Damage: 8d8+9 → 8d8[1, 3, 5, 7, 2, 3, 6, 6] + 9 = 42 (critical: dice doubled) piercing",
+    "R5: 🩸 Chadickith takes 42 damage from The Gallowsbird's Beak → HP 0/35",
+    "R5: 💀 Chadickith dies (massive damage while dying)."
   ],
   "xp_defeated": 0,
   "defeated": [
