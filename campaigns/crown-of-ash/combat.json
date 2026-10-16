@@ -1,11 +1,12 @@
 {
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
-  "round": 2,
+  "round": 3,
   "turn": 0,
   "order": [
     "chadickith",
     "engine-crews-ballistae",
+    "lorard-s-sergeant",
     "the-gallowsbird",
     "okton"
   ],
@@ -101,7 +102,7 @@
       "init_bonus": -1,
       "dex": 9,
       "ac": 18,
-      "hp": 162,
+      "hp": 108,
       "max_hp": 162,
       "temp_hp": 0,
       "saves": {
@@ -155,7 +156,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 5000,
-      "notes": "",
+      "notes": "Grappled by the roc's talons (escape DC 19), restrained",
       "ref": {
         "name": "Fire Giant",
         "source": "MM",
@@ -171,7 +172,7 @@
       "init_bonus": 0,
       "dex": 10,
       "ac": 15,
-      "hp": 185,
+      "hp": 112,
       "max_hp": 248,
       "temp_hp": 0,
       "saves": {
@@ -269,6 +270,46 @@
       "reaction_used": false,
       "xp": 0,
       "notes": ""
+    },
+    "lorard-s-sergeant": {
+      "id": "lorard-s-sergeant",
+      "name": "Lorard's sergeant",
+      "kind": "npc",
+      "side": "ally",
+      "init": 14,
+      "init_bonus": 1,
+      "dex": 10,
+      "ac": 16,
+      "hp": 22,
+      "max_hp": 22,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 0,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 0,
+      "notes": ""
     }
   },
   "log": [
@@ -298,7 +339,26 @@
     "R1:   Damage: 4d10+7 → 4d10[5, 9, 5, 10] + 7 = 36 bludgeoning",
     "R1: 🩸 The Gallowsbird takes 36 damage from Okton's Rock → HP 185/248",
     "R2: Round 2",
-    "R2: ▶ Chadickith's turn (HP 23/35, AC 15)"
+    "R2: ▶ Chadickith's turn (HP 23/35, AC 15)",
+    "R2: Added Lorard's sergeant — HP 22, AC 16, init +1",
+    "R2: ▶ Lorard's sergeant's turn (HP 22/22, AC 16)",
+    "R2: 🩸 The Gallowsbird takes 23 damage from Ballista 3 → HP 162/248",
+    "R2: ▶ The Gallowsbird's turn (HP 162/248, AC 15)",
+    "R2: 🎯 The Gallowsbird → Okton (Beak): 1d20+13 → 1d20[14] + 13 = 27 vs AC 18 → hit",
+    "R2:   Damage: 4d8+9 → 4d8[2, 6, 4, 2] + 9 = 23 piercing",
+    "R2: 🩸 Okton takes 23 damage from The Gallowsbird's Beak → HP 139/162",
+    "R2: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[7] + 13 = 20 vs AC 18 → hit",
+    "R2:   Damage: 4d6+9 → 4d6[6, 4, 6, 6] + 9 = 31 slashing",
+    "R2: 🩸 Okton takes 31 damage from The Gallowsbird's Talons → HP 108/162",
+    "R2: ▶ Okton's turn (HP 108/162, AC 18)",
+    "R2: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[17] + 11 = 28 vs AC 15 → hit",
+    "R2:   Damage: 6d6+7 → 6d6[1, 3, 4, 5, 6, 5] + 7 = 31 slashing",
+    "R2: 🩸 The Gallowsbird takes 31 damage from Okton's Greatsword → HP 131/248",
+    "R2: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[8] + 11 = 19 vs AC 15 → hit",
+    "R2:   Damage: 6d6+7 → 6d6[2, 1, 3, 1, 4, 1] + 7 = 19 slashing",
+    "R2: 🩸 The Gallowsbird takes 19 damage from Okton's Greatsword → HP 112/248",
+    "R3: Round 3",
+    "R3: ▶ Chadickith's turn (HP 23/35, AC 15)"
   ],
   "xp_defeated": 0,
   "defeated": [
