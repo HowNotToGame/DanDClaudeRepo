@@ -1,0 +1,33 @@
+{
+  "name": "Crown of Ash",
+  "slug": "crown-of-ash",
+  "created": "2026-10-15T04:54:40",
+  "premise": "The tyrant king is dead and three heirs claim the throne. The party are hired swords who suddenly hold the one item all three heirs want.",
+  "setting": "Forgotten Realms — a small realm in the Border Kingdoms, south of the Lake of Steam, 1491 DR",
+  "tone": "Grimdark political intrigue: morally grey, every victory costs something",
+  "settings": {
+    "dice_mode": "auto",
+    "rules_audit": "always",
+    "crit_rule": "double_dice",
+    "advancement": "milestone",
+    "sources": [],
+    "narration": "standard",
+    "hide_monster_hp": true
+  },
+  "enabled_blocks": [
+    "tone-grimdark",
+    "solo-play",
+    "rules-as-written",
+    "safety-lines-and-veils",
+    "hidden-rolls",
+    "mobile-friendly"
+  ],
+  "session": {
+    "number": 1,
+    "active": true,
+    "started": "2026-10-15T05:57:22"
+  },
+  "last_summary": null,
+  "dm_notes": "SECRET: Garn (bound, gagged, 0 HP stable) wakes in 3 hours from the end of round 1 of the Pyre fight. Kitwin was taken toward the Pyrehouse lane by Sister Ilsa + one other.\nSECRET: Garn is awake at 1 HP (brine-salve healed 1), bound and gagged in the guildhall. Hit him or let him exert and he drops again.",
+  "updated": "2026-10-16T06:26:17"
+}

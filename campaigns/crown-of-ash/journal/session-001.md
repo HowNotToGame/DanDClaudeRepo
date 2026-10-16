@@ -1,0 +1,124 @@
+# Session 1 — The King Burns
+
+*2026-10-15*
+
+## Log
+- [05:57] Highharvestide 1491 DR, dawn: Ivoard Hask's funeral burning in Pyre Square. Chadickith works the rope line for Watch-Captain Halda Barrowe (hired on Okton's word). All three heirs present under funeral truce; Okton watching from the square's edge.
+- [06:04] During the lighting of the pyre, Chadickith held the line and watched for Okton (Perception check to spot trouble in the crowd).
+- [06:07] Chadickith hauled the grey-haired servant behind the rope with his trunk and shouted a warning to Okton (in Giant) and to the nearby Watch.
+- [06:10] Chadickith handed the hot cloth-wrapped lump to Okton and tried to save the dying servant.
+- [06:18] Chadickith shielded the wounded servant at the Watch triage tent and bellowed at the heirs' envoys (Lorard's quartermaster, Oselle's steward, Kitwin) to get back.
+- [06:23] Chadickith let Oselle's steward through to the wounded servant (named Isine by the steward), brushed off Lorard's quartermaster with a lie that was not believed, and ignored Kitwin.
+- [06:29] Chadickith followed Okton from Pyre Square to the Steamside forge, leaving Wilash Redhand to guard the wounded servant Isine at the Watch triage tent.
+- [06:31] At the forge, Okton told Chadickith the ember is the Heartcoal from the Crown of Ash and feeds the gladness; Halda's runner summons both to the Collarhouse.
+- [06:38] Chadickith told the runner they were on their way and asked Okton whether to hide the Heartcoal or carry it.
+- [06:40] Chadickith and Okton walked to the Collarhouse to meet Watch-Captain Halda Barrowe.
+- [06:44] Chadickith told Halda he had to pass off the item in the commotion, true but evasive.
+- [06:46] Chadickith told Halda only that the killer wore a Pyrewarden's hood and was quick with a knife.
+- [06:52] Chadickith went to the triage tent; Isine woke at dusk and asked whether the giant took it.
+- [14:15] Chadickith told the waking Isine that he threw the ember into the king's pyre (a lie).
+- [14:31] Chadickith sent Kitwin away from the triage tent at Isine's request.
+- [14:40] Chadickith wandered Kharun at dusk looking for a place to eat.
+- [15:03] At the Blind Barrel in the Vents, midwife Kaslo Ashdown repeated the rumour that Okton made the Crown of Ash; Chadickith joked it off and asked keeper Nesan Furrow what was on offer.
+- [15:13] Chadickith ordered flatbread at the Blind Barrel; overheard Calishite dockhands mention a galley sailing at the first tide after the gates open.
+- [15:26] Chadickith held a staring contest with a silent grey-hooded Pyrewarden in the Blind Barrel while eating.
+- [15:32] New quest: Meet the Warden at the Ashward almshouse
+- [15:32] Chadickith read the grey note left by the Pyrewarden: meet at the Ashward almshouse at tomorrow's dusk bell.
+- [15:43] Chadickith pocketed the Pyrewarden's note, finished eating, and walked back to Okton's forge at night.
+- [15:46] Chadickith tried to ambush the man in the brown coat tailing him in the dye-works; Stealth failed and he grappled with his trunk anyway.
+- [15:48] Chadickith interrogated the grappled man who had been tailing him from the Blind Barrel.
+- [15:52] Chadickith surveyed the dye-works lane while holding Garford (Perception nat 1: noticed nothing beyond the obvious).
+- [15:54] Chadickith slammed the grappled Garford Whitlock into the lane wall to knock him out.
+- [15:57] Chadickith punched Garford and tightened his trunk around Garford's neck to silence him.
+- [15:58] Chadickith punched Garford again, aiming to knock him out.
+- [15:58] Garford was knocked unconscious. A thin man in a plain coat with a silver key pin (Oselle's household) approached, asking for a quiet word on the Lady's behalf.
+- [16:01] Chadickith asked Oselle's emissary for the Lady's offer and sized him up.
+- [16:06] Chadickith laughed off Oselle's offer ('200 gold for something I don't have'); Jorson held out a silver key token for the Ember Keep gate.
+- [16:13] Chadickith told Jorson he misheard and has nothing to tell the Lady (a lie).
+- [16:15] Jorson's men took Garford away; Jorson left the silver key token on a barrel.
+- [16:16] Chadickith pocketed Jorson's silver key and entered Okton's forge.
+- [16:17] Chadickith told Okton about the tail, Oselle's offer, the silver key and the Pyrewarden's note; Okton advised keeping the key unused and said he would shadow Chadickith to the almshouse.
+- [16:24] Chadickith asked Okton if he made the Crown of Ash; Okton confessed he forged it and set the Heartcoal in it.
+- [16:29] Okton explained what it would take to break the Heartcoal (a giant's forge and a giant's blood) and the risk to himself.
+- [16:30] Chadickith told Okton he is heading to the Ashward almshouse; the meeting is tomorrow at dusk, so DM asked whether to scout now or rest and spend the day.
+- [16:32] Chadickith slept at Okton's forge; the dawn bell passed with no answer given to Oselle. Day 2 of the interregnum begins; the almshouse meeting is at dusk.
+- [16:36] Chadickith scouted the Ashward almshouse in daylight.
+- [16:39] Chadickith watched the Ashward almshouse from a hiding place from noon until dusk.
+- [16:44] Chadickith offered to tell a ragged girl at the stakeout a story about the giant he knows (Okton).
+- [16:46] Chadickith told Junie, a ragged Ashward girl, how Okton saved him from the roc; Junie mentioned night carts at the dead-house that the sisters are not allowed to look at.
+- [16:48] Chadickith checked the time: the dusk bell had just finished; the woman left the almshouse side door ajar.
+- [16:53] Chadickith crossed to the almshouse side door at dusk and entered, following the Warden's note.
+- [16:56] At the almshouse, the Warden told Chadickith about the knife-bearer from the Pyrehouse's inner circle and the night carts.
+- [17:03] Chadickith sent word to Okton (watching from a rooftop across the street) that Kaselle proposes waiting in the dead-house cellar for the midnight cart; Okton agreed to hold the street and told Chadickith to leave if he smelled hot iron.
+- [17:07] Kaselle told Chadickith that Brother Peret usually rides with the midnight cart and is likely to come tonight.
+- [17:08] Chadickith went down into the almshouse dead-house cellar with Kaselle to wait for the midnight cart.
+- [17:11] Chadickith hid in the dead-house coffin racks with Kaselle nearby to wait for the midnight cart.
+- [17:16] Chadickith stayed hidden in the coffin racks and watched Peret's Choir wash and anoint a murdered pauper; overheard talk of Coldwell, the servant who lived, and the smith's boy.
+- [17:26] Combat in the almshouse dead-house: Chadickith ambushed Peret and two Choir brothers (all surprised), failed to grapple Peret (13 vs 15), and trumpeted/shouted for Okton in Giant.
+- [17:28] Chadickith entered a Rage (Storm Aura: Desert burned Peret and one Choir brother for 2 fire each).
+- [17:33] Chadickith hit Peret with an opportunity attack (greataxe + Fire Strike, 20 damage) and tried to intimidate the Choir.
+- [17:33] DM slip: advanced past Chadickith's round-2 turn by mistake and restored it. Peret (badly hurt) is unbarring the ramp door to flee; Choir Brother 2 backs toward it; Choir Brother 1 hesitates by the stacks near Kaselle.
+- [17:38] Chadickith charged Peret at the ramp door and ordered the brothers not to move.
+- [17:39] Combat 'Dead-house ambush' ended after 2 round(s).
+- [17:39] Chadickith knocked Peret unconscious with the greataxe; the two Choir brothers froze under his threat. Combat ended; Okton arrives.
+- [17:40] Combat audit: no mechanical errors; Intimidation morale ruling recorded as DM fiat; the turn tracker slipped past Chadickith in round 2 and was restored with no lost state.
+- [17:43] Chadickith told Okton what happened and bound Peret's wounds. Okton examined the dead man's ash wafer and said the Watch, Pyrehouse and Keep are all unsafe places for the prisoners.
+- [17:45] Chadickith asked Okton about the wafer, then interrogated the two Choir brothers together.
+- [17:49] Chadickith pressed the Choir brothers further about the crypt, the Choir's size and Coldwell's plan.
+- [18:07] Chadickith searched Peret and announced he will turn Peret in to the Collarhouse; Okton to keep Kaselle safe and handle the brothers.
+- [18:08] Kaselle helped Chadickith search Peret a second time; they took a minute while Okton watched the brothers.
+- [18:11] Chadickith carried unconscious Peret to the Collarhouse and handed him to Halda, naming him the attacker without revealing the Choir, Kaselle, or the plague road.
+- [19:06] Chadickith checked on Okton in the forge cellar with the bound Choir brothers; Okton asked him to keep the tin of ash wafers away from him.
+- [19:13] Chadickith asked Kaselle to wait outside and prepared to hide Peret's tin of wafers away from the Heartcoal's hiding place.
+- [19:14] Chadickith hid the tin of wafers in the forge's roof-beams and let Kaselle back in.
+- [19:17] Chadickith slept at the forge from dawn until mid-afternoon of Highharvestide's second day (long rest); Okton relayed news from Wilash at midday.
+- [19:19] Chadickith visited Isine at the triage tent; she told him the king's true last words and that Coldwell invented the naming of Kitwin.
+- [19:28] Chadickith told Isine the coal is lost and that whoever has it should leave town quickly.
+- [19:29] Chadickith proposed getting Isine out of Kharun now, in daylight; Dremmel and Wilash raised the sealed gates and her wound.
+- [19:30] Chadickith went to Halda to ask for a Saltgate pass for Isine.
+- [19:32] New quest: Hold Halda's rope line at the Great Pyre
+- [19:32] New quest: Get Isine out through the Saltgate at the dusk rotation
+- [19:32] Chadickith accepted Halda's rope-line job and took the Saltgate pass for Isine.
+- [19:34] Chadickith gave Isine the Saltgate pass, helped ready her cart, then returned to the forge to brief Okton.
+- [19:42] Chadickith decided to honor Halda's rope-line job tonight and not raid the crypt; Okton agreed to watch from the edges, with a trumpet blast as the signal.
+- [19:44] Chadickith rested and prepared; Okton loaned him a Redcollar gorget; Wilash's runner reported Isine through the Saltgate at the dusk rotation.
+- [19:45] Chadickith reported to Halda at Pyre Square and took the north rail by the dais for the Great Pyre rite.
+- [19:57] The Great Pyre rite began: Coldwell crowned Kneeling Kitwin with grains in the socket; the Choir led a smiling old volunteer onto the dais and Brother Garn drew a narrow blade.
+- [20:02] Chadickith held the line and watched Garn kill the old volunteer on the dais; the Crown of Ash kindled and the crowd erupted.
+- [20:08] Chadickith held the rope line against the surging crowd after the crown kindled.
+- [20:12] Chadickith pushed through the surging crowd toward the dais steps to hold the stair.
+- [04:03] Chadickith bellowed for the crowd to disperse (Intimidation 5 vs DC 15, fail) and asked Lorard to help clear the square (Persuasion 12 vs DC 13, fail): the roar swallowed him, Lorard refused to move his men while the 'fraud' stands unchallenged; Oselle's halberds advance.
+- [04:14] Chadickith let Lorard and one shield-man up the dais stair; the rest of Lorard's men turned to hold the crowd. Oselle's grey halberds reached the stair foot as Lorard moved to question Kitwin.
+- [04:26] Chadickith watched Brother Garn (Perception 12 vs DC 13, fail): saw only the hand leave the sleeve apparently empty; Kitwin's laughter stopped abruptly. Lorard still awaiting Kitwin's answer; halberd captain awaiting orders.
+- [04:43] Chadickith publicly accused Garn of stabbing the old volunteer. Crowd stirred; Lorard moved to arrest Garn; Garn answered that the man gave himself; Kitwin (strangely calm) told Lorard to stand away. Halberd captain undecided.
+- [04:53] Chadickith signalled Okton from the dais stair. Okton began crossing the rooftops toward the dais; Garn noticed the signal. Roc descending.
+- [04:55] Chadickith shouted the crowd to get down (Intimidation 7 vs DC 10, fail): near rows dropped but the mass panicked into a surge. Roc made a low pass over the square, banked for a second; shield line buckled; Okton still crossing roofs.
+- [05:00] Chadickith shouted again for all to get inside or down (Intimidation 5 vs DC 12, fail): pockets obeyed, the square did not. Roc stooped on the dais edge, seized Lorard's shield-man and one halberdier, dropped one into the crowd, wheeled. Okton one rooftop away.
+- [05:08] Chadickith tried to snatch Kitwin (Athletics nat 1, 5 vs DC 12, fail) and, as pre-agreed, abandoned him; told Lorard it must wait and ran for the guildhall doorway at the stair foot. Okton followed. Roc stooped on the dais but veered off from Garn and Kitwin and struck the pyre instead.
+- [05:19] In the guildhall doorway Chadickith asked Okton about attacking while the roc was 'down', eyes on Garn, suspecting Garn controls the roc. Okton counselled against hitting the roc (CR 11, circling, not down) and agreed Garn is the lever; Lorard overheard.
+- [05:26] Chadickith told the others the roc is plague-maddened so must be controlled, and warned of a third pass. The roc raked the guildhall roof; falling slate and timber hit him (Dex save 10 vs DC 12 fail, 6 bludgeoning). Garn and Kitwin began descending the dais with the freed Choir gathering.
+- [05:31] COMBAT round 1 (Pyre, stair foot): Choir cultists ringed Garn; roc circled lower. Chadickith rushed Garn and tried to grapple (Athletics 11 vs Garn Acrobatics 15, fail). Chadickith turn still open (bonus action available). Cultist 3, Garn, Okton to act; roc stoops next round.
+- [05:34] COMBAT: Chadickith raged (Storm Aura 2 fire to Garn + 4 cultists). Garn cast Hold Person (WIS 6 vs 11, paralyzed); Okton nonlethal-hit Garn twice (28, 25): concentration failed, Garn knocked out at 0 HP. Round 2: cultists hit Chadickith for 6 and 2 (rage resistance not auto-applied; corrected, HP 25/35). Roc veered skyward when Garn fell. Chadickith's round-2 turn is open.
+- [05:43] COMBAT R2-3: Chadickith swung greataxe at Cultist 2 (11 vs AC 12, miss, no Fire Strike). Okton nonlethally dropped Cultists 1 and 2. Cultist 4 hit Chadickith (5, halved to 2 by rage; HP 23/35). Roc, leashless, stooped on the fleeing crowd's east edge. Cultists 3 and 4 still up; Garn down.
+- [05:45] COMBAT R3: Chadickith missed Cultist 3 (9 vs AC 12, no Fire Strike). Okton nonlethally dropped Cultists 3 and 4. All Choir at the stair foot (Garn + 4 cultists) are unconscious. Roc still loose over the east edge of the square.
+- [05:49] Chadickith gagged and bound unconscious Garn (rope) and shouldered him; Perception 15 vs DC 14 found Kitwin: Sister Ilsa and another grey figure were hustling the crowned boy through the pyre smoke toward the lane down to the Pyrehouse. Lorard's men took over the unconscious cultists. Roc still loose.
+- [06:00] Chadickith moved 30 ft toward Kitwin with Garn on his shoulder, then chose to retreat to cover. Okton moved to shield him. Roc (target roll 4) hit the crowd again, not Chadickith. Round 5, Chadickith's turn open: retreat to the guildhall.
+- [06:02] Combat 'The Great Pyre — Garn at the stair foot' ended after 5 round(s).
+- [06:02] Chadickith Dashed 40 ft back to the guildhall carrying bound Garn, Okton alongside; combat tracker closed with the roc still loose over the square. Garn, 4 cultists subdued/held by Lorard's men. Kitwin taken toward the Pyrehouse lane by Sister Ilsa + one other.
+- [06:12] Chadickith asked Lorard about anti-roc armament: four ballistae on carts outside, two on the Keep roof under Oselle's people; needs the Saltgate opened (Halda) to bring them in.
+- [06:22] Chadickith urged Lorard to send for the bolt-throwers and said Halda deserves execution if she refuses; Lorard dispatched a rider, Okton went to press Halda to open the Saltgate. Garn stays unconscious (wakes in ~3 hours unless healed); the Marshal's surgeon says shaking won't rouse him.
+- [06:26] Surgeon used her last brine-salve on Garn; he woke bound and gagged in the guildhall, with Lorard's shield-men watching. Interrogation next.
+- [06:30] Chadickith removed Garn's gag and asked how he controlled the roc; Garn denied controlling it and claimed the bird recognises the chosen.
+- [06:33] Player's 1d2 roll came up 2: Chadickith asked Garn where they took Kitwin. Garn: the Pyrehouse sanctum and the crypt below, the crown 'kept warm' until the dawn bell; Coldwell will meet them.
+- [06:36] Chadickith broke Garn's leg and threw him out the guildhall door for the roc. Roc stooped, took Garn and lifted away; its wing swept the doorway (Dex save 13 vs DC 13, success). Garn dead; Lorard and the surgeon witnessed.
+- [06:38] Chadickith waited in the guildhall for the bolt-throwers. Okton returned: Halda refused the full gate opening (5 vs DC 12), offering only the wicket for crews carrying broken-down engines, ~2 hours. The dusk bell rang during the wait; the roc kept raking the square.
+- [06:44] Chadickith, frustrated, proposed breaking the Saltgate and admitted he does not know what to do; Okton cautioned that forcing the gate means war, and hinted the roc worsened once the Heartcoal was loose.
+- [06:50] Chadickith held the city: led the evacuation of the square (Intimidation 21 vs DC 12) with Lorard's men and the Watch. Two hours passed; the engine crews are arriving through the Saltgate wicket, carrying broken-down bolt-throwers.
+- [06:52] Chadickith helped assemble the bolt-throwers (Athletics 11 vs DC 12, fail): a winch pin seated wrong, costing time. Two engines ready, two still half-built when the roc noticed the work and began a stoop on the crews at the square's edge.
+- [06:55] COMBAT vs the Gallowsbird R1: Chadickith finished engine 3. Two ballistae hit (17+10); roc killed the firing crews with beak and talons; Okton's thrown rock hit for 36. Roc at 185/248. Round 2, Chadickith's turn; engine 3 ready, engine 4 half-built.
+- [06:56] Rules check on roc R1: numbers confirmed. Ballista stats are from the DMG from memory (+6, 3d10, 120/480), not verifiable in the local data. Ballista rolls: 19 and 17 to hit, 17 and 10 damage. Roc ended its move low over engine 3, within 60 ft of Okton.
+- [07:04] COMBAT vs the Gallowsbird R2: Chadickith aimed ballista 3 (RAW: load, aim, fire are separate actions; ballista stats confirmed by the player: +6, 3d10, AC 15, HP 50). Lorard's sergeant fired: 19 to hit, 23 damage. Roc hit Okton (23 + 31, grappled, DC 19 escape); Okton hit it twice (31, 19). Roc 112/248. Okton 108/162. Round 3 begins at Chadickith's turn; the roc is low, grappling Okton in melee reach.
+- [07:07] COMBAT vs roc R3: Chadickith raged (aura hit sergeant only), swung greataxe at the roc and missed (12 vs AC 15), Fire Strike refunded. Roc beak hit him for 29 (halved by rage to 14, HP 9/35). Okton missed twice (nat 1 and 13). Sergeant loaded engine 3. Roc 112/248, Okton 108/162 still grappled. Round 4 begins at Chadickith's turn.
+- [07:10] COMBAT vs roc R4-5: Chadickith swung and missed (9 vs AC 15). Roc beak 27 (halved to 13 by rage) dropped him to 0, rage ended on unconscious. R5 death save 16 (1 success). Roc's d6 target roll chose him: beak 26 with advantage, auto-crit vs unconscious within 5 ft (greataxe range means he was adjacent), 8d8+9 = 42 >= max HP 35: instant death under RAW. Rules-lawyer: CORRECT. Pending the player's decision: accept the death, or rewind to before the roc's R5 target roll. Sergeant missed with ballista 3 (13 vs 15); Okton hit once for 28; roc at 84/248, Okton still grappled.
+- [16:03] COMBAT R5-6: Instant death voided by the player's Quenching bargain (death saves 1 success/1 failure). Okton escaped the roc's talons (21 vs 19); R6 death save 6 (1/2); the sergeant stabilised him (Medicine 11 vs DC 10); roc hit Okton (31, HP 77/162). Okton then performed the Quenching: Chadickith up at 1 HP, class change to Blood Hunter pending the player's class table.
+- [22:53] Sheet rebuilt as Blood Hunter 3 (Pale Moon, giant owl). Round 7 begins at Chadickith's turn: 1 HP, prone; roc 84/248, Okton 77/162, sergeant 20/22 with ballista 3 loaded and aimed.
