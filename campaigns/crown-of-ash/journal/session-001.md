@@ -108,3 +108,4 @@
 - [06:12] Chadickith asked Lorard about anti-roc armament: four ballistae on carts outside, two on the Keep roof under Oselle's people; needs the Saltgate opened (Halda) to bring them in.
 - [06:22] Chadickith urged Lorard to send for the bolt-throwers and said Halda deserves execution if she refuses; Lorard dispatched a rider, Okton went to press Halda to open the Saltgate. Garn stays unconscious (wakes in ~3 hours unless healed); the Marshal's surgeon says shaking won't rouse him.
 - [06:26] Surgeon used her last brine-salve on Garn; he woke bound and gagged in the guildhall, with Lorard's shield-men watching. Interrogation next.
+- [06:30] Chadickith removed Garn's gag and asked how he controlled the roc; Garn denied controlling it and claimed the bird recognises the chosen.
