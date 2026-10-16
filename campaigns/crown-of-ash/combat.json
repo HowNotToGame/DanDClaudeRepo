@@ -1,8 +1,8 @@
 {
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
-  "round": 6,
-  "turn": 4,
+  "round": 7,
+  "turn": 0,
   "order": [
     "chadickith",
     "engine-crews-ballistae",
@@ -426,7 +426,9 @@
     "R6: 🩸 Okton takes 31 damage from The Gallowsbird's Beak → HP 77/162",
     "R6: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[2] + 13 = 15 vs AC 18 → miss",
     "R6: 💚 Chadickith heals 1 → HP 1/35 — back on their feet (still prone)",
-    "R6: ▶ Okton's turn (HP 77/162, AC 18)"
+    "R6: ▶ Okton's turn (HP 77/162, AC 18)",
+    "R7: Round 7",
+    "R7: ▶ Chadickith's turn (HP 1/35, AC 15, prone)"
   ],
   "xp_defeated": 0,
   "defeated": [
