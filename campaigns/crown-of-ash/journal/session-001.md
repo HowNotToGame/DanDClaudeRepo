@@ -105,3 +105,4 @@
 - [06:00] Chadickith moved 30 ft toward Kitwin with Garn on his shoulder, then chose to retreat to cover. Okton moved to shield him. Roc (target roll 4) hit the crowd again, not Chadickith. Round 5, Chadickith's turn open: retreat to the guildhall.
 - [06:02] Combat 'The Great Pyre — Garn at the stair foot' ended after 5 round(s).
 - [06:02] Chadickith Dashed 40 ft back to the guildhall carrying bound Garn, Okton alongside; combat tracker closed with the roc still loose over the square. Garn, 4 cultists subdued/held by Lorard's men. Kitwin taken toward the Pyrehouse lane by Sister Ilsa + one other.
+- [06:12] Chadickith asked Lorard about anti-roc armament: four ballistae on carts outside, two on the Keep roof under Oselle's people; needs the Saltgate opened (Halda) to bring them in.
