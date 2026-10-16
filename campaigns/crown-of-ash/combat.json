@@ -1,7 +1,7 @@
 {
   "active": true,
   "name": "The Great Pyre — Garn at the stair foot",
-  "round": 1,
+  "round": 2,
   "turn": 4,
   "order": [
     "choir-cultist-2",
@@ -23,7 +23,7 @@
       "init_bonus": 1,
       "dex": 13,
       "ac": 15,
-      "hp": 29,
+      "hp": 25,
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
@@ -39,7 +39,12 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "raging",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
       "status": "ok",
       "death_saves": {
@@ -105,7 +110,7 @@
       "init_bonus": 2,
       "dex": 14,
       "ac": 13,
-      "hp": 33,
+      "hp": 0,
       "max_hp": 33,
       "temp_hp": 0,
       "saves": {
@@ -121,9 +126,14 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "unconscious",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
-      "status": "ok",
+      "status": "stable",
       "death_saves": {
         "success": 0,
         "fail": 0
@@ -146,7 +156,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 450,
-      "notes": "",
+      "notes": "Concentrating on Hold Person (Chadickith)",
       "ref": {
         "name": "Cult Fanatic",
         "source": "MM",
@@ -162,7 +172,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 9,
+      "hp": 7,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -219,7 +229,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 9,
+      "hp": 7,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -276,7 +286,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 9,
+      "hp": 7,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -333,7 +343,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 9,
+      "hp": 7,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -512,7 +522,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 7200,
-      "notes": "",
+      "notes": "Garn down: leash cut — screams, veers skyward, circling over the Keep (no attack this round)",
       "ref": {
         "name": "Roc",
         "source": "MM",
@@ -543,7 +553,40 @@
     "R1: ▶ Choir Cultist 1's turn (HP 9/9, AC 12)",
     "R1: ▶ Choir Cultist 4's turn (HP 9/9, AC 12)",
     "R1: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
-    "R1: ▶ Chadickith's turn (HP 29/35, AC 15)"
+    "R1: ▶ Chadickith's turn (HP 29/35, AC 15)",
+    "R1: Chadickith is now raging",
+    "R1: 🩸 Brother Garn takes 2 damage from Storm Aura → HP 31/33",
+    "R1: 🩸 Choir Cultist 1 takes 2 damage from Storm Aura → HP 7/9",
+    "R1: 🩸 Choir Cultist 2 takes 2 damage from Storm Aura → HP 7/9",
+    "R1: 🩸 Choir Cultist 3 takes 2 damage from Storm Aura → HP 7/9",
+    "R1: 🩸 Choir Cultist 4 takes 2 damage from Storm Aura → HP 7/9",
+    "R1: ▶ Choir Cultist 3's turn (HP 7/9, AC 12)",
+    "R1: 🎯 Choir Cultist 3 → Chadickith (Scimitar): 1d20+3 → 1d20[7] + 3 = 10 vs AC 15 → miss",
+    "R1: ▶ Brother Garn's turn (HP 31/33, AC 13)",
+    "R1: Chadickith is now paralyzed 10r",
+    "R1: ▶ Okton's turn (HP 162/162, AC 18)",
+    "R1: 🎯 Okton → Brother Garn (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 13 → hit",
+    "R1:   Damage: 6d6+7 → 6d6[5, 1, 5, 1, 6, 3] + 7 = 28 slashing",
+    "R1: 🩸 Brother Garn takes 28 damage from Okton's Greatsword → HP 3/33",
+    "R1: Chadickith is no longer paralyzed.",
+    "R1: 🎯 Okton → Brother Garn (Greatsword): 1d20+11 → 1d20[5] + 11 = 16 vs AC 13 → hit",
+    "R1:   Damage: 6d6+7 → 6d6[2, 1, 2, 6, 1, 6] + 7 = 25 slashing",
+    "R1: 🩸 Brother Garn takes 25 damage from Okton's Greatsword → HP 0/33",
+    "R1:   Brother Garn is knocked out (nonlethal).",
+    "R2: Round 2",
+    "R2: ▶ Choir Cultist 2's turn (HP 7/9, AC 12)",
+    "R2: 🎯 Choir Cultist 2 → Chadickith (Scimitar): 1d20+3 → 1d20[17] + 3 = 20 vs AC 15 → hit",
+    "R2:   Damage: 1d6+1 → 1d6[5] + 1 = 6 slashing",
+    "R2: 🩸 Chadickith takes 6 damage from Choir Cultist 2's Scimitar → HP 23/35",
+    "R2: ▶ Choir Cultist 1's turn (HP 7/9, AC 12)",
+    "R2: 🎯 Choir Cultist 1 → Chadickith (Scimitar): 1d20+3 → 1d20[13] + 3 = 16 vs AC 15 → hit",
+    "R2:   Damage: 1d6+1 → 1d6[1] + 1 = 2 slashing",
+    "R2: 🩸 Chadickith takes 2 damage from Choir Cultist 1's Scimitar → HP 21/35",
+    "R2: ▶ Choir Cultist 4's turn (HP 7/9, AC 12)",
+    "R2: 🎯 Choir Cultist 4 → Chadickith (Scimitar): 1d20+3 → 1d20[1] + 3 = 4 — nat 1 vs AC 15 → miss (nat 1)",
+    "R2: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
+    "R2: 💚 Chadickith heals 4 → HP 25/35",
+    "R2: ▶ Chadickith's turn (HP 25/35, AC 15, raging)"
   ],
   "xp_defeated": 0,
   "defeated": [],
