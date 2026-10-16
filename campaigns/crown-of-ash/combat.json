@@ -1,7 +1,7 @@
 {
   "active": true,
   "name": "The Great Pyre — Garn at the stair foot",
-  "round": 4,
+  "round": 5,
   "turn": 4,
   "order": [
     "choir-cultist-2",
@@ -542,7 +542,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 7200,
-      "notes": "Round 4: still loose, hammering the east edge crowd and the Keep stair; climbing again",
+      "notes": "Round 5: rakes the crowd at the east edge again; drops a body near the Keep stair, lifts away",
       "ref": {
         "name": "Roc",
         "source": "MM",
@@ -655,7 +655,21 @@
     "R4: ▶ Choir Cultist 4's turn (HP 0/9, AC 12, unconscious)",
     "R4:   Choir Cultist 4 is incapacitated and can't take actions or reactions this turn.",
     "R4: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
-    "R4: ▶ Chadickith's turn (HP 23/35, AC 15, raging)"
+    "R4: ▶ Chadickith's turn (HP 23/35, AC 15, raging)",
+    "R4: ▶ Choir Cultist 3's turn (HP 0/9, AC 12, unconscious)",
+    "R4:   Choir Cultist 3 is incapacitated and can't take actions or reactions this turn.",
+    "R4: ▶ Brother Garn's turn (HP 0/33, AC 13, unconscious)",
+    "R4:   Brother Garn is incapacitated and can't take actions or reactions this turn.",
+    "R4: ▶ Okton's turn (HP 162/162, AC 18)",
+    "R5: Round 5",
+    "R5: ▶ Choir Cultist 2's turn (HP 0/9, AC 12, unconscious)",
+    "R5:   Choir Cultist 2 is incapacitated and can't take actions or reactions this turn.",
+    "R5: ▶ Choir Cultist 1's turn (HP 0/9, AC 12, unconscious)",
+    "R5:   Choir Cultist 1 is incapacitated and can't take actions or reactions this turn.",
+    "R5: ▶ Choir Cultist 4's turn (HP 0/9, AC 12, unconscious)",
+    "R5:   Choir Cultist 4 is incapacitated and can't take actions or reactions this turn.",
+    "R5: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
+    "R5: ▶ Chadickith's turn (HP 23/35, AC 15, raging)"
   ],
   "xp_defeated": 0,
   "defeated": [],
