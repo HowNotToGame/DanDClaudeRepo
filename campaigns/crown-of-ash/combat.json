@@ -2,7 +2,7 @@
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
   "round": 7,
-  "turn": 0,
+  "turn": 3,
   "order": [
     "chadickith",
     "engine-crews-ballistae",
@@ -20,7 +20,7 @@
       "init_bonus": 1,
       "dex": 13,
       "ac": 15,
-      "hp": 1,
+      "hp": 0,
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
@@ -40,10 +40,19 @@
         {
           "name": "prone",
           "tick": "end"
+        },
+        {
+          "name": "unconscious",
+          "tick": "end",
+          "auto": "dying"
+        },
+        {
+          "name": "prone",
+          "tick": "end"
         }
       ],
       "concentration": null,
-      "status": "ok",
+      "status": "dead",
       "death_saves": {
         "success": 0,
         "fail": 0
@@ -428,7 +437,17 @@
     "R6: 💚 Chadickith heals 1 → HP 1/35 — back on their feet (still prone)",
     "R6: ▶ Okton's turn (HP 77/162, AC 18)",
     "R7: Round 7",
-    "R7: ▶ Chadickith's turn (HP 1/35, AC 15, prone)"
+    "R7: ▶ Chadickith's turn (HP 1/35, AC 15, prone)",
+    "R7: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)",
+    "R7: ▶ The Gallowsbird's turn (HP 84/248, AC 15)",
+    "R7: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 2d20kh1[~~12~~, 16] + 13 = 29 (advantage) vs AC 15 → hit [adv: target prone (within 5 ft) | dis: —]",
+    "R7:   Damage: 4d8+9 → 4d8[6, 1, 1, 8] + 9 = 25 piercing",
+    "R7: 🩸 Chadickith takes 25 damage from The Gallowsbird's Beak → HP 0/35",
+    "R7:   Chadickith drops to 0 HP and falls unconscious! Death saves begin on their turn.",
+    "R7: 🎯 The Gallowsbird → Chadickith (Talons): 1d20+13 → 2d20kh1[~~6~~, 19] + 13 = 32 (advantage) vs AC 15 → CRITICAL HIT! [adv: target unconscious, target prone (within 5 ft) | dis: —] (auto-crit: melee hit on paralyzed/unconscious target)",
+    "R7:   Damage: 8d6+9 → 8d6[5, 2, 4, 4, 4, 4, 2, 5] + 9 = 39 (critical: dice doubled) slashing",
+    "R7: 🩸 Chadickith takes 39 damage from The Gallowsbird's Talons → HP 0/35",
+    "R7: 💀 Chadickith dies (massive damage while dying)."
   ],
   "xp_defeated": 0,
   "defeated": [
