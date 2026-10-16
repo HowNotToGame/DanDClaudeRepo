@@ -1,7 +1,7 @@
 {
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
-  "round": 3,
+  "round": 4,
   "turn": 0,
   "order": [
     "chadickith",
@@ -20,7 +20,7 @@
       "init_bonus": 1,
       "dex": 13,
       "ac": 15,
-      "hp": 23,
+      "hp": 9,
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
@@ -36,7 +36,12 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "raging",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
       "status": "ok",
       "death_saves": {
@@ -280,7 +285,7 @@
       "init_bonus": 1,
       "dex": 10,
       "ac": 16,
-      "hp": 22,
+      "hp": 20,
       "max_hp": 22,
       "temp_hp": 0,
       "saves": {
@@ -358,7 +363,23 @@
     "R2:   Damage: 6d6+7 → 6d6[2, 1, 3, 1, 4, 1] + 7 = 19 slashing",
     "R2: 🩸 The Gallowsbird takes 19 damage from Okton's Greatsword → HP 112/248",
     "R3: Round 3",
-    "R3: ▶ Chadickith's turn (HP 23/35, AC 15)"
+    "R3: ▶ Chadickith's turn (HP 23/35, AC 15)",
+    "R3: Chadickith is now raging",
+    "R3: 🎯 Chadickith → The Gallowsbird (Greataxe): 1d20+4 → 1d20[8] + 4 = 12 vs AC 15 → miss",
+    "R3: 🩸 Lorard's sergeant takes 2 damage from Storm Aura → HP 20/22",
+    "R3: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)",
+    "R3: ▶ The Gallowsbird's turn (HP 112/248, AC 15)",
+    "R3: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 1d20[17] + 13 = 30 vs AC 15 → hit",
+    "R3:   Damage: 4d8+9 → 4d8[8, 2, 5, 5] + 9 = 29 piercing",
+    "R3: 🩸 Chadickith takes 29 damage from The Gallowsbird's Beak → HP 0/35",
+    "R3:   Chadickith drops to 0 HP and falls unconscious! Death saves begin on their turn.",
+    "R3: 💚 Chadickith heals 9 → HP 9/35 — back on their feet (still prone)",
+    "R3: Chadickith is no longer prone.",
+    "R3: ▶ Okton's turn (HP 108/162, AC 18)",
+    "R3: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[1] + 11 = 12 — nat 1 vs AC 15 → miss (nat 1)",
+    "R3: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 15 → miss",
+    "R4: Round 4",
+    "R4: ▶ Chadickith's turn (HP 9/35, AC 15, raging)"
   ],
   "xp_defeated": 0,
   "defeated": [

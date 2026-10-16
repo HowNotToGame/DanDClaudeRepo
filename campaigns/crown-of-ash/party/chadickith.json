@@ -19,7 +19,7 @@
   "speed": 30,
   "hp": {
     "max": 35,
-    "current": 23,
+    "current": 9,
     "temp": 0
   },
   "hit_dice": {
@@ -89,7 +89,7 @@
   "resources": {
     "Rage": {
       "max": 3,
-      "used": 1,
+      "used": 2,
       "reset": "long"
     },
     "Strike of the Giants (Fire)": {
@@ -98,7 +98,12 @@
       "reset": "long"
     }
   },
-  "conditions": [],
+  "conditions": [
+    {
+      "name": "raging",
+      "tick": "end"
+    }
+  ],
   "inventory": [
     "Greataxe",
     "Explorer's pack (backpack, bedroll, mess kit, tinderbox, 10 torches, waterskin, 50 ft hempen rope)",
@@ -134,5 +139,5 @@
   ],
   "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire but has NOT undergone the blood ritual (the Quenching). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-16T07:04:21"
+  "updated": "2026-10-16T07:07:41"
 }
