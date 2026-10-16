@@ -35,6 +35,21 @@ condensed notes of the numbers and rules the campaign needs, not a copy. The PDF
 Alchemists (Mutagens), Heretics, Pale Moon (lycanthropy), Salt & Iron (exorcists, Spectral State), Undying Thirst
 (vampire hunters), Witch Knights (Pact Magic).
 
+## Order of the Pale Moon (3rd level)
+- **Feral Senses**: add your Rite Die to Perception and Survival checks that rely on sight, hearing or smell; add it to
+  Sinister Insight checks against Beasts, Monstrosities and Shapeshifters.
+- **Lycanthropic Curse**: pick one Beast of CR 1 or lower (permanent). Bonus action: Shift into Beast Form or Hybrid
+  Form. One free Shift per short or long rest, then a Vital Sacrifice each time. Lasts up to 1 hour; ends early if you
+  are Incapacitated or end it as a bonus action; a Vital Sacrifice extends it 1 hour.
+- **Beast Form**: statistics become the Beast's, but you keep HP, alignment, INT/WIS/CHA, skill and save proficiencies
+  (use the better when shared), class features and Blood Rites (if the Beast can physically do them). Natural weapons use
+  your Rite Die as damage die and your Rite save DC. Equipment merges or falls (your choice). No special senses unless
+  the Beast has them.
+- **Hybrid Form**: keep your own statistics; +10 ft speed, climb speed = walking speed; unarmed strikes gain Finesse
+  and deal Rite Die piercing/slashing; Wild Fury: bonus action unarmed strike or Dash (must move toward a Hostile you see).
+- Campaign beast: **Giant Owl** (MM p.327: Large, AC 12, fly 60 ft, Flyby, talons 2d6+1, Keen Hearing and Sight,
+  darkvision 120). Ruled that Flyby and the owl's traits apply in Beast Form. Hybrid Form keeps the trunk as a tail.
+
 ## House rulings recorded for this campaign
 - A Vital Sacrifice cannot be made if it would reduce current HP to 0 or below.
 - Class change from Barbarian to Blood Hunter is the price of the Quenching (m0056).

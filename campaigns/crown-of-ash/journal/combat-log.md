@@ -284,3 +284,6 @@
 - R8: 💀 The Gallowsbird dies (reduced to 0 HP).
 
 **Result:** Combat 'The Gallowsbird over the Great Pyre' ended after 8 round(s). Defeated: 1× Engine crews (ballistae), 1× Lorard's sergeant, 1× Roc (7200 XP, 7200 each for 1 PCs).
+
+
+> **DM note (rewind):** in round 7 the roc's attacks that killed Chadickith were rewound at the player's request (DM fudge). Entries from the first R7 'Lorard's sergeant's turn' through the roc's attacks on Chadickith were discarded. Replayed R7: Chadickith Shifted into Beast Form (giant owl, Flyby), stood, Dashed into the guildhall with no opportunity attack; R8 he ended Beast Form as a bonus action to speak. Okton's R8 blow was re-rolled with disadvantage (restrained by the roc's talons): die 5 vs a new d20 20, lower 5 = 16 vs AC 15, still a hit; the roc died.
