@@ -89,3 +89,4 @@
 - [20:12] Chadickith pushed through the surging crowd toward the dais steps to hold the stair.
 - [04:03] Chadickith bellowed for the crowd to disperse (Intimidation 5 vs DC 15, fail) and asked Lorard to help clear the square (Persuasion 12 vs DC 13, fail): the roar swallowed him, Lorard refused to move his men while the 'fraud' stands unchallenged; Oselle's halberds advance.
 - [04:14] Chadickith let Lorard and one shield-man up the dais stair; the rest of Lorard's men turned to hold the crowd. Oselle's grey halberds reached the stair foot as Lorard moved to question Kitwin.
+- [04:26] Chadickith watched Brother Garn (Perception 12 vs DC 13, fail): saw only the hand leave the sleeve apparently empty; Kitwin's laughter stopped abruptly. Lorard still awaiting Kitwin's answer; halberd captain awaiting orders.
