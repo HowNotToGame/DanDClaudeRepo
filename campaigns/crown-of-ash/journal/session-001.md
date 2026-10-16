@@ -87,3 +87,4 @@
 - [20:02] Chadickith held the line and watched Garn kill the old volunteer on the dais; the Crown of Ash kindled and the crowd erupted.
 - [20:08] Chadickith held the rope line against the surging crowd after the crown kindled.
 - [20:12] Chadickith pushed through the surging crowd toward the dais steps to hold the stair.
+- [04:03] Chadickith bellowed for the crowd to disperse (Intimidation 5 vs DC 15, fail) and asked Lorard to help clear the square (Persuasion 12 vs DC 13, fail): the roar swallowed him, Lorard refused to move his men while the 'fraud' stands unchallenged; Oselle's halberds advance.
