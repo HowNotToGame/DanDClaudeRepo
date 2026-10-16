@@ -1,7 +1,7 @@
 {
   "active": true,
   "name": "The Great Pyre — Garn at the stair foot",
-  "round": 2,
+  "round": 3,
   "turn": 4,
   "order": [
     "choir-cultist-2",
@@ -23,7 +23,7 @@
       "init_bonus": 1,
       "dex": 13,
       "ac": 15,
-      "hp": 25,
+      "hp": 23,
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
@@ -172,7 +172,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 7,
+      "hp": 0,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -188,9 +188,14 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "unconscious",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
-      "status": "ok",
+      "status": "stable",
       "death_saves": {
         "success": 0,
         "fail": 0
@@ -229,7 +234,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 7,
+      "hp": 0,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -245,9 +250,14 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "unconscious",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
-      "status": "ok",
+      "status": "stable",
       "death_saves": {
         "success": 0,
         "fail": 0
@@ -522,7 +532,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 7200,
-      "notes": "Garn down: leash cut — screams, veers skyward, circling over the Keep (no attack this round)",
+      "notes": "Round 3: loose and blood-mad, stoops on the fleeing crowd at the square's east edge, no attack on the party",
       "ref": {
         "name": "Roc",
         "source": "MM",
@@ -586,7 +596,33 @@
     "R2: 🎯 Choir Cultist 4 → Chadickith (Scimitar): 1d20+3 → 1d20[1] + 3 = 4 — nat 1 vs AC 15 → miss (nat 1)",
     "R2: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
     "R2: 💚 Chadickith heals 4 → HP 25/35",
-    "R2: ▶ Chadickith's turn (HP 25/35, AC 15, raging)"
+    "R2: ▶ Chadickith's turn (HP 25/35, AC 15, raging)",
+    "R2: 🎯 Chadickith → Choir Cultist 2 (Greataxe): 1d20+4 → 1d20[7] + 4 = 11 vs AC 12 → miss",
+    "R2: ▶ Choir Cultist 3's turn (HP 7/9, AC 12)",
+    "R2: 🎯 Choir Cultist 3 → Chadickith (Scimitar): 1d20+3 → 1d20[11] + 3 = 14 vs AC 15 → miss",
+    "R2: ▶ Brother Garn's turn (HP 0/33, AC 13, unconscious)",
+    "R2:   Brother Garn is incapacitated and can't take actions or reactions this turn.",
+    "R2: ▶ Okton's turn (HP 162/162, AC 18)",
+    "R2: 🎯 Okton → Choir Cultist 2 (Greatsword): 1d20+11 → 1d20[12] + 11 = 23 vs AC 12 → hit",
+    "R2:   Damage: 6d6+7 → 6d6[1, 2, 1, 6, 5, 4] + 7 = 26 slashing",
+    "R2: 🩸 Choir Cultist 2 takes 26 damage from Okton's Greatsword → HP 0/9",
+    "R2:   Choir Cultist 2 is knocked out (nonlethal).",
+    "R2: 🎯 Okton → Choir Cultist 1 (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 12 → hit",
+    "R2:   Damage: 6d6+7 → 6d6[3, 2, 5, 3, 2, 5] + 7 = 27 slashing",
+    "R2: 🩸 Choir Cultist 1 takes 27 damage from Okton's Greatsword → HP 0/9",
+    "R2:   Choir Cultist 1 is knocked out (nonlethal).",
+    "R3: Round 3",
+    "R3: ▶ Choir Cultist 2's turn (HP 0/9, AC 12, unconscious)",
+    "R3:   Choir Cultist 2 is incapacitated and can't take actions or reactions this turn.",
+    "R3: ▶ Choir Cultist 1's turn (HP 0/9, AC 12, unconscious)",
+    "R3:   Choir Cultist 1 is incapacitated and can't take actions or reactions this turn.",
+    "R3: ▶ Choir Cultist 4's turn (HP 7/9, AC 12)",
+    "R3: 🎯 Choir Cultist 4 → Chadickith (Scimitar): 1d20+3 → 1d20[15] + 3 = 18 vs AC 15 → hit",
+    "R3:   Damage: 1d6+1 → 1d6[4] + 1 = 5 slashing",
+    "R3: 🩸 Chadickith takes 5 damage from Choir Cultist 4's Scimitar → HP 20/35",
+    "R3: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
+    "R3: ▶ Chadickith's turn (HP 20/35, AC 15, raging)",
+    "R3: 💚 Chadickith heals 3 → HP 23/35"
   ],
   "xp_defeated": 0,
   "defeated": [],
