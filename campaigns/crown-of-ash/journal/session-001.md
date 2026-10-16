@@ -133,3 +133,4 @@
 - [23:32] Chadickith went to the Collarhouse at dawn: Halda explained the Watch oath ('until the Coal chooses'), Coldwell's proclamation would open the gates at noon, and she asked whether the Ember really kindled. Isine and Wilash in the triage tent.
 - [23:44] New quest: Prove the Coal did not choose Kitwin before noon
 - [23:44] Chadickith told Halda the Ember never kindled and asked what all the deaths were for. Persuasion 7 vs DC 11 failed: Halda wants proof by noon or she opens the gates and honours the oath as Coldwell reads it.
+- [23:46] Chadickith told Halda to meet him and Okton at the forge for proof; she agreed, alone, via the tannery postern within the hour. Walking back he spotted a grey-scarfed Choir lookout on his tail (Perception 13 vs DC 13).
