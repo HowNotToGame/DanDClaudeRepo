@@ -1,11 +1,551 @@
 {
-  "active": false,
-  "name": "",
-  "round": 0,
-  "turn": 0,
-  "order": [],
-  "combatants": {},
-  "log": [],
+  "active": true,
+  "name": "The Great Pyre — Garn at the stair foot",
+  "round": 1,
+  "turn": 4,
+  "order": [
+    "choir-cultist-2",
+    "choir-cultist-1",
+    "choir-cultist-4",
+    "the-gallowsbird",
+    "chadickith",
+    "choir-cultist-3",
+    "brother-garn",
+    "okton"
+  ],
+  "combatants": {
+    "chadickith": {
+      "id": "chadickith",
+      "name": "Chadickith",
+      "kind": "pc",
+      "side": "party",
+      "init": 8,
+      "init_bonus": 1,
+      "dex": 13,
+      "ac": 15,
+      "hp": 29,
+      "max_hp": 35,
+      "temp_hp": 0,
+      "saves": {
+        "str": 4,
+        "dex": 1,
+        "con": 5,
+        "int": -1,
+        "wis": 1,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Greataxe",
+          "to_hit": 4,
+          "damage": [
+            [
+              "1d12+2",
+              "slashing"
+            ]
+          ]
+        },
+        {
+          "name": "Unarmed strike (trunk)",
+          "to_hit": 4,
+          "damage": [
+            [
+              "3",
+              "bludgeoning"
+            ]
+          ]
+        },
+        {
+          "name": "Hand crossbow",
+          "to_hit": 3,
+          "damage": [
+            [
+              "1d6+1",
+              "piercing"
+            ]
+          ]
+        },
+        {
+          "name": "Trunk slam",
+          "to_hit": 4,
+          "damage": [
+            [
+              "3",
+              "bludgeoning"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 0,
+      "notes": "",
+      "pc": "chadickith"
+    },
+    "brother-garn": {
+      "id": "brother-garn",
+      "name": "Brother Garn",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 6,
+      "init_bonus": 2,
+      "dex": 14,
+      "ac": 13,
+      "hp": 33,
+      "max_hp": 33,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 2,
+        "con": 1,
+        "int": 0,
+        "wis": 1,
+        "cha": 2
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Dagger",
+          "section": "action",
+          "to_hit": 4,
+          "damage": [
+            [
+              "1d4+2",
+              "piercing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 450,
+      "notes": "",
+      "ref": {
+        "name": "Cult Fanatic",
+        "source": "MM",
+        "cr": "2"
+      }
+    },
+    "choir-cultist-1": {
+      "id": "choir-cultist-1",
+      "name": "Choir Cultist 1",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 17,
+      "init_bonus": 1,
+      "dex": 12,
+      "ac": 12,
+      "hp": 9,
+      "max_hp": 9,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 1,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Scimitar",
+          "section": "action",
+          "to_hit": 3,
+          "damage": [
+            [
+              "1d6+1",
+              "slashing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 25,
+      "notes": "",
+      "ref": {
+        "name": "Cultist",
+        "source": "MM",
+        "cr": "1/8"
+      }
+    },
+    "choir-cultist-2": {
+      "id": "choir-cultist-2",
+      "name": "Choir Cultist 2",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 21,
+      "init_bonus": 1,
+      "dex": 12,
+      "ac": 12,
+      "hp": 9,
+      "max_hp": 9,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 1,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Scimitar",
+          "section": "action",
+          "to_hit": 3,
+          "damage": [
+            [
+              "1d6+1",
+              "slashing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 25,
+      "notes": "",
+      "ref": {
+        "name": "Cultist",
+        "source": "MM",
+        "cr": "1/8"
+      }
+    },
+    "choir-cultist-3": {
+      "id": "choir-cultist-3",
+      "name": "Choir Cultist 3",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 8,
+      "init_bonus": 1,
+      "dex": 12,
+      "ac": 12,
+      "hp": 9,
+      "max_hp": 9,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 1,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Scimitar",
+          "section": "action",
+          "to_hit": 3,
+          "damage": [
+            [
+              "1d6+1",
+              "slashing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 25,
+      "notes": "",
+      "ref": {
+        "name": "Cultist",
+        "source": "MM",
+        "cr": "1/8"
+      }
+    },
+    "choir-cultist-4": {
+      "id": "choir-cultist-4",
+      "name": "Choir Cultist 4",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 15,
+      "init_bonus": 1,
+      "dex": 12,
+      "ac": 12,
+      "hp": 9,
+      "max_hp": 9,
+      "temp_hp": 0,
+      "saves": {
+        "str": 0,
+        "dex": 1,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Scimitar",
+          "section": "action",
+          "to_hit": 3,
+          "damage": [
+            [
+              "1d6+1",
+              "slashing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 25,
+      "notes": "",
+      "ref": {
+        "name": "Cultist",
+        "source": "MM",
+        "cr": "1/8"
+      }
+    },
+    "okton": {
+      "id": "okton",
+      "name": "Okton",
+      "kind": "monster",
+      "side": "ally",
+      "init": 0,
+      "init_bonus": -1,
+      "dex": 9,
+      "ac": 18,
+      "hp": 162,
+      "max_hp": 162,
+      "temp_hp": 0,
+      "saves": {
+        "str": 7,
+        "dex": 3,
+        "con": 10,
+        "int": 0,
+        "wis": 2,
+        "cha": 5
+      },
+      "resist": [],
+      "immune": [
+        "fire"
+      ],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Greatsword",
+          "section": "action",
+          "to_hit": 11,
+          "damage": [
+            [
+              "6d6+7",
+              "slashing"
+            ]
+          ]
+        },
+        {
+          "name": "Rock",
+          "section": "action",
+          "to_hit": 11,
+          "damage": [
+            [
+              "4d10+7",
+              "bludgeoning"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 5000,
+      "notes": "",
+      "ref": {
+        "name": "Fire Giant",
+        "source": "MM",
+        "cr": "9"
+      }
+    },
+    "the-gallowsbird": {
+      "id": "the-gallowsbird",
+      "name": "The Gallowsbird",
+      "kind": "monster",
+      "side": "enemy",
+      "init": 15,
+      "init_bonus": 0,
+      "dex": 10,
+      "ac": 15,
+      "hp": 248,
+      "max_hp": 248,
+      "temp_hp": 0,
+      "saves": {
+        "str": 9,
+        "dex": 4,
+        "con": 9,
+        "int": -4,
+        "wis": 4,
+        "cha": 3
+      },
+      "resist": [],
+      "immune": [],
+      "vulnerable": [],
+      "cond_defenses": [],
+      "condition_immune": [],
+      "conditions": [],
+      "concentration": null,
+      "status": "ok",
+      "death_saves": {
+        "success": 0,
+        "fail": 0
+      },
+      "attacks": [
+        {
+          "name": "Beak",
+          "section": "action",
+          "to_hit": 13,
+          "damage": [
+            [
+              "4d8+9",
+              "piercing"
+            ]
+          ]
+        },
+        {
+          "name": "Talons",
+          "section": "action",
+          "to_hit": 13,
+          "damage": [
+            [
+              "4d6+9",
+              "slashing"
+            ]
+          ]
+        }
+      ],
+      "legendary_max": 0,
+      "legendary_left": 0,
+      "recharge_spent": [],
+      "reaction_used": false,
+      "xp": 7200,
+      "notes": "",
+      "ref": {
+        "name": "Roc",
+        "source": "MM",
+        "cr": "11"
+      }
+    }
+  },
+  "log": [
+    "R0: ⚔️ Combat started: The Great Pyre — Garn at the stair foot. Add combatants, then roll initiative.",
+    "R0: Added Chadickith (PC) — HP 29/35, AC 15, init +1",
+    "R0: Added Brother Garn (CR 2) — HP 33, AC 13, init +2",
+    "R0: Added Choir Cultist 1 (CR 1/8) — HP 9, AC 12, init +1",
+    "R0: Added Choir Cultist 2 (CR 1/8) — HP 9, AC 12, init +1",
+    "R0: Added Choir Cultist 3 (CR 1/8) — HP 9, AC 12, init +1",
+    "R0: Added Choir Cultist 4 (CR 1/8) — HP 9, AC 12, init +1",
+    "R0: Added Okton (CR 9) — HP 162, AC 18, init -1",
+    "R0: Added The Gallowsbird (CR 11) — HP 248, AC 15, init +0",
+    "R0: Chadickith initiative: 1d20+1 → 1d20[7] + 1 = 8",
+    "R0: Brother Garn initiative: 1d20+2 → 1d20[4] + 2 = 6",
+    "R0: Choir Cultist 1 initiative: 1d20+1 → 1d20[16] + 1 = 17",
+    "R0: Choir Cultist 2 initiative: 1d20+1 → 1d20[20] + 1 = 21 — NAT 20!",
+    "R0: Choir Cultist 3 initiative: 1d20+1 → 1d20[7] + 1 = 8",
+    "R0: Choir Cultist 4 initiative: 1d20+1 → 1d20[14] + 1 = 15",
+    "R0: Okton initiative: 1d20-1 → 1d20[1] - 1 = 0 — nat 1",
+    "R0: The Gallowsbird initiative: 1d20 → 1d20[15] = 15",
+    "R1: Round 1 — initiative order: Choir Cultist 2 (21), Choir Cultist 1 (17), Choir Cultist 4 (15), The Gallowsbird (15), Chadickith (8), Choir Cultist 3 (8), Brother Garn (6), Okton (0)",
+    "R1: ▶ Choir Cultist 2's turn (HP 9/9, AC 12)",
+    "R1: ▶ Choir Cultist 1's turn (HP 9/9, AC 12)",
+    "R1: ▶ Choir Cultist 4's turn (HP 9/9, AC 12)",
+    "R1: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
+    "R1: ▶ Chadickith's turn (HP 29/35, AC 15)"
+  ],
   "xp_defeated": 0,
-  "defeated": []
+  "defeated": [],
+  "started": "2026-10-16T05:31:03"
 }
