@@ -1,7 +1,7 @@
 {
   "active": true,
   "name": "The Gallowsbird over the Great Pyre",
-  "round": 5,
+  "round": 6,
   "turn": 3,
   "order": [
     "chadickith",
@@ -20,7 +20,7 @@
       "init_bonus": 1,
       "dex": 13,
       "ac": 15,
-      "hp": 0,
+      "hp": 1,
       "max_hp": 35,
       "temp_hp": 0,
       "saves": {
@@ -38,19 +38,14 @@
       "condition_immune": [],
       "conditions": [
         {
-          "name": "unconscious",
-          "tick": "end",
-          "auto": "dying"
-        },
-        {
           "name": "prone",
           "tick": "end"
         }
       ],
       "concentration": null,
-      "status": "dead",
+      "status": "ok",
       "death_saves": {
-        "success": 1,
+        "success": 0,
         "fail": 0
       },
       "attacks": [
@@ -100,7 +95,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 0,
-      "notes": "",
+      "notes": "Instant death voided by the Quenching bargain (player choice 3): 1 success, 1 failure; Okton must break free and perform the rite.",
       "pc": "chadickith"
     },
     "okton": {
@@ -112,7 +107,7 @@
       "init_bonus": -1,
       "dex": 9,
       "ac": 18,
-      "hp": 108,
+      "hp": 77,
       "max_hp": 162,
       "temp_hp": 0,
       "saves": {
@@ -166,7 +161,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 5000,
-      "notes": "Grappled by the roc's talons (escape DC 19), restrained",
+      "notes": "R6: performed the Quenching on Chadickith (action). HP 77/162. Roc not yet grappling him.",
       "ref": {
         "name": "Fire Giant",
         "source": "MM",
@@ -407,7 +402,20 @@
     "R5: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 2d20kh1[~~8~~, 13] + 13 = 26 (advantage) vs AC 15 → CRITICAL HIT! [adv: target unconscious, target prone (within 5 ft) | dis: —] (auto-crit: melee hit on paralyzed/unconscious target)",
     "R5:   Damage: 8d8+9 → 8d8[1, 3, 5, 7, 2, 3, 6, 6] + 9 = 42 (critical: dice doubled) piercing",
     "R5: 🩸 Chadickith takes 42 damage from The Gallowsbird's Beak → HP 0/35",
-    "R5: 💀 Chadickith dies (massive damage while dying)."
+    "R5: 💀 Chadickith dies (massive damage while dying).",
+    "R5: ▶ Okton's turn (HP 108/162, AC 18)",
+    "R6: Round 6",
+    "R6: ▶ Chadickith's turn (HP 0/35, AC 15, unconscious, prone)",
+    "R6: ☠️ Death save: Chadickith death save: 1d20 → 1d20[6] = 6 → 1✓ / 2✗",
+    "R6:   Chadickith is incapacitated and can't take actions or reactions this turn.",
+    "R6: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)",
+    "R6: Chadickith is stabilized.",
+    "R6: ▶ The Gallowsbird's turn (HP 84/248, AC 15)",
+    "R6: 🎯 The Gallowsbird → Okton (Beak): 1d20+13 → 1d20[6] + 13 = 19 vs AC 18 → hit",
+    "R6:   Damage: 4d8+9 → 4d8[6, 8, 6, 2] + 9 = 31 piercing",
+    "R6: 🩸 Okton takes 31 damage from The Gallowsbird's Beak → HP 77/162",
+    "R6: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[2] + 13 = 15 vs AC 18 → miss",
+    "R6: 💚 Chadickith heals 1 → HP 1/35 — back on their feet (still prone)"
   ],
   "xp_defeated": 0,
   "defeated": [
