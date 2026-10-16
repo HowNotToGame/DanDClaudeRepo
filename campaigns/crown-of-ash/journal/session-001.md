@@ -112,3 +112,4 @@
 - [06:33] Player's 1d2 roll came up 2: Chadickith asked Garn where they took Kitwin. Garn: the Pyrehouse sanctum and the crypt below, the crown 'kept warm' until the dawn bell; Coldwell will meet them.
 - [06:36] Chadickith broke Garn's leg and threw him out the guildhall door for the roc. Roc stooped, took Garn and lifted away; its wing swept the doorway (Dex save 13 vs DC 13, success). Garn dead; Lorard and the surgeon witnessed.
 - [06:38] Chadickith waited in the guildhall for the bolt-throwers. Okton returned: Halda refused the full gate opening (5 vs DC 12), offering only the wicket for crews carrying broken-down engines, ~2 hours. The dusk bell rang during the wait; the roc kept raking the square.
+- [06:44] Chadickith, frustrated, proposed breaking the Saltgate and admitted he does not know what to do; Okton cautioned that forcing the gate means war, and hinted the roc worsened once the Heartcoal was loose.
