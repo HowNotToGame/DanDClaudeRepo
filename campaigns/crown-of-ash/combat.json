@@ -1,8 +1,8 @@
 {
   "active": true,
   "name": "The Great Pyre — Garn at the stair foot",
-  "round": 3,
-  "turn": 7,
+  "round": 4,
+  "turn": 4,
   "order": [
     "choir-cultist-2",
     "choir-cultist-1",
@@ -542,7 +542,7 @@
       "recharge_spent": [],
       "reaction_used": false,
       "xp": 7200,
-      "notes": "Round 3: loose and blood-mad, stoops on the fleeing crowd at the square's east edge, no attack on the party",
+      "notes": "Round 4: still loose, hammering the east edge crowd and the Keep stair; climbing again",
       "ref": {
         "name": "Roc",
         "source": "MM",
@@ -646,7 +646,16 @@
     "R3: 🎯 Okton → Choir Cultist 4 (Greatsword): 1d20+11 → 1d20[10] + 11 = 21 vs AC 12 → hit",
     "R3:   Damage: 6d6+7 → 6d6[2, 5, 3, 3, 1, 5] + 7 = 26 slashing",
     "R3: 🩸 Choir Cultist 4 takes 26 damage from Okton's Greatsword → HP 0/9",
-    "R3:   Choir Cultist 4 is knocked out (nonlethal)."
+    "R3:   Choir Cultist 4 is knocked out (nonlethal).",
+    "R4: Round 4",
+    "R4: ▶ Choir Cultist 2's turn (HP 0/9, AC 12, unconscious)",
+    "R4:   Choir Cultist 2 is incapacitated and can't take actions or reactions this turn.",
+    "R4: ▶ Choir Cultist 1's turn (HP 0/9, AC 12, unconscious)",
+    "R4:   Choir Cultist 1 is incapacitated and can't take actions or reactions this turn.",
+    "R4: ▶ Choir Cultist 4's turn (HP 0/9, AC 12, unconscious)",
+    "R4:   Choir Cultist 4 is incapacitated and can't take actions or reactions this turn.",
+    "R4: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
+    "R4: ▶ Chadickith's turn (HP 23/35, AC 15, raging)"
   ],
   "xp_defeated": 0,
   "defeated": [],
