@@ -113,3 +113,4 @@
 - [06:36] Chadickith broke Garn's leg and threw him out the guildhall door for the roc. Roc stooped, took Garn and lifted away; its wing swept the doorway (Dex save 13 vs DC 13, success). Garn dead; Lorard and the surgeon witnessed.
 - [06:38] Chadickith waited in the guildhall for the bolt-throwers. Okton returned: Halda refused the full gate opening (5 vs DC 12), offering only the wicket for crews carrying broken-down engines, ~2 hours. The dusk bell rang during the wait; the roc kept raking the square.
 - [06:44] Chadickith, frustrated, proposed breaking the Saltgate and admitted he does not know what to do; Okton cautioned that forcing the gate means war, and hinted the roc worsened once the Heartcoal was loose.
+- [06:50] Chadickith held the city: led the evacuation of the square (Intimidation 21 vs DC 12) with Lorard's men and the Watch. Two hours passed; the engine crews are arriving through the Saltgate wicket, carrying broken-down bolt-throwers.
