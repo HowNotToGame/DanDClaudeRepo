@@ -94,3 +94,4 @@
 - [04:53] Chadickith signalled Okton from the dais stair. Okton began crossing the rooftops toward the dais; Garn noticed the signal. Roc descending.
 - [04:55] Chadickith shouted the crowd to get down (Intimidation 7 vs DC 10, fail): near rows dropped but the mass panicked into a surge. Roc made a low pass over the square, banked for a second; shield line buckled; Okton still crossing roofs.
 - [05:00] Chadickith shouted again for all to get inside or down (Intimidation 5 vs DC 12, fail): pockets obeyed, the square did not. Roc stooped on the dais edge, seized Lorard's shield-man and one halberdier, dropped one into the crowd, wheeled. Okton one rooftop away.
+- [05:08] Chadickith tried to snatch Kitwin (Athletics nat 1, 5 vs DC 12, fail) and, as pre-agreed, abandoned him; told Lorard it must wait and ran for the guildhall doorway at the stair foot. Okton followed. Roc stooped on the dais but veered off from Garn and Kitwin and struck the pyre instead.
