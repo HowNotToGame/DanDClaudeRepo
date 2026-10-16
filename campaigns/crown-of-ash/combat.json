@@ -2,7 +2,7 @@
   "active": true,
   "name": "The Great Pyre — Garn at the stair foot",
   "round": 3,
-  "turn": 4,
+  "turn": 7,
   "order": [
     "choir-cultist-2",
     "choir-cultist-1",
@@ -296,7 +296,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 7,
+      "hp": 0,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -312,9 +312,14 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "unconscious",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
-      "status": "ok",
+      "status": "stable",
       "death_saves": {
         "success": 0,
         "fail": 0
@@ -353,7 +358,7 @@
       "init_bonus": 1,
       "dex": 12,
       "ac": 12,
-      "hp": 7,
+      "hp": 0,
       "max_hp": 9,
       "temp_hp": 0,
       "saves": {
@@ -369,9 +374,14 @@
       "vulnerable": [],
       "cond_defenses": [],
       "condition_immune": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "name": "unconscious",
+          "tick": "end"
+        }
+      ],
       "concentration": null,
-      "status": "ok",
+      "status": "stable",
       "death_saves": {
         "success": 0,
         "fail": 0
@@ -622,7 +632,21 @@
     "R3: 🩸 Chadickith takes 5 damage from Choir Cultist 4's Scimitar → HP 20/35",
     "R3: ▶ The Gallowsbird's turn (HP 248/248, AC 15)",
     "R3: ▶ Chadickith's turn (HP 20/35, AC 15, raging)",
-    "R3: 💚 Chadickith heals 3 → HP 23/35"
+    "R3: 💚 Chadickith heals 3 → HP 23/35",
+    "R3: 🎯 Chadickith → Choir Cultist 3 (Greataxe): 1d20+4 → 1d20[5] + 4 = 9 vs AC 12 → miss",
+    "R3: ▶ Choir Cultist 3's turn (HP 7/9, AC 12)",
+    "R3: 🎯 Choir Cultist 3 → Chadickith (Scimitar): 1d20+3 → 1d20[3] + 3 = 6 vs AC 15 → miss",
+    "R3: ▶ Brother Garn's turn (HP 0/33, AC 13, unconscious)",
+    "R3:   Brother Garn is incapacitated and can't take actions or reactions this turn.",
+    "R3: ▶ Okton's turn (HP 162/162, AC 18)",
+    "R3: 🎯 Okton → Choir Cultist 3 (Greatsword): 1d20+11 → 1d20[4] + 11 = 15 vs AC 12 → hit",
+    "R3:   Damage: 6d6+7 → 6d6[2, 1, 4, 4, 6, 4] + 7 = 28 slashing",
+    "R3: 🩸 Choir Cultist 3 takes 28 damage from Okton's Greatsword → HP 0/9",
+    "R3:   Choir Cultist 3 is knocked out (nonlethal).",
+    "R3: 🎯 Okton → Choir Cultist 4 (Greatsword): 1d20+11 → 1d20[10] + 11 = 21 vs AC 12 → hit",
+    "R3:   Damage: 6d6+7 → 6d6[2, 5, 3, 3, 1, 5] + 7 = 26 slashing",
+    "R3: 🩸 Choir Cultist 4 takes 26 damage from Okton's Greatsword → HP 0/9",
+    "R3:   Choir Cultist 4 is knocked out (nonlethal)."
   ],
   "xp_defeated": 0,
   "defeated": [],
