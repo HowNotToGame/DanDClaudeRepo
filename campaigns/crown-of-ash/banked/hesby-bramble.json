@@ -1,0 +1,117 @@
+{
+  "name": "Hesby Bramble",
+  "slug": "hesby-bramble",
+  "player": "",
+  "npc": true,
+  "present": true,
+  "race": "Human",
+  "class": "Blood Hunter (Alternate)",
+  "subclass": "Order of the Pale Moon",
+  "level": 4,
+  "background": "City Watch",
+  "abilities": {
+    "str": 16,
+    "dex": 13,
+    "con": 17,
+    "int": 9,
+    "wis": 14,
+    "cha": 11
+  },
+  "ac": 17,
+  "speed": 30,
+  "hp": {
+    "max": 45,
+    "current": 45,
+    "temp": 0
+  },
+  "hit_dice": {
+    "die": 12,
+    "max": 4,
+    "used": 0
+  },
+  "save_proficiencies": [
+    "con",
+    "cha"
+  ],
+  "skill_proficiencies": [
+    "athletics",
+    "insight",
+    "survival",
+    "history",
+    "religion"
+  ],
+  "expertise": [],
+  "jack_of_all_trades": false,
+  "initiative_bonus": null,
+  "spellcasting_ability": "",
+  "spell_slots": {},
+  "spells": [],
+  "attacks": [
+    {
+      "name": "Spear (one hand)",
+      "to_hit": 5,
+      "damage": [
+        [
+          "1d6+5",
+          "piercing"
+        ]
+      ]
+    }
+  ],
+  "resources": {
+    "Rite of Binding (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Rite of Blindness (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Lycanthropic Shift (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    }
+  },
+  "conditions": [],
+  "inventory": [
+    "Spear",
+    "Shield",
+    "Scale mail",
+    "Redcollar gorget",
+    "Bleeding-knife",
+    "Wife's ribbon",
+    "Rations"
+  ],
+  "gold": 12,
+  "xp": 0,
+  "death_saves": {
+    "success": 0,
+    "fail": 0
+  },
+  "features": [
+    "BLOOD HUNTER 4 (Alternate, laserllama v2.2; Banked of Okton's order). Rite Die d4, Rite save DC 13",
+    "Fighting Style: Balanced Fighting",
+    "Hunter's Bane: Occult Lore (Religion); Sinister Insight (bonus action, CON check, DC 8+CR)",
+    "Blood Rites known: Binding, Blindness (each free once per rest, then Vital Sacrifice)",
+    "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; Rite Die extra damage)",
+    "Vital Sacrifice: lose current and max HP equal to the Rite Die until a long rest",
+    "Order of the Pale Moon: Feral Senses; Lycanthropic Curse (Brown Bear, CR 1); Hybrid Form",
+    "Ability Score Improvement (4th)",
+    "Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)"
+  ],
+  "notes": "Age 46, male. Pre-conversion level 4. Rank: Raw (converted day 3). Thick, grizzled, grey-bearded, a sergeant's flat gaze. Watch sergeant who drew the Pyrehouse beat. Wife Marta thinks he is ill. Loyal to Halda and Okton.",
+  "created": "2026-10-17T06:15:06",
+  "updated": "2026-10-17T06:15:06",
+  "rites": [
+    "Binding",
+    "Blindness"
+  ],
+  "beast": "Brown Bear",
+  "rank": "Raw",
+  "rite_die": "d4",
+  "rite_dc": 13,
+  "prof": 2
+}

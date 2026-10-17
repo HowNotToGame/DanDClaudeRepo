@@ -1,0 +1,125 @@
+{
+  "name": "Gwenis Dunmore",
+  "slug": "gwenis-dunmore",
+  "player": "",
+  "npc": true,
+  "present": true,
+  "race": "Human",
+  "class": "Blood Hunter (Alternate)",
+  "subclass": "Order of the Pale Moon",
+  "level": 3,
+  "background": "City Watch",
+  "abilities": {
+    "str": 13,
+    "dex": 15,
+    "con": 16,
+    "int": 9,
+    "wis": 14,
+    "cha": 11
+  },
+  "ac": 14,
+  "speed": 30,
+  "hp": {
+    "max": 35,
+    "current": 35,
+    "temp": 0
+  },
+  "hit_dice": {
+    "die": 12,
+    "max": 3,
+    "used": 0
+  },
+  "save_proficiencies": [
+    "con",
+    "cha"
+  ],
+  "skill_proficiencies": [
+    "athletics",
+    "insight",
+    "survival",
+    "investigation",
+    "nature"
+  ],
+  "expertise": [],
+  "jack_of_all_trades": false,
+  "initiative_bonus": null,
+  "spellcasting_ability": "",
+  "spell_slots": {},
+  "spells": [],
+  "attacks": [
+    {
+      "name": "Light crossbow",
+      "to_hit": 5,
+      "damage": [
+        [
+          "1d8+2",
+          "piercing"
+        ]
+      ]
+    },
+    {
+      "name": "Shortsword",
+      "to_hit": 4,
+      "damage": [
+        [
+          "1d6+2",
+          "piercing"
+        ]
+      ]
+    }
+  ],
+  "resources": {
+    "Rite of Revelation (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Rite of Siphoning (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Lycanthropic Shift (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    }
+  },
+  "conditions": [],
+  "inventory": [
+    "Light crossbow",
+    "20 bolts",
+    "Shortsword",
+    "Studded leather",
+    "Redcollar gorget",
+    "Bleeding-knife"
+  ],
+  "gold": 8,
+  "xp": 0,
+  "death_saves": {
+    "success": 0,
+    "fail": 0
+  },
+  "features": [
+    "BLOOD HUNTER 3 (Alternate, laserllama v2.2; Banked of Okton's order). Rite Die d4, Rite save DC 13",
+    "Fighting Style: Archery",
+    "Hunter's Bane: Occult Lore (Nature); Sinister Insight (bonus action, CON check, DC 8+CR)",
+    "Blood Rites known: Revelation, Siphoning (each free once per rest, then Vital Sacrifice)",
+    "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; Rite Die extra damage)",
+    "Vital Sacrifice: lose current and max HP equal to the Rite Die until a long rest",
+    "Order of the Pale Moon: Feral Senses; Lycanthropic Curse (Giant Eagle, CR 1); Hybrid Form",
+    "Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)"
+  ],
+  "notes": "Age 29, female. Pre-conversion level 3. Rank: Raw (converted day 3). Lean, sharp-eyed, a long braid and a hunter's stillness. Came back from the rage in one clear moment and remembers all of it. Guilty over the roc's blood. Feels Okton like a banked fire in the next room. Sister Kita.",
+  "created": "2026-10-17T06:15:06",
+  "updated": "2026-10-17T06:15:06",
+  "rites": [
+    "Revelation",
+    "Siphoning"
+  ],
+  "beast": "Giant Eagle",
+  "rank": "Raw",
+  "rite_die": "d4",
+  "rite_dc": 13,
+  "prof": 2
+}

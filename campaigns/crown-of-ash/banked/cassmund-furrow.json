@@ -1,0 +1,109 @@
+{
+  "name": "Cassmund Furrow",
+  "slug": "cassmund-furrow",
+  "player": "",
+  "npc": true,
+  "present": true,
+  "race": "Human",
+  "class": "Blood Hunter (Alternate)",
+  "subclass": "Pale Moon (from level 3)",
+  "level": 2,
+  "background": "City Watch",
+  "abilities": {
+    "str": 16,
+    "dex": 14,
+    "con": 15,
+    "int": 9,
+    "wis": 13,
+    "cha": 11
+  },
+  "ac": 15,
+  "speed": 30,
+  "hp": {
+    "max": 23,
+    "current": 23,
+    "temp": 0
+  },
+  "hit_dice": {
+    "die": 12,
+    "max": 2,
+    "used": 0
+  },
+  "save_proficiencies": [
+    "con",
+    "cha"
+  ],
+  "skill_proficiencies": [
+    "athletics",
+    "insight",
+    "history",
+    "investigation",
+    "arcana"
+  ],
+  "expertise": [],
+  "jack_of_all_trades": false,
+  "initiative_bonus": null,
+  "spellcasting_ability": "",
+  "spell_slots": {},
+  "spells": [],
+  "attacks": [
+    {
+      "name": "Longsword (two-handed 1d10)",
+      "to_hit": 6,
+      "damage": [
+        [
+          "1d8+3",
+          "slashing"
+        ]
+      ]
+    }
+  ],
+  "resources": {
+    "Rite of Siphoning (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    },
+    "Rite of Binding (free use)": {
+      "max": 1,
+      "used": 0,
+      "reset": "short"
+    }
+  },
+  "conditions": [],
+  "inventory": [
+    "Longsword",
+    "Chain shirt",
+    "Redcollar gorget",
+    "Bleeding-knife",
+    "Lucky coin"
+  ],
+  "gold": 6,
+  "xp": 0,
+  "death_saves": {
+    "success": 0,
+    "fail": 0
+  },
+  "features": [
+    "BLOOD HUNTER 2 (Alternate, laserllama v2.2; Banked of Okton's order). Rite Die d4, Rite save DC 12",
+    "Fighting Style: Versatile Fighting",
+    "Hunter's Bane: Occult Lore (Arcana); Sinister Insight (bonus action, CON check, DC 8+CR)",
+    "Blood Rites known: Siphoning, Binding (each free once per rest, then Vital Sacrifice)",
+    "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; Rite Die extra damage)",
+    "Vital Sacrifice: lose current and max HP equal to the Rite Die until a long rest",
+    "Order of the Pale Moon at level 3 (Okton gives only this order). Latent beast: Boar.",
+    "Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)"
+  ],
+  "notes": "Age 24, male. Pre-conversion level 2. Rank: Raw (converted day 3). Tall, earnest, wide-eyed; a farmer's hands. Farm boy turned Watch recruit. Quick to laugh, quick to be afraid of himself.",
+  "created": "2026-10-17T06:15:06",
+  "updated": "2026-10-17T06:15:06",
+  "rites": [
+    "Siphoning",
+    "Binding"
+  ],
+  "beast": "Boar",
+  "rank": "Raw",
+  "rite_die": "d4",
+  "rite_dc": 12,
+  "prof": 2
+}
