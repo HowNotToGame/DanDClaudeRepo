@@ -138,3 +138,4 @@
 - [00:02] Halda arrived alone at the forge by the tannery postern. Present: Okton, Kaselle, bound brothers Vesan and Wyn in the cellar; the wafer tin in the roof beams; Peret's list and gate key on Chadickith; the Heartcoal under the hearth slab (hidden).
 - [00:05] Chadickith signalled Okton to show Halda 'what's up' (the wafer tin in the roof beams). Okton refused to touch it; Chadickith fetched it. Halda recognised the wafers, said they're not proof alone, and asked to question the captured brothers.
 - [00:08] Chadickith had Okton lift the hearth slab and show Halda the Heartcoal. She felt its warmth, said the Coal never chose Kitwin, and promised to keep the gates shut past noon; still wants the brothers' testimony. Coal recovered.
+- [00:09] Brothers Vesan and Wyn testified to Halda: the grains from the Last Ember casket kindled the crown, Coldwell wears the key. Halda believes them; wants them sworn before her captains by noon. Okton fears Coldwell's reach.
