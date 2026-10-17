@@ -148,3 +148,4 @@
 - [03:19] Quest done: Prove the Coal did not choose Kitwin before noon
 - [03:19] Halda led the hearing; the brothers swore the Choir lit the crown with grains. Her six captains (persuasion 22 vs DC 14) agreed the Coal did not choose Kitwin; the gates stay sealed. Hesard Rook slipped out afterwards. Quest q004 complete.
 - [03:29] Chadickith asked Okton who the Lord-Marshal would side with. Okton: whoever opens the gates for him; the Watch's refusal suits him for now, but he will ask where the Coal is.
+- [03:45] Chadickith walked to the triage tent with Okton, who explained the burn's stages, the Quenching odds and his own cost. Isine reported nineteen of forty roc-wounded dead overnight and seven raging; she noticed Chadickith's eyes and wrists.
