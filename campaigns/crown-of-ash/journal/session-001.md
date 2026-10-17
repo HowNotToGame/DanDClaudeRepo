@@ -140,3 +140,4 @@
 - [00:08] Chadickith had Okton lift the hearth slab and show Halda the Heartcoal. She felt its warmth, said the Coal never chose Kitwin, and promised to keep the gates shut past noon; still wants the brothers' testimony. Coal recovered.
 - [00:09] Brothers Vesan and Wyn testified to Halda: the grains from the Last Ember casket kindled the crown, Coldwell wears the key. Halda believes them; wants them sworn before her captains by noon. Okton fears Coldwell's reach.
 - [00:12] Chadickith proposed escorting the brothers to Halda at noon; Halda agreed, will gather her captains quietly. Okton guards the Coal; Chadickith and Kaselle will escort.
+- [00:27] Chadickith insisted Okton join the noon escort; Okton agreed, leaving Kaselle to guard the barred forge and the hearth slab. About four hours remain before noon.
