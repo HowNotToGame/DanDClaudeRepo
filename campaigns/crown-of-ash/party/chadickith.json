@@ -5,10 +5,10 @@
   "race": "Loxodon (Dodrud variant)",
   "class": "Blood Hunter (Alternate, laserllama v2.2)",
   "subclass": "Order of the Pale Moon (Giant Owl curse)",
-  "level": 3,
+  "level": 4,
   "background": "Giant Foundling",
   "abilities": {
-    "str": 15,
+    "str": 16,
     "dex": 13,
     "con": 16,
     "int": 8,
@@ -18,13 +18,13 @@
   "ac": 15,
   "speed": 30,
   "hp": {
-    "max": 16,
-    "current": 16,
+    "max": 26,
+    "current": 26,
     "temp": 0
   },
   "hit_dice": {
     "die": 12,
-    "max": 3,
+    "max": 4,
     "used": 0
   },
   "save_proficiencies": [
@@ -47,20 +47,20 @@
   "attacks": [
     {
       "name": "Greataxe",
-      "to_hit": 4,
+      "to_hit": 5,
       "damage": [
         [
-          "1d12+2",
+          "1d12+3",
           "slashing"
         ]
       ]
     },
     {
       "name": "Hybrid talons (Rite Die d4)",
-      "to_hit": 4,
+      "to_hit": 5,
       "damage": [
         [
-          "1d4+2",
+          "1d4+3",
           "slashing"
         ]
       ]
@@ -77,10 +77,10 @@
     },
     {
       "name": "Unarmed strike (trunk)",
-      "to_hit": 4,
+      "to_hit": 5,
       "damage": [
         [
-          "3",
+          "4",
           "bludgeoning"
         ]
       ]
@@ -157,9 +157,10 @@
     "Hybrid Form: +10 ft speed, climb speed = walk, unarmed strikes finesse for Rite Die piercing/slashing, bonus action unarmed strike or Dash (Wild Fury)",
     "Beast Form (Giant Owl): beast statistics but keep HP, INT/WIS/CHA, skills and Blood Rites; Large, fly 60 ft, talons use Rite Die and Rite DC",
     "Proficiencies: light and medium armor, shields, simple and martial weapons, alchemist's supplies",
-    "Languages: Common; Loxodon; Giant; Draconic"
+    "Languages: Common; Loxodon; Giant; Draconic",
+    "Feat (level 4): Grappler (XPHB 2024, +1 STR): Punch and Grab (an Unarmed Strike hit can do damage and grapple, once per turn); advantage on attacks against a creature you grapple; no extra movement to move a grappled creature your size or smaller"
   ],
-  "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire and now HAS undergone the blood ritual: Okton quenched him in round 6 of the roc fight (class changed from Barbarian 3 / Storm Herald to Blood Hunter 3 / Pale Moon, giant owl curse). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON). Vital Sacrifice (owl flight, day 8): max HP 16 until a long rest (normal max 35).",
+  "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire and now HAS undergone the blood ritual: Okton quenched him in round 6 of the roc fight (class changed from Barbarian 3 / Storm Herald to Blood Hunter 3 / Pale Moon, giant owl curse). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON). Vital Sacrifice (owl flight, day 8): max HP 16 until a long rest (normal max 35). LEVEL 4 (milestone): STR 16, Grappler. Normal max HP 45; Vital Sacrifice reduction of 19 until a long rest.",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-17T21:55:53"
+  "updated": "2026-10-17T22:33:30"
 }
