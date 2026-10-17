@@ -147,3 +147,4 @@
 - [03:16] Chadickith and Okton walked Vesan and Wyn to the Collarhouse courtyard unmolested (no interception). Halda's six captains waiting (Yarelle Pike, Marda Ironside, Hesard Rook and three others). Testimony about to begin.
 - [03:19] Quest done: Prove the Coal did not choose Kitwin before noon
 - [03:19] Halda led the hearing; the brothers swore the Choir lit the crown with grains. Her six captains (persuasion 22 vs DC 14) agreed the Coal did not choose Kitwin; the gates stay sealed. Hesard Rook slipped out afterwards. Quest q004 complete.
+- [03:29] Chadickith asked Okton who the Lord-Marshal would side with. Okton: whoever opens the gates for him; the Watch's refusal suits him for now, but he will ask where the Coal is.
