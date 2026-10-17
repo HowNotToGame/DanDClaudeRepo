@@ -63,3 +63,17 @@ These are story consequences layered on top of the Blood Hunter class. They neve
 
 ## Members as of noon, day 3 (session 1)
 Okton (founder), Chadickith, and five converted Watchmen from the triage cellar: **Kita Dunmore**, **Cassmund Furrow**, **Samson Cobb**, **Hesby Bramble** (a sergeant) and **Gwenis Dunmore** (converted from Berserk in a lucid moment). Two remain Berserk with no lucid window yet: **Joris Marsh** and **Gwenet Marlow**. Okton's craft rank is now 3 (six survivors); he paid five hit points and five years for this morning's work.
+
+## FINAL (v2.1, player-approved): goals, training, work, life
+**Goal.** Okton's long goal is to deal with the Heartcoal: destroy it to stop new infections, but only when the Order is strong enough to survive the aftermath (it will not end existing infections, and the Quenching will still work). Until then the Order serves four duties: **contain** the burn, **shelter** the infected, **deny** the Choir, and **protect** the secret of where the Coal lies.
+
+**Training (about 5 to 13 months).**
+- **Raw (month 1):** learning to bleed the heat off and to name the rage.
+- **Forged (months 2 to 7):** forge discipline: dawn breathing, anvil work, standing a night's watch beside a banked hearth without feeding it, plus martial drill.
+- **Tempered (a further 2 to 6 months):** senior members take them out on missions until they can be trusted to hold the line alone. Ranks are raw, forged, tempered.
+
+**What the Order does.** Quarantine and hospice for the infected; hunting infected beasts, the Berserk and the Choir's singers; quiet service to the Watch (Halda's cellar is already an Order hospital); and guarding the Coal's location.
+
+**A convert's life (Hesby Bramble as the example).** He keeps his Watch collar and post, wakes at four, drills before shift and sleeps little. He carries a small blade for bleeding off the heat. His wife has been told only that he is ill. He cannot drink, because spirits make the heat harder to hold. He feels Okton at a distance like a banked fire in the next room. Even a clean kill takes effort to put down.
+
+**Why they join instead of going home.** There is no normal life to return to: the burn does not leave, a carrier at home is a danger to children and kin, and the Order is the only place that teaches how to hold it. The pull toward Okton keeps them near, and purpose and belonging matter to men who were one bad night from lost. They may leave, but most do not.
