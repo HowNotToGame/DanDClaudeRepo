@@ -78,3 +78,12 @@ Okton (founder), Chadickith, and five converted Watchmen from the triage cellar:
 
 **Why they join instead of going home.** There is no normal life to return to: the burn does not leave, a carrier at home is a danger to children and kin, and the Order is the only place that teaches how to hold it. The pull toward Okton keeps them near, and purpose and belonging matter to men who were one bad night from lost. They may leave, but most do not.
 **Chadickith's standing.** He is **Raw** (the Quenching was only last night). When he finishes the Raw month he skips the Forged stage entirely, because Okton has been forging him his whole life; he goes straight on to the Tempered missions.
+
+## Beast Form progression (player canon, Pale Moon)
+The beast is chosen by the blood and **upgrades permanently** at set levels; there is no going back to an earlier form.
+- **Levels 3 to 6:** a beast of CR 1 or lower, chosen at conversion.
+- **Level 7:** Giant Vulture, Giant Swan, Giant Raven, Giant Eagle, Hippogriff or Griffin (chosen by personality). Giant Swan and Giant Raven are homebrew (adapt from Giant Vulture and Giant Eagle).
+- **Level 13:** Owlbear or Manticore (chosen by fighting style).
+- **Level 18:** the Roc (Okton alone is already a Roc, as the progenitor exception).
+- **Rule for new Banked:** always ask the player for the convert's **race** and **beast**.
+- Note: Chadickith's Giant Owl is not on the level 7 list, so at level 7 he must choose one of those six forms (flag this when he gets there).

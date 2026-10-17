@@ -26,7 +26,12 @@ SKILL_ABIL = {"acrobatics": "dex", "animal handling": "wis", "arcana": "int", "a
               "performance": "cha", "persuasion": "cha", "religion": "int", "sleight of hand": "dex",
               "stealth": "dex", "survival": "wis"}
 BEASTS = {"Brown Bear": "CR 1", "Giant Eagle": "CR 1", "Wolf": "CR 1/4", "Boar": "CR 1/4",
-          "Black Bear": "CR 1/2", "Giant Owl": "CR 1/4"}
+          "Black Bear": "CR 1/2", "Giant Owl": "CR 1/4", "Giant Vulture": "CR 1", "Giant Swan": "homebrew",
+          "Giant Raven": "homebrew", "Hippogriff": "CR 1", "Griffin": "CR 2", "Owlbear": "CR 3",
+          "Manticore": "CR 3", "Roc": "CR 11"}
+# Beast form tiers (Pale Moon, player canon): the form upgrades permanently at 7, 13 and 18; never ask for defaults.
+TIER7 = {"Giant Vulture", "Giant Swan", "Giant Raven", "Giant Eagle", "Hippogriff", "Griffin"}
+TIER13 = {"Owlbear", "Manticore"}
 
 
 def mod(score): return (score - 10) // 2
@@ -39,6 +44,14 @@ def rite_die(level):
 
 def build(spec):
     L = spec["level"]; pb = 2 + (L - 1) // 4
+    for need in ("race_name", "beast"):
+        if need not in spec:
+            raise SystemExit(f"spec is missing '{need}': always ask the player for the convert's race and beast")
+    b = spec["beast"]
+    if L >= 18 and b != "Roc": raise SystemExit("level 18+ Banked take the Roc")
+    if 13 <= L < 18 and b not in TIER13: raise SystemExit("level 13-17 Banked take Owlbear or Manticore")
+    if 7 <= L < 13 and b not in TIER7: raise SystemExit("level 7-12 Banked take Giant Vulture/Swan/Raven/Eagle, Hippogriff or Griffin")
+    if L < 7 and BEASTS.get(b, "") not in ("CR 1/4", "CR 1/2", "CR 1"): raise SystemExit("level 3-6 beasts must be CR 1 or lower")
     ab = {a: spec["array"][a] + spec.get("racial", 1) for a in ABIL}
     for a, n in spec.get("asi", {}).items(): ab[a] += n
     m = {a: mod(ab[a]) for a in ABIL}
