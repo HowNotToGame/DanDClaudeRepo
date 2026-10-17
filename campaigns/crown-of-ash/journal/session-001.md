@@ -162,3 +162,4 @@
 - [07:00] Session resumed at Okton's forge, night of day 3; Banked sheets finalised with races and beasts.
 - [17:48] Night 3: forge sweep, Saltgate scouting and Okton's answer on carrying the Coal.
 - [18:04] Day 4: decoy day; north postern bait took, Weir Gate canary leaked via Captain Hesard Rook.
+- [18:23] Day 5: canary trap points at Captain Rook; Kita spotted tailing his orderly.
