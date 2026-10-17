@@ -60,3 +60,6 @@ These are story consequences layered on top of the Blood Hunter class. They neve
 - **Not a doom order:** Okton is stable and disciplined. There is no founder-goes-berserk clock and no unspoken charge to kill him.
 - The Banked can bleed rage off with a Vital Sacrifice (drops one stage for 24 hours).
 - Rivals: the Choir believes it can master the burn through its own communion of ash and hymns (see `pyrewardens`).
+
+## Members as of noon, day 3 (session 1)
+Okton (founder), Chadickith, and five converted Watchmen from the triage cellar: **Kita Dunmore**, **Cassmund Furrow**, **Samson Cobb**, **Hesby Bramble** (a sergeant) and **Gwenis Dunmore** (converted from Berserk in a lucid moment). Two remain Berserk with no lucid window yet: **Joris Marsh** and **Gwenet Marlow**. Okton's craft rank is now 3 (six survivors); he paid five hit points and five years for this morning's work.
