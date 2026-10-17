@@ -136,3 +136,4 @@
 - [23:46] Chadickith told Halda to meet him and Okton at the forge for proof; she agreed, alone, via the tannery postern within the hour. Walking back he spotted a grey-scarfed Choir lookout on his tail (Perception 13 vs DC 13).
 - [00:00] Chadickith shook the Choir lookout with doubling back, a tavern back exit and a guildhall crowd (Survival 21 vs DC 14, advantage). Reached the forge unfollowed; Halda due within the hour by the tannery postern.
 - [00:02] Halda arrived alone at the forge by the tannery postern. Present: Okton, Kaselle, bound brothers Vesan and Wyn in the cellar; the wafer tin in the roof beams; Peret's list and gate key on Chadickith; the Heartcoal under the hearth slab (hidden).
+- [00:05] Chadickith signalled Okton to show Halda 'what's up' (the wafer tin in the roof beams). Okton refused to touch it; Chadickith fetched it. Halda recognised the wafers, said they're not proof alone, and asked to question the captured brothers.
