@@ -166,3 +166,4 @@
 - [18:29] Halda told the real Saltgate plan and shown the Rook evidence.
 - [18:41] Dry run of the Saltgate route done; wall-walk watcher spotted.
 - [19:31] Reached the Sky Gallows at dawn; resting before the hills.
+- [20:43] Heartcoal laid in the Dunmarrow vault and sealed.
