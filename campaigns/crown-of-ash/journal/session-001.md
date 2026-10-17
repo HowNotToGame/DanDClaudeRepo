@@ -143,3 +143,4 @@
 - [00:27] Chadickith insisted Okton join the noon escort; Okton agreed, leaving Kaselle to guard the barred forge and the hearth slab. About four hours remain before noon.
 - [00:30] Chadickith asked Okton what the transformation was and what happened last night. Okton explained the Quenching, the taint in his blood, the cost, and warned about the heat felt when the roc died. Okton will come on the escort.
 - [00:56] Chadickith asked Okton how many he had quenched. Okton: one before, a dying Watch veteran last winter who lasted nine days and died in a rage, teeth bared; Chadickith is the second and the first to live.
+- [03:13] Chadickith spent the hours before noon at the forge: quiet. Kaselle described the Pyrehouse (cemetery wall, sanctum, crypt, plague-road gate); Okton drilled him on Hybrid Form and holding the rage; the brothers slept. About an hour before the Collarhouse escort.
