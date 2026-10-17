@@ -91,18 +91,18 @@
     "Blood Rites known: Agony, Blindness (each free once per rest, then Vital Sacrifice)",
     "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; Rite Die extra damage)",
     "Vital Sacrifice: lose current and max HP equal to the Rite Die until a long rest",
-    "Order of the Pale Moon at level 3 (Okton gives only this order). Latent beast: Giant Owl.",
+    "Order of the Pale Moon at level 3 (Okton gives only this order). Latent beast: Owl.",
     "Race (Giff): Astral Spark, Firearms Mastery, Hippo Build (advantage on Strength checks and Strength saves; powerful build)",
     "Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)"
   ],
   "notes": "Age 31, male. Pre-conversion level 2. Rank: Raw (converted day 3). Broad, quiet, scar through one eyebrow. Ex-dockworker, steady and slow to speak. Keeps promises.",
   "created": "2026-10-17T06:15:07",
-  "updated": "2026-10-17T06:57:42",
+  "updated": "2026-10-17T06:58:00",
   "rites": [
     "Agony",
     "Blindness"
   ],
-  "beast": "Giant Owl",
+  "beast": "Owl",
   "rank": "Raw",
   "rite_die": "d4",
   "rite_dc": 13,

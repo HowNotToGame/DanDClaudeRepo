@@ -28,7 +28,7 @@ SKILL_ABIL = {"acrobatics": "dex", "animal handling": "wis", "arcana": "int", "a
 BEASTS = {"Brown Bear": "CR 1", "Giant Eagle": "CR 1", "Wolf": "CR 1/4", "Boar": "CR 1/4",
           "Black Bear": "CR 1/2", "Giant Owl": "CR 1/4", "Giant Vulture": "CR 1", "Giant Swan": "homebrew",
           "Giant Raven": "homebrew", "Hippogriff": "CR 1", "Griffin": "CR 2", "Owlbear": "CR 3",
-          "Manticore": "CR 3", "Roc": "CR 11", "Eagle": "CR 0", "Crow": "CR 0", "Hawk": "CR 0"}
+          "Manticore": "CR 3", "Roc": "CR 11", "Owl": "CR 0", "Eagle": "CR 0", "Crow": "CR 0", "Hawk": "CR 0"}
 # Beast form tiers (Pale Moon, player canon): the form upgrades permanently at 7, 13 and 18; never ask for defaults.
 TIER7 = {"Giant Vulture", "Giant Swan", "Giant Raven", "Giant Eagle", "Hippogriff", "Griffin"}
 TIER13 = {"Owlbear", "Manticore"}
@@ -141,7 +141,7 @@ SPECS = [
  dict(name="Samson Cobb", slug="samson-cobb", race_name="Giff", racial=dict(str=2,con=1), traits="Astral Spark, Firearms Mastery, Hippo Build (advantage on Strength checks and Strength saves; powerful build)", level=2, age=31, gender="male",
       array=dict(con=15, str=14, dex=13, wis=12, cha=10, int=8),
       skills=["athletics", "insight", "survival", "history", "religion"], occult="Religion",
-      style="Great Weapon Fighting", rites=["Agony", "Blindness"], beast="Giant Owl", ac=16,
+      style="Great Weapon Fighting", rites=["Agony", "Blindness"], beast="Owl", ac=16,
       weapons=[dict(name="Maul", ability="str", dice="2d6", type="bludgeoning")],
       inventory=["Maul", "Scale mail", "Redcollar gorget", "Bleeding-knife", "Dockworker's gloves"], gold=4,
       look="Broad, quiet, scar through one eyebrow.",
