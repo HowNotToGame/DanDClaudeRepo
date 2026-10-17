@@ -28,7 +28,7 @@ SKILL_ABIL = {"acrobatics": "dex", "animal handling": "wis", "arcana": "int", "a
 BEASTS = {"Brown Bear": "CR 1", "Giant Eagle": "CR 1", "Wolf": "CR 1/4", "Boar": "CR 1/4",
           "Black Bear": "CR 1/2", "Giant Owl": "CR 1/4", "Giant Vulture": "CR 1", "Giant Swan": "homebrew",
           "Giant Raven": "homebrew", "Hippogriff": "CR 1", "Griffin": "CR 2", "Owlbear": "CR 3",
-          "Manticore": "CR 3", "Roc": "CR 11"}
+          "Manticore": "CR 3", "Roc": "CR 11", "Eagle": "CR 0", "Crow": "CR 0", "Hawk": "CR 0"}
 # Beast form tiers (Pale Moon, player canon): the form upgrades permanently at 7, 13 and 18; never ask for defaults.
 TIER7 = {"Giant Vulture", "Giant Swan", "Giant Raven", "Giant Eagle", "Hippogriff", "Griffin"}
 TIER13 = {"Owlbear", "Manticore"}
@@ -51,8 +51,9 @@ def build(spec):
     if L >= 18 and b != "Roc": raise SystemExit("level 18+ Banked take the Roc")
     if 13 <= L < 18 and b not in TIER13: raise SystemExit("level 13-17 Banked take Owlbear or Manticore")
     if 7 <= L < 13 and b not in TIER7: raise SystemExit("level 7-12 Banked take Giant Vulture/Swan/Raven/Eagle, Hippogriff or Griffin")
-    if L < 7 and BEASTS.get(b, "") not in ("CR 1/4", "CR 1/2", "CR 1"): raise SystemExit("level 3-6 beasts must be CR 1 or lower")
-    ab = {a: spec["array"][a] + spec.get("racial", 1) for a in ABIL}
+    if L < 7 and BEASTS.get(b, "") not in ("CR 0", "CR 1/4", "CR 1/2", "CR 1"): raise SystemExit("level 3-6 beasts must be CR 1 or lower")
+    rac = spec.get("racial", 1)
+    ab = {a: spec["array"][a] + (rac.get(a, 0) if isinstance(rac, dict) else rac) for a in ABIL}
     for a, n in spec.get("asi", {}).items(): ab[a] += n
     m = {a: mod(ab[a]) for a in ABIL}
     hp = 12 + m["con"] + (L - 1) * (7 + m["con"])
@@ -79,13 +80,14 @@ def build(spec):
     else:
         feats.append(f"Order of the Pale Moon at level 3 (Okton gives only this order). Latent beast: {spec['beast']}.")
     if L >= 4: feats.append("Ability Score Improvement (4th)")
+    if spec.get("traits"): feats.append(f"Race ({spec['race_name']}): {spec['traits']}")
     feats.append("Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)")
     now = datetime.datetime.now().isoformat(timespec="seconds")
     sheet = {
         "name": spec["name"], "slug": spec["slug"], "player": "", "npc": True, "present": False,
         "race": spec.get("race_name", "Human"), "class": "Blood Hunter (Alternate)",
         "subclass": "Order of the Pale Moon" if L >= 3 else "Pale Moon (from level 3)", "level": L,
-        "background": spec.get("background", "City Watch"), "abilities": ab, "ac": spec["ac"], "speed": 30,
+        "background": spec.get("background", "City Watch"), "abilities": ab, "ac": spec["ac"], "speed": spec.get("speed", 30),
         "hp": {"max": hp, "current": hp, "temp": 0}, "hit_dice": {"die": 12, "max": L, "used": 0},
         "save_proficiencies": ["con", "cha"], "skill_proficiencies": skills, "expertise": [],
         "jack_of_all_trades": False, "initiative_bonus": None, "spellcasting_ability": "", "spell_slots": {},
@@ -102,44 +104,44 @@ def build(spec):
 
 
 SPECS = [
- dict(name="Hesby Bramble", slug="hesby-bramble", level=4, age=46, gender="male",
+ dict(name="Hesby Bramble", slug="hesby-bramble", race_name="Bronze Dragonborn", racial=dict(str=2,cha=1), traits="Metallic ancestry (bronze): lightning breath (15 ft line, DEX save, 2d6 at 1st; uses = PB per long rest), resistance to lightning, Draconic Presence", level=4, age=46, gender="male",
       array=dict(con=15, str=14, wis=13, dex=12, cha=10, int=8), asi=dict(con=1, str=1),
       skills=["athletics", "insight", "survival", "history", "religion"], occult="Religion",
-      style="Balanced Fighting", rites=["Binding", "Blindness"], beast="Brown Bear", ac=17,
+      style="Balanced Fighting", rites=["Binding", "Blindness"], beast="Eagle", ac=17,
       weapons=[dict(name="Spear (one hand)", ability="str", dice="1d6", type="piercing")],
       inventory=["Spear", "Shield", "Scale mail", "Redcollar gorget", "Bleeding-knife", "Wife's ribbon", "Rations"], gold=12,
       look="Thick, grizzled, grey-bearded, a sergeant's flat gaze.",
       hook="Watch sergeant who drew the Pyrehouse beat. Wife Marta thinks he is ill. Loyal to Halda and Okton."),
- dict(name="Gwenis Dunmore", slug="gwenis-dunmore", level=3, age=29, gender="female",
+ dict(name="Gwenis Dunmore", slug="gwenis-dunmore", race_name="Human", level=3, age=29, gender="female",
       array=dict(con=15, dex=14, wis=13, str=12, cha=10, int=8),
       skills=["athletics", "insight", "survival", "investigation", "nature"], occult="Nature",
-      style="Archery", rites=["Revelation", "Siphoning"], beast="Giant Eagle", ac=14,
+      style="Archery", rites=["Revelation", "Siphoning"], beast="Crow", ac=14,
       weapons=[dict(name="Light crossbow", ability="dex", dice="1d8", type="piercing", ranged=True),
                dict(name="Shortsword", ability="dex", dice="1d6", type="piercing")],
       inventory=["Light crossbow", "20 bolts", "Shortsword", "Studded leather", "Redcollar gorget", "Bleeding-knife"], gold=8,
       look="Lean, sharp-eyed, a long braid and a hunter's stillness.",
       hook="Came back from the rage in one clear moment and remembers all of it. Guilty over the roc's blood. Feels Okton like a banked fire in the next room. Sister Kita."),
- dict(name="Kita Dunmore", slug="kita-dunmore", level=2, age=22, gender="female",
+ dict(name="Kita Dunmore", slug="kita-dunmore", race_name="Human", level=2, age=22, gender="female",
       array=dict(dex=15, con=14, wis=13, cha=12, str=10, int=8),
       skills=["athletics", "insight", "acrobatics", "survival", "nature"], occult="Nature",
-      style="Dual Wielding", rites=["Agony", "Binding"], beast="Wolf", ac=15,
+      style="Dual Wielding", rites=["Agony", "Binding"], beast="Crow", ac=15,
       weapons=[dict(name="Shortsword (main)", ability="dex", dice="1d6", type="piercing"),
                dict(name="Shortsword (off hand)", ability="dex", dice="1d6", type="piercing")],
       inventory=["Two shortswords", "Studded leather", "Redcollar gorget", "Bleeding-knife", "Sling"], gold=5,
       look="Lanky, bandaged shoulder, dry grin.",
       hook="Gwenis's younger sister. Jokes to keep the heat down; fiercely protective."),
- dict(name="Cassmund Furrow", slug="cassmund-furrow", level=2, age=24, gender="male",
+ dict(name="Cassmund Furrow", slug="cassmund-furrow", race_name="Half-Orc", racial=dict(str=2,con=1), traits="Darkvision 60 ft, Relentless Endurance (drop to 1 HP instead of 0, once per long rest), Savage Attacks (extra weapon die on a crit)", level=2, age=24, gender="male",
       array=dict(str=15, con=14, dex=13, wis=12, cha=10, int=8),
       skills=["athletics", "insight", "history", "investigation", "arcana"], occult="Arcana",
-      style="Versatile Fighting", rites=["Siphoning", "Binding"], beast="Boar", ac=15,
+      style="Versatile Fighting", rites=["Siphoning", "Binding"], beast="Hawk", ac=15,
       weapons=[dict(name="Longsword (two-handed 1d10)", ability="str", dice="1d8", type="slashing")],
       inventory=["Longsword", "Chain shirt", "Redcollar gorget", "Bleeding-knife", "Lucky coin"], gold=6,
       look="Tall, earnest, wide-eyed; a farmer's hands.",
       hook="Farm boy turned Watch recruit. Quick to laugh, quick to be afraid of himself."),
- dict(name="Samson Cobb", slug="samson-cobb", level=2, age=31, gender="male",
+ dict(name="Samson Cobb", slug="samson-cobb", race_name="Giff", racial=dict(str=2,con=1), traits="Astral Spark, Firearms Mastery, Hippo Build (advantage on Strength checks and Strength saves; powerful build)", level=2, age=31, gender="male",
       array=dict(con=15, str=14, dex=13, wis=12, cha=10, int=8),
       skills=["athletics", "insight", "survival", "history", "religion"], occult="Religion",
-      style="Great Weapon Fighting", rites=["Agony", "Blindness"], beast="Black Bear", ac=16,
+      style="Great Weapon Fighting", rites=["Agony", "Blindness"], beast="Giant Owl", ac=16,
       weapons=[dict(name="Maul", ability="str", dice="2d6", type="bludgeoning")],
       inventory=["Maul", "Scale mail", "Redcollar gorget", "Bleeding-knife", "Dockworker's gloves"], gold=4,
       look="Broad, quiet, scar through one eyebrow.",

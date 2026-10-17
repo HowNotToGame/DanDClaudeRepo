@@ -107,17 +107,17 @@
     "Blood Rites known: Revelation, Siphoning (each free once per rest, then Vital Sacrifice)",
     "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; Rite Die extra damage)",
     "Vital Sacrifice: lose current and max HP equal to the Rite Die until a long rest",
-    "Order of the Pale Moon: Feral Senses; Lycanthropic Curse (Giant Eagle, CR 1); Hybrid Form",
+    "Order of the Pale Moon: Feral Senses; Lycanthropic Curse (Crow, CR 0); Hybrid Form",
     "Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)"
   ],
   "notes": "Age 29, female. Pre-conversion level 3. Rank: Raw (converted day 3). Lean, sharp-eyed, a long braid and a hunter's stillness. Came back from the rage in one clear moment and remembers all of it. Guilty over the roc's blood. Feels Okton like a banked fire in the next room. Sister Kita.",
   "created": "2026-10-17T06:15:06",
-  "updated": "2026-10-17T06:15:06",
+  "updated": "2026-10-17T06:57:42",
   "rites": [
     "Revelation",
     "Siphoning"
   ],
-  "beast": "Giant Eagle",
+  "beast": "Crow",
   "rank": "Raw",
   "rite_die": "d4",
   "rite_dc": 13,

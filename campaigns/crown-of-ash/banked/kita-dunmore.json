@@ -101,17 +101,17 @@
     "Blood Rites known: Agony, Binding (each free once per rest, then Vital Sacrifice)",
     "Crimson Offering (bonus action + Vital Sacrifice; 1 hour; Rite Die extra damage)",
     "Vital Sacrifice: lose current and max HP equal to the Rite Die until a long rest",
-    "Order of the Pale Moon at level 3 (Okton gives only this order). Latent beast: Wolf.",
+    "Order of the Pale Moon at level 3 (Okton gives only this order). Latent beast: Crow.",
     "Banked: advantage on saves against losing control of the burn; can bleed the heat off with a Vital Sacrifice (drops one stage for 24 hours)"
   ],
   "notes": "Age 22, female. Pre-conversion level 2. Rank: Raw (converted day 3). Lanky, bandaged shoulder, dry grin. Gwenis's younger sister. Jokes to keep the heat down; fiercely protective.",
   "created": "2026-10-17T06:15:06",
-  "updated": "2026-10-17T06:15:06",
+  "updated": "2026-10-17T06:57:42",
   "rites": [
     "Agony",
     "Binding"
   ],
-  "beast": "Wolf",
+  "beast": "Crow",
   "rank": "Raw",
   "rite_die": "d4",
   "rite_dc": 12,
