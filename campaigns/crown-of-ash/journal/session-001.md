@@ -155,3 +155,4 @@
 - [05:08] Chadickith asked the five new Banked how they felt. All clear-headed and warm; they want to serve. Hesby saw the Choir carry a crowned boy through the Pyrehouse north postern by the charnel wall on day 2 dusk.
 - [05:44] Chadickith asked Okton what to do with the five new Banked. Okton: tell Halda, start them at the forge on bleeding the heat, use Hesby as a quiet lookout on the Pyrehouse north postern, no raids yet.
 - [05:46] Chadickith checked on Isine and the pass: Insight 20 vs DC 15 revealed the heat in her burned palm, her temper and a cough; she offered the pass to anyone who can leave.
+- [05:54] Chadickith questioned Isine (weeks of illness, cough, temper), took the Saltgate pass, and spoke privately to Okton after he finished with Halda. Okton: she carries the burn, should stop barehanded nursing, and should come to the forge; he suspects poison too.
