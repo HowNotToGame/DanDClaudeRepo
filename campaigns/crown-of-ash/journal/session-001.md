@@ -153,3 +153,4 @@
 - [04:58] Chadickith and Okton quenched the infected Watchmen in the Collarhouse cellar: five converted (Kita Dunmore, Cassmund Furrow, Samson Cobb, Hesby Bramble, Gwenis Dunmore); Joris Marsh and Gwenet Marlow, still Berserk with no lucid window, were left for later. Okton's craft rank 3; he lost 5 max HP and 5 years.
 - [05:05] Chadickith asked Okton what to do about the two men too far gone (Joris Marsh, Gwenet Marlow) and what such a life is. Okton insisted on a lucid yes, will sit with them, and described the Banked life.
 - [05:08] Chadickith asked the five new Banked how they felt. All clear-headed and warm; they want to serve. Hesby saw the Choir carry a crowned boy through the Pyrehouse north postern by the charnel wall on day 2 dusk.
+- [05:44] Chadickith asked Okton what to do with the five new Banked. Okton: tell Halda, start them at the forge on bleeding the heat, use Hesby as a quiet lookout on the Pyrehouse north postern, no raids yet.
