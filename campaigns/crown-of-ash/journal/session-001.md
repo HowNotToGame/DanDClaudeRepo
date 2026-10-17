@@ -158,3 +158,4 @@
 - [05:54] Chadickith questioned Isine (weeks of illness, cough, temper), took the Saltgate pass, and spoke privately to Okton after he finished with Halda. Okton: she carries the burn, should stop barehanded nursing, and should come to the forge; he suspects poison too.
 - [05:56] Okton brought Isine to the forge and began teaching her to bleed off the heat, keeping her from the hearth where the Coal lies. The five new Banked also came to the forge. Hesby will watch the Pyrehouse north postern at dusk.
 - [06:05] Hesby watched the Pyrehouse north postern at dusk (Stealth 8 vs DC 13, failed). He saw two singers and a guard, a hymn through a vent and crypt lamplight, then a singer hailed him; he bluffed a routine beat. The Choir will double the guard.
+- [06:07] Chadickith asked whether Okton plans to convert Isine. Okton: not unasked; she carries the burn already, but is weakened by poison; he will teach her first and ask when she can answer freely.
