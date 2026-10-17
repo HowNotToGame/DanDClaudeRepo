@@ -47,6 +47,7 @@ A non-deadly conversion for people who would otherwise die of the overflow, perf
 - **Craft rank:** Okton begins at 1. Each survivor teaches him; rank rises by 1 per three survivors (max 10).
 - **Cost to Okton:** each Quenching permanently costs him 1 maximum hit point and one year of his life. Tiny, but it adds up across a large order.
 - **Result:** the recruit lives as an infected host at Stirring, but with Banked advantages (see the Order's entry).
+- **Willingness by state (player-approved):** Stirring or Frenzied hosts are fully willing (+10). **Hosts lost in the rage (Berserk) use a separate roll:** d20 + their level (or CR); **10 or higher converts them**, lower means they die. This replaces the willingness table for them; Okton still waits for a lucid moment and a yes before attempting it. Unwilling non-Berserk recruits use -6 as above.
 
 ## Known history
 - The burn is old. Hask's soldiers carried it for decades, and the Gallowsbird and the late king were its worst cases.
