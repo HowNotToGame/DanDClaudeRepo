@@ -160,3 +160,4 @@
 - [06:05] Hesby watched the Pyrehouse north postern at dusk (Stealth 8 vs DC 13, failed). He saw two singers and a guard, a hymn through a vent and crypt lamplight, then a singer hailed him; he bluffed a routine beat. The Choir will double the guard.
 - [06:07] Chadickith asked whether Okton plans to convert Isine. Okton: not unasked; she carries the burn already, but is weakened by poison; he will teach her first and ask when she can answer freely.
 - [07:00] Session resumed at Okton's forge, night of day 3; Banked sheets finalised with races and beasts.
+- [17:48] Night 3: forge sweep, Saltgate scouting and Okton's answer on carrying the Coal.
