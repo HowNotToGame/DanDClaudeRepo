@@ -32,3 +32,6 @@ At CR 11 it is far beyond a 3rd-level barbarian in a straight fight. Until the p
 - It can also feel a raging Banked, as a story cue only.
 - Its eyrie is in the crater of a dead cone the hill-folk call **Old Wound**, a six-hour climb above Hadrun. The nest is lined with bones, rusted chains torn from the Spire, and trinkets of the condemned: a Burners' Rising charcoal-burner's iron token, signet rings of the Velun Plot nobles, and a dented Watch gorget.
 - If the Heartcoal is destroyed, the Gallowsbird dies with it and falls out of the sky wherever it is.
+
+## REWORK (v2)
+The Gallowsbird was a Berserk host, drawn to the loose Coal. It died in the Pyre fight (round 8). Ignore earlier text about "Glad" and joy in killing.

@@ -83,7 +83,7 @@
 - [19:42] Chadickith decided to honor Halda's rope-line job tonight and not raid the crypt; Okton agreed to watch from the edges, with a trumpet blast as the signal.
 - [19:44] Chadickith rested and prepared; Okton loaned him a Redcollar gorget; Wilash's runner reported Isine through the Saltgate at the dusk rotation.
 - [19:45] Chadickith reported to Halda at Pyre Square and took the north rail by the dais for the Great Pyre rite.
-- [19:57] The Great Pyre rite began: Coldwell crowned Kneeling Kitwin with grains in the socket; the Choir led a smiling old volunteer onto the dais and Brother Garn drew a narrow blade.
+- [19:57] The Great Pyre rite began: Coldwell crowned Kneeling Kitwin with grains in the socket; the Choir led a willing old volunteer onto the dais and Brother Garn drew a narrow blade.
 - [20:02] Chadickith held the line and watched Garn kill the old volunteer on the dais; the Crown of Ash kindled and the crowd erupted.
 - [20:08] Chadickith held the rope line against the surging crowd after the crown kindled.
 - [20:12] Chadickith pushed through the surging crowd toward the dais steps to hold the stair.
@@ -127,7 +127,7 @@
 - [23:08] COMBAT R7 (replayed): Chadickith shifted into Beast Form (giant owl, Flyby), stood and Dashed into the guildhall, 15+ ft past the door; no opportunity attack. Roc killed Lorard's sergeant (22 + 22). Okton hit the roc twice (32, 39): roc nearly dead. Round 8: Chadickith 1 HP in owl form inside the guildhall; engines 1 and 2 loaded, unaimed.
 - [23:15] Combat 'The Gallowsbird over the Great Pyre' ended after 8 round(s). Defeated: 1× Engine crews (ballistae), 1× Lorard's sergeant, 1× Roc (7200 XP, 7200 each for 1 PCs).
 - [23:15] COMBAT END: Chadickith ended Beast Form to speak and asked the surgeon to heal him (no salve left; Persuasion 2 vs DC 12 for an emergency draught failed) and Lorard to send crews. Roc attacked Okton (34 + 28, HP 15/162); Okton killed the Gallowsbird (24, roc 0/248). Chadickith still 1 HP, inside the guildhall.
-- [23:16] Chadickith crossed the square to Okton (15/162 HP) after the roc fell. Okton, grey at the wrists and ember-eyed, insisted he was fine, asked for a fire and a short rest; Chadickith felt an unexpected warmth when the roc died. Lorard's men began clearing the dead.
+- [23:16] Chadickith crossed the square to Okton (15/162 HP) after the roc fell. Okton, grey at the wrists and ember-eyed, insisted he was fine, asked for a fire and a short rest; Chadickith felt a flash of heat and fury when the roc died. Lorard's men began clearing the dead.
 - [23:23] Chadickith helped Okton (15/162 HP) across the dead square and through the lanes to the forge to rest. Clock: the dusk bell has long rung; the crown is to be 'kept warm' in the Pyrehouse crypt until the dawn bell. Isine's Saltgate departure and the Choir's plan remain open. Character sheet PDF filled (Books/Chadickith-Character-Sheet.pdf).
 - [23:28] LONG REST at Okton's forge: Chadickith and Okton at full HP. Dawn bell: the Pyrehouse tolled out of rhythm, grey smoke rose, and word arrived that Coldwell proclaims Kitwin kindled. Peret was handed to Coldwell at the dusk bell. Isine and Wilash are at the Collarhouse triage tent.
 - [23:32] Chadickith went to the Collarhouse at dawn: Halda explained the Watch oath ('until the Coal chooses'), Coldwell's proclamation would open the gates at noon, and she asked whether the Ember really kindled. Isine and Wilash in the triage tent.
@@ -141,5 +141,5 @@
 - [00:09] Brothers Vesan and Wyn testified to Halda: the grains from the Last Ember casket kindled the crown, Coldwell wears the key. Halda believes them; wants them sworn before her captains by noon. Okton fears Coldwell's reach.
 - [00:12] Chadickith proposed escorting the brothers to Halda at noon; Halda agreed, will gather her captains quietly. Okton guards the Coal; Chadickith and Kaselle will escort.
 - [00:27] Chadickith insisted Okton join the noon escort; Okton agreed, leaving Kaselle to guard the barred forge and the hearth slab. About four hours remain before noon.
-- [00:30] Chadickith asked Okton what the transformation was and what happened last night. Okton explained the Quenching, the taint in his blood, the cost, and warned about the warmth felt when the roc died. Okton will come on the escort.
-- [00:56] Chadickith asked Okton how many he had quenched. Okton: one before, a dying Watch veteran last winter who lasted nine days and died smiling; Chadickith is the second and the first to live.
+- [00:30] Chadickith asked Okton what the transformation was and what happened last night. Okton explained the Quenching, the taint in his blood, the cost, and warned about the heat felt when the roc died. Okton will come on the escort.
+- [00:56] Chadickith asked Okton how many he had quenched. Okton: one before, a dying Watch veteran last winter who lasted nine days and died in a rage, teeth bared; Chadickith is the second and the first to live.

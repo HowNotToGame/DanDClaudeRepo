@@ -53,3 +53,10 @@ These are story consequences layered on top of the Blood Hunter class. They neve
 - A grandchild of a Hadrun survivor, raised on the story.
 - A deserter from the Ash Companies who has seen the gladness in battle.
 - *Optional grim note:* Okton's first test of the rite, last winter, on a dying Watch veteran, held for nine days. Then the man died smiling. Okton has refined it since, and no one else knows.
+
+## REWORK (v2, player-approved)
+- The **Quenching** is Okton's non-deadly conversion of the overflow into a Blood Hunter's discipline; see `ashblood` for the survival check and the cost to Okton (1 max HP and 1 year per Quenching). The Order aims to grow into a large organization over time as Okton's craft rank rises.
+- **Members:** Okton (founder, progenitor: level 18 Pale Moon Blood Hunter), Chadickith (the second ever quenched, and the first to live). First test: a dying Watch veteran who volunteered last winter, held nine days, and died in a rage, teeth bared; Okton refined the rite afterward. Craft rank: 1.
+- **Not a doom order:** Okton is stable and disciplined. There is no founder-goes-berserk clock and no unspoken charge to kill him.
+- The Banked can bleed rage off with a Vital Sacrifice (drops one stage for 24 hours).
+- Rivals: the Choir believes it can master the burn through its own communion of ash and hymns (see `pyrewardens`).

@@ -50,3 +50,6 @@ updated: "2026-10-15T05:58:29"
 **The option nobody has thought of.** Crown someone with no coal at all, or with a forged one, and break the Ember Law by fiat. Okton could forge a convincing false coal. The Pyrewardens' inner circle would know it was a lie.
 
 **Who took it.** Isine Kettle, the king's cupbearer, obeying his last words. She burned her palm doing it.
+
+## REWORK (v2)
+The Coal is the source of Ashblood's overflow. Touching it kills anyone of class level 3 or lower (or CR 1/2 or lower) and infects anyone stronger. If it is destroyed, no new infections are possible, but existing hosts keep the burn and the Quenching still works.
