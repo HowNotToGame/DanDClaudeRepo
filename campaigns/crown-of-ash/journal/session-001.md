@@ -134,3 +134,4 @@
 - [23:44] New quest: Prove the Coal did not choose Kitwin before noon
 - [23:44] Chadickith told Halda the Ember never kindled and asked what all the deaths were for. Persuasion 7 vs DC 11 failed: Halda wants proof by noon or she opens the gates and honours the oath as Coldwell reads it.
 - [23:46] Chadickith told Halda to meet him and Okton at the forge for proof; she agreed, alone, via the tannery postern within the hour. Walking back he spotted a grey-scarfed Choir lookout on his tail (Perception 13 vs DC 13).
+- [00:00] Chadickith shook the Choir lookout with doubling back, a tavern back exit and a guildhall crowd (Survival 21 vs DC 14, advantage). Reached the forge unfollowed; Halda due within the hour by the tannery postern.
