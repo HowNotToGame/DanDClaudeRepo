@@ -145,3 +145,5 @@
 - [00:56] Chadickith asked Okton how many he had quenched. Okton: one before, a dying Watch veteran last winter who lasted nine days and died in a rage, teeth bared; Chadickith is the second and the first to live.
 - [03:13] Chadickith spent the hours before noon at the forge: quiet. Kaselle described the Pyrehouse (cemetery wall, sanctum, crypt, plague-road gate); Okton drilled him on Hybrid Form and holding the rage; the brothers slept. About an hour before the Collarhouse escort.
 - [03:16] Chadickith and Okton walked Vesan and Wyn to the Collarhouse courtyard unmolested (no interception). Halda's six captains waiting (Yarelle Pike, Marda Ironside, Hesard Rook and three others). Testimony about to begin.
+- [03:19] Quest done: Prove the Coal did not choose Kitwin before noon
+- [03:19] Halda led the hearing; the brothers swore the Choir lit the crown with grains. Her six captains (persuasion 22 vs DC 14) agreed the Coal did not choose Kitwin; the gates stay sealed. Hesard Rook slipped out afterwards. Quest q004 complete.

@@ -34,10 +34,11 @@
   {
     "id": "q004",
     "title": "Prove the Coal did not choose Kitwin before noon",
-    "status": "open",
+    "status": "done",
     "notes": "She holds the oath 'until the Coal chooses'. Without proof by noon she opens the gates and the Watch accepts Coldwell.",
     "giver": "Halda Barrowe",
     "opened_session": 1,
-    "updates": []
+    "updates": [],
+    "closed_session": 1
   }
 ]
