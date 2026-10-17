@@ -164,3 +164,4 @@
 - [18:04] Day 4: decoy day; north postern bait took, Weir Gate canary leaked via Captain Hesard Rook.
 - [18:23] Day 5: canary trap points at Captain Rook; Kita spotted tailing his orderly.
 - [18:29] Halda told the real Saltgate plan and shown the Rook evidence.
+- [18:41] Dry run of the Saltgate route done; wall-walk watcher spotted.
