@@ -160,3 +160,130 @@
 - R5: ▶ Chadickith's turn (HP 23/35, AC 15, raging)
 
 **Result:** Combat 'The Great Pyre — Garn at the stair foot' ended after 5 round(s).
+
+## The Gallowsbird over the Great Pyre — 2026-10-16T23:15
+- R1: 🎯 Okton → The Gallowsbird (Rock): 1d20+11 → 1d20[9] + 11 = 20 vs AC 15 → hit
+- R1:   Damage: 4d10+7 → 4d10[5, 9, 5, 10] + 7 = 36 bludgeoning
+- R1: 🩸 The Gallowsbird takes 36 damage from Okton's Rock → HP 185/248
+- R2: Round 2
+- R2: ▶ Chadickith's turn (HP 23/35, AC 15)
+- R2: Added Lorard's sergeant — HP 22, AC 16, init +1
+- R2: ▶ Lorard's sergeant's turn (HP 22/22, AC 16)
+- R2: 🩸 The Gallowsbird takes 23 damage from Ballista 3 → HP 162/248
+- R2: ▶ The Gallowsbird's turn (HP 162/248, AC 15)
+- R2: 🎯 The Gallowsbird → Okton (Beak): 1d20+13 → 1d20[14] + 13 = 27 vs AC 18 → hit
+- R2:   Damage: 4d8+9 → 4d8[2, 6, 4, 2] + 9 = 23 piercing
+- R2: 🩸 Okton takes 23 damage from The Gallowsbird's Beak → HP 139/162
+- R2: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[7] + 13 = 20 vs AC 18 → hit
+- R2:   Damage: 4d6+9 → 4d6[6, 4, 6, 6] + 9 = 31 slashing
+- R2: 🩸 Okton takes 31 damage from The Gallowsbird's Talons → HP 108/162
+- R2: ▶ Okton's turn (HP 108/162, AC 18)
+- R2: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[17] + 11 = 28 vs AC 15 → hit
+- R2:   Damage: 6d6+7 → 6d6[1, 3, 4, 5, 6, 5] + 7 = 31 slashing
+- R2: 🩸 The Gallowsbird takes 31 damage from Okton's Greatsword → HP 131/248
+- R2: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[8] + 11 = 19 vs AC 15 → hit
+- R2:   Damage: 6d6+7 → 6d6[2, 1, 3, 1, 4, 1] + 7 = 19 slashing
+- R2: 🩸 The Gallowsbird takes 19 damage from Okton's Greatsword → HP 112/248
+- R3: Round 3
+- R3: ▶ Chadickith's turn (HP 23/35, AC 15)
+- R3: Chadickith is now raging
+- R3: 🎯 Chadickith → The Gallowsbird (Greataxe): 1d20+4 → 1d20[8] + 4 = 12 vs AC 15 → miss
+- R3: 🩸 Lorard's sergeant takes 2 damage from Storm Aura → HP 20/22
+- R3: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)
+- R3: ▶ The Gallowsbird's turn (HP 112/248, AC 15)
+- R3: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 1d20[17] + 13 = 30 vs AC 15 → hit
+- R3:   Damage: 4d8+9 → 4d8[8, 2, 5, 5] + 9 = 29 piercing
+- R3: 🩸 Chadickith takes 29 damage from The Gallowsbird's Beak → HP 0/35
+- R3:   Chadickith drops to 0 HP and falls unconscious! Death saves begin on their turn.
+- R3: 💚 Chadickith heals 9 → HP 9/35 — back on their feet (still prone)
+- R3: Chadickith is no longer prone.
+- R3: ▶ Okton's turn (HP 108/162, AC 18)
+- R3: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[1] + 11 = 12 — nat 1 vs AC 15 → miss (nat 1)
+- R3: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[2] + 11 = 13 vs AC 15 → miss
+- R4: Round 4
+- R4: ▶ Chadickith's turn (HP 9/35, AC 15, raging)
+- R4: 🎯 Chadickith → The Gallowsbird (Greataxe): 1d20+4 → 1d20[5] + 4 = 9 vs AC 15 → miss
+- R4: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)
+- R4: ▶ The Gallowsbird's turn (HP 112/248, AC 15)
+- R4: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 1d20[11] + 13 = 24 vs AC 15 → hit
+- R4:   Damage: 4d8+9 → 4d8[5, 3, 2, 8] + 9 = 27 piercing
+- R4: 🩸 Chadickith takes 27 damage from The Gallowsbird's Beak → HP 0/35
+- R4:   Chadickith drops to 0 HP and falls unconscious! Death saves begin on their turn.
+- R4: ▶ Okton's turn (HP 108/162, AC 18)
+- R4: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[1] + 11 = 12 — nat 1 vs AC 15 → miss (nat 1)
+- R4: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[16] + 11 = 27 vs AC 15 → hit
+- R4:   Damage: 6d6+7 → 6d6[2, 4, 4, 3, 4, 4] + 7 = 28 slashing
+- R4: 🩸 The Gallowsbird takes 28 damage from Okton's Greatsword → HP 84/248
+- R5: Round 5
+- R5: ▶ Chadickith's turn (HP 0/35, AC 15, raging, unconscious, prone)
+- R5: ☠️ Death save: Chadickith death save: 1d20 → 1d20[16] = 16 → 1✓ / 0✗
+- R5:   Chadickith is incapacitated and can't take actions or reactions this turn.
+- R5: Chadickith is no longer raging.
+- R5: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)
+- R5: ▶ The Gallowsbird's turn (HP 84/248, AC 15)
+- R5: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 2d20kh1[~~8~~, 13] + 13 = 26 (advantage) vs AC 15 → CRITICAL HIT! [adv: target unconscious, target prone (within 5 ft) | dis: —] (auto-crit: melee hit on paralyzed/unconscious target)
+- R5:   Damage: 8d8+9 → 8d8[1, 3, 5, 7, 2, 3, 6, 6] + 9 = 42 (critical: dice doubled) piercing
+- R5: 🩸 Chadickith takes 42 damage from The Gallowsbird's Beak → HP 0/35
+- R5: 💀 Chadickith dies (massive damage while dying).
+- R5: ▶ Okton's turn (HP 108/162, AC 18)
+- R6: Round 6
+- R6: ▶ Chadickith's turn (HP 0/35, AC 15, unconscious, prone)
+- R6: ☠️ Death save: Chadickith death save: 1d20 → 1d20[6] = 6 → 1✓ / 2✗
+- R6:   Chadickith is incapacitated and can't take actions or reactions this turn.
+- R6: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)
+- R6: Chadickith is stabilized.
+- R6: ▶ The Gallowsbird's turn (HP 84/248, AC 15)
+- R6: 🎯 The Gallowsbird → Okton (Beak): 1d20+13 → 1d20[6] + 13 = 19 vs AC 18 → hit
+- R6:   Damage: 4d8+9 → 4d8[6, 8, 6, 2] + 9 = 31 piercing
+- R6: 🩸 Okton takes 31 damage from The Gallowsbird's Beak → HP 77/162
+- R6: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[2] + 13 = 15 vs AC 18 → miss
+- R6: 💚 Chadickith heals 1 → HP 1/35 — back on their feet (still prone)
+- R6: ▶ Okton's turn (HP 77/162, AC 18)
+- R7: Round 7
+- R7: ▶ Chadickith's turn (HP 1/35, AC 15, prone)
+- R7: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)
+- R7: ▶ The Gallowsbird's turn (HP 84/248, AC 15)
+- R7: 🎯 The Gallowsbird → Chadickith (Beak): 1d20+13 → 2d20kh1[~~12~~, 16] + 13 = 29 (advantage) vs AC 15 → hit [adv: target prone (within 5 ft) | dis: —]
+- R7:   Damage: 4d8+9 → 4d8[6, 1, 1, 8] + 9 = 25 piercing
+- R7: 🩸 Chadickith takes 25 damage from The Gallowsbird's Beak → HP 0/35
+- R7:   Chadickith drops to 0 HP and falls unconscious! Death saves begin on their turn.
+- R7: 🎯 The Gallowsbird → Chadickith (Talons): 1d20+13 → 2d20kh1[~~6~~, 19] + 13 = 32 (advantage) vs AC 15 → CRITICAL HIT! [adv: target unconscious, target prone (within 5 ft) | dis: —] (auto-crit: melee hit on paralyzed/unconscious target)
+- R7:   Damage: 8d6+9 → 8d6[5, 2, 4, 4, 4, 4, 2, 5] + 9 = 39 (critical: dice doubled) slashing
+- R7: 🩸 Chadickith takes 39 damage from The Gallowsbird's Talons → HP 0/35
+- R7: 💀 Chadickith dies (massive damage while dying).
+- R7: ▶ Lorard's sergeant's turn (HP 20/22, AC 16)
+- R7: ▶ The Gallowsbird's turn (HP 84/248, AC 15)
+- R7: 🎯 The Gallowsbird → Lorard's sergeant (Beak): 1d20+13 → 1d20[6] + 13 = 19 vs AC 16 → hit
+- R7:   Damage: 4d8+9 → 4d8[1, 3, 5, 4] + 9 = 22 piercing
+- R7: 🩸 Lorard's sergeant takes 22 damage from The Gallowsbird's Beak → HP 0/22
+- R7: 💀 Lorard's sergeant dies (reduced to 0 HP).
+- R7: 🎯 The Gallowsbird → Lorard's sergeant (Talons): 1d20+13 → 1d20[4] + 13 = 17 vs AC 16 → hit
+- R7:   Damage: 4d6+9 → 4d6[4, 6, 1, 2] + 9 = 22 slashing
+- R7: Lorard's sergeant is already dead.
+- R7: ▶ Okton's turn (HP 77/162, AC 18)
+- R7: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[19] + 11 = 30 vs AC 15 → hit
+- R7:   Damage: 6d6+7 → 6d6[2, 5, 6, 5, 2, 5] + 7 = 32 slashing
+- R7: 🩸 The Gallowsbird takes 32 damage from Okton's Greatsword → HP 52/248
+- R7: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[18] + 11 = 29 vs AC 15 → hit
+- R7:   Damage: 6d6+7 → 6d6[6, 6, 6, 6, 3, 5] + 7 = 39 slashing
+- R7: 🩸 The Gallowsbird takes 39 damage from Okton's Greatsword → HP 13/248
+- R8: Round 8
+- R8: ▶ Chadickith's turn (HP 1/35, AC 15, prone)
+- R8: Chadickith is no longer prone.
+- R8: ▶ The Gallowsbird's turn (HP 13/248, AC 15)
+- R8: 🎯 The Gallowsbird → Okton (Beak): 1d20+13 → 1d20[16] + 13 = 29 vs AC 18 → hit
+- R8:   Damage: 4d8+9 → 4d8[6, 8, 3, 8] + 9 = 34 piercing
+- R8: 🩸 Okton takes 34 damage from The Gallowsbird's Beak → HP 43/162
+- R8: 🎯 The Gallowsbird → Okton (Talons): 1d20+13 → 1d20[9] + 13 = 22 vs AC 18 → hit
+- R8:   Damage: 4d6+9 → 4d6[5, 5, 3, 6] + 9 = 28 slashing
+- R8: 🩸 Okton takes 28 damage from The Gallowsbird's Talons → HP 15/162
+- R8: ▶ Okton's turn (HP 15/162, AC 18)
+- R8: 🎯 Okton → The Gallowsbird (Greatsword): 1d20+11 → 1d20[5] + 11 = 16 vs AC 15 → hit
+- R8:   Damage: 6d6+7 → 6d6[1, 4, 6, 1, 3, 2] + 7 = 24 slashing
+- R8: 🩸 The Gallowsbird takes 24 damage from Okton's Greatsword → HP 0/248
+- R8: 💀 The Gallowsbird dies (reduced to 0 HP).
+
+**Result:** Combat 'The Gallowsbird over the Great Pyre' ended after 8 round(s). Defeated: 1× Engine crews (ballistae), 1× Lorard's sergeant, 1× Roc (7200 XP, 7200 each for 1 PCs).
+
+
+> **DM note (rewind):** in round 7 the roc's attacks that killed Chadickith were rewound at the player's request (DM fudge). Entries from the first R7 'Lorard's sergeant's turn' through the roc's attacks on Chadickith were discarded. Replayed R7: Chadickith Shifted into Beast Form (giant owl, Flyby), stood, Dashed into the guildhall with no opportunity attack; R8 he ended Beast Form as a bonus action to speak. Okton's R8 blow was re-rolled with disadvantage (restrained by the roc's talons): die 5 vs a new d20 20, lower 5 = 16 vs AC 15, still a hit; the roc died.

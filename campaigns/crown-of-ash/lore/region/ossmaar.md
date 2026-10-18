@@ -7,7 +7,7 @@ status: interregnum
 related: [kharun, ivoard-hask, lorard-hask, oselle-velun, kitwin, heartcoal, crown-of-ash, ash-reign, hadrun, sky-gallows, kharun-watch, pyrewardens, house-mostana, gallowsbird]
 canon: true
 created_session: 0
-updated: "2026-10-15T05:41:03"
+updated: "2026-10-18T03:43:24"
 ---
 
 # Ossmaar
@@ -42,3 +42,5 @@ Kharun is the realm. It has the only city walls, the only deep harbour and the t
 ## DM secrets
 - Neighbouring Border Kingdoms realms smell weakness. If Lorard keeps his army at Kharun much longer, a petty lord to the south-east (DM's choice) will test the South March. Pulling the army away costs Lorard his siege. Leaving it there costs the frontier villages.
 - The realm cannot feed Kharun for much more than a month of sealed gates. Starvation in the Ashward is the real clock behind every heir's patience.
+
+**Update (session 1):** Full facts and figures (population, settlements, economy, crime, forces, politics, neighbours) are in the Ossmaar Gazetteer entry (other/ossmaar-gazetteer).
