@@ -5,7 +5,7 @@ summary: "Razed castle town in the high Cinder Hills, burned by Ivoard Hask's As
 tags: [dunmarrow, redoubt, order, cinder-hills]
 canon: true
 created_session: 1
-updated: "2026-10-17T20:33:42"
+updated: "2026-10-18T03:43:23"
 ---
 
 Razed castle town in the high Cinder Hills, burned by Ivoard Hask's Ash Company in 1463 DR; the Order of the Banked Fire's chosen redoubt for the Heartcoal and future order hall.
@@ -25,3 +25,5 @@ Ulric Vane, an old stooped man who survived the burning as a stonemason's boy an
 
 **Update (session 1):** ## The vault (opened day 8)
 Beneath the keep: a dry stone strongroom banded with iron, an inner iron door, a drain to the dry cistern and one air shaft. Contains rusted weapons and an iron strongbox of Lord Dunmar's letters about Hask's tithe. Chosen as the Heartcoal's resting place.
+
+**Update (session 1):** Location (gazetteer): about 50 miles south-east of Kharun in the eastern high cones of the Cinder Hills, reached by the ~45-mile Dunmar Road from the charcoal camps above Cinder Ford.
