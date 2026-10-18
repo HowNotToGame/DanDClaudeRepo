@@ -167,3 +167,4 @@
 - [18:41] Dry run of the Saltgate route done; wall-walk watcher spotted.
 - [19:31] Reached the Sky Gallows at dawn; resting before the hills.
 - [20:43] Heartcoal laid in the Dunmarrow vault and sealed.
+- [20:09] PAUSED (evening day 11) at the Ward after Gwenmund declined the Quenching. Resume: Chadickith in the ward, Branda asleep with the heat rising, Tam watching, Choir singing across the Ashward; first sitting in two days. Awaiting the player's action.
