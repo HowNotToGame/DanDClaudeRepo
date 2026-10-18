@@ -5,7 +5,7 @@ summary: "The thirteen-lamp interim regency of Ossmaar adopted at the noon counc
 tags: [regency, lamplit-council, government, oselle, lorard, halda]
 canon: true
 created_session: 1
-updated: "2026-10-18T04:59:23"
+updated: "2026-10-18T05:09:21"
 ---
 
 The thirteen-lamp interim regency of Ossmaar adopted at the noon council on day 10: seats, voting, the seal's delay-only final reading, powers, who holds what, and what is still unsettled.
@@ -45,3 +45,6 @@ Drafted at the noon council on day 10 by Halda, Lorard and Oselle after Chadicki
 - Guarding the vote: each polling moot is watched by one warden (or the reeve's man where there is no Watch) and one Marshal's sergeant, who must stand where each can see the other. Halda commits the Watch to Kharun and the Lowfields only; Lorard commits his sergeants to the March, hills and shore.
 - Interim: for the first sitting the reeves of each region name one elder pro tem by acclamation; the real vote follows within thirty days.
 - Coldwell's objection: hearths can be bought with bread. Answer recorded: bread is also what the Keep's granaries will be handing out; a vote bought with the Ashward's own grain is a vote the Ashward may still keep.
+
+**Update (session 1):** ### Draft amendment (noon council, day 10): a Kharun commons lamp
+At Chadickith's question, the draft gains a fifth elder seat: Kharun commons (Steamside, the Quay and the middle-terrace households that are neither guild members nor Ashward), separate from the Ashward's own lamp. The Lowfields already had its own elder in the draft. Result: eighteen lamps; override thirteen of eighteen; a tied vote fails (the law does not pass); the Kharun commons elder is chosen by hearth-vote like the others, with the same eligibility bars. Oselle agreed on condition that guild members may not vote or stand in that moot; Lorard approved; Halda approved (Steamside is Watch-friendly); Coldwell objected that the Ashward is the Pyrehouse's flock, and Halda answered that a flock may have a shepherd and still have a vote. Still a draft until the first sitting.
