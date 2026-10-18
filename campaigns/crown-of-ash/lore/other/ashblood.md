@@ -24,16 +24,18 @@ A contagious curse that bleeds out of the Heartcoal. It does not give joy; it gi
 **Source.** The Heartcoal, a sliver of the Lord of Murder's essence. Its overflow is the curse.
 
 **Exposure (disease-like).** A creature is exposed by (1) touching the Heartcoal, (2) contact with the blood of someone who carries Ashblood, or (3) close contact with anyone who is, or recently was, in contact with the overflow (wounds, sharing a bed, tending the sick). Ash, wafers and smoke carry no risk by themselves.
-- **Touching the Coal:** automatic infection, with the stages arriving fast (hours, not days).
-- **Blood or close contact with a carrier:** CON save DC 12 (DC 10 if two steps removed). Fail: infected (the stages below).
+- **Touching the Coal:** automatic outcome for the creature (below).
+- **Blood or close contact with a carrier:** CON save DC 12 (DC 10 if two steps removed). Fail: outcome below.
 
-**Stages (symptoms: bloodlust and rage, no joy). They affect everyone, in order.**
+**Outcome.**
+- **Class level 3 or lower, or CR 1/2 or lower:** the overflow kills it, within 1d4 hours (a few minutes if it touched the Coal).
+- **Class level 4+, or CR 1 or higher:** it is **infected** (Stirring).
+
+**Stages (symptoms: bloodlust and rage, no joy).**
 - **Stirring:** a hot temper. After a kill, or when dropped below half HP, WIS save DC 10 or fly into a rage for 1 minute. You can still choose to hold back.
 - **Frenzied:** DC 13. On a failure you attack the nearest creature, friend or foe. Fits in combat; harder to hide.
 - **Berserk:** the rage never leaves. No saves, no choices, and the host is effectively lost.
 - A stage rises when you lose a rage save, or when you kill for the rage's sake; discipline, rest and calm can lower it by one stage per week.
-
-**The final step (player-corrected canon, day 11).** Every infected creature passes through the stages in order. The **final step of Berserk is death**, but only for creatures of **class level 3 or lower, or CR 1/2 or lower**: they are the ones the overflow drowns. Creatures of **class level 4+ or CR 1 or higher** are not overwhelmed by it, so they do not die at the end of Berserk; they stay lost in the rage until something breaks it. Commoners and children are level 0, so they die at the end if the burn runs its course. Hill-folk call that "the burning-off."
 
 **No cure, only management.** Hosts can hold the burn at Stirring through discipline, ritual and the hymns of the Choir. A Blood Hunter of the Banked Fire can bleed the rage off with a Vital Sacrifice: it drops the stage by one for 24 hours.
 

@@ -5,10 +5,10 @@ summary: "Okton's newborn order of Blood Hunters, made through his blood ritual 
 tags: [faction, hunters, okton, ashblood, chadickith-backstory, player-canon, blood-hunter]
 status: founding
 related: [okton, gallowsbird, ashblood, heartcoal, crown-of-ash, kharun-watch, lorard-hask, pyrewardens, kitwin, hadrun]
-aliases: ["Okton's hunters, our order, the order, the Banked"]
+aliases: [Okton's hunters, our order, the order, the Banked]
 canon: true
 created_session: 1
-updated: "2026-10-18T06:40:28"
+updated: "2026-10-15T05:58:52"
 ---
 
 # The Order of the Banked Fire
@@ -87,8 +87,3 @@ The beast is chosen by the blood and **upgrades permanently** at set levels; the
 - **Level 18:** the Roc (Okton alone is already a Roc, as the progenitor exception).
 - **Rule for new Banked:** always ask the player for the convert's **race** and **beast**.
 - Note: Chadickith's Giant Owl is not on the level 7 list, so at level 7 he must choose one of those six forms (flag this when he gets there).
-
-**Update (session 1):** ## Race of a new convert (player rule, day 11)
-After every successful Quenching, the DM asks the player for the convert's race and, from class level 3 (Pale Moon), their beast. If the player prefers, or for unnamed NPCs, roll a d1000 on the Ossmaar Gazetteer's People table, using the Kharun column for city-born converts and the Realm column for everyone else. Siblings and parents share one family roll.
-- Kharun column: 1-760: Human; 761-830: Halfling; 831-900: Half-orc; 901-925: Dwarf; 926-945: Half-elf; 946-960: Gnome; 961-965: Elf; 966-975: Dragonborn; 976-985: Tiefling; 986-987: Loxodon; 988-989: Giff; 990-1000: Other (Shaaran, hill goliath, firbolg, etc.)
-- Realm column: 1-820: Human; 821-880: Halfling; 881-930: Half-orc; 931-945: Dwarf; 946-960: Half-elf; 961-970: Gnome; 971-975: Elf; 976-980: Dragonborn; 981-985: Tiefling; 986-988: Loxodon; 989: Giff; 990-1000: Other (Shaaran, hill goliath, firbolg, etc.)
