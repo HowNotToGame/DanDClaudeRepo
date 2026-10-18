@@ -5,7 +5,7 @@ summary: "The thirteen-lamp interim regency of Ossmaar adopted at the noon counc
 tags: [regency, lamplit-council, government, oselle, lorard, halda]
 canon: true
 created_session: 1
-updated: "2026-10-18T04:56:14"
+updated: "2026-10-18T04:59:23"
 ---
 
 The thirteen-lamp interim regency of Ossmaar adopted at the noon council on day 10: seats, voting, the seal's delay-only final reading, powers, who holds what, and what is still unsettled.
@@ -35,3 +35,13 @@ Laws pass by lamp-vote. Each lamp carries one vote; a guild's vote may be weight
 - Kitwin: Halda requires him produced to the council before the first sitting.
 - How a king is eventually named once the Coal is broken or found: not yet decided.
 - The Coal's whereabouts: officially unknown.
+
+**Update (session 1):** ## Elder seats: draft plan (for the first sitting, day 13)
+Drafted at the noon council on day 10 by Halda, Lorard and Oselle after Chadickith's proposal. Not law until the first sitting votes it.
+- Four new lamps for the regions: Lowfields, Cinder Hills, Ossar Shore, South March. The Ashward keeps its own elder. Total: seventeen lamps.
+- Override: twelve of seventeen lamps (about the same share as nine of thirteen).
+- Election: each hearth casts one vote at its village moot, the head of the hearth (any head) voting; the 1488 Hearth-Count is the roll, with hill steadings added on the reeve's oath.
+- Eligibility: a hearth-holder resident ten years; no serving officer, priest, warden or guild member; two-year term; no consecutive terms.
+- Guarding the vote: each polling moot is watched by one warden (or the reeve's man where there is no Watch) and one Marshal's sergeant, who must stand where each can see the other. Halda commits the Watch to Kharun and the Lowfields only; Lorard commits his sergeants to the March, hills and shore.
+- Interim: for the first sitting the reeves of each region name one elder pro tem by acclamation; the real vote follows within thirty days.
+- Coldwell's objection: hearths can be bought with bread. Answer recorded: bread is also what the Keep's granaries will be handing out; a vote bought with the Ashward's own grain is a vote the Ashward may still keep.
