@@ -10,7 +10,7 @@ updated: "2026-10-18T03:43:23"
 
 Official facts and figures for Ossmaar as a chancery or Watch officer knows them (1488 Hearth-Count, 1490 rolls): population, regions, settlements, roads, ancestry, economy, wages, wealth, crime, forces, politics, neighbours.
 
-**Update (session 1):** # Ossmaar: the official picture
+# Ossmaar: the official picture
 What a senior official in the chancery or the Watch would have in front of them, as of the tenth day of the interregnum (1491 DR). The sources are the **1488 Hearth-Count** (Hask's tax census), the chancery's **1490 revenue and customs rolls**, the Watch **charge-books**, and the Ash Companies' **muster rolls**. Figures are rounded. Hill steadings dodge the hearth-tax, so counts for the Cinder Hills run low.
 
 ## At a glance
