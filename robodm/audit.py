@@ -21,6 +21,7 @@ Everything lives in campaigns/<slug>/audit/: events.jsonl, cleared.json, state.j
 
 from __future__ import annotations
 
+import os
 import re
 from typing import Any
 
@@ -534,4 +535,8 @@ def hook_stop(camp: Campaign | None, data: dict) -> dict | None:
               "added (or `./dm audit resolve <id> --how \"…\"`), then tell the players in one line.")
     if failed:
         reason += f" Unfixed failures: {', '.join(e['id'] for e in failed)}."
+    if os.environ.get("ROBODM_WEB_CLIENT"):
+        reason += (" (Web client: the players see nothing until you finish, and your reply so far is already kept. "
+                   "Don't write a progress note: run the rules-lawyer in the foreground, wait for its verdict, then "
+                   "add only what the players need, such as a one-line rules note, and end there.)")
     return {"decision": "block", "reason": reason}

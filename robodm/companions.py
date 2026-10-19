@@ -435,11 +435,13 @@ def protocol(camp_slug: str | None, slug: str | None) -> str:
                            interject=f'./dm {c}companion interject {s} "topic"')
 
 
-def generic_agent_text() -> str:
+def generic_agent_text(model: str = "sonnet", effort: str = "") -> str:
+    """The generic `companion` agent file. `model`/`effort`: the ⚙ choice or the turn speed (`costs.apply_speed`)."""
     return ("---\nname: companion\ndescription: Plays one RoboDM companion or scene NPC with their own mind (wants, "
             "values, methods, secrets, voice). Use when a companion without its own companion-<npc> agent is in the "
             "party or present and has to decide, react or speak; tell it the NPC's slug, the campaign, and the moment. "
-            "Sees only what that character knows.\ntools: Bash\nmodel: sonnet\n---\n\n"
+            f"Sees only what that character knows.\ntools: Bash\nmodel: {model or 'sonnet'}\n"
+            + (f"effort: {effort}\n" if effort else "") + "---\n\n"
             "The DM's message names the character (`<npc>` below: their slug, e.g. `okton`) and maybe the campaign "
             "(`-c <campaign>`). Substitute them in every command.\n\n" + protocol(None, None))
 

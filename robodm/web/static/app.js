@@ -262,6 +262,13 @@ async function loadHistory() {
   } catch (e) { /* no campaign yet */ }
 }
 
+// The reply arrives whole when the turn is done (the hooks can send the DM back to work after it first writes);
+// until then the bubble shows what the DM is doing.
+function working(label) {
+  if (!live || live.text) return;
+  live.body.innerHTML = `<p class="working">The DM is working… <span>${esc(label || "")}</span></p>`;
+}
+
 let renderPending = false;
 function renderLive() {
   if (renderPending || !live) return;
@@ -280,6 +287,7 @@ function onChat(ev) {
     if (ev.audience) el.classList.add("private");
     live = { el, body: $(".body", el), chips: $(".chips", el), text: "" };
     live.body.classList.add("typing");
+    working("Reading the table…");
     setBusy(true);
   } else if (ev.kind === "delta" && live) {
     live.text += ev.text; renderLive();
@@ -291,6 +299,7 @@ function onChat(ev) {
     chip.textContent = `${ev.icon} ${ev.label}`;
     chip.title = ev.label;
     live.chips.appendChild(chip);
+    if (!live.text) working(ev.label.startsWith("consulting rules-lawyer") ? "Checking the rules…" : ev.label);
     scrollChat();
   } else if (ev.kind === "meta" && live) {
     const bits = [];

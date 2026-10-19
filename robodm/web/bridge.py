@@ -2,8 +2,12 @@
 
 Because it is the real Claude Code, everything RoboDM sets up applies: the dm skill, the hooks (rules gate,
 post-audit, transcripts), the rules-lawyer and the companion subagents. Each player message is one
-`claude -p --resume <session>` run whose `stream-json` output is turned into chat events for the page:
-text as it streams, and a chip for each tool the DM uses (dice, combat, memory, a companion's agent…).
+`claude -p --resume <session>` run whose `stream-json` output is turned into chat events for the page: a chip for
+each tool the DM uses (dice, combat, memory, a companion's agent…) as it happens, and the reply once the whole turn
+is finished. The text is held back until then, because the hooks can send the DM back to work after it first
+writes (the post-audit, a receipt correction), and players should read the finished reply, not the drafts. The DM
+runs with CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1, so a subagent it launches (the rules-lawyer, a companion) runs in
+the foreground and the DM waits for its answer inside the same turn.
 
 The prompt goes in on stdin, never on the command line, so nothing the player types is parsed by a shell.
 Find Claude Code with ROBODM_CLAUDE (a path or a command), else `claude` on PATH; ROBODM_CLAUDE_ARGS adds flags.
@@ -112,6 +116,7 @@ class Bridge:
         self.partial_ok = True
         self.audience: list[str] | None = None        # a private turn's events go only to these seats (and the host)
         self.stop_event = threading.Event()             # cancels a local engine's turn
+        self._results: list[dict] = []                  # this run's `result` events (one chip at the end)
         self._emit_raw = emit
         self.emit = self._emit
 
@@ -119,6 +124,11 @@ class Bridge:
         if self.audience and ev.get("kind") != "idle":
             ev = dict(ev, audience=self.audience)
         self._emit_raw(ev)
+
+    def _held(self, ev: dict) -> None:
+        """A local engine's events, minus the text it streams: the page gets the reply with `done`."""
+        if ev.get("kind") not in ("delta", "replace"):
+            self.emit(ev)
 
     # ------------------------------------------------------------------ persistence
     def _state_path(self, slug: str) -> Path:
@@ -234,7 +244,7 @@ class Bridge:
                 from robodm.engines.local import LocalDM
 
                 self.emit({"kind": "start", "text": message})
-                text = LocalDM(cfg, self.emit, self.stop_event).turn(slug, message, private_to)
+                text = LocalDM(cfg, self._held, self.stop_event).turn(slug, message, private_to)
                 rec = {"role": "dm", "text": text or "", "ts": now_iso(), "engine": cfg["engine"]}
                 if private_to:
                     rec["private_to"] = private_to
@@ -279,7 +289,9 @@ class Bridge:
         args += ["--allowedTools", *allowed_tools()]
         args += shlex.split(os.environ.get("ROBODM_CLAUDE_ARGS", ""))    # e.g. --model …, --permission-mode …
         root = paths.PACKAGE_DIR.parent
-        env = dict(os.environ, PYTHONIOENCODING="utf-8")
+        # Foreground subagents: the DM waits for the rules-lawyer's verdict instead of ending its turn early (and
+        # writing "still pending" notes each time the Stop hook sends it back). ROBODM_WEB_CLIENT tells the hooks.
+        env = dict(os.environ, PYTHONIOENCODING="utf-8", CLAUDE_CODE_DISABLE_BACKGROUND_TASKS="1", ROBODM_WEB_CLIENT="1")
         self.proc = subprocess.Popen(args, cwd=str(root), stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE, env=env, text=True, encoding="utf-8", errors="replace",
                                      creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
@@ -291,6 +303,7 @@ class Bridge:
         proc.stdin.close()
         parts: list[str] = []
         streamed: set[str] = set()
+        self._results: list[dict] = []
         for line in proc.stdout:
             line = line.strip()
             if not line:
@@ -312,8 +325,13 @@ class Bridge:
             if sid and ("session" in err.lower() and "not found" in err.lower()):
                 self._set_session(slug, None)
             self.emit({"kind": "error", "text": (err.strip().splitlines() or [f"claude exited with code {code}"])[-1]})
-        text = "\n\n".join(p for p in parts if p.strip())
+        text = "\n\n".join(p.strip() for p in parts if p.strip())
         self.emit({"kind": "done", "text": text})
+        if self._results:                  # one chip for the whole turn, however many results the run reported
+            last = self._results[-1]
+            self.emit({"kind": "meta", "cost": last.get("total_cost_usd"),
+                       "ms": sum(r.get("duration_ms") or 0 for r in self._results) or None,
+                       "turns": sum(r.get("num_turns") or 0 for r in self._results) or None})
         return text
 
     def handle(self, ev: dict, slug: str, parts: list[str], streamed: set[str]) -> None:
@@ -334,7 +352,6 @@ class Bridge:
                 parts[-1] += chunk
                 mid = (ev.get("message") or {}).get("id") or "live"
                 streamed.add(mid)
-                self.emit({"kind": "delta", "text": chunk})
             return
         if t == "assistant":
             msg = ev.get("message") or {}
@@ -344,11 +361,9 @@ class Bridge:
                     self.emit({"kind": "tool", "icon": icon, "label": label, "sub": not top})
                 elif block.get("type") == "text" and top and not streamed:
                     parts.append(block.get("text", ""))
-                    self.emit({"kind": "delta", "text": block.get("text", "") + "\n\n"})
             return
         if t == "result":
-            self.emit({"kind": "meta", "cost": ev.get("total_cost_usd"), "ms": ev.get("duration_ms"),
-                       "turns": ev.get("num_turns")})
+            self._results.append(ev)
             try:
                 from robodm import campaign, costs
 

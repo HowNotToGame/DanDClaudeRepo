@@ -82,7 +82,9 @@ Use the `dm` skill (`.claude/skills/dm/SKILL.md`) and follow it: load `./dm memo
 - `robodm/web/`: `./dm web` (`server.py`: ThreadingHTTPServer, token + Host/Origin checks, JSON API, SSE events
   driven by a campaign-file watcher), `views.py` (what each API returns; everything player-facing goes through
   the player/DM filtering there), `bridge.py` (the DM chat: `claude -p --output-format stream-json --resume`, the
-  prompt on stdin, turned into chat events) and `static/` (plain HTML/CSS/JS, no build step). Messages that start
+  prompt on stdin, turned into chat events; tool chips stream, but the reply is held until the whole turn is done,
+  hooks included, and subagents run in the foreground via `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1`; the hooks see
+  `ROBODM_WEB_CLIENT=1`) and `static/` (plain HTML/CSS/JS, no build step). Messages that start
   with `[RoboDM web client]` come from it: write the fiction, don't paste tool output or text maps.
 
 ## Memory

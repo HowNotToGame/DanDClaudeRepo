@@ -27,7 +27,8 @@ import json, os, sys
 args = sys.argv[1:]
 prompt = sys.stdin.read()
 with open(os.environ["FAKE_CLAUDE_LOG"], "a", encoding="utf-8") as fh:
-    fh.write(json.dumps({"args": args, "prompt": prompt}) + "\n")
+    fh.write(json.dumps({"args": args, "prompt": prompt, "fg": os.environ.get("CLAUDE_CODE_DISABLE_BACKGROUND_TASKS"),
+                         "web": os.environ.get("ROBODM_WEB_CLIENT")}) + "\n")
 if os.environ.get("FAKE_NO_PARTIAL") and "--include-partial-messages" in args:
     sys.stderr.write("error: unknown option '--include-partial-messages'\n")
     sys.exit(1)
@@ -47,6 +48,13 @@ out({"type": "assistant", "parent_tool_use_id": "t1", "message": {"content": [
     {"type": "tool_use", "name": "Bash", "input": {"command": "./dm rules show Grappled"}},
     {"type": "text", "text": "lawyer chatter"}]}})
 out({"type": "result", "total_cost_usd": 0.01, "duration_ms": 5, "num_turns": 2})
+# the Stop hook sent the DM back to work (the post-audit): it adds a rules note, and the run reports again
+if "--include-partial-messages" in args:
+    out({"type": "stream_event", "event": {"type": "message_start"}})
+    out({"type": "stream_event", "event": {"type": "content_block_delta",
+                                           "delta": {"type": "text_delta", "text": "Rules check: fine."}}})
+out({"type": "assistant", "message": {"content": [{"type": "text", "text": "Rules check: fine."}]}})
+out({"type": "result", "total_cost_usd": 0.02, "duration_ms": 7, "num_turns": 1})
 '''
 
 
@@ -250,7 +258,7 @@ class WebTests(RoboDMTestCase):
             if ev["kind"] == "idle":
                 return got
 
-    def test_bridge_streams_text_tools_and_resumes_the_session(self):
+    def test_bridge_holds_the_reply_until_the_turn_is_done_and_resumes(self):
         log = self.fake_claude()
         events: queue.Queue = queue.Queue()
         br = bridge_mod.Bridge(events.put)
@@ -258,12 +266,15 @@ class WebTests(RoboDMTestCase):
         got = self.run_turn(br, events, "I shove the guard", as_pc="Chadickith")
         kinds = [e["kind"] for e in got]
         self.assertEqual(kinds[0], "start")
-        self.assertEqual("".join(e["text"] for e in got if e["kind"] == "delta"), "The torches gutter.")
+        self.assertEqual([e for e in got if e["kind"] in ("delta", "replace")], [])     # no drafts on the page
         tools = [e for e in got if e["kind"] == "tool"]
         self.assertEqual((tools[0]["icon"], tools[0]["sub"]), ("🎲", False))
         self.assertEqual((tools[1]["icon"], tools[1]["sub"]), ("⚖️", True))       # the lawyer's lookup, nested
         self.assertNotIn("lawyer chatter", json.dumps(got))
-        self.assertEqual([e for e in got if e["kind"] == "done"][0]["text"], "The torches gutter.")
+        self.assertEqual([e for e in got if e["kind"] == "done"][0]["text"], "The torches gutter.\n\nRules check: fine.")
+        metas = [e for e in got if e["kind"] == "meta"]
+        self.assertEqual([(m["cost"], m["ms"], m["turns"]) for m in metas], [(0.02, 12, 3)])   # one chip per turn
+        self.assertLess(kinds.index("done"), kinds.index("meta"))
         self.assertEqual(br.session_id("ash"), "sess-1")
         self.assertEqual([m["role"] for m in br.history("ash")], ["player", "dm"])
         self.assertEqual(br.history("ash")[0]["text"], "Chadickith: I shove the guard")
@@ -271,6 +282,7 @@ class WebTests(RoboDMTestCase):
         self.run_turn(br, events, "I look around")
         calls = [json.loads(x) for x in log.read_text(encoding="utf-8").splitlines()]
         self.assertIn("[RoboDM web client]", calls[0]["prompt"])
+        self.assertEqual((calls[0]["fg"], calls[0]["web"]), ("1", "1"))      # subagents in the foreground
         # the transcript hook records only the player's words, not the preamble
         self.assertEqual(bridge_mod.player_text(calls[0]["prompt"]), "Chadickith: I shove the guard")
         self.assertEqual(bridge_mod.player_text("[RoboDM web client] Blah blah. Campaign: ash. I hide"), "I hide")
@@ -289,7 +301,7 @@ class WebTests(RoboDMTestCase):
         got = self.run_turn(br, events, "Hello")
         self.assertFalse(br.partial_ok)
         self.assertNotIn("error", [e["kind"] for e in got])
-        self.assertEqual([e for e in got if e["kind"] == "done"][-1]["text"], "The torches gutter.")
+        self.assertEqual([e for e in got if e["kind"] == "done"][-1]["text"], "The torches gutter.\n\nRules check: fine.")
 
     def test_chat_endpoint_without_claude_explains_how_to_install(self):
         os.environ["ROBODM_CLAUDE"] = str(self.tmp / "missing-claude.exe")

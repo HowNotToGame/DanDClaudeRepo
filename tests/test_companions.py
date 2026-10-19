@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import re
 from pathlib import Path
 
 from robodm import audit, campaign, companions as co, gatekeeper, hooks, lore, memory
@@ -117,7 +118,11 @@ class CompanionTests(RoboDMTestCase):
 
     def test_repo_generic_agent_is_current(self):
         repo = Path(__file__).resolve().parent.parent / ".claude" / "agents" / "companion.md"
-        self.assertEqual(repo.read_text(encoding="utf-8"), co.generic_agent_text(),
+        text = repo.read_text(encoding="utf-8")
+        head = text.split("\n---", 1)[0]               # model/effort are the table's choice (⚙ or turn_speed)
+        model = re.search(r"(?m)^model: (\S+)", head)
+        effort = re.search(r"(?m)^effort: (\S+)", head)
+        self.assertEqual(text, co.generic_agent_text(model.group(1) if model else "sonnet", effort.group(1) if effort else ""),
                          "regenerate with `./dm companion agent --generic`")
 
     def test_companion_gate(self):

@@ -106,8 +106,9 @@ def apply_speed(camp: Campaign | None) -> list[str]:
             p = companions.write_agent(camp, slug, model=model, effort=effort)
             lines.append(f"{p.stem} → {describe(model, effort, chosen)}")
         generic = root / "companion.md"
-        changed = set_frontmatter(generic, "model", model)
-        if set_frontmatter(generic, "effort", effort) or changed:
+        text = companions.generic_agent_text(model, effort)
+        if generic.exists() and generic.read_text(encoding="utf-8") != text:
+            generic.write_text(text, encoding="utf-8")
             lines.append(f"companion → {describe(model, effort, chosen)}")
     return lines
 

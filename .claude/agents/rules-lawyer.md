@@ -37,6 +37,12 @@ If `./dm rules status` says the data is missing, run `./dm rules fetch` first. Y
 `data/5etools/` for edge cases (e.g. `Grep "Sentinel" data/5etools/feats.json`).
 
 ## Pre-check (input: `./dm audit brief <kind> "<name>"` + what the DM intends)
+**Keep every Bash call a plain `./dm …` command.** Headless sessions (the web client) can't ask anyone to approve a
+command, so anything the permission check can't verify is refused, and the turn stalls with the verdict
+unrecorded. So: one `./dm` command per call, no `$?`, `$(…)`, backticks or `echo`, and no escaped quotes (`\"`).
+When a `--fix` command itself needs quoted text, use single quotes inside the double quotes, and write
+apostrophes as ’: `--fix "./dm memory add 'Ruling: Chadickith’s Feral Senses add the Rite Die…' --type rule"`.
+
 
 1. Read the rules text in the brief and look up anything it depends on.
 2. Check the DM's intended use against it: legal targets (e.g. "humanoid" only), range, components, casting

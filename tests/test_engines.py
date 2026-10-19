@@ -290,9 +290,13 @@ class EngineTests(RoboDMTestCase):
         agents.mkdir(exist_ok=True)
         os.environ["ROBODM_AGENTS_DIR"] = str(agents)
         repo_agents = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".claude", "agents")
+        from robodm import costs
+
         for name in ("rules-lawyer.md", "lore-keeper.md"):
             with open(os.path.join(repo_agents, name), encoding="utf-8") as src:
                 (agents / name).write_text(src.read(), encoding="utf-8")
+            costs.set_frontmatter(agents / name, "model", "sonnet")
+            costs.set_frontmatter(agents / name, "effort", None)
         srv, hub = server.make_server("127.0.0.1", 0, "tok")
         threading.Thread(target=srv.serve_forever, daemon=True).start()
         try:

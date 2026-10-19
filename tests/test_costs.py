@@ -33,6 +33,8 @@ class SpeedTests(RoboDMTestCase):
         agents.mkdir()
         for name in ("rules-lawyer.md", "lore-keeper.md"):
             shutil.copy(ROOT / ".claude" / "agents" / name, agents / name)
+            costs.set_frontmatter(agents / name, "model", "sonnet" if name == "rules-lawyer.md" else None)
+            costs.set_frontmatter(agents / name, "effort", None)
         os.environ["ROBODM_AGENTS_DIR"] = str(agents)
         run_cli("campaign", "new", "Speed", "--premise", "test " * 400)
         run_cli("pc", "add", "Mira", "--class", "Wizard", "--level", "3", "--int", "16", "--skills", "arcana")

@@ -2075,7 +2075,10 @@ def cmd_companion(args) -> None:
             p = co.agents_dir() / "companion.md"
             from robodm.util import write_text
 
-            write_text(p, co.generic_agent_text())
+            from robodm import costs
+
+            model, effort, _ = costs.agent_choice(c, "companion")
+            write_text(p, co.generic_agent_text(model, effort))
             out(f"Wrote {p.name}.")
             return
         slugs = co.all_slugs(c) if (rest and rest[0] == "all") else [who()]
