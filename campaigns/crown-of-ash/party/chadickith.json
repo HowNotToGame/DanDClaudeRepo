@@ -5,10 +5,10 @@
   "race": "Loxodon (Dodrud variant)",
   "class": "Blood Hunter (Alternate, laserllama v2.2)",
   "subclass": "Order of the Pale Moon (Giant Owl curse)",
-  "level": 3,
+  "level": 5,
   "background": "Giant Foundling",
   "abilities": {
-    "str": 15,
+    "str": 16,
     "dex": 13,
     "con": 16,
     "int": 8,
@@ -18,13 +18,13 @@
   "ac": 15,
   "speed": 30,
   "hp": {
-    "max": 35,
-    "current": 1,
+    "max": 55,
+    "current": 55,
     "temp": 0
   },
   "hit_dice": {
     "die": 12,
-    "max": 3,
+    "max": 5,
     "used": 0
   },
   "save_proficiencies": [
@@ -36,7 +36,6 @@
     "investigation",
     "intimidation",
     "survival",
-    "nature",
     "arcana"
   ],
   "expertise": [],
@@ -48,47 +47,47 @@
   "attacks": [
     {
       "name": "Greataxe",
-      "to_hit": 4,
+      "to_hit": 6,
       "damage": [
         [
-          "1d12+2",
+          "1d12+3",
           "slashing"
         ]
       ]
     },
     {
-      "name": "Hybrid talons (Rite Die d4)",
-      "to_hit": 4,
+      "name": "Hybrid talons (Rite Die d6)",
+      "to_hit": 6,
       "damage": [
         [
-          "1d4+2",
+          "1d6+3",
           "slashing"
         ]
       ]
     },
     {
-      "name": "Beast Form talons (giant owl; Rite Die)",
-      "to_hit": 3,
+      "name": "Beast Form talons (giant owl; Rite Die d6)",
+      "to_hit": 4,
       "damage": [
         [
-          "2d4+1",
+          "2d6+1",
           "slashing"
         ]
       ]
     },
     {
       "name": "Unarmed strike (trunk)",
-      "to_hit": 4,
+      "to_hit": 6,
       "damage": [
         [
-          "3",
+          "4",
           "bludgeoning"
         ]
       ]
     },
     {
       "name": "Hand crossbow",
-      "to_hit": 3,
+      "to_hit": 4,
       "damage": [
         [
           "1d6+1",
@@ -119,12 +118,7 @@
       "reset": "short"
     }
   },
-  "conditions": [
-    {
-      "name": "prone",
-      "tick": "end"
-    }
-  ],
+  "conditions": [],
   "inventory": [
     "Greataxe",
     "Explorer's pack (backpack, bedroll, mess kit, tinderbox, 10 torches, waterskin, 50 ft hempen rope)",
@@ -136,7 +130,8 @@
     "Grey burial-notice note from a Pyrewarden (Ashward almshouse, tomorrow's dusk bell)",
     "Iron gate key on a cord (Peret's; opens the plague road gate to the Pyrehouse crypt)",
     "Peret's list of six Ashward names with marks and dates",
-    "Redcollar gorget (loaned by Okton) and a red peace-cord for the greataxe"
+    "Redcollar gorget (loaned by Okton) and a red peace-cord for the greataxe",
+    "Alchemist's supplies (gift from Oselle Velun, for Grim Psychometry)"
   ],
   "gold": 10,
   "xp": 0,
@@ -163,9 +158,11 @@
     "Hybrid Form: +10 ft speed, climb speed = walk, unarmed strikes finesse for Rite Die piercing/slashing, bonus action unarmed strike or Dash (Wild Fury)",
     "Beast Form (Giant Owl): beast statistics but keep HP, INT/WIS/CHA, skills and Blood Rites; Large, fly 60 ft, talons use Rite Die and Rite DC",
     "Proficiencies: light and medium armor, shields, simple and martial weapons, alchemist's supplies",
-    "Languages: Common; Loxodon; Giant; Draconic"
+    "Languages: Common; Loxodon; Giant; Draconic",
+    "Feat (level 4): Grappler (XPHB 2024, +1 STR): Punch and Grab (an Unarmed Strike hit can do damage and grapple, once per turn); advantage on attacks against a creature you grapple; no extra movement to move a grappled creature your size or smaller",
+    "Level 5 (milestone): Extra Attack (attack twice when you take the Attack action); Grim Psychometry (cast identify as a ritual using alchemist's supplies as the material components; also learn whether the object is cursed and the nature of the curse); Rite Die d6; proficiency bonus +3; Rite save DC 14"
   ],
-  "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire and now HAS undergone the blood ritual: Okton quenched him in round 6 of the roc fight (class changed from Barbarian 3 / Storm Herald to Blood Hunter 3 / Pale Moon, giant owl curse). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON).",
+  "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire and now HAS undergone the blood ritual: Okton quenched him in round 6 of the roc fight (class changed from Barbarian 3 / Storm Herald to Blood Hunter 3 / Pale Moon, giant owl curse). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON). Vital Sacrifice (owl flight, day 8): max HP 16 until a long rest (normal max 35). LEVEL 4 (milestone): STR 16, Grappler. Normal max HP 45; Vital Sacrifice reduction of 19 until a long rest. LEVEL 5 (day 9 dawn war-table). Normal max HP 55 (restored by long rest, day 9).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-16T22:53:56"
+  "updated": "2026-10-18T01:02:48"
 }

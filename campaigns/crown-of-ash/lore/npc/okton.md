@@ -7,7 +7,7 @@ status: alive
 related: [kharun, kharun-watch, gallowsbird, ashblood, hadrun, crown-of-ash, heartcoal, order-of-the-banked-fire, lorard-hask, oselle-velun, kitwin, ash-reign]
 canon: true
 created_session: 1
-updated: "2026-10-15T05:57:38"
+updated: "2026-10-17T00:55:03"
 ---
 
 # Okton
@@ -43,3 +43,21 @@ A fire giant eighteen feet tall and old even for his kind. His skin looks like c
 - **He can unmake the coal.** A fire giant's forge, fed with a fire giant's own heart's blood, can destroy what fire giant fire made. Destroying the coal ends all Ashblood. The Banked keep their abilities, but no new Banked can ever be made. The deeper Okton has gone by then, the worse it is for him.
 - If the Heartcoal is brought to him, the gladness in him *wants* it. Play one terrible beat: he reaches out a little too eagerly, then masters himself. "Put it down, Small Tusk. On the anvil. Not in my hand."
 - He is fond of Lorard, who respects craft, and wary of Kitwin, because he smells the gladness on the boy. He thinks Oselle hates him, and he is right: she blames the giant who set the coal for her mother's death. She does not know that her own great-grandfather brought the coal to Kharun.
+
+**Update (session 1):** ## Stat block (v2, player-approved): Fire giant + Blood Hunter 18 (Order of the Pale Moon), progenitor of the Banked Fire
+**Base:** MM fire giant (Huge giant, AC 18 plate, speed 30). PB +6 (higher of giant +4 / Blood Hunter +6).
+**HP:** 162 + half the Blood Hunter levels (9 x (7+6) = 117) + Tough (+36) = **315**.
+**Abilities:** STR 25, DEX 9, CON 23, INT 10, WIS 14, CHA 13 (feats instead of ASIs).
+**Saves:** CON +12, CHA +7, DEX +5; Hardened Soul adds Rite Die (d10) to INT/WIS/CHA saves; Dark Augmentation adds Rite Die to STR/DEX/CON checks and saves.
+**Skills:** Athletics +13, Perception +8, Survival +8, Insight +8, Arcana +6 (Occult Lore). Smith's tools +6. Immune to fire.
+**Feats:** Tough, Sentinel, Great Weapon Master, Alert (+5 initiative).
+**Fighting Style:** Great Weapon Fighting (each greatsword die counts as at least 3).
+**Actions:** Multiattack (two greatswords, +13 to hit, 6d6+7; GWM option -5/+10) or Rock +13, 4d10+7. Blood Rites replace one attack with a bonus-action weapon attack (Extra Attack).
+**Rite Die d10, Rite save DC 20.** Rites: Binding (empowered works on any size), Agony, Dread, Exposure, Marking, Blindness. Vital Sacrifice rolls twice (Vital Control), takes the lower.
+**Crimson Offering:** fire (+1d10), bonus action + Vital Sacrifice. **Crimson Brand** once per rest free; **Crimson Anchor** (Brand teleport/move needs a CHA save or 4 Rite Dice necrotic).
+**Hunter's Bane:** Occult Lore (Arcana), Sinister Insight (CON check, DC 8+CR), Grim Psychometry (identify/legend lore rituals).
+**Pale Moon:** Feral Senses (Rite Die to Perception/Survival), Lycanthropic Curse (progenitor exception: **Roc**, Gargantuan, fly 120, uses the giant's HP, mental scores, skills, fire immunity and class features; natural weapons use the d10 Rite Die size and Rite DC 20), Hybrid Form (+10 ft speed, climb, Rite Die claws), Lycan Warrior (Shifted: magical attacks; resistance to non-magical, non-silvered B/P/S), Feral Prowess (regain CON mod HP at turn start when Shifted and under half HP), Lycanthropic Mastery (Shift at will, indefinitely, advantage vs Branded creatures).
+**DM secret:** Okton fought the Gallowsbird as a plain fire giant because every Rite and Vital Sacrifice feeds the gladness (Ashblood) in his blood; he has been holding it back for decades. Given the full kit, he would end an encounter like the Pyre fight in a round or two, so he keeps it sealed and the player must earn its use.
+
+## REWORK (v2)
+Okton is stable and disciplined: he carries Ashblood at a controlled Stirring. Using his Rites and Vital Sacrifices can stir the rage, so he fought the Gallowsbird as a plain fire giant. Each Quenching permanently costs him 1 maximum HP and 1 year of life (craft rank 1; the veteran who died in a rage was his first attempt). Ignore any earlier text about him slipping toward Glad or a founder's doom clock.

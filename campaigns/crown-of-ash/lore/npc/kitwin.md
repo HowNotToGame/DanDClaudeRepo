@@ -36,3 +36,6 @@ Soft-spoken, humble, seemingly uninterested in power. He promises "mercy": an en
 - **The coal really did kindle for him.** During the Quiet Year the king summoned him in secret, put the crown in his hands and watched it glow, then sent him away horrified. Kitwin thinks it was a blessing. By the Ember Law he may well be the "true" king, which tells you everything about the Ember Law.
 - **He doesn't know the deathbed naming was invented** by High Pyrewarden Tamius Coldwell, and he believes it completely. Proving the lie would break him, and might break his gentleness too.
 - If the coal is destroyed while he is Glad, he dies. If it is destroyed while he is only Kindled, he lives, hollow, and for the first time he will know which of his mercies were murders.
+
+## REWORK (v2, DM secret)
+Kitwin is secretly infected with Ashblood, an anomaly: a boy that young should have died. He survived because of his **willingness** (he truly believed he was chosen and welcomed the Coal) and perhaps Hask's blood. The Choir holds his rage down with hymns (Stirring, close to Frenzied). A rescue does not cure him: there is no cure, only management.

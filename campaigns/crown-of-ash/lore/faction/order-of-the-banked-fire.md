@@ -53,3 +53,37 @@ These are story consequences layered on top of the Blood Hunter class. They neve
 - A grandchild of a Hadrun survivor, raised on the story.
 - A deserter from the Ash Companies who has seen the gladness in battle.
 - *Optional grim note:* Okton's first test of the rite, last winter, on a dying Watch veteran, held for nine days. Then the man died smiling. Okton has refined it since, and no one else knows.
+
+## REWORK (v2, player-approved)
+- The **Quenching** is Okton's non-deadly conversion of the overflow into a Blood Hunter's discipline; see `ashblood` for the survival check and the cost to Okton (1 max HP and 1 year per Quenching). The Order aims to grow into a large organization over time as Okton's craft rank rises.
+- **Members:** Okton (founder, progenitor: level 18 Pale Moon Blood Hunter), Chadickith (the second ever quenched, and the first to live). First test: a dying Watch veteran who volunteered last winter, held nine days, and died in a rage, teeth bared; Okton refined the rite afterward. Craft rank: 1.
+- **Not a doom order:** Okton is stable and disciplined. There is no founder-goes-berserk clock and no unspoken charge to kill him.
+- The Banked can bleed rage off with a Vital Sacrifice (drops one stage for 24 hours).
+- Rivals: the Choir believes it can master the burn through its own communion of ash and hymns (see `pyrewardens`).
+
+## Members as of noon, day 3 (session 1)
+Okton (founder), Chadickith, and five converted Watchmen from the triage cellar: **Kita Dunmore**, **Cassmund Furrow**, **Samson Cobb**, **Hesby Bramble** (a sergeant) and **Gwenis Dunmore** (converted from Berserk in a lucid moment). Two remain Berserk with no lucid window yet: **Joris Marsh** and **Gwenet Marlow**. Okton's craft rank is now 3 (six survivors); he paid five hit points and five years for this morning's work.
+
+## FINAL (v2.1, player-approved): goals, training, work, life
+**Goal.** Okton's long goal is to deal with the Heartcoal: destroy it to stop new infections, but only when the Order is strong enough to survive the aftermath (it will not end existing infections, and the Quenching will still work). Until then the Order serves four duties: **contain** the burn, **shelter** the infected, **deny** the Choir, and **protect** the secret of where the Coal lies.
+
+**Training (about 5 to 13 months).**
+- **Raw (month 1):** learning to bleed the heat off and to name the rage.
+- **Forged (months 2 to 7):** forge discipline: dawn breathing, anvil work, standing a night's watch beside a banked hearth without feeding it, plus martial drill.
+- **Tempered (a further 2 to 6 months):** senior members take them out on missions until they can be trusted to hold the line alone. Ranks are raw, forged, tempered.
+
+**What the Order does.** Quarantine and hospice for the infected; hunting infected beasts, the Berserk and the Choir's singers; quiet service to the Watch (Halda's cellar is already an Order hospital); and guarding the Coal's location.
+
+**A convert's life (Hesby Bramble as the example).** He keeps his Watch collar and post, wakes at four, drills before shift and sleeps little. He carries a small blade for bleeding off the heat. His wife has been told only that he is ill. He cannot drink, because spirits make the heat harder to hold. He feels Okton at a distance like a banked fire in the next room. Even a clean kill takes effort to put down.
+
+**Why they join instead of going home.** There is no normal life to return to: the burn does not leave, a carrier at home is a danger to children and kin, and the Order is the only place that teaches how to hold it. The pull toward Okton keeps them near, and purpose and belonging matter to men who were one bad night from lost. They may leave, but most do not.
+**Chadickith's standing.** He is **Raw** (the Quenching was only last night). When he finishes the Raw month he skips the Forged stage entirely, because Okton has been forging him his whole life; he goes straight on to the Tempered missions.
+
+## Beast Form progression (player canon, Pale Moon)
+The beast is chosen by the blood and **upgrades permanently** at set levels; there is no going back to an earlier form.
+- **Levels 3 to 6:** a beast of CR 1 or lower, chosen at conversion.
+- **Level 7:** Giant Vulture, Giant Swan, Giant Raven, Giant Eagle, Hippogriff or Griffin (chosen by personality). Giant Swan and Giant Raven are homebrew (adapt from Giant Vulture and Giant Eagle).
+- **Level 13:** Owlbear or Manticore (chosen by fighting style).
+- **Level 18:** the Roc (Okton alone is already a Roc, as the progenitor exception).
+- **Rule for new Banked:** always ask the player for the convert's **race** and **beast**.
+- Note: Chadickith's Giant Owl is not on the level 7 list, so at level 7 he must choose one of those six forms (flag this when he gets there).

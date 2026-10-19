@@ -30,3 +30,6 @@ Undertakers, executioners' chaplains, keepers of the dead. A realm that executed
 - If they learn of Okton's blood ritual, they will want his blood to make Blood Hunters of their own with no temper at all (see order-of-the-banked-fire).
 - **The Ember Rolls:** the Choir's ledger of every anointed death since about 1401, kept in the Pyrehouse crypt. Its early pages bear the seals of Kings Uzhar and Tazhar Velun, which makes it proof of the Velun dynasty's guilt (see oselle-velun).
 - The ordinary wardens know nothing. Exposing the Glad Choir would topple Kitwin's claim. It would also leave Kharun, facing a summer of siege and plague, with no one willing to burn its dead.
+
+## REWORK (v2): the Choir's faith
+The Choir believes the burn can be **mastered and shared**: their communion of ash, their hymns and the casket of grains (the Last Ember) are a rival to Okton's Quenching. Most of the willing die; the survivors become "Singers" who hold the rage under song. Garn's calm smile was a man holding back a storm.
