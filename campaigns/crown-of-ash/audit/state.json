@@ -1,5 +1,8 @@
 {
-  "turn": 5,
+  "turn": 6,
   "lookups": [],
-  "stop_blocks": {}
+  "stop_blocks": {},
+  "narration_checked": {
+    "5": true
+  }
 }
