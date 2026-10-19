@@ -3,6 +3,8 @@
 The data is fetched onto *your* machine/session on demand and is never
 committed to this repository (see .gitignore). Sources tried in order:
 
+    local   http://localhost:5050/data (your own 5e.tools server; override with
+            the ROBODM_LOCAL_5ETOOLS env var, e.g. http://localhost:5050)
     github  raw files from the 5etools 2014 source mirror on GitHub
     site    https://2014.5e.tools/data (the live site serves the same JSON)
 
@@ -24,6 +26,7 @@ from pathlib import Path
 from robodm.util import RoboDMError, now_iso, write_json
 
 MIRRORS = {
+    "local": os.environ.get("ROBODM_LOCAL_5ETOOLS", "http://localhost:5050").rstrip("/") + "/data",
     "github": "https://raw.githubusercontent.com/5etools-mirror-3/5etools-2014-src/main/data",
     "site": "https://2014.5e.tools/data",
 }
@@ -116,7 +119,7 @@ def fetch(
         if name not in MIRRORS:
             raise RoboDMError(f"Unknown mirror '{name}'. Choose from: auto, {', '.join(MIRRORS)}")
         try:
-            _get(f"{MIRRORS[name]}/spells/index.json", ctx, retries=2)
+            _get(f"{MIRRORS[name]}/spells/index.json", ctx, retries=1 if name == "local" else 2)
             base = MIRRORS[name]
             log(f"Using mirror: {name} ({base})")
             break
@@ -187,7 +190,7 @@ def fetch(
         "books": [b.upper() for b in books] if books else [],
         "files": len(files_done),
         "bytes": total_bytes,
-        "ruleset": "D&D 5e 2014 (5etools)",
+        "ruleset": "D&D 5e (5etools local server)" if base == MIRRORS["local"] else "D&D 5e 2014 (5etools)",
     }
     write_json(data_dir / META_FILE, meta)
     log(f"Fetched {len(files_done)} files ({total_bytes / 1_000_000:.1f} MB) into {data_dir}")

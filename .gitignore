@@ -15,3 +15,7 @@ __pycache__/
 # Atomic-write temp files
 .*.tmp
 *-digest.md
+# Derived per-campaign caches (recall index, hook state) — rebuilt automatically
+campaigns/*/.cache/
+# Launcher cache (the working Python dm found)
+.cache/

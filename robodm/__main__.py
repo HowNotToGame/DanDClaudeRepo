@@ -1,5 +1,5 @@
 import sys
 
-from robodm.cli import main
+from robodm.entry import main
 
 sys.exit(main())

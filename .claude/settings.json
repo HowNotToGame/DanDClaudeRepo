@@ -3,7 +3,13 @@
     "allow": [
       "Bash(./dm:*)",
       "Bash(python3 -m robodm:*)",
-      "Bash(python3 -m unittest:*)"
+      "Bash(python -m robodm:*)",
+      "Bash(py -3 -m robodm:*)",
+      "Bash(python3 -m unittest:*)",
+      "Bash(python -m unittest:*)",
+      "Bash(py -3 -m unittest:*)",
+      "PowerShell(.\\dm:*)",
+      "PowerShell(.\\dm.cmd:*)"
     ]
   },
   "hooks": {
@@ -12,18 +18,38 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-start.sh"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/dm hook session-start"
           }
         ]
       }
     ],
-    "PostToolUse": [
+    "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|PowerShell|Edit|Write|MultiEdit|NotebookEdit|mcp__.*([Ee]xec|[Rr]un|[Ss]hell|[Bb]ash|[Ee]val|[Pp]ython|[Tt]erminal|[Cc]ommand|[Ss]cript).*",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/rules-audit.py"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/dm hook pretool"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/dm hook prompt"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/dm hook stop"
           }
         ]
       }

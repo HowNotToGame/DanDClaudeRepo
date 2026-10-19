@@ -23,18 +23,49 @@ Have a short, friendly conversation — one or two questions at a time, offering
    `./dm memory add "Line: …" --type rule --tags safety --important`.
 4. **Table settings.** Explain briefly and set what they choose:
    - dice: do players roll their own dice? → `./dm campaign set dice_mode players` (default `auto`)
-   - rules strictness → `./dm campaign set rules_audit off|key|always`, optional `rules-as-written` / `rule-of-cool` blocks
+   - rules strictness → optional `rules-as-written` / `rule-of-cool` blocks (rules checking itself is
+     always on: the gate before each event and the rules-lawyer audit after it)
    - allowed books → `./dm campaign set sources PHB,XGE,TCE,MM,DMG`
    - levelling → `milestone-leveling` block or `./dm campaign set advancement xp`
    - presentation → `mobile-friendly`, `theater-of-mind` or `grid-combat`, `new-players`, `solo-play`, `hidden-rolls`
    - house rules → library blocks (`./dm context list`) or custom ones (`/blocks add …`)
+   - speed vs thoroughness → `./dm campaign set turn_speed fast|balanced|thorough` (default balanced: every rules
+     event audited by a sonnet rules-lawyer; fast: routine engine-computed events auto-pass and subagents use
+     haiku; thorough: opus subagents and a bigger brief)
    Enable chosen library blocks with `./dm context enable a,b,c`.
 5. **World.** For a quick start, create 3–6 starter lore entries (starting town, a local threat, a faction, an NPC
    ally, a rumour). For a deep world or a reference document, hand off to the `lore` skill.
+   Then set it moving: start the clock (`./dm time set 1 08:00`, with `--calendar harptos --date "…" --year …`
+   for the Forgotten Realms), give each faction an agenda (`./dm faction agenda <f> add "…"`), add a clock for the
+   main threat (`./dm clock add "…" --segments 6 --per 1d` or `--deadline`), and set the opening scene
+   (`./dm scene set "…" --present …`).
 6. **Characters** (below), then `./dm lore index` and start play with the `dm` skill.
 
 ## Character creation (5e 2014)
-Walk each player through it, looking options up in the local data so everything is legal:
+Use the **Character Forge**: it builds the sheet from the rules data and refuses anything illegal (the web
+client's Party tab has the same thing as a form: "＋ New character").
+
+1. Talk it through with the player: race, class, background, how to generate scores. Look options up as needed
+   (`./dm rules list race`, `./dm rules show fighter --type class`, `./dm rules list background`).
+2. Scores: `--scores standard` (15 14 13 12 10 8), `pointbuy` (27 points, 8–15) or `roll`. For rolled scores,
+   first run `./dm pc build "Name" --scores roll`: it rolls 4d6-drop-lowest ×6 and keeps them for that character
+   (no re-rolling). Then assign them.
+3. Preview, show the player, adjust, then create:
+```
+./dm pc build "Brann" --race "Hill Dwarf" --class Fighter --background Soldier --scores standard \
+  --assign str=15,dex=12,con=14,int=8,wis=13,cha=10 --skills perception,survival \
+  --gear "Chain Mail, Shield, Longsword, Light Crossbow, Explorer's Pack" [--player Sam] --preview
+```
+   It applies racial bonuses (`--asi dex=1,wis=1` where the race lets you choose; `--feat` for variant human),
+   background and class skills (it says which to choose), saves, HP (with Dwarven Toughness), speed, senses,
+   proficiencies, level-1 features, the background's items and gold, and starting gear: armor and shield are worn
+   (AC computed), weapons become attacks with the right to-hit and damage. `--gold` takes the class's starting gold
+   instead of gear. Higher-level starts: `--level 3 --subclass Champion`.
+4. Spells: it tells you how many cantrips and spells; record them with `./dm pc set <pc> spells "a, b, c"`.
+
+`./dm pc add` (manual, any numbers) stays for homebrew classes or imported sheets.
+
+The manual walk-through, for reference:
 
 - Race/subrace: `./dm rules list race` → `./dm rules show "Hill Dwarf" --type subrace`
 - Class: `./dm rules show fighter --type class`; subclass at the right level
@@ -55,5 +86,4 @@ Save it:
 ./dm pc resource <pc> add "Channel Divinity" --max 1 --reset short
 ./dm pc item <pc> add "Holy symbol"   ./dm pc gold <pc> +15
 ```
-If `rules_audit` is not `off`, have the `rules-lawyer` agent check the finished character sheet
-(`./dm pc json <pc>`). Save each character's backstory hooks as memories (`--type relationship` or `secret`).
+Have the `rules-lawyer` agent check every finished character sheet (`./dm pc json <pc>`) before play starts. Save each character's backstory hooks as memories (`--type relationship` or `secret`).

@@ -172,6 +172,29 @@ def save_bonuses(m: dict) -> dict[str, int]:
 _HIT_RE = re.compile(r"\{@hit (-?\d+)\}")
 _DMG_RE = re.compile(r"\{@damage ([^}|]+)[^}]*\}\)?\s*([a-z]+)? ?damage", re.IGNORECASE)
 _DC_RE = re.compile(r"\{@dc (\d+)\}\s*(\w+) saving throw", re.IGNORECASE)
+_ATK_RE = re.compile(r"\{@atk ([a-z, ]+)\}")
+_REACH_RE = re.compile(r"reach (\d+) ?ft", re.IGNORECASE)
+_RANGE_RE = re.compile(r"range (\d+)(?:/(\d+))? ?ft", re.IGNORECASE)
+
+
+def walk_speed(m: dict) -> int:
+    sp = m.get("speed") or {}
+    if isinstance(sp, int):
+        return sp
+    v = sp.get("walk", 30 if not sp else 0)
+    return int(v.get("number", 0) if isinstance(v, dict) else v or 0)
+
+
+def speeds(m: dict) -> dict[str, int]:
+    sp = m.get("speed") or {}
+    if isinstance(sp, int):
+        return {"walk": sp}
+    out = {}
+    for mode in ("walk", "burrow", "climb", "fly", "swim"):
+        v = sp.get(mode)
+        if v is not None:
+            out[mode] = int(v.get("number", 0) if isinstance(v, dict) else v)
+    return out or {"walk": 30}
 
 
 def parse_attacks(m: dict) -> list[dict]:
@@ -194,6 +217,16 @@ def parse_attacks(m: dict) -> list[dict]:
             rec: dict[str, Any] = {"name": strip_tags(act["name"]), "section": section}
             if hit:
                 rec["to_hit"] = int(hit.group(1))
+                kind = _ATK_RE.search(raw)
+                tags = set(kind.group(1).replace(" ", "").split(",")) if kind else set()
+                melee, ranged = bool(tags & {"mw", "ms"}), bool(tags & {"rw", "rs"})
+                rec["kind"] = "both" if melee and ranged else "ranged" if ranged else "melee"
+                reach = _REACH_RE.search(raw)
+                if reach:
+                    rec["reach"] = int(reach.group(1))
+                rng = _RANGE_RE.search(raw)
+                if rng:
+                    rec["range"] = [int(rng.group(1)), int(rng.group(2) or rng.group(1))]
             if dmg:
                 rec["damage"] = dmg
             if dc:
@@ -248,6 +281,9 @@ def combat_profile(m: dict) -> dict:
         "condition_immune": _condition_immunities(m),
         "attacks": parse_attacks(m),
         "legendary_actions": legendary_count(m),
+        "size": (m.get("size") or ["M"])[0],
+        "speed": walk_speed(m),
+        "speeds": speeds(m),
         "cr": cr_text(m.get("cr")),
         "xp": xp_for_cr(m.get("cr")),
         "type": monster_type(m),

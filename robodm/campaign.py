@@ -41,8 +41,6 @@ from robodm.util import (
 DEFAULT_SETTINGS: dict[str, Any] = {
     # auto: RoboDM rolls everything. players: players roll their own PC dice and report results.
     "dice_mode": "auto",
-    # off | key (big moments: deaths, 3rd+ level spells, contested calls) | always (every mechanical ruling)
-    "rules_audit": "key",
     # double_dice (RAW) | max_plus_roll (popular house rule)
     "crit_rule": "double_dice",
     # milestone | xp
@@ -53,14 +51,24 @@ DEFAULT_SETTINGS: dict[str, Any] = {
     "narration": "standard",
     # Hide monster HP numbers from players (describe as bloodied/near death instead)
     "hide_monster_hp": True,
+    # Battle-map diagonals: 5 (PHB: every diagonal costs 5 ft) | 5-10-5 (DMG variant: alternate 5 and 10 ft)
+    "grid_diagonals": "5",
+    # Companion subagents: key (at decision points; default) | always (every time they act or speak) | off (DM voices them)
+    "companion_agents": "key",
+    # fast | balanced | thorough: subagent models, post-audit scope and brief size (robodm/costs.py)
+    "turn_speed": "balanced",
+    # The DM's own model in the web client ("" = Claude Code's default; sonnet, opus, haiku or a full model id)
+    "dm_model": "",
 }
 
 SETTING_CHOICES = {
     "dice_mode": ["auto", "players"],
-    "rules_audit": ["off", "key", "always"],
     "crit_rule": ["double_dice", "max_plus_roll"],
     "advancement": ["milestone", "xp"],
     "narration": ["concise", "standard", "rich"],
+    "grid_diagonals": ["5", "5-10-5"],
+    "companion_agents": ["key", "always", "off"],
+    "turn_speed": ["fast", "balanced", "thorough"],
 }
 
 HIT_DICE = {
@@ -96,6 +104,7 @@ class Campaign:
         # fill in settings added in newer versions
         settings = dict(DEFAULT_SETTINGS)
         settings.update(self.data.get("settings", {}))
+        settings.pop("rules_audit", None)  # rules checking is mandatory now (robodm/audit.py)
         self.data["settings"] = settings
 
     # ------------------------------------------------------------ basics
@@ -317,9 +326,19 @@ def delete(slug: str) -> None:
 
 
 def coerce_setting(key: str, value: str) -> Any:
+    if key == "rules_audit":
+        raise RoboDMError("Rules checking is mandatory (a gate before every rules event and an audit after it); "
+                          "it can't be turned off. See `./dm audit status`.")
     if key not in DEFAULT_SETTINGS:
         raise RoboDMError(f"Unknown setting '{key}'. Settings: {', '.join(DEFAULT_SETTINGS)}")
     default = DEFAULT_SETTINGS[key]
+    if key == "dm_model":
+        v = value.strip()
+        if v in ("default", "none", "-"):
+            return ""
+        if v and v not in ("sonnet", "opus", "haiku") and not v.startswith("claude-"):
+            raise RoboDMError("dm_model is sonnet, opus, haiku, a full model id (claude-…), or default.")
+        return v
     if key in SETTING_CHOICES and value not in SETTING_CHOICES[key]:
         raise RoboDMError(f"{key} must be one of: {', '.join(SETTING_CHOICES[key])}")
     if isinstance(default, bool):
@@ -354,6 +373,66 @@ def spell_slots_for(cls: str, level: int, subclass: str = "") -> dict:
         return {}
     row = FULL_CASTER_SLOTS[min(caster_level, 20) - 1]
     return {str(i + 1): {"max": n, "used": 0} for i, n in enumerate(row)}
+
+
+def parse_classes(text: str) -> list[dict]:
+    """'Wizard 3, Cleric 2 (Life Domain)' → [{'class': 'Wizard', 'level': 3, 'subclass': ''}, …]"""
+    out = []
+    for part in [x.strip() for x in re.split(r"[,/;]", text) if x.strip()]:
+        m = re.fullmatch(r"([A-Za-z][A-Za-z' -]*?)\s+(\d{1,2})(?:\s*\(([^)]*)\))?", part)
+        if not m:
+            raise RoboDMError(f"Can't read '{part}'. Write classes like \"Wizard 3, Cleric 2 (Life Domain)\".")
+        out.append({"class": m.group(1).strip().title(), "level": int(m.group(2)), "subclass": (m.group(3) or "").strip()})
+    if not out or sum(c["level"] for c in out) > 20:
+        raise RoboDMError("Give 1–20 total levels across the classes.")
+    return out
+
+
+def pc_classes(pc: dict) -> list[dict]:
+    return pc.get("classes") or [{"class": pc.get("class", ""), "level": pc.get("level", 1), "subclass": pc.get("subclass", "")}]
+
+
+def multiclass_slots(classes: list[dict]) -> dict:
+    """PHB p.164-165: one Spellcasting class uses its own table; several combine into a caster level (full
+    levels + half of paladin/ranger + third of Eldritch Knight/Arcane Trickster, rounded down; artificer half
+    rounded up) on the multiclass table. Warlock Pact Magic stays separate (key 'pact' when combined)."""
+    casters = []
+    level = 0
+    for c in classes:
+        name, lvl, sub = c["class"].lower(), int(c["level"]), c.get("subclass", "").lower()
+        if name in FULL_CASTERS:
+            casters.append(c)
+            level += lvl
+        elif name in HALF_CASTERS and lvl >= 2:
+            casters.append(c)
+            level += lvl // 2
+        elif name == "artificer":
+            casters.append(c)
+            level += (lvl + 1) // 2
+        elif sub in THIRD_CASTER_SUBCLASSES and lvl >= 3:
+            casters.append(c)
+            level += lvl // 3
+    warlock = sum(int(c["level"]) for c in classes if c["class"].lower() == "warlock")
+    if len(casters) <= 1:
+        slots = spell_slots_for(casters[0]["class"], int(casters[0]["level"]), casters[0].get("subclass", "")) if casters else {}
+    else:
+        row = FULL_CASTER_SLOTS[min(level, 20) - 1] if level > 0 else []
+        slots = {str(i + 1): {"max": n, "used": 0} for i, n in enumerate(row)}
+    if warlock:
+        n, lvl = PACT_SLOTS[min(warlock, 20) - 1]
+        if slots:
+            slots["pact"] = {"max": n, "used": 0, "pact": True, "level": lvl}
+        else:
+            slots = {str(lvl): {"max": n, "used": 0, "pact": True}}
+    return slots
+
+
+def pc_slots(pc: dict) -> dict:
+    return multiclass_slots(pc_classes(pc))
+
+
+def slot_label(key: str, slot: dict) -> str:
+    return f"pact L{slot.get('level')}" if key == "pact" else f"L{key}{' (pact)' if slot.get('pact') else ''}"
 
 
 def default_max_hp(cls: str, level: int, con: int) -> int:
@@ -470,9 +549,13 @@ def pc_spell_dc(pc: dict) -> int | None:
 def pc_summary(pc: dict, full: bool = False) -> str:
     hp = pc["hp"]
     temp = f"+{hp['temp']} temp" if hp.get("temp") else ""
-    who = " ".join(x for x in (pc.get("race"), f"{pc.get('class', '')} {pc.get('level', 1)}".strip()) if x)
-    if pc.get("subclass"):
-        who += f" ({pc['subclass']})"
+    if pc.get("classes") and len(pc["classes"]) > 1:
+        who = " ".join(x for x in (pc.get("race"), " / ".join(
+            f"{c['class']} {c['level']}" + (f" ({c['subclass']})" if c.get("subclass") else "") for c in pc["classes"])) if x)
+    else:
+        who = " ".join(x for x in (pc.get("race"), f"{pc.get('class', '')} {pc.get('level', 1)}".strip()) if x)
+        if pc.get("subclass"):
+            who += f" ({pc['subclass']})"
     status = ""
     if hp["current"] <= 0:
         ds = pc.get("death_saves", {})
@@ -496,7 +579,7 @@ def pc_summary(pc: dict, full: bool = False) -> str:
         lines.append(f"Spell save DC {dc} · spell attack {fmt_mod(dc - 8)} ({pc['spellcasting_ability'].upper()})")
     if pc.get("spell_slots"):
         lines.append("Slots: " + ", ".join(
-            f"L{k} {v['max'] - v['used']}/{v['max']}{' (pact)' if v.get('pact') else ''}" for k, v in sorted(pc["spell_slots"].items())))
+            f"{slot_label(k, v)} {v['max'] - v['used']}/{v['max']}" for k, v in sorted(pc["spell_slots"].items())))
     if pc.get("spells"):
         lines.append("Spells: " + ", ".join(pc["spells"]))
     if pc.get("attacks"):
@@ -507,9 +590,17 @@ def pc_summary(pc: dict, full: bool = False) -> str:
             f"{k} {v['max'] - v['used']}/{v['max']} ({v.get('reset', 'long')})" for k, v in pc["resources"].items()))
     if pc.get("features"):
         lines.append("Features: " + ", ".join(pc["features"]))
+    eq = pc.get("equipped") or {}
+    worn = [x for x in (eq.get("armor"), eq.get("shield")) if x] + list(eq.get("worn") or [])
+    if worn or pc.get("attuned"):
+        lines.append("Equipped: " + (", ".join(worn) or "nothing")
+                     + (f" · Attuned ({len(pc['attuned'])}/3): {', '.join(pc['attuned'])}" if pc.get("attuned") else ""))
+    if pc.get("senses") or pc.get("resist"):
+        lines.append(" · ".join(filter(None, [", ".join(pc.get("senses") or []),
+                                              ("Resists " + ", ".join(pc["resist"])) if pc.get("resist") else ""])))
     if pc.get("inventory"):
         lines.append("Inventory: " + ", ".join(pc["inventory"]))
-    lines.append(f"Gold: {pc.get('gold', 0)} gp · XP: {pc.get('xp', 0)}")
+    lines.append(f"Gold: {pc.get('gold', 0):g} gp · XP: {pc.get('xp', 0)}")
     if pc.get("notes"):
         lines.append(f"Notes: {pc['notes']}")
     return "\n".join(lines)

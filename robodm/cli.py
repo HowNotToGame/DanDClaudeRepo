@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import shlex
 import sys
 from pathlib import Path
 
-from robodm import __version__, bundle, campaign, combat, context_blocks, dice, lore, memory, paths, random_tables
+from robodm import __version__, audit, bundle, campaign, combat, context_blocks, dice, hooks, lore, memory, paths, random_tables
+from robodm import builder, receipts, snapshots, tactics, world
+from robodm.tactics import turn_problems as _turn_problems
 from robodm.util import (
     ABILITIES,
     ABILITY_NAMES,
@@ -15,7 +19,9 @@ from robodm.util import (
     ability_mod,
     fmt_mod,
     normalize_ability,
+    norm_name,
     normalize_skill,
+    ordinal,
     parse_csv_list,
     truncate,
 )
@@ -23,7 +29,13 @@ from robodm.util import (
 
 # =============================================================================== helpers
 
+# Output of the running rules command, kept for its post-audit event (see main()).
+_CAPTURE: list[str] | None = None
+
+
 def out(text: str = "") -> None:
+    if _CAPTURE is not None:
+        _CAPTURE.extend(str(text).splitlines())
     try:
         print(text)
     except UnicodeEncodeError:  # e.g. legacy Windows consoles
@@ -128,6 +140,13 @@ def cmd_campaign(args) -> None:
             c.settings[args.key] = campaign.coerce_setting(args.key, args.value)
         c.save()
         out(f"{args.key} = {c.data.get(args.key, c.settings.get(args.key))}")
+        if args.key == "turn_speed":
+            from robodm import costs
+
+            changed = costs.apply_speed(c)
+            out(f"Subagent models: {', '.join(changed) if changed else 'already set'} · brief {costs.brief_budget(c):,} chars · "
+                + ("routine mechanical events auto-pass the post-audit" if costs.speed(c) == "fast" else "every rules event is post-audited")
+                + ". (Restart Claude Code to load changed agent files.)")
     elif a == "note":
         c = get_camp(args)
         c.data["dm_notes"] = (c.data.get("dm_notes", "") + "\n" + args.name).strip() if not args.replace else args.name
@@ -159,6 +178,9 @@ def cmd_pc(args) -> None:
         out(f"Added {pc['name']}.")
         out(campaign.pc_summary(pc, full=True))
         return
+    if a == "build":
+        _pc_build(c, args)
+        return
     if a == "list":
         party = c.party()
         if not party:
@@ -166,14 +188,8 @@ def cmd_pc(args) -> None:
         for pc in party:
             out(f"- {campaign.pc_summary(pc)}")
         return
-    if a == "rest" and args.name.lower() in ("all", "party"):
-        for pc in c.party():
-            changes = campaign.rest(pc, args.value)
-            c.save_pc(pc)
-            out(f"{pc['name']} — {args.value} rest: {', '.join(changes) or 'nothing to restore'}")
-        if args.value == "short":
-            out("Short rest: players may spend hit dice (`./dm pc hitdie <name>`).")
-        c.log(f"Party took a {args.value} rest.")
+    if a == "rest" and args.name and args.name.lower() in ("all", "party"):
+        _rest(c, c.party(), args)
         return
     if a == "xp" and args.name.lower() in ("all", "party"):
         amount = int(args.value)
@@ -200,10 +216,21 @@ def cmd_pc(args) -> None:
         if fl in ABILITIES:
             pc["abilities"][fl] = int(raw)
         elif fl in ("level", "ac", "speed", "gold", "xp"):
+            if fl == "level" and len(pc.get("classes") or []) > 1:
+                raise RoboDMError(f"{pc['name']} is multiclassed: set `classes \"Wizard 3, Cleric 2\"` instead.")
             pc[fl] = int(raw)
             if fl == "level":
                 pc["hit_dice"]["max"] = pc["level"]
-                pc["spell_slots"] = campaign.spell_slots_for(pc.get("class", ""), pc["level"], pc.get("subclass", ""))
+                if pc.get("classes"):
+                    pc["classes"][0]["level"] = pc["level"]
+                pc["spell_slots"] = _merge_slots(pc.get("spell_slots", {}), campaign.pc_slots(pc))
+        elif fl == "classes":
+            classes = campaign.parse_classes(raw)
+            pc["classes"] = classes
+            pc["class"], pc["subclass"] = classes[0]["class"], classes[0]["subclass"]
+            pc["level"] = sum(c["level"] for c in classes)
+            pc["hit_dice"]["max"] = pc["level"]
+            pc["spell_slots"] = _merge_slots(pc.get("spell_slots", {}), campaign.pc_slots(pc))
         elif fl in ("max_hp", "hp_max", "maxhp"):
             pc["hp"]["max"] = int(raw)
             pc["hp"]["current"] = min(pc["hp"]["current"], pc["hp"]["max"])
@@ -226,7 +253,9 @@ def cmd_pc(args) -> None:
         elif fl in ("race", "class", "subclass", "player", "notes", "background", "name"):
             pc[fl] = raw
             if fl in ("class", "subclass"):
-                pc["spell_slots"] = campaign.spell_slots_for(pc.get("class", ""), pc["level"], pc.get("subclass", ""))
+                if pc.get("classes"):
+                    pc["classes"][0][fl] = raw
+                pc["spell_slots"] = _merge_slots(pc.get("spell_slots", {}), campaign.pc_slots(pc))
         elif fl in ("jack", "jack_of_all_trades"):
             pc["jack_of_all_trades"] = raw.lower() in ("1", "true", "yes")
         elif fl.startswith("bonus."):
@@ -267,6 +296,14 @@ def cmd_pc(args) -> None:
     if a in ("check", "save"):
         _pc_check(c, pc, args, save=(a == "save"))
         return
+    if a == "cast":
+        if not args.value:
+            raise RoboDMError("Usage: pc cast <name> \"<spell>\" [--slot N] [--ritual]")
+        for line in _cast(c, args, pc["name"], args.value):
+            out(line)
+        if c.session.get("active"):
+            c.log(f"{pc['name']} cast {args.value}.")
+        return
     if a == "hitdie":
         hd = pc["hit_dice"]
         n = int(args.value or 1)
@@ -286,9 +323,7 @@ def cmd_pc(args) -> None:
             f"({hd['max'] - hd['used']} hit dice left)")
         return
     if a == "rest":
-        changes = campaign.rest(pc, args.value)
-        c.save_pc(pc)
-        out(f"{pc['name']} — {args.value} rest: {', '.join(changes) or 'nothing to restore'}")
+        _rest(c, [pc], args)
         return
     if a == "slot":
         verb, level = args.value, args.extra
@@ -317,6 +352,8 @@ def cmd_pc(args) -> None:
                 raise RoboDMError(f"No resource '{res}'. Known: {', '.join(resources) or 'none'}")
             r = resources[res]
             if verb == "use":
+                for n in audit.gate(c, [], args, [("feature", res, f"{pc['name']} uses {res}")]):
+                    out(n)
                 if r["used"] >= r["max"]:
                     raise RoboDMError(f"{res} is spent (resets on a {r.get('reset', 'long')} rest).")
                 r["used"] += int(args.n or 1)
@@ -336,14 +373,38 @@ def cmd_pc(args) -> None:
             if args.to_hit is None or not args.damage:
                 raise RoboDMError("Usage: pc attack <name> add \"Longsword\" --to-hit 5 --damage \"1d8+3 slashing\"")
             attacks[:] = [x for x in attacks if x["name"].lower() != name.lower()]
-            attacks.append({"name": name, "to_hit": int(args.to_hit),
-                            "damage": [list(d) for d in combat.parse_damage_spec(args.damage)]})
+            rec = {"name": name, "to_hit": int(args.to_hit), "damage": [list(d) for d in combat.parse_damage_spec(args.damage)],
+                   "kind": "ranged" if (args.range and not args.reach) else "melee"}
+            if args.reach:
+                rec["reach"] = int(args.reach)
+            if args.range:
+                rec["range"] = tactics._parse_range(args.range)
+                if args.reach:
+                    rec["kind"] = "both"
+            attacks.append(rec)
         elif verb == "remove":
             attacks[:] = [x for x in attacks if x["name"].lower() != name.lower()]
         else:
             raise RoboDMError("Usage: pc attack <name> add|remove <attack name> …")
         c.save_pc(pc)
         out("Attacks: " + ("; ".join(f"{x['name']} {fmt_mod(x['to_hit'])} ({', '.join(' '.join(d) for d in x['damage'])})" for x in attacks) or "none"))
+        return
+    if a in ("equip", "unequip", "attune", "unattune"):
+        item = " ".join(x for x in (args.value, args.extra) if x)
+        if not item:
+            raise RoboDMError(f"Usage: pc {a} <name> \"<item>\"")
+        if a == "attune":
+            _, problems = builder.attune_problems(pc, item, c)
+            audit.gate(c, problems, args)
+        fn = {"equip": builder.equip, "unequip": builder.unequip, "attune": builder.attune, "unattune": builder.unattune}[a]
+        for line in fn(pc, item, c):
+            out(line)
+        c.save_pc(pc)
+        _sync_combat_from_sheet(c)
+        return
+    if a == "load":
+        for line in _load_report(c, pc):
+            out(line)
         return
     if a == "item":
         verb, item = args.value, args.extra
@@ -371,28 +432,24 @@ def cmd_pc(args) -> None:
         out(f"{pc['name']}: {pc['xp']} XP")
         return
     if a == "levelup":
-        pc["level"] += 1
-        pc["hit_dice"]["max"] = pc["level"]
-        con = ability_mod(pc["abilities"]["con"])
-        hd = pc["hit_dice"]["die"]
-        if args.value and args.value.isdigit():
-            gain = int(args.value)
-            how = "given"
-        elif args.value == "roll":
-            r = dice.roll(f"1d{hd}")
-            gain = max(1, r.total + con)
-            how = f"rolled {r.total}{fmt_mod(con)}"
-        else:
-            gain = max(1, hd // 2 + 1 + con)
-            how = f"average {hd // 2 + 1}{fmt_mod(con)}"
-        pc["hp"]["max"] += gain
-        pc["hp"]["current"] += gain
-        pc["spell_slots"] = _merge_slots(pc.get("spell_slots", {}), campaign.spell_slots_for(pc.get("class", ""), pc["level"], pc.get("subclass", "")))
-        c.save_pc(pc)
-        out(f"⬆️ {pc['name']} is now level {pc['level']}! +{gain} max HP ({how}).")
-        out(campaign.pc_summary(pc, full=True))
-        out("Check new class features with `./dm rules list classfeature --class <class> --level <level>` and record choices.")
-        c.log(f"{pc['name']} reached level {pc['level']}.")
+        asi = {"later": 0} if (args.asi or "").strip().lower() == "later" else builder.parse_assign(args.asi)
+        new, changes, problems = builder.levelup_plan(c, pc, cls=args.cls or "", subclass=args.subclass or "",
+                                                      hp=args.value, asi=asi or None, feat=args.feat or "")
+        if args.preview:
+            out(f"**Level-up preview for {pc['name']}** (nothing saved):")
+            for line in changes:
+                out(line)
+            for p in problems:
+                out(f"⚠️ needs: {p}")
+            out("Apply it with the same command without --preview.")
+            return
+        audit.gate(c, problems, args)
+        c.save_pc(new)
+        _sync_combat_from_sheet(c)
+        out(f"⬆️ {new['name']} is now level {new['level']}!")
+        for line in changes:
+            out(line)
+        c.log(f"{new['name']} reached level {new['level']}.")
         return
     if a == "condition":
         verb, cond = args.value, args.extra
@@ -403,12 +460,167 @@ def cmd_pc(args) -> None:
             pc["conditions"] = [x for x in conds if (x.get("name") if isinstance(x, dict) else x) != cond.lower()]
         c.save_pc(pc)
         out(f"{pc['name']} conditions: {', '.join((x.get('name') if isinstance(x, dict) else x) for x in pc['conditions']) or 'none'}")
+        if verb == "add" and (args.for_ or args.until_rest):
+            w = world.load(c)
+            minutes = None if args.until_rest else world.parse_duration(args.for_, world.now(w))
+            rec, _ = world.timer_add(c, f"{cond.lower()} on {pc['name']}", who=pc["slug"], minutes=minutes,
+                                     until="long-rest" if args.until_rest else None, condition=cond.lower())
+            out(f"⌛ {world.fmt_timer(world.load(c), rec)}")
         return
     if a == "delete":
         c.pc_path(pc["slug"]).unlink()
         out(f"Removed {pc['name']} from the party.")
         return
     raise RoboDMError(f"Unknown pc action '{a}'.")
+
+
+def _pc_build(c: campaign.Campaign, args) -> None:
+    """The Character Forge: a level-1 (or higher) character built and checked against the rules data."""
+    if not args.name:
+        raise RoboDMError("Usage: pc build \"Name\" --race \"Hill Dwarf\" --class Fighter --background Soldier "
+                          "--scores standard --assign str=15,dex=12,con=14,int=8,wis=13,cha=10 --skills a,b [--gear …|--gold]")
+    slug = campaign.slugify(args.name)
+    if c.find_pc(args.name) and c.find_pc(args.name)["slug"] == slug:
+        raise RoboDMError(f"{args.name} already exists.")
+    method = (args.scores or "standard").lower()
+    if method == "roll" and not args.assign:
+        prior = audit.rolled_scores(c, slug)
+        audit.gate(c, [f"scores were already rolled for {args.name} ({', '.join(map(str, prior))}): assign those "
+                       "with --assign"] if prior else [], args)
+        rolls = dice.roll_stats("4d6")
+        scores = sorted((r["score"] for r in rolls), reverse=True)
+        audit.remember_roll(c, slug, scores)
+        out(f"🎲 Ability scores for {args.name} (4d6, drop lowest): " + ", ".join(
+            f"**{r['score']}** [{' '.join(map(str, r['rolls']))}]" for r in rolls))
+        out(f"Now assign them: the same `pc build` with `--scores roll --assign str=…,dex=…,con=…,int=…,wis=…,cha=…`.")
+        return
+    for need in ("race", "cls", "background"):
+        if not getattr(args, need):
+            raise RoboDMError(f"pc build needs --{'class' if need == 'cls' else need}.")
+    pc, report, problems = builder.build(
+        c, args.name, args.race, args.cls, args.background, method, builder.parse_assign(args.assign),
+        asi=builder.parse_assign(args.asi), skills=parse_csv_list(args.skills), gear=parse_csv_list(args.gear),
+        gold=args.gold, level=args.level or 1, subclass=args.subclass or "", player=args.player or "",
+        rolled=audit.rolled_scores(c, slug), feat=args.feat or "")
+    if not problems:
+        report += builder.equip_all(pc, c)
+    if args.preview:
+        out(f"**Character Forge preview** (nothing saved):")
+        out(campaign.pc_summary(pc, full=True))
+        for line in report:
+            out(line)
+        for p in problems:
+            out(f"⚠️ needs: {p}")
+        out("Create it with the same command without --preview.")
+        return
+    audit.gate(c, problems, args)
+    if problems:
+        report += builder.equip_all(pc, c)
+    c.save_pc(pc)
+    out(f"🛠 Built {pc['name']}:")
+    out(campaign.pc_summary(pc, full=True))
+    for line in report:
+        out(line)
+
+
+def _load_report(c: campaign.Campaign, pc: dict) -> list[str]:
+    """What the character carries, by weight (items found in the data), against their carrying capacity."""
+    import re as _re
+
+    db = rules_db()
+    total, unknown = 0.0, []
+    for raw in pc.get("inventory") or []:
+        m = _re.match(r"^(\d+)\s+(.+)$", raw.strip())
+        qty, name = (int(m.group(1)), m.group(2)) if m else (1, raw)
+        it, _ = builder.item_entry(db, name, c)
+        if it is None and name.endswith("s"):
+            it, _ = builder.item_entry(db, name[:-1], c)
+        if it and it.get("weight") is not None:
+            total += float(it["weight"]) * qty
+        else:
+            unknown.append(raw)
+    st = pc["abilities"]["str"]
+    size = {"T": 0.5, "S": 1, "M": 1, "L": 2, "H": 4, "G": 8}.get(pc.get("size", "M"), 1)
+    lines = [f"🎒 {pc['name']} carries about {total:g} lb (capacity {st * 15 * size:g} lb; push/drag/lift {st * 30 * size:g} lb)."]
+    if c.settings.get("encumbrance") == "variant":
+        if total > st * 10 * size:
+            lines.append(f"Heavily encumbered (over {st * 10 * size:g} lb): speed −20 ft., disadvantage on STR/DEX/CON checks, "
+                         "attacks and saves (PHB p.176).")
+        elif total > st * 5 * size:
+            lines.append(f"Encumbered (over {st * 5 * size:g} lb): speed −10 ft. (PHB p.176).")
+    if total > st * 15 * size:
+        lines.append("⚠️ Over carrying capacity.")
+    if unknown:
+        lines.append(f"(not in the item data, so not weighed: {', '.join(unknown[:12])}{'…' if len(unknown) > 12 else ''})")
+    return lines
+
+
+def cmd_shop(args) -> None:
+    """Prices from the item data; buying and selling move gold and inventory."""
+    c = get_camp(args)
+    name = " ".join(args.item or [])
+    if not name:
+        raise RoboDMError("Usage: shop \"<item>\" [--pc mira --buy|--sell] [--qty N]")
+    it, bonus = builder.item_entry(rules_db(), name, c)
+    if it is None:
+        raise RoboDMError(f"No item '{name}' in the data (`./dm rules search {name} --type item`).")
+    value = it.get("value")
+    qty = max(1, args.qty or 1)
+    price = (value or 0) / 100 * qty
+    head = f"🪙 {it['name']}: " + (f"{value / 100:g} gp" if value is not None else "no list price (DM sets it)") \
+        + (f" each · {qty} = {price:g} gp" if qty > 1 and value is not None else "") \
+        + (f" · {it['weight']:g} lb" if it.get("weight") is not None else "") \
+        + (f" · {it.get('rarity')}" if it.get("rarity") not in (None, "none") else "")
+    out(head)
+    if not (args.buy or args.sell):
+        return
+    if not args.pc:
+        raise RoboDMError("Say who: --pc <name>.")
+    if value is None and args.price is None:
+        raise RoboDMError(f"{it['name']} has no list price: give one with --price <gp>.")
+    each = args.price if args.price is not None else value / 100
+    pc = c.get_pc(args.pc)
+    inv = pc.setdefault("inventory", [])
+    label = it["name"] if qty == 1 else f"{qty} {it['name']}"
+    if args.buy:
+        cost = round(each * qty, 2)
+        if pc.get("gold", 0) < cost:
+            raise RoboDMError(f"{pc['name']} has {pc.get('gold', 0):g} gp; {label} costs {cost:g} gp.")
+        pc["gold"] = round(pc.get("gold", 0) - cost, 2)
+        inv.append(label)
+        out(f"{pc['name']} buys {label} for {cost:g} gp → {pc['gold']:g} gp left.")
+    else:
+        match = next((x for x in inv if norm_name(x) == norm_name(label) or norm_name(x) == norm_name(it["name"])), None)
+        if not match:
+            raise RoboDMError(f"{pc['name']} doesn't carry {it['name']}.")
+        gain = round(each * qty / (1 if args.price is not None else 2), 2)     # adventurers sell at half price
+        inv.remove(match)
+        pc["gold"] = round(pc.get("gold", 0) + gain, 2)
+        out(f"{pc['name']} sells {label} for {gain:g} gp → {pc['gold']:g} gp.")
+    c.save_pc(pc)
+    c.log(head.replace("🪙 ", "Shop: "))
+
+
+def _rest(c: campaign.Campaign, pcs: list[dict], args) -> None:
+    """Short (1 hour) or long (8 hours) rest: gated (24-hour rule, at least 1 HP), then the clock moves on."""
+    kind = args.value
+    if kind not in ("short", "long"):
+        raise RoboDMError("Usage: pc rest <name|party> short|long [--no-time]")
+    audit.gate(c, world.rest_problems(c, pcs, kind), args)
+    for pc in pcs:
+        changes = campaign.rest(pc, kind)
+        c.save_pc(pc)
+        out(f"{pc['name']} — {kind} rest: {', '.join(changes) or 'nothing to restore'}")
+    if kind == "long":
+        for line in world.long_rest(c, [pc["slug"] for pc in pcs]):
+            out(line)
+    if len(pcs) > 1:
+        if kind == "short":
+            out("Short rest: players may spend hit dice (`./dm pc hitdie <name>`).")
+        c.log(f"Party took a {kind} rest.")
+    if not args.no_time:
+        for line in world.advance_if_tracking(c, 8 * 60 if kind == "long" else 60, f"{kind} rest"):
+            out(line)
 
 
 def _merge_slots(old: dict, new: dict) -> dict:
@@ -442,27 +654,304 @@ def _pc_check(c: campaign.Campaign, pc: dict, args, save: bool) -> None:
             if pc.get("jack_of_all_trades"):
                 bonus += campaign.pc_prof(pc) // 2
             label = f"{pc['name']} {ABILITY_NAMES[ab]} check"
-    if c.settings.get("dice_mode") == "players" and not args.auto:
+    vs = None
+    if args.vs is not None:
+        try:
+            vs = int(args.vs)
+        except ValueError:
+            raise RoboDMError("--vs is the opponent's total for a contest (roll theirs first), e.g. --vs 14.")
+    key = f"{pc['slug']}:{label}"
+    problems = []
+    if args.dc is None and vs is None and not args.open:
+        problems.append("set the DC before the roll: --dc N (5 very easy · 10 easy · 15 medium · 20 hard · 25 very hard · "
+                        "30 nearly impossible), --vs <opponent's total> for a contest, or --open for a check with no "
+                        "fixed DC (graded results; flagged to the audit)")
+    prior = audit.asked(c, key) if args.result is not None else None
+    if prior and (prior.get("dc") != args.dc or prior.get("vs") != (str(vs) if vs is not None else None)):
+        was = f"DC {prior['dc']}" if prior.get("dc") is not None else (f"vs {prior['vs']}" if prior.get("vs") else "open")
+        problems.append(f"when you asked for this roll the target was {was}; it can't change after the roll")
+    audit.gate(c, problems, args)
+    target = f" vs DC {args.dc}" if args.dc is not None else (f" vs {vs} (contest)" if vs is not None else "")
+    if c.settings.get("dice_mode") == "players" and not args.auto and args.result is None:
+        audit.remember_ask(c, key, args.dc, str(vs) if vs is not None else None)
         out(f"Ask {pc.get('player') or pc['name']} to roll: d20{fmt_mod(bonus)} for {label}"
-            f"{' (advantage)' if args.adv else ''}{' (disadvantage)' if args.dis else ''}"
-            f"{' vs DC ' + str(args.dc) if args.dc else ''}. (Add --auto to roll for them.)")
+            f"{' (advantage)' if args.adv else ''}{' (disadvantage)' if args.dis else ''}{target}. "
+            f"Then record it: the same command plus `--result <total>` (or add --auto to roll for them).")
         return
-    r = dice.roll_d20(bonus, adv=args.adv, dis=args.dis, label=label)
-    line = "🎲 " + r.text()
-    if args.dc:
-        line += f" vs DC {args.dc} → **{'success' if r.total >= args.dc else 'failure'}**"
+    if args.dc and not 5 <= args.dc <= 30:
+        out(f"⚠️ DC {args.dc} is off the PHB scale (5 very easy · 10 easy · 15 medium · 20 hard · 25 very hard · "
+            "30 nearly impossible).")
+    if args.result is not None:
+        total = int(args.result)
+        line = f"🎲 {label}: player rolled **{total}**"
+        audit.asked(c, key, pop=True)
+    else:
+        r = dice.roll_d20(bonus, adv=args.adv, dis=args.dis, label=label)
+        total = r.total
+        line = "🎲 " + r.text()
+    ok = None
+    if args.dc is not None:
+        ok = total >= args.dc
+        line += f" vs DC {args.dc} → **{'success' if ok else 'failure'}**"
+    elif vs is not None:
+        ok = True if total > vs else (False if total < vs else None)
+        line += f" vs {vs} (contest) → **{'success' if ok else 'failure' if ok is False else 'tie: nothing changes'}**"
+    else:
+        line += " (open check: no fixed DC)"
+    receipts.note("save" if save else "check", who=pc["name"], what=skill.title() if skill else ABILITY_NAMES[ab],
+                  ability=ab.upper() if save else None, total=total, dc=args.dc, vs=vs, ok=ok)
     out(line)
 
 
+# =============================================================================== rules gate (pre-checks)
+
+def _spell_record(name: str) -> tuple[dict, dict]:
+    db = rules_db()
+    db.require()
+    rec, alts = db.lookup(name, "spell")
+    if not rec:
+        raise RoboDMError(f"No spell '{name}' in the local data"
+                          + (f" (close: {', '.join(r['n'] for r in alts[:5])})" if alts else "")
+                          + ". Homebrew? Clear it as a ruling: `./dm ruling \"…\" --key <name>`.")
+    return rec, db.get(rec)
+
+
+def _spell_need(name: str, use: str = "") -> tuple[str, str, str]:
+    """The clearance a spell needs, under its canonical name."""
+    rec, _ = _spell_record(name)
+    return ("spell", rec["n"], use)
+
+
+def _condition_check(name: str, args, problems: list[str], needs: list) -> None:
+    n = name.lower()
+    if n in combat.CONDITIONS:
+        needs.append(("condition", n, ""))
+    elif not getattr(args, "custom", False):
+        problems.append(f"'{name}' isn't one of the 15 standard conditions — pass --custom for a spell-specific "
+                        "effect (e.g. hexed)")
+
+
+def _cast(c: campaign.Campaign, args, caster: str, spell_name: str, enc: combat.Encounter | None = None) -> list[str]:
+    """Validate a spell before it's cast (slots, class list, casting time, turn, bonus-action rule), then cast it."""
+    rec, sp = _spell_record(spell_name)
+    name, level = rec["n"], int(sp.get("level", 0))
+    t0 = (sp.get("time") or [{}])[0]
+    unit, number = (t0.get("unit") or "action").lower(), t0.get("number", 1)
+    conc, ritual = bool(rec.get("conc")), bool(getattr(args, "ritual", False))
+    problems: list[str] = []
+    srcs = {s.upper() for s in c.settings.get("sources") or []}
+    if srcs and rec["s"].upper() not in srcs:
+        problems.append(f"{name} is from {rec['s']}, which isn't in this campaign's sources ({', '.join(sorted(srcs))})")
+    cb = None
+    if enc is not None:
+        enc.require_active()
+        cb = enc.find(caster)
+        pc = c.find_pc(cb["pc"]) if cb.get("pc") else None
+        who = cb["name"]
+    else:
+        pc = c.get_pc(caster)
+        who = pc["name"]
+        live = combat.Encounter(c)
+        if live.active and any(x.get("pc") == pc["slug"] for x in live.combatants.values()):
+            raise RoboDMError(f"{who} is in combat — use `./dm combat cast {pc['slug']} \"{name}\"`.")
+    if ritual and not rec.get("rit"):
+        problems.append(f"{name} doesn't have the ritual tag")
+    slot_level = None
+    if pc:
+        known = [norm_name(s) for s in pc.get("spells", [])]
+        classes = [x.lower() for x in rec.get("cls", [])]
+        mine = [c["class"] for c in campaign.pc_classes(pc)]
+        if known and norm_name(name) not in known:
+            problems.append(f"{name} isn't among {who}'s spells (`./dm pc set {pc['slug']} spells \"…\"`)")
+        elif not known and classes and not any(c.lower() in classes for c in mine):
+            problems.append(f"{name} isn't on the {'/'.join(mine) or '?'} spell list ({', '.join(rec['cls'])})")
+        if level > 0 and not ritual:
+            slots = pc.get("spell_slots") or {}
+            slot_level = getattr(args, "slot", None)
+            pact_pool = slots.get("pact")
+            use_pact = bool(getattr(args, "pact", False))
+            if slot_level is None and not use_pact:
+                pact = [int(k) for k, v in slots.items() if v.get("pact") and k != "pact"]
+                regular = slots.get(str(level))
+                if pact_pool and pact_pool["level"] >= level and not (regular and regular["used"] < regular["max"]):
+                    use_pact = True
+                slot_level = pact[0] if pact and pact[0] >= level else level
+            if use_pact:
+                if not pact_pool:
+                    problems.append(f"{who} has no separate Pact Magic slots")
+                slot_level = pact_pool["level"] if pact_pool else level
+                slot_key = "pact"
+            else:
+                slot_key = str(slot_level)
+            slot = slots.get(slot_key)
+            if slot_level < level:
+                problems.append(f"{name} is a level {level} spell — it can't use a level {slot_level} slot")
+            elif not slot:
+                problems.append(f"{who} has no level {slot_level} spell slots"
+                                + (f" (has levels {', '.join(sorted(slots, key=int))})" if slots else ""))
+            elif slot["used"] >= slot["max"]:
+                free = [k for k, v in sorted(slots.items(), key=lambda kv: int(kv[0]))
+                        if int(k) > slot_level and v["used"] < v["max"]]
+                problems.append(f"{who} has no level {slot_level} slots left"
+                                + (f" (free: level {', '.join(free)})" if free else ""))
+    if cb is not None and getattr(args, "target", None):
+        problems += tactics.cast_target_problems(c, enc, cb, sp, name, enc.find_many(parse_csv_list(args.target)))
+    if cb is not None:
+        if unit in ("minute", "hour") or ritual:
+            problems.append(f"{name} takes {number} {unit}{'s' if number != 1 else ''}"
+                            f"{' plus 10 minutes as a ritual' if ritual else ''} to cast — longer than a combat turn")
+        else:
+            problems += _turn_problems(enc, cb, "casting", reaction=(unit == "reaction"))
+            if unit in ("action", "bonus"):
+                done = cb.get("spells_this_turn", [])
+                cantrip_action = level == 0 and unit == "action"
+                if (unit == "bonus" and any(not (s["level"] == 0 and s["unit"] == "action") for s in done)) or \
+                        (any(s["unit"] == "bonus" for s in done) and not cantrip_action):
+                    problems.append("bonus-action spell rule: with a bonus-action spell, the only other spell that turn "
+                                    "can be a cantrip with a casting time of 1 action (PHB p.202). Already cast: "
+                                    + ", ".join(s["name"] for s in done))
+    clearance = audit.gate(c, problems, args, needs=[("spell", name, f"{caster} casts {name}")])
+
+    # ---- passed the gate: cast it
+    slot = None
+    if pc and slot_level is not None:
+        slot = (pc.get("spell_slots") or {}).get(slot_key)
+        if slot and slot["used"] < slot["max"]:
+            slot["used"] += 1
+            c.save_pc(pc)
+    if cb is not None:
+        if unit == "reaction":
+            cb["reaction_used"] = True
+        elif unit in ("action", "bonus"):
+            cb.setdefault("spells_this_turn", []).append({"name": name, "level": level, "unit": unit})
+    bits = ["cantrip" if level == 0 else ("ritual, no slot" if ritual else
+            (f"{ordinal(slot_level)}-level slot" if slot_level else f"level {level}"))]
+    bits.append(f"{number} {'bonus action' if unit == 'bonus' else unit}{'s' if number != 1 else ''}")
+    if conc:
+        bits.append("concentration")
+    head = f"✨ {who} casts **{name}** ({', '.join(bits)})"
+    if slot:
+        head += f" · {'pact' if slot_key == 'pact' else 'level ' + str(slot_level)} slots {slot['max'] - slot['used']}/{slot['max']} left"
+    lines = [head]
+    if cb is not None:
+        enc.say(head)
+        lines = []
+        if conc:
+            enc.set_concentration(cb["id"], name)
+    elif conc:
+        lines.append("(concentration — if a fight starts, track it with `./dm combat conc`)")
+    lines.extend(clearance)
+    minutes = world.spell_minutes(sp)
+    if pc and minutes and minutes >= 10 and world.tracking(world.load(c)):
+        rec, ended = world.timer_add(c, f"{name} ({who})", who=pc["slug"], minutes=minutes, conc=conc)
+        lines.extend(ended)
+        lines.append(f"⌛ Timer {rec['id']}: {name} lasts {world.fmt_dur(minutes)} (until {world.fmt_point(rec['ends'])})")
+    if pc:
+        dc = campaign.pc_spell_dc(pc)
+        ref = cb["id"] if cb is not None else pc["slug"]
+        if dc and sp.get("savingThrow"):
+            lines.append(f"Resolve: `./dm combat save {sp['savingThrow'][0][:3]} <targets> --dc {dc} --spell \"{name}\" "
+                         f"--by {ref}`")
+        if dc and sp.get("spellAttack"):
+            lines.append(f"Resolve: `./dm combat attack {ref} <target> --to-hit {dc - 8} --damage \"…\" --spell \"{name}\""
+                         f"{' --ranged' if 'R' in sp['spellAttack'] else ''}`")
+    if cb is not None:
+        for line in lines:
+            enc.say(line, log=False)
+        return []
+    return lines
+
+
 # =============================================================================== combat
+
+def _combat_setup(c: campaign.Campaign, enc: combat.Encounter, args) -> None:
+    """One step from "a fight starts" to round 1: start, the party, the monsters, a plain map, places, initiative.
+    Built from the ordinary commands, so every step keeps its checks."""
+    import re as _re
+
+    from robodm import runner
+
+    if enc.active:
+        raise RoboDMError(f"A fight is already running ({enc.state.get('name') or 'unnamed'}): `combat status`, "
+                          "`combat add` for newcomers, or `combat end` first.")
+    if not args.monsters:
+        raise RoboDMError("Usage: combat setup \"Ambush\" --monsters \"goblin x2, wolf\" [--map 12x8]")
+    name = " ".join(args.args) or "Fight"
+    w, h = 12, 8
+    if args.map:
+        m = _re.fullmatch(r"(\d+)\s*x\s*(\d+)", args.map.strip().lower())
+        if not m:
+            raise RoboDMError("--map is WIDTHxHEIGHT in squares, e.g. 12x8")
+        w, h = int(m.group(1)), int(m.group(2))
+    steps = [["combat", "start", name], ["combat", "party"]]
+    for part in [p.strip() for p in args.monsters.split(",") if p.strip()]:
+        m = _re.fullmatch(r"(?:(\d+)\s*[x×]?\s+)?(.+?)(?:\s*[x×]\s*(\d+))?", part)
+        count = int(m.group(1) or m.group(3) or 1)
+        steps.append(["combat", "add", m.group(2), "--count", str(count)])
+    mid = max(1, h // 2)
+    steps += [["combat", "map", "new", f"{w}x{h}", name],
+              ["combat", "place", "party", f"B{mid}", "enemies", f"{bm_col(w - 2)}{mid}"], ["combat", "init"]]
+    for argv in steps:
+        code, o, e = runner.run_cli(argv)
+        if code:
+            raise RoboDMError(f"combat setup stopped at `./dm {' '.join(argv)}`: {(e or o).strip()}")
+    enc = combat.Encounter(c)
+    out(f"⚔️ {name}: {len(enc.combatants)} combatants on a {w}×{h} map (party on the left, enemies on the right). "
+        "Redraw it to match the scene with `combat map draw` if you like.")
+    out(enc.status_text(reveal=True))
+
+
+def bm_col(x: int) -> str:
+    from robodm import battlemap
+
+    return battlemap.col_name(x)
+
 
 def cmd_combat(args) -> None:
     c = get_camp(args)
     enc = combat.Encounter(c)
     a = args.action
     show_status = False
+    if a == "setup":
+        _combat_setup(c, enc, args)
+        return
     if a == "start":
         enc.start(" ".join(args.args) if args.args else "")
+        enc.say("Next: draft the battle map from the scene (`./dm combat map draw --text -`, one character per 5-ft "
+                "square; or `combat map load <saved>`), add combatants, `combat place` them, then `combat init`.", log=False)
+    elif a == "map":
+        changed = tactics.map_load_or_list(c, enc, args, out)
+        if changed is None:
+            changed = tactics.map_command(c, enc, args, out)
+        if changed:
+            enc.save()
+        return
+    elif a == "place":
+        tactics.place(c, enc, args, out)
+    elif a == "move":
+        tactics.move(c, enc, args, out)
+    elif a == "vision":
+        if len(args.args) < 2 or not args.args[1].lstrip("-").isdigit():
+            raise RoboDMError("Usage: combat vision <who> <feet>   (how far they see in darkness: darkvision or a carried "
+                              "light, e.g. 40 for a torch; -1 to go back to the sheet's darkvision)")
+        cb = enc.find(args.args[0])
+        ft = int(args.args[1])
+        if ft < 0:
+            cb.pop("vision", None)
+        else:
+            cb["vision"] = ft
+        tactics.refresh_fog(c, enc)
+        enc.say(f"👁 {cb['name']} sees {ft} ft in darkness." if ft >= 0 else f"👁 {cb['name']}: vision from the sheet.", log=False)
+    elif a == "stand":
+        tactics.stand(c, enc, args)
+    elif a in ("dash", "disengage"):
+        tactics.flag(c, enc, args, "Dash" if a == "dash" else "Disengage")
+    elif a == "area":
+        tactics.area(c, enc, args, out)
+    elif a == "range":
+        for line in tactics.range_report(c, enc, args):
+            out(line)
+        return
     elif a == "add":
         if not args.args:
             raise RoboDMError("Usage: combat add <name> [--monster NAME] [--count N] [--hp N --ac N --init-bonus N]")
@@ -473,7 +962,7 @@ def cmd_combat(args) -> None:
             enc.add_pc(pc, init=args.init)
         elif args.hp is not None and not args.monster:
             enc.add_custom(name, hp=args.hp, ac=args.ac or 10, init_bonus=args.init_bonus or 0, side=args.side,
-                           count=args.count, init=args.init)
+                           count=args.count, init=args.init, size=(args.size or "M").upper(), speed=args.speed or 30)
         else:
             from robodm.rules.statblock import combat_profile
 
@@ -503,6 +992,7 @@ def cmd_combat(args) -> None:
             enc.add_pc(pc)
     elif a == "init":
         enc.require_active()
+        audit.gate(c, tactics.init_problems(enc), args)
         if args.args and len(args.args) >= 2:
             enc.set_init(" ".join(args.args[:-1]), int(args.args[-1]))
         else:
@@ -518,6 +1008,14 @@ def cmd_combat(args) -> None:
         if len(args.args) < 2:
             raise RoboDMError(f"Usage: combat {a} <target> <amount or dice>")
         target, amount_txt = " ".join(args.args[:-1]), args.args[-1]
+        tgt = enc.find(target)
+        problems = []
+        if tgt["status"] == "dead":
+            problems.append(f"{tgt['name']} is dead" + (" — hit points can't bring it back (it needs a spell like "
+                                                          "Revivify)" if a == "heal" else ""))
+        if a != "heal" and args.type and args.type.lower() not in audit.DAMAGE_TYPES:
+            problems.append(f"'{args.type}' isn't a damage type ({', '.join(audit.DAMAGE_TYPES)})")
+        audit.gate(c, problems, args)
         amount, rolled = roll_or_int(amount_txt)
         if rolled:
             enc.say(f"🎲 {rolled}", log=False)
@@ -534,6 +1032,12 @@ def cmd_combat(args) -> None:
             raise RoboDMError("Usage: combat condition <target> add|remove <condition> [--rounds N --save wis:13 --conc caster]")
         target, verb, cond = args.args[0], args.args[1], " ".join(args.args[2:])
         if verb == "add":
+            problems, needs = [], []
+            _condition_check(cond, args, problems, needs)
+            if enc.find(target)["status"] == "dead":
+                problems.append(f"{enc.find(target)['name']} is dead")
+            for n in audit.gate(c, problems, args, needs):
+                enc.say(n, log=False)
             enc.add_condition(target, cond, rounds=args.rounds, tick=args.tick, save=args.save, source=args.source or "",
                               conc=args.conc, level=args.level or 1)
         else:
@@ -550,6 +1054,10 @@ def cmd_combat(args) -> None:
             atk = next((x for x in user.get("attacks", []) if x["name"].lower().startswith(args.action_name.lower())), None)
             if not atk or "save_dc" not in atk:
                 raise RoboDMError(f"{user['name']} has no saving-throw action '{args.action_name}'.")
+            audit.gate(c, _turn_problems(enc, user, f"using {atk['name']}", reaction=args.reaction,
+                                         legendary=args.legendary), args)
+            if args.legendary:
+                enc.use_legendary(user["id"], cost=args.cost or 1, action=atk["name"])
             if atk.get("recharge"):
                 if atk["name"] in user.get("recharge_spent", []):
                     raise RoboDMError(f"{atk['name']} hasn't recharged yet.")
@@ -569,26 +1077,78 @@ def cmd_combat(args) -> None:
             results[k.strip()] = int(v)
         if args.result is not None and len(targets) == 1:
             results[targets[0]] = args.result
+        needs = []
+        problems = [f"{t['name']} is dead" for t in enc.find_many(targets) if t["status"] == "dead"]
+        if args.spell:
+            needs.append(_spell_need(args.spell))
+            caster = enc.find(args.by) if args.by else None
+            pc = c.find_pc(caster["pc"]) if caster and caster.get("pc") else None
+            expected = campaign.pc_spell_dc(pc) if pc else None
+            if expected and int(dc) != expected:
+                problems.append(f"{pc['name']}'s spell save DC is {expected} (8 + proficiency + "
+                                f"{(pc.get('spellcasting_ability') or '?').upper()} mod), not {dc}")
+        if args.on_fail:
+            _condition_check(args.on_fail, args, problems, needs)
+        for n in audit.gate(c, problems, args, needs):
+            enc.say(n, log=False)
+        bonus = None
+        if "area" in [t.lower() for t in targets] and ability.lower().startswith("dex"):
+            bonus = (enc.state.get("last_area") or {}).get("cover")
         enc.saving_throw(targets, ability, int(dc), damage=damage, dtype=dtype, half=half, on_fail=args.on_fail,
                          rounds=args.rounds, repeat=args.repeat, conc=args.conc, source=args.source or "",
                          adv=args.adv, dis=args.dis, results=results, ends=args.ends, concentration=args.concentration,
-                         nonmagical=args.nonmagical)
+                         nonmagical=args.nonmagical, bonus=bonus)
     elif a == "attack":
         if len(args.args) != 2:
             raise RoboDMError("Usage: combat attack <attacker> <target> [--action NAME | --to-hit N --damage \"1d8+3 slashing\"]")
         dmg = combat.parse_damage_spec(args.damage) if args.damage else None
+        att, tgt = enc.find(args.args[0]), enc.find(args.args[1])
+        problems = _turn_problems(enc, att, "attacking", reaction=args.reaction, legendary=args.legendary)
+        if att["id"] == tgt["id"]:
+            problems.append("a creature can't attack itself")
+        if tgt["status"] == "dead":
+            problems.append(f"{tgt['name']} is already dead")
+        pos = tactics.attack_checks(c, enc, att, tgt, args)
+        problems += pos["problems"]
+        for n in audit.gate(c, problems, args, [_spell_need(args.spell)] if args.spell else []):
+            enc.say(n, log=False)
+        if pos["distance"] is not None:
+            enc.say(f"📏 {pos['distance']} ft{' · ranged' if pos['ranged'] else ''}"
+                    + (f" · {'half' if pos['cover'] == 2 else 'three-quarters'} cover" if pos["cover"] in (2, 5) else ""), log=False)
+        if args.reaction:
+            att["reaction_used"] = True
+        if args.legendary:
+            enc.use_legendary(att["id"], cost=args.cost or 1, action=args.action_name or "attack")
         enc.attack(args.args[0], args.args[1], action=args.action_name, to_hit=args.to_hit, damage=dmg, adv=args.adv,
-                   dis=args.dis, ranged=args.ranged, nonmagical=args.nonmagical, result=args.result, nat=args.nat,
-                   damage_result=args.damage_result, nonlethal=args.nonlethal, silvered=args.silvered)
+                   dis=args.dis, ranged=pos["ranged"], nonmagical=args.nonmagical, result=args.result, nat=args.nat,
+                   damage_result=args.damage_result, nonlethal=args.nonlethal, silvered=args.silvered,
+                   within_5ft=pos["within_5ft"], cover=pos["cover"], extra_dis=pos["dis"])
     elif a in ("conc", "concentrate", "concentration"):
         if not args.args:
             raise RoboDMError("Usage: combat conc <caster> <spell>   |   combat conc <caster> --end")
-        enc.set_concentration(args.args[0], None if args.end else " ".join(args.args[1:]) or None)
+        spell = None if args.end else " ".join(args.args[1:]) or None
+        if spell:
+            db = rules_db()
+            rec = db.lookup(spell, "spell")[0] if db.available else None
+            problems = []
+            if rec is None:
+                problems.append(f"no spell named '{spell}' in the local data")
+            elif not rec.get("conc"):
+                problems.append(f"{rec['n']} isn't a concentration spell")
+            for n in audit.gate(c, problems, args, [("spell", rec["n"], "")] if rec else []):
+                enc.say(n, log=False)
+            spell = rec["n"] if rec else spell
+        enc.set_concentration(args.args[0], spell)
+    elif a == "cast":
+        if len(args.args) < 2:
+            raise RoboDMError("Usage: combat cast <caster> \"<spell>\" [--slot N] [--ritual] [--ruling \"why\"]")
+        _cast(c, args, args.args[0], " ".join(args.args[1:]), enc=enc)
     elif a == "deathsave":
         enc.death_save(" ".join(args.args), result=args.result)
     elif a == "stabilize":
         enc.stabilize(" ".join(args.args))
     elif a == "legendary":
+        audit.gate(c, _turn_problems(enc, enc.find(args.args[0]), "a legendary action", legendary=True), args)
         enc.use_legendary(args.args[0], cost=args.cost or 1, action=" ".join(args.args[1:]))
     elif a == "remove":
         enc.remove(" ".join(args.args))
@@ -603,9 +1163,13 @@ def cmd_combat(args) -> None:
             out(line)
         return
     elif a == "end":
+        rounds = enc.state.get("round", 0) or 0
         enc.end(award_xp=args.award_xp)
         for m in enc.messages:
             out(m)
+        for line in world.advance_if_tracking(c, max(1, (rounds * 6 + 59) // 60), f"combat, {rounds} round(s)",
+                                              offscreen=False):
+            out(line)
         return
     elif a == "attacks":
         cb = enc.find(" ".join(args.args))
@@ -646,6 +1210,10 @@ def cmd_session(args) -> None:
         c.log(args.text)
         out("Logged.")
     elif a == "end":
+        beats = world.open_beats(world.load(c))
+        if beats and not args.force:
+            raise RoboDMError(f"{len(beats)} off-screen beat(s) still open ({', '.join(b['id'] for b in beats)}): "
+                              "resolve them first (`./dm world`), or `session end --force`.")
         summary = read_text(args, "summary")
         if not summary:
             raise RoboDMError("Give a summary: session end --summary \"…\" (or --summary - to read stdin)")
@@ -658,6 +1226,16 @@ def cmd_session(args) -> None:
     elif a == "list":
         for n, s in reversed(c.session_summaries(limit=999)):
             out(f"- Session {n}: {truncate(s, 200)}")
+    elif a == "transcript":
+        from robodm import capture
+
+        n = int(args.text) if args.text else c.session.get("number", 0)
+        rows = capture.entries(c, n)
+        if not rows:
+            out(f"No transcript for session {n} (it's captured automatically by the Claude Code hooks while a "
+                "session is running).")
+        for t, who, text in rows[-(args.n or 40):]:
+            out(f"### [{t}] {who}\n{text}\n")
 
 
 def cmd_memory(args) -> None:
@@ -667,29 +1245,60 @@ def cmd_memory(args) -> None:
         text = read_text(args)
         if not text:
             raise RoboDMError("Usage: memory add \"fact\" [--type choice] [--tags a,b] [--important]")
-        m = memory.add(c, text, args.type or "event", parse_csv_list(args.tags), important=args.important)
+        mtype = args.type or "event"
+        known = parse_csv_list(args.known_by)
+        seen = ""
+        if args.known_by is None and mtype in world.WITNESSED_TYPES:
+            cast = world.scene_cast(c)
+            known = [slug for slug, _ in cast]
+            if cast:
+                seen = (f"👁 witnessed by {', '.join(n for _, n in cast)} (from the scene; `--known-by none` if it was "
+                        "private, or name who knew)")
+        elif args.known_by and args.known_by.strip().lower() == "none":
+            known = []
+        m = memory.add(c, text, mtype, parse_csv_list(args.tags), important=args.important, known_by=known)
         out(f"Remembered {memory.fmt_memory(m)}")
+        if seen:
+            out(seen)
     elif a == "search":
-        hits = memory.search(c, args.text or "", limit=args.limit or 12, scope=args.scope or "all")
-        if not hits:
-            out("Nothing found.")
-        for h in hits:
-            out(f"- ({h['kind']}) {h['show']}")
+        _print_hits(memory.search(c, [args.text or ""] + (args.or_ or []), limit=args.limit or 12,
+                                  scope=args.scope or "all"))
     elif a == "list":
-        mems = memory.list_memories(c, mtype=args.type, recent=args.limit, tag=args.tags)
+        mems = memory.list_memories(c, mtype=args.type, recent=args.limit, tag=args.tags, important=args.important)
         for m in mems:
             out(f"- {memory.fmt_memory(m)}")
         if not mems:
             out("No memories yet.")
     elif a == "edit":
         imp = True if args.important else (False if args.not_important else None)
-        m = memory.update(c, args.text, text=args.new_text, important=imp)
+        m = memory.update(c, args.text, text=args.new_text, important=imp, known_by=parse_csv_list(args.known_by))
         out(f"Updated {memory.fmt_memory(m)}")
     elif a == "forget":
         m = memory.update(c, args.text, forget=True)
         out(f"Retired {m['id']} (kept in the file, hidden from brief/search).")
     elif a == "brief":
-        out(memory.brief(c, recent=args.limit or 15))
+        out(memory.brief(c, recent=args.limit or 15, budget=args.budget or "auto", full=args.full))
+
+
+def _print_hits(hits: list[dict]) -> None:
+    if not hits:
+        out("Nothing found. Try other phrasings: names, synonyms, what it was about (`./dm recall \"a\" \"b\"`).")
+    for h in hits:
+        out(f"- ({h['kind']}) {h['show']}")
+        if h.get("snippet") and h["snippet"] not in h["show"]:
+            out(f"    … {h['snippet']}")
+
+
+def cmd_recall(args) -> None:
+    from robodm import recall
+
+    c = get_camp(args)
+    if args.stats:
+        out(recall.stats(c))
+        return
+    if not args.queries:
+        raise RoboDMError("Usage: recall \"phrasing 1\" [\"phrasing 2\" …] [--scope memory|journal|transcript|lore|party|quests]")
+    _print_hits(recall.search(c, args.queries, limit=args.limit or 12, scope=args.scope or "all"))
 
 
 def cmd_quest(args) -> None:
@@ -764,6 +1373,12 @@ def cmd_lore(args) -> None:
                 out(f"- {p.relative_to(c.dir).as_posix()} ({p.stat().st_size // 1024} KB)")
     elif a == "types":
         out(", ".join(lore.LORE_TYPES))
+    elif a == "mind":
+        fields = {"feeling": args.feeling, "goal": args.goal, "opinion": args.opinion, "plan": args.plan}
+        if not args.name or not any(fields.values()):
+            raise RoboDMError("Usage: lore mind <npc> [--feeling …] [--goal …] [--opinion \"of the party\"] [--plan …]")
+        e = world.set_mind(c, args.name, **fields)
+        out(f"🧠 {e['meta'].get('name')}: {world.fmt_mind(e['meta'])}")
 
 
 # =============================================================================== context blocks
@@ -866,11 +1481,13 @@ def cmd_rules(args) -> None:
             if alts:
                 out("Did you mean: " + "; ".join(summary_line(r) for r in alts[:8]))
             return
-        from robodm.util import norm_name
 
         if norm_name(q) not in [norm_name(x) for x in [rec["n"], *rec.get("al", [])]]:
             out(f"_(closest match for '{q}')_")
         out(format_record(db, rec))
+        camp = maybe_camp(args)
+        if camp is not None:
+            audit.note_lookup(camp, rec["n"])
         if alts:
             out("\n_Other matches: " + "; ".join(summary_line(r) for r in alts[:6]) + "_")
         return
@@ -973,7 +1590,370 @@ def cmd_random(args) -> None:
             out(f"- {r['n']} ({r['s']}, {rarity}) — `./dm rules show \"{r['n']}\" --type item`")
 
 
+# =============================================================================== rulings & audit
+
+def cmd_ruling(args) -> None:
+    c = get_camp(args)
+    if not args.text:
+        raise RoboDMError("Usage: ruling \"what you're ruling\" [--key short-name] [--items \"feature:Divine Smite,spell:Shield\"]")
+    key = args.key or args.text
+    needs = [("ruling", key, args.text)]
+    for item in parse_csv_list(args.items):
+        kind, _, name = item.partition(":")
+        if not name:
+            raise RoboDMError(f"Items look like kind:name (kinds: {', '.join(audit.KINDS)}), not '{item}'.")
+        needs.append((kind.strip().lower(), name.strip(), ""))
+    notes = audit.gate(c, [], args, needs)
+    out(f"⚖️ Ruling: {args.text}")
+    for n in notes:
+        out(n)
+    if c.session.get("active"):
+        c.log(f"Ruling: {args.text}")
+
+
+def costs_speed(c) -> str:
+    from robodm import costs
+
+    return costs.speed(c)
+
+
+def cmd_audit(args) -> None:
+    c = get_camp(args)
+    a, rest = args.action, args.args
+
+    def kind_name() -> tuple[str, str]:
+        if len(rest) < 2:
+            raise RoboDMError(f"Usage: audit {a} <{'|'.join(audit.KINDS)}> \"<name>\"")
+        return rest[0].lower(), " ".join(rest[1:])
+
+    if a == "brief":
+        kind, name = kind_name()
+        out(audit.brief(c, rules_db(), kind, name, use=args.use or ""))
+    elif a == "autopass":
+        passed = audit.autopass(c)
+        out(f"Auto-passed {len(passed)} routine event(s): {', '.join(passed)}" if passed else
+            ("Nothing to auto-pass." if costs_speed(c) == "fast" else "Auto-pass only applies with `turn_speed fast`."))
+    elif a == "receipts":
+        facts = audit.turn_facts(c)
+        out(f"Turn {audit.current_turn(c)} — mechanical results:")
+        for f in facts:
+            out(f"- {receipts.fmt(f)}")
+        if not facts:
+            out("- (no rules results this turn)")
+        reply = read_text(args, "reply") if (args.reply or args.file) else ""
+        if reply:
+            problems = audit.narration_problems(c, reply)
+            out("")
+            if problems:
+                out("Your reply may not match the dice:")
+                for p in problems:
+                    out(f"- {p}")
+            else:
+                out("✅ The reply agrees with the dice.")
+    elif a == "clear":
+        kind, name = kind_name()
+        if not args.verdict:
+            raise RoboDMError("Give --verdict CORRECT (cleared) or INCORRECT (denied), plus --notes and --cite.")
+        if kind in ("spell", "condition") and rules_db().available:
+            rec = rules_db().lookup(name, kind)[0]
+            name = rec["n"] if rec else name
+        e = audit.clear(c, kind, name, args.verdict, notes=args.notes or "", cite=args.cite or "", self_check=args.self)
+        out(("✅ Cleared " if e["verdict"] == "CORRECT" else "🚫 Denied ") + f"{kind} {name}"
+            + (f": {e['notes']}" if e["notes"] else "") + (f" ({e['cite']})" if e["cite"] else ""))
+    elif a == "pending":
+        out(audit.pending_packet(c, log_lines=args.n or 30))
+    elif a in ("pass", "fail", "resolve"):
+        if not rest:
+            raise RoboDMError(f"Usage: audit {a} <event ids | all>")
+        ids = audit.parse_ids(c, rest)
+        if a == "fail":
+            if len(ids) != 1:
+                raise RoboDMError("Fail one event at a time, each with its own --notes and --fix.")
+            if not args.notes or not args.fix:
+                raise RoboDMError("audit fail needs --notes \"what's wrong + the rule\" and --fix \"<exact ./dm command>\".")
+        if a == "resolve" and not args.how:
+            raise RoboDMError("audit resolve needs --how \"what was done to fix it\".")
+        status = {"pass": "passed", "fail": "failed", "resolve": "resolved"}[a]
+        changed = audit.mark(c, ids, status, notes=args.how if a == "resolve" else (args.notes or ""),
+                             fix=args.fix or "", self_check=args.self)
+        if a == "fail":
+            out(f"❌ {ids[0]} failed: {args.notes}\nFix: `{args.fix} --fix {ids[0]}`")
+        else:
+            out(f"{'✅' if a == 'pass' else '🔧'} {status.title()}: {', '.join(e['id'] for e in changed) or 'nothing'}")
+        left = audit.open_events(c)
+        out(f"Still open: {', '.join(e['id'] + (' (failed)' if e['status'] == 'failed' else '') for e in left)}"
+            if left else "Post-audit complete — nothing open.")
+    elif a == "turn":
+        out(f"Turn {audit.bump_turn(c)}.")
+    elif a == "status":
+        out(audit.status_text(c))
+        for e in audit.open_events(c):
+            out(f"- {e['id']} [{e['status']}] {truncate(e['cmd'], 120)}")
+    elif a == "log":
+        for e in audit.events(c)[-(args.n or 20):]:
+            out(f"- {e['id']} [{e['status']}] {truncate(e['cmd'], 110)}"
+                + (f" — {truncate(e['verdict_notes'], 80)}" if e.get("verdict_notes") else ""))
+    elif a == "cleared":
+        items = audit.cleared(c)
+        if not items:
+            out("Nothing cleared yet.")
+        for e in sorted(items.values(), key=lambda x: (x["kind"], x["name"])):
+            out(f"- {'✅' if e['verdict'] == 'CORRECT' else '🚫'} {e['kind']} {e['name']} — {truncate(e.get('notes', ''), 120)}"
+                + (f" ({e['cite']})" if e.get("cite") else "") + f" [{e.get('by', '?')}]")
+    elif a == "reset-cleared":
+        if rest:
+            kind, name = kind_name()
+            out(f"Removed {audit.reset_cleared(c, kind, name)} clearance(s).")
+        elif not args.yes:
+            raise RoboDMError("This forgets every rules-lawyer clearance. Re-run with --yes, or name one: "
+                              "audit reset-cleared spell \"Hold Person\".")
+        else:
+            out(f"Removed {audit.reset_cleared(c)} clearance(s).")
+
+
 # =============================================================================== misc
+
+# =============================================================================== the living world
+
+def cmd_time(args) -> None:
+    c = get_camp(args)
+    a = args.action or "show"
+    if a == "show":
+        w = world.load(c)
+        if not world.tracking(w):
+            out("In-game time isn't tracked yet. Start the clock: `./dm time set <day> <HH:MM>` "
+                "(e.g. `./dm time set 1 08:00`; `--calendar harptos --date \"Tarsakh 3\" --year 1492` for Realms dates).")
+            return
+        out(f"🕰 {world.fmt_time(w)}")
+        for line in world.brief_lines(c)[1]:
+            out(line)
+    elif a == "set":
+        if not args.args:
+            raise RoboDMError("Usage: time set <day> [HH:MM|dawn|noon…] [--calendar harptos --date \"Tarsakh 3\" --year 1492]")
+        try:
+            day = int(args.args[0])
+        except ValueError:
+            raise RoboDMError("time set: the first value is the day number (Day 1 = the campaign's first day).")
+        at = " ".join(args.args[1:]) or "08:00"
+        out(f"🕰 {world.set_time(c, day, at, args.calendar, args.date, args.year)}")
+    elif a == "advance":
+        if not args.args:
+            raise RoboDMError("Usage: time advance <3h | 1d 6h | until dawn | until day 12 06:00> [--reason \"…\"]")
+        enc = combat.Encounter(c)
+        problems = []
+        if enc.active:
+            problems.append(f"combat is running ({enc.state.get('name') or 'unnamed'}, round {enc.state.get('round', 0)}): "
+                            "combat time passes in 6-second rounds (`./dm combat next`); `./dm combat end` adds them to the clock")
+        audit.gate(c, problems, args)
+        w = world.load(c)
+        for line in world.advance(c, world.parse_duration(" ".join(args.args), world.now(w)), args.reason or ""):
+            out(line)
+
+
+def cmd_clock(args) -> None:
+    c = get_camp(args)
+    a = args.action or "list"
+    w = world.load(c)
+    if a == "add":
+        if not args.name:
+            raise RoboDMError("Usage: clock add \"what's coming\" [--segments 6] [--per 1d] [--deadline \"day 12 noon\"] "
+                              "[--public] [--faction …] [--on-fill \"what happens\"]")
+        rec = world.clock_add(c, args.name, args.segments, args.per, args.deadline, args.public, args.faction,
+                              args.on_fill or "")
+        out(f"Clock {world.fmt_clock(world.load(c), rec)}")
+    elif a == "tick":
+        if not args.name:
+            raise RoboDMError("Usage: clock tick <id|name> [N] [--why \"…\"]")
+        try:
+            n = int(args.n) if args.n else 1
+        except ValueError:
+            raise RoboDMError("clock tick: N must be a number (negative to unwind).")
+        for line in world.clock_tick(c, args.name, n, args.why or ""):
+            out(line)
+    elif a in ("done", "stop"):
+        if not args.name:
+            raise RoboDMError(f"Usage: clock {a} <id|name>")
+        rec = world.clock_set_status(c, args.name, "done" if a == "done" else "stopped")
+        out(f"{rec['name']}: {rec['status']}.")
+    else:
+        shown = [x for x in w["clocks"] if args.all or x["status"] in ("running", "filled")]
+        for x in shown:
+            out(f"- {world.fmt_clock(w, x)}")
+        if not shown:
+            out("No clocks. Every deadline, threat or rival plan deserves one: `./dm clock add \"…\" --segments 6`.")
+
+
+def cmd_faction(args) -> None:
+    c = get_camp(args)
+    a = args.action or "list"
+    rest = list(args.args or [])
+    if a == "list":
+        fs = world.factions(c)
+        if not fs:
+            out("No factions in the lore yet (`./dm lore add \"Name\" --type faction …` or `faction rep \"Name\" 0 --new`).")
+        for f in fs:
+            ag = [i for i in f["agenda"] if i["status"] == "open"]
+            out(f"- **{f['name']}** — {f['word']} ({f['rep']:+d}){' · pace ' + f['pace'] if f['pace'] != 'normal' else ''}"
+                + (f" · agenda: {'; '.join(i['id'] + ' ' + i['text'] for i in ag)}" if ag else ""))
+        return
+    if not rest:
+        raise RoboDMError(f"Usage: faction {a} <faction> …")
+    name = rest.pop(0)
+    if a == "show":
+        f = next((x for x in world.factions(c) if x["slug"] == world.ensure_faction(c, name)), None)
+        out(f"**{f['name']}** — {f['word']} ({f['rep']:+d}){': ' + f['why'] if f['why'] else ''} · pace {f['pace']}")
+        if f["summary"]:
+            out(f"_{f['summary']}_")
+        for i in f["agenda"]:
+            out(f"- [{i['id']}] {i['text']} ({i['status']}){' · clock ' + i['clock'] if i.get('clock') else ''}")
+    elif a == "rep":
+        if not rest:
+            raise RoboDMError("Usage: faction rep <faction> <+1|-2|3> [--why \"…\"] [--new]")
+        slug, st = world.faction_rep(c, name, rest[0], args.why or "", args.new)
+        out(f"{slug}: {world.REP_WORDS[st['rep']]} ({st['rep']:+d})" + (f" — {st['why']}" if st.get("why") else ""))
+    elif a == "agenda":
+        verb = rest.pop(0) if rest else "list"
+        slug, items = world.faction_agenda(c, name, verb, " ".join(rest), args.clock)
+        for i in items:
+            if i["status"] == "open" or verb == "list":
+                out(f"- [{i['id']}] {i['text']} ({i['status']}){' · clock ' + i['clock'] if i.get('clock') else ''}")
+    elif a == "pace":
+        if not rest:
+            raise RoboDMError("Usage: faction pace <faction> fast|normal|slow")
+        out(f"{world.faction_pace(c, name, rest[0])}: pace {rest[0]}")
+
+
+def cmd_scene(args) -> None:
+    c = get_camp(args)
+    a = args.action or "show"
+    if a == "set":
+        notes = world.scene_set(c, place=args.text, present=parse_csv_list(args.present) if args.present is not None else None)
+    elif a in ("add", "leave"):
+        names = parse_csv_list(args.text) + parse_csv_list(args.present)
+        if not names:
+            raise RoboDMError(f"Usage: scene {a} name1,name2")
+        notes = world.scene_set(c, add=names if a == "add" else None, leave=names if a == "leave" else None)
+    elif a == "clear":
+        notes = world.scene_set(c, place="", present=[])
+        w = world.load(c)
+        w["scene"] = {}
+        world.save(c, w)
+    else:
+        notes = []
+    scene, _ = world.brief_lines(c)
+    for line in scene or ["No scene set: `./dm scene set \"Place\" --present npc1,npc2`."]:
+        out(line)
+    for n in notes:
+        out(f"Note: {n}")
+
+
+def cmd_world(args) -> None:
+    c = get_camp(args)
+    a = args.action or "show"
+    if a == "show":
+        w = world.load(c)
+        beats = world.open_beats(w)
+        if world.tracking(w):
+            out(f"🕰 {world.fmt_time(w)}")
+        for b in beats:
+            out(f"- [{b['id']}] ({b['tier']}) {b['text']}")
+        if beats:
+            out("Resolve each: `./dm world resolve <id> \"what happened\"` [--known-by who] · or `./dm world drop <id>`.")
+        else:
+            out("No off-screen beats waiting.")
+        for line in world.brief_lines(c)[1]:
+            if "off-screen beat" not in line:
+                out(line)
+    elif a in ("resolve", "drop"):
+        if not args.args:
+            raise RoboDMError(f"Usage: world {a} <id>" + (" \"what happened\"" if a == "resolve" else ""))
+        b = world.resolve(c, args.args[0], " ".join(args.args[1:]), parse_csv_list(args.known_by), drop=(a == "drop"))
+        out(f"{b['id']}: {b['status']}" + (f" → memory {b['memory']}" if b.get("memory") else ""))
+    elif a == "gossip":
+        lines = world.gossip(c, args.session)
+        for line in lines or ["Nothing this session that others would plausibly hear about (or no witnesses recorded)."]:
+            out(line)
+
+
+def cmd_engine(args) -> None:
+    """Who plays the DM behind the web client (Claude Code, Ollama, KoboldCpp, an OpenAI-compatible server)."""
+    from robodm import engines
+
+    a = args.action or "show"
+    if a == "set":
+        if not args.name or args.name not in engines.ENGINES:
+            raise RoboDMError(f"Usage: engine set <{'|'.join(engines.ENGINES)}> [--model …] [--effort …] [--url …] [--ctx N] [--tools native|text]")
+        sub = {k: v for k, v in (("model", args.model), ("url", args.url), ("num_ctx", args.ctx), ("tool_mode", args.tools),
+                                 ("api_key", args.api_key)) if v is not None}
+        patch = {"engine": args.name, args.name: sub} if sub else {"engine": args.name}
+        if args.effort is not None:
+            patch["effort"] = "" if args.effort == "default" else args.effort
+        engines.update(patch)
+    cfg = engines.load()
+    e = cfg["engine"]
+    sub = cfg[e]
+    ok, detail = engines.reachable(cfg, fresh=True)
+    out(f"🧠 DM engine: {engines.ENGINES[e]} · model {sub.get('model') or 'default'} · effort {cfg.get('effort') or ('medium' if e != 'claude' else 'default')}"
+        + (f" · {sub['url']} · context {sub.get('num_ctx')} · tools {sub.get('tool_mode')}" if e != "claude" else ""))
+    if e != "claude":
+        out(("✔ reachable: " + detail) if ok else ("✘ " + engines.help_text(cfg) + f" ({detail})"))
+    if a == "models" or (a == "set" and e != "claude" and ok):
+        try:
+            out("Models: " + (", ".join(engines.list_models(cfg)) or "none"))
+        except Exception as ex:
+            out(f"Models: couldn't list them ({ex})")
+
+
+def cmd_playtest(args) -> None:
+    """Scripted turns through the real DM on a scratch copy, scored (robodm/playtest.py). Spends real usage."""
+    from robodm import playtest
+
+    script = json.loads(Path(args.script).read_text(encoding="utf-8")) if args.script else None
+    n = len((script or playtest.DEFAULT_SCRIPT)[: args.turns or None])
+    if not args.yes:
+        out(f"🧪 The playtest runs {n} real DM turn(s) through Claude Code (your usage; typically a few minutes and "
+            "about as much as playing those turns yourself) on a scratch copy of "
+            + (f"`{args.campaign}`" if args.campaign else "a built-in scenario")
+            + ". Your campaigns aren't touched. Re-run with --yes to start.")
+        return
+    res = playtest.run(args.campaign, script, args.turns, args.out, args.keep, args.timeout or 600, log=out)
+    if res.get("scratch"):
+        out(f"Scratch copy kept at {res['scratch']}")
+
+
+def cmd_whisper(args) -> None:
+    """A private message to one player (their seat in the web client; 🔒 in the transcript)."""
+    from robodm import whispers
+
+    c = get_camp(args)
+    if not args.who or args.who == "list":
+        rows = whispers.all_whispers(c)
+        if args.text:
+            pc = c.get_pc(args.text)
+            rows = [w for w in rows if w["pc"] == pc["slug"]]
+        for w in rows[-30:]:
+            out(f"- [{w['ts'][5:16].replace('T', ' ')}] {'DM → ' + w['name'] if w['from'] == 'dm' else w['name'] + ' → DM'}: {w['text']}")
+        if not rows:
+            out("No whispers yet.")
+        return
+    rec = whispers.add(c, args.who, read_text(args))
+    out(f"🔒 Whispered to {rec['name']} (only their seat sees it).")
+
+
+def cmd_undo(args) -> None:
+    c = get_camp(args)
+    if args.list:
+        snaps = snapshots.listing(c)
+        nxt = snapshots.peek(c)
+        for s in snaps:
+            mark = "  ← `./dm undo` goes here" if nxt and s["file"] == nxt["file"] else ""
+            out(f"- turn {s['turn']} · {s['ts'][5:16].replace('T', ' ')}" + (f" · “{s['label']}”" if s.get("label") else "") + mark)
+        if not snaps:
+            out("No snapshots yet: one is taken before the first change of each turn.")
+        return
+    for line in snapshots.undo(c, steps=args.steps or 1, to=args.to, redo=args.redo):
+        out(line)
+
 
 def cmd_export(args) -> None:
     c = get_camp(args)
@@ -990,6 +1970,135 @@ def cmd_import(args) -> None:
     out(f"Imported {c.name} as campaigns/{c.slug}/ (now active).")
 
 
+def cmd_companion(args) -> None:
+    from robodm import companions as co
+
+    c = get_camp(args)
+    a, rest = args.action, list(args.args)
+
+    def who() -> str:
+        if not rest:
+            raise RoboDMError(f"Usage: companion {a} <npc> …")
+        return co.find(c, rest.pop(0))
+
+    if a == "new":
+        if not rest:
+            raise RoboDMError("Usage: companion new \"Name\" [--from-lore <entry>] [--alignment \"lawful neutral\"] "
+                              "[--status party|present|away]")
+        slug = co.create(c, " ".join(rest), from_lore=args.from_lore, alignment=args.alignment or "",
+                         status=args.status or "away", model=args.model or "sonnet")
+        out(f"Created companion **{' '.join(rest)}** at campaigns/{c.slug}/companions/{slug}/persona.md (draft). Fill in "
+            "the sections (drives, values, methods, fears, relationships, secrets, combat style, voice), then "
+            f"`./dm companion agent {slug}` for its own subagent and `./dm companion join {slug}` when it travels with the party.")
+    elif a == "list":
+        slugs = co.all_slugs(c)
+        if not slugs:
+            out("No companions yet: `./dm companion new \"Name\" --from-lore <entry>`.")
+        for slug in slugs:
+            meta, _ = co.load_persona(c, slug)
+            st = co.state(c, slug)
+            out(f"- {meta.get('name', slug)} [{st['status']}]{' (draft)' if meta.get('draft') else ''} — agent "
+                f"`{co.agent_name(c, slug)}` · {len(co.memories(c, slug))} memories · consulted {st.get('consults', 0)}×")
+    elif a == "show":
+        slug = who()
+        out((co._dir(c, slug) / "persona.md").read_text(encoding="utf-8"))
+        out(json.dumps(co.state(c, slug), indent=1, ensure_ascii=False))
+    elif a == "brief":
+        out(co.brief(c, who(), situation=args.situation or "", combat=args.combat))
+    elif a in ("join", "leave", "here", "away", "dead"):
+        slug = who()
+        status = {"join": "party", "leave": "away", "here": "present", "away": "away", "dead": "dead"}[a]
+        co.set_status(c, slug, status)
+        meta, _ = co.load_persona(c, slug)
+        out(f"{meta.get('name', slug)} is now **{status}**." + (
+            f" Consult `{co.agent_name(c, slug)}` at decision points." if status in co.ACTIVE else ""))
+        if c.session.get("active"):
+            c.log(f"{meta.get('name', slug)} {'joins the party' if status == 'party' else 'is ' + status}.")
+    elif a == "remember":
+        slug = who()
+        rec = co.remember(c, slug, " ".join(rest), about=args.about or "")
+        out(f"🧠 {slug} remembers: {rec['text']}")
+    elif a == "recall":
+        slug = who()
+        hits = co.recall(c, slug, " ".join(rest), limit=args.limit or 8)
+        out("\n".join(f"- {h}" for h in hits) or "Nothing you know matches that.")
+    elif a == "agenda":
+        slug = who()
+        verb = rest.pop(0) if rest else "list"
+        items = co.agenda(c, slug, verb, " ".join(rest))
+        out("Agenda: " + ("; ".join(f"[{i['id']}] {i['text']}" for i in items if i["status"] == "open") or "nothing open"))
+    elif a == "attitude":
+        slug = who()
+        if len(rest) < 2:
+            raise RoboDMError("Usage: companion attitude <npc> <who> +1|-1|<-3..3> [--why \"…\"]")
+        res = co.attitude(c, slug, rest[0], rest[1], why=args.why or "")
+        out(f"{slug} → {rest[0]}: {res['score']:+d}" + (f" ({res['why']})" if res.get("why") else ""))
+    elif a == "interject":
+        slug = who()
+        co.interject(c, slug, None if args.clear else " ".join(rest))
+        out(f"{slug} {'has nothing to raise' if args.clear else 'wants to speak up: ' + ' '.join(rest)}.")
+    elif a == "note":
+        slug = who()
+        co.table_note(c, slug, " ".join(rest))
+        out(f"Noted for {slug}: shown in every brief from now on.")
+    elif a == "agent":
+        if args.generic:
+            p = co.agents_dir() / "companion.md"
+            from robodm.util import write_text
+
+            write_text(p, co.generic_agent_text())
+            out(f"Wrote {p.name}.")
+            return
+        slugs = co.all_slugs(c) if (rest and rest[0] == "all") else [who()]
+        for slug in slugs:
+            p = co.write_agent(c, slug, model=args.model)
+            out(f"Wrote .claude/agents/{p.name} (subagent `{p.stem}`). New agent files load when Claude Code starts; "
+                "until then the generic `companion` agent plays this character.")
+    elif a == "council":
+        question = " ".join(rest)
+        act = co.active(c)
+        if not act:
+            out("No companions are in the party or the scene.")
+            return
+        out(f"Party council: launch these subagents **in parallel** (one message, one Agent call each), then weigh their "
+            f"answers and present the disagreements in the fiction:")
+        for slug in act:
+            meta, _ = co.load_persona(c, slug)
+            out(f"- `{co.agent_name(c, slug)}`: \"You are {meta.get('name', slug)} (slug {slug}, campaign {c.slug}). The party "
+                f"is deciding: {question}. Run your brief with --situation describing this, then answer.\"")
+
+
+def cmd_web(args) -> None:
+    from robodm.web import server
+
+    host = args.host or ("0.0.0.0" if args.lan else "127.0.0.1")
+    server.serve(host=host, port=args.port, open_browser=args.open, renew=args.new_token, log=out)
+
+
+def cmd_sync(args) -> None:
+    from robodm import sync
+
+    state = sync.check(fetch=not args.no_fetch)
+    if state.get("error") == "not a git checkout":
+        raise RoboDMError("Sync needs a git checkout of the RoboDM repo.")
+    if args.check:
+        if state.get("error"):
+            out(f"⚠️ Couldn't fetch origin ({state['error']}).")
+        for item in state["newer"]:
+            out(f"⤵ Newer: {sync.describe(item)}")
+        if not state["newer"]:
+            out("✅ Campaigns are up to date with every branch on origin.")
+        return
+    for line in sync.apply(state, force=args.force):
+        out(line)
+
+
+def cmd_hook(args) -> None:
+    text = hooks.run(args.mode, sys.stdin.read())
+    if text:
+        out(text)
+
+
 def cmd_status(args) -> None:
     from robodm.rules import fetch as fetch_mod
 
@@ -1004,6 +2113,14 @@ def cmd_status(args) -> None:
         s = c.session
         out(f"Session: {s.get('number', 0)} ({'in progress' if s.get('active') else 'not running'}) · party: "
             f"{', '.join(pc['name'] for pc in c.party()) or 'none'}")
+        from robodm import costs
+
+        u = costs.usage_summary(c)
+        if u["turns"]:
+            out(f"Web DM this session: {u['turns']} turn(s), ≈${u['cost']:.2f} API-equivalent · turn speed {u['speed']}")
+        w = world.load(c)
+        if world.tracking(w):
+            out(f"Time: {world.fmt_time(w)}" + (f" · {len(world.open_beats(w))} off-screen beat(s) open" if world.open_beats(w) else ""))
         enc = combat.Encounter(c)
         if enc.active:
             out(enc.status_text())
@@ -1042,9 +2159,9 @@ def build_parser() -> argparse.ArgumentParser:
     cp.set_defaults(func=_campaign_dispatch)
 
     pc = sub.add_parser("pc", help="player characters: add, show, check, save, hp, slots, rest…")
-    pc.add_argument("action", choices=["add", "list", "show", "json", "set", "hp", "temp", "check", "save", "hitdie",
-                                       "rest", "slot", "resource", "attack", "item", "gold", "xp", "levelup",
-                                       "condition", "delete"])
+    pc.add_argument("action", choices=["add", "build", "list", "show", "json", "set", "hp", "temp", "check", "save",
+                                       "hitdie", "rest", "slot", "resource", "attack", "item", "gold", "xp", "levelup",
+                                       "condition", "cast", "delete", "equip", "unequip", "attune", "unattune", "load"])
     pc.add_argument("name", nargs="?")
     pc.add_argument("value", nargs="?")
     pc.add_argument("extra", nargs="?")
@@ -1052,7 +2169,7 @@ def build_parser() -> argparse.ArgumentParser:
     pc.add_argument("--race")
     pc.add_argument("--class", dest="cls")
     pc.add_argument("--subclass")
-    pc.add_argument("--level", type=int, default=1)
+    pc.add_argument("--level", type=int, default=None)
     pc.add_argument("--background")
     for ab in ABILITIES:
         pc.add_argument(f"--{ab}", type=int)
@@ -1075,13 +2192,33 @@ def build_parser() -> argparse.ArgumentParser:
     pc.add_argument("--n", type=int)
     pc.add_argument("--to-hit", type=int)
     pc.add_argument("--damage")
+    pc.add_argument("--slot", type=int, help="spell slot level for `pc cast` (default: the spell's level)")
+    pc.add_argument("--pact", action="store_true", help="cast with a Pact Magic slot (multiclass warlocks)")
+    pc.add_argument("--reach", type=int, help="pc attack add: melee reach in feet (default 5)")
+    pc.add_argument("--range", help="pc attack add: ranged weapon range, e.g. 80/320 (thrown weapons: with --reach)")
+    pc.add_argument("--ritual", action="store_true", help="cast as a ritual (no slot, +10 minutes)")
+    pc.add_argument("--no-time", action="store_true", help="rest: don't move the in-game clock (you already advanced it)")
+    pc.add_argument("--result", type=int, help="check/save: the total the player rolled (players dice mode)")
+    pc.add_argument("--vs", help="check: the opponent's total, for a contest")
+    pc.add_argument("--open", action="store_true", help="check: no fixed DC (graded results; flagged to the audit)")
+    pc.add_argument("--scores", choices=list(builder.SCORE_METHODS), help="build: standard (array), pointbuy, roll, manual")
+    pc.add_argument("--assign", help="build: the six scores before racial bonuses, e.g. str=15,dex=14,con=13,int=12,wis=10,cha=8")
+    pc.add_argument("--asi", help="build: racial choices (half-elf: dex=1,wis=1) · levelup: str=2 / str=1,con=1 / later")
+    pc.add_argument("--feat", help="build (variant human) / levelup (instead of an ASI): the feat")
+    pc.add_argument("--gear", help="build: starting equipment picks, comma-separated (validated against the item data)")
+    pc.add_argument("--gold", action="store_true", help="build: take the class's starting gold instead of gear")
+    pc.add_argument("--preview", action="store_true", help="build / levelup: show the result without saving")
+    pc.add_argument("--for", dest="for_", help="condition add: how long it lasts, e.g. 8h, 1d, until dawn")
+    pc.add_argument("--until-rest", action="store_true", help="condition add: lasts until a long rest")
+    _add_gate_args(pc)
     pc.set_defaults(func=cmd_pc)
 
     cb = sub.add_parser("combat", help="initiative, HP, damage, conditions, saves, attacks")
     cb.add_argument("action", choices=["start", "add", "party", "init", "next", "status", "damage", "dmg", "heal", "temp",
                                        "condition", "cond", "save", "attack", "attacks", "conc", "concentrate",
                                        "concentration", "deathsave", "stabilize", "legendary", "remove", "note", "log",
-                                       "end"])
+                                       "cast", "end", "map", "place", "move", "stand", "dash", "disengage", "area",
+                                       "range", "vision", "setup"])
     cb.add_argument("args", nargs="*")
     cb.add_argument("--monster", help="5etools monster to pull stats from")
     cb.add_argument("--source", help="sourcebook for --monster, or damage source text")
@@ -1094,6 +2231,9 @@ def build_parser() -> argparse.ArgumentParser:
     cb.add_argument("--roll-hp", action="store_true")
     cb.add_argument("--reroll", action="store_true")
     cb.add_argument("--players", action="store_true", help="status safe to show players (no monster HP)")
+    cb.add_argument("--dark", action="store_true", help="map fog: the area is dark (vision limited to darkvision/light)")
+    cb.add_argument("--monsters", help="setup: who the party fights, e.g. \"goblin x2, wolf\"")
+    cb.add_argument("--map", help="setup: map size in squares (default 12x8)")
     cb.add_argument("--verbose", "-v", action="store_true")
     cb.add_argument("--type", help="damage type")
     cb.add_argument("--nonmagical", action="store_true")
@@ -1127,12 +2267,67 @@ def build_parser() -> argparse.ArgumentParser:
     cb.add_argument("--cost", type=int)
     cb.add_argument("--n", type=int)
     cb.add_argument("--award-xp", action="store_true")
+    cb.add_argument("--reaction", action="store_true", help="act on someone else's turn using the reaction")
+    cb.add_argument("--legendary", action="store_true", help="a legendary action (spends --cost, default 1)")
+    cb.add_argument("--spell", help="the spell this attack/save resolves (must be cleared)")
+    cb.add_argument("--custom", action="store_true", help="a non-standard condition (spell-specific effect)")
+    cb.add_argument("--slot", type=int, help="spell slot level for `combat cast` (default: the spell's level)")
+    cb.add_argument("--ritual", action="store_true")
+    cb.add_argument("--pact", action="store_true", help="cast with a Pact Magic slot (multiclass warlocks)")
+    cb.add_argument("--target", help="cast: creatures the spell targets (range and a clear path are checked)")
+    cb.add_argument("--reach", type=int, help="attack: melee reach in feet when the stat block doesn't say")
+    cb.add_argument("--range", help="attack: normal/long range, e.g. 80/320")
+    cb.add_argument("--text", help="map draw: the map rows (- for stdin)")
+    cb.add_argument("--file", help="map draw: read the map rows from a file")
+    cb.add_argument("--out", help="map render: where to write the SVG (or .html)")
+    cb.add_argument("--html", action="store_true", help="map render: an HTML page instead of a bare SVG")
+    cb.add_argument("--clear", action="store_true", help="map background: remove it")
+    cb.add_argument("--path", help="move: the squares to move through, e.g. C4,D5,E5")
+    cb.add_argument("--dash", action="store_true", help="move: this creature took the Dash action")
+    cb.add_argument("--disengage", action="store_true", help="move: this creature took the Disengage action")
+    cb.add_argument("--mode", choices=["walk", "fly", "swim", "climb", "burrow"], help="move: movement type")
+    cb.add_argument("--at", help="area: the point of origin (a square)")
+    cb.add_argument("--from", dest="from_", help="area: a cone/line/self-area starting at this creature")
+    cb.add_argument("--toward", help="area: direction (a square or creature)")
+    cb.add_argument("--width", type=int, help="area: line width in feet (default 5)")
+    cb.add_argument("--corner", action="store_true", help="area: origin at the top-left corner of --at, not its centre")
+    cb.add_argument("--through-corners", action="store_true",
+                    help="area: the effect spreads around corners (e.g. Fireball); don't exclude total cover")
+    cb.add_argument("--size", help="add: size of a custom creature (T S M L H G)")
+    cb.add_argument("--speed", type=int, help="add: walking speed of a custom creature")
+    _add_gate_args(cb)
     cb.set_defaults(func=cmd_combat)
 
+    rl = sub.add_parser("ruling", help="a judgement call (grapple, improvised action, feature use): pre-checked by the rules-lawyer")
+    rl.add_argument("text", nargs="?")
+    rl.add_argument("--key", help="short reusable name for this ruling, e.g. grapple-with-shield")
+    rl.add_argument("--items", help="rules items it relies on: \"feature:Divine Smite,spell:Shield\"")
+    _add_gate_args(rl)
+    rl.set_defaults(func=cmd_ruling)
+
+    au = sub.add_parser("audit", help="mandatory rules checking: pre-check briefs, verdicts, the post-audit")
+    au.add_argument("action", choices=["brief", "clear", "pending", "pass", "fail", "resolve", "turn", "status", "log",
+                                       "cleared", "reset-cleared", "receipts", "autopass"])
+    au.add_argument("args", nargs="*")
+    au.add_argument("--verdict", type=str.upper, choices=["CORRECT", "INCORRECT"])
+    au.add_argument("--notes")
+    au.add_argument("--cite")
+    au.add_argument("--fix", help="for `audit fail`: the exact ./dm command that corrects the mistake")
+    au.add_argument("--how", help="for `audit resolve`: what was done")
+    au.add_argument("--use", help="for `audit brief`: what the DM intends to do")
+    au.add_argument("--self", action="store_true", help="claude.ai only: a self-check (no subagents there)")
+    au.add_argument("--n", type=int)
+    au.add_argument("--yes", action="store_true")
+    au.add_argument("--reply", help="receipts: your reply text to check against the dice (- reads stdin)")
+    au.add_argument("--file", help="receipts: read the reply from a file")
+    au.set_defaults(func=cmd_audit)
+
     se = sub.add_parser("session", help="start / log / end a play session")
-    se.add_argument("action", choices=["start", "log", "end", "show", "list"])
+    se.add_argument("action", choices=["start", "log", "end", "show", "list", "transcript"])
     se.add_argument("text", nargs="?")
+    se.add_argument("--n", type=int, help="transcript: how many recent entries (default 40)")
     se.add_argument("--summary")
+    se.add_argument("--force", action="store_true", help="end: even with off-screen beats unresolved")
     se.add_argument("--file")
     se.set_defaults(func=cmd_session)
 
@@ -1145,7 +2340,12 @@ def build_parser() -> argparse.ArgumentParser:
     me.add_argument("--not-important", action="store_true")
     me.add_argument("--new-text")
     me.add_argument("--limit", type=int)
-    me.add_argument("--scope", choices=["all", "memory", "journal", "lore", "party", "quests"])
+    me.add_argument("--scope", choices=["all", "memory", "journal", "transcript", "lore", "party", "quests", "companions"])
+    me.add_argument("--or", dest="or_", action="append", help="search: another phrasing (repeatable)")
+    me.add_argument("--known-by", help="add/edit: companions/NPCs who know this (shows in their briefs), e.g. okton,halda; "
+                                       "events default to who's in the scene; `none` for private")
+    me.add_argument("--full", action="store_true", help="brief: don't trim to the size budget")
+    me.add_argument("--budget", type=int, help="brief: size budget in characters (default 9000)")
     me.add_argument("--file")
     me.set_defaults(func=cmd_memory)
 
@@ -1158,7 +2358,7 @@ def build_parser() -> argparse.ArgumentParser:
     qu.set_defaults(func=cmd_quest)
 
     lo = sub.add_parser("lore", help="world lore entries and reference sources")
-    lo.add_argument("action", choices=["add", "list", "show", "search", "update", "index", "source", "types"])
+    lo.add_argument("action", choices=["add", "list", "show", "search", "update", "index", "source", "types", "mind"])
     lo.add_argument("name", nargs="?")
     lo.add_argument("--type", choices=lore.LORE_TYPES)
     lo.add_argument("--text")
@@ -1173,6 +2373,10 @@ def build_parser() -> argparse.ArgumentParser:
     lo.add_argument("--draft", action="store_true")
     lo.add_argument("--canon", action="store_true")
     lo.add_argument("--overwrite", action="store_true")
+    lo.add_argument("--feeling", help="mind: how the NPC feels right now")
+    lo.add_argument("--goal", help="mind: what they want")
+    lo.add_argument("--opinion", help="mind: what they think of the party")
+    lo.add_argument("--plan", help="mind: what they're doing about it (it advances off-screen)")
     lo.set_defaults(func=cmd_lore)
 
     cx = sub.add_parser("context", help="instruction context blocks (house rules, tone, safety…)")
@@ -1203,7 +2407,7 @@ def build_parser() -> argparse.ArgumentParser:
     ru.add_argument("--rarity")
     ru.add_argument("--party", help="e.g. 4x3 or 3,3,4,5 (default: current party)")
     ru.add_argument("--monsters", help="e.g. \"goblin x4, bugbear\" or \"cr 1/2 x3\"")
-    ru.add_argument("--mirror", choices=["auto", "github", "site"])
+    ru.add_argument("--mirror", choices=["auto", "local", "github", "site"])
     ru.add_argument("--sources", help="fetch only these books' spells/monsters, e.g. PHB,MM,XGE")
     ru.add_argument("--books", help="full rulebook text to fetch (default PHB,DMG,XGE,TCE; 'none' to skip)")
     ru.add_argument("--if-missing", action="store_true")
@@ -1234,9 +2438,144 @@ def build_parser() -> argparse.ArgumentParser:
     im.add_argument("--overwrite", action="store_true")
     im.set_defaults(func=cmd_import)
 
+    tm = sub.add_parser("time", help="in-game time: show, set, advance (timers, clocks and the off-screen world follow)")
+    tm.add_argument("action", nargs="?", choices=["show", "set", "advance"])
+    tm.add_argument("args", nargs="*", help="set: <day> [HH:MM] · advance: 3h | 1d 6h | until dawn | until day 12 06:00")
+    tm.add_argument("--calendar", choices=list(world.CALENDARS))
+    tm.add_argument("--date", help="set (harptos): the date of that day, e.g. \"Tarsakh 3\"")
+    tm.add_argument("--year", type=int, help="set (harptos): the year, e.g. 1492")
+    tm.add_argument("--reason", help="advance: why time passes (travel, downtime…)")
+    _add_gate_args(tm)
+    tm.set_defaults(func=cmd_time)
+
+    ck = sub.add_parser("clock", help="progress clocks and deadlines: add, tick, list, done, stop")
+    ck.add_argument("action", nargs="?", choices=["add", "tick", "list", "done", "stop"])
+    ck.add_argument("name", nargs="?", help="clock name, or its id (k1)")
+    ck.add_argument("n", nargs="?", help="tick: how many segments (default 1; negative unwinds)")
+    ck.add_argument("--segments", type=int, help="add: how many segments (default 6; none for a pure deadline)")
+    ck.add_argument("--per", help="add: fills one segment every … of in-game time, e.g. 1d")
+    ck.add_argument("--deadline", help="add: a moment, e.g. \"day 12 noon\", \"+3d\", \"tomorrow dawn\"")
+    ck.add_argument("--public", action="store_true", help="add: the players know about it (shown in the player view)")
+    ck.add_argument("--faction", help="add: the faction behind it")
+    ck.add_argument("--on-fill", help="add: what happens when it fills")
+    ck.add_argument("--why", help="tick: what caused it")
+    ck.add_argument("--all", action="store_true", help="list: include done and stopped clocks")
+    ck.set_defaults(func=cmd_clock)
+
+    fa = sub.add_parser("faction", help="factions: standing with the party (-5…+5), agendas, pace")
+    fa.add_argument("action", nargs="?", choices=["list", "show", "rep", "agenda", "pace"])
+    fa.add_argument("args", nargs="*", help="<faction> then: rep +1 · agenda add \"…\" | done f1 · pace fast")
+    fa.add_argument("--why")
+    fa.add_argument("--clock", help="agenda add: the clock that measures it (k2)")
+    fa.add_argument("--new", action="store_true", help="rep: create a faction lore entry if there isn't one")
+    fa.set_defaults(func=cmd_faction)
+
+    sc = sub.add_parser("scene", help="where the party is and who else is here (they witness what happens)")
+    sc.add_argument("action", nargs="?", choices=["show", "set", "add", "leave", "clear"])
+    sc.add_argument("text", nargs="?", help="set: the place · add/leave: names, comma-separated")
+    sc.add_argument("--present", help="set: everyone else here, comma-separated (replaces the cast)")
+    sc.set_defaults(func=cmd_scene)
+
+    wo = sub.add_parser("world", help="the off-screen world: pending beats, resolve them, gossip")
+    wo.add_argument("action", nargs="?", choices=["show", "resolve", "drop", "gossip"])
+    wo.add_argument("args", nargs="*", help="resolve: <id> \"what happened\" · drop: <id>")
+    wo.add_argument("--known-by", help="resolve: who knows what happened")
+    wo.add_argument("--session", type=int, help="gossip: which session (default: the current one)")
+    wo.set_defaults(func=cmd_world)
+
+    sh = sub.add_parser("shop", help="prices from the item data; --buy / --sell move gold and inventory")
+    sh.add_argument("item", nargs="*")
+    sh.add_argument("--pc")
+    sh.add_argument("--buy", action="store_true")
+    sh.add_argument("--sell", action="store_true")
+    sh.add_argument("--qty", type=int)
+    sh.add_argument("--price", type=float, help="a negotiated price in gp (each)")
+    sh.set_defaults(func=cmd_shop)
+
+    en = sub.add_parser("engine", help="who plays the DM in the web client: claude, ollama, kobold, openai")
+    en.add_argument("action", nargs="?", choices=["show", "set", "models"])
+    en.add_argument("name", nargs="?", help="set: claude | ollama | kobold | openai")
+    en.add_argument("--model")
+    en.add_argument("--effort", choices=["default", "low", "medium", "high", "xhigh", "max"])
+    en.add_argument("--url", help="the local server's address")
+    en.add_argument("--ctx", type=int, help="context window in tokens (local engines)")
+    en.add_argument("--tools", choices=["native", "text"], help="tool calling: the server's API or the <dm> text protocol")
+    en.add_argument("--api-key", help="openai engine: the server's API key")
+    en.set_defaults(func=cmd_engine)
+
+    pt = sub.add_parser("playtest", help="scripted turns through the real DM on a scratch copy, scored (spends usage)")
+    pt.add_argument("--campaign", help="copy this campaign (default: a built-in scenario)")
+    pt.add_argument("--turns", type=int, help="only the first N turns of the script")
+    pt.add_argument("--script", help="a JSON list of turns: {text, as, private, ooc, reset, expect: [brief|roll|ooc|private]}")
+    pt.add_argument("--out", help="where to write the Markdown scorecard (default: ./playtest-<date>.md)")
+    pt.add_argument("--keep", action="store_true", help="keep the scratch copy to inspect")
+    pt.add_argument("--timeout", type=float, help="seconds per turn (default 600)")
+    pt.add_argument("--yes", action="store_true", help="really run it")
+    pt.set_defaults(func=cmd_playtest)
+
+    wh = sub.add_parser("whisper", help="a private message to one player: whisper <pc> \"…\" · whisper list [pc]")
+    wh.add_argument("who", nargs="?")
+    wh.add_argument("text", nargs="?")
+    wh.add_argument("--file")
+    wh.set_defaults(func=cmd_whisper)
+
+    ud = sub.add_parser("undo", help="rewind the campaign to the start of a turn (snapshots taken automatically)")
+    ud.add_argument("steps", nargs="?", type=int, help="how many turns back (default 1)")
+    ud.add_argument("--to", type=int, help="the turn number to go back to (see --list)")
+    ud.add_argument("--list", action="store_true", help="show the snapshots")
+    ud.add_argument("--redo", action="store_true", help="bring back the state the last undo replaced")
+    ud.set_defaults(func=cmd_undo)
+
     st = sub.add_parser("status", help="quick overview of data, campaign, session and combat")
     st.set_defaults(func=cmd_status)
+
+    co = sub.add_parser("companion", help="NPC companions with their own minds and subagents: new, join, brief, council…")
+    co.add_argument("action", choices=["new", "list", "show", "brief", "join", "leave", "here", "away", "dead",
+                                       "remember", "recall", "agenda", "attitude", "interject", "note", "agent", "council"])
+    co.add_argument("args", nargs="*")
+    co.add_argument("--from-lore", help="new: build the draft persona from this lore entry")
+    co.add_argument("--alignment")
+    co.add_argument("--status", choices=["party", "present", "away", "dead"])
+    co.add_argument("--model", choices=["sonnet", "opus", "haiku", "inherit"], help="agent: the companion subagent's model")
+    co.add_argument("--generic", action="store_true", help="agent: (re)write the generic companion agent")
+    co.add_argument("--situation", help="brief: what's happening right now, from the companion's point of view")
+    co.add_argument("--combat", action="store_true", help="brief: include the fight (status and map, as they'd see it)")
+    co.add_argument("--about", help="remember: who or what the memory is about")
+    co.add_argument("--why")
+    co.add_argument("--clear", action="store_true", help="interject: nothing to raise any more")
+    co.add_argument("--limit", type=int)
+    co.set_defaults(func=cmd_companion)
+
+    rc = sub.add_parser("recall", help="search everything the campaign knows, by meaning: give 2–4 phrasings")
+    rc.add_argument("queries", nargs="*")
+    rc.add_argument("--scope", choices=["all", "memory", "journal", "transcript", "lore", "party", "quests", "companions"])
+    rc.add_argument("--limit", type=int)
+    rc.add_argument("--stats", action="store_true", help="what's indexed")
+    rc.set_defaults(func=cmd_recall)
+
+    wb = sub.add_parser("web", help="the local web client: live map, party, companions, dice and a chat with the DM")
+    wb.add_argument("--port", type=int, default=8642)
+    wb.add_argument("--lan", action="store_true", help="also serve on your network (phones, tablets, other PCs)")
+    wb.add_argument("--host", help="bind address (default 127.0.0.1, or 0.0.0.0 with --lan)")
+    wb.add_argument("--open", action="store_true", help="open it in your browser")
+    wb.add_argument("--new-token", action="store_true", help="replace the access token (old links stop working)")
+    wb.set_defaults(func=cmd_web)
+
+    sy = sub.add_parser("sync", help="pull campaigns from whichever git branch has the newest state")
+    sy.add_argument("--check", action="store_true", help="only report, change nothing")
+    sy.add_argument("--force", action="store_true", help="replace uncommitted local campaign changes")
+    sy.add_argument("--no-fetch", action="store_true")
+    sy.set_defaults(func=cmd_sync)
+
+    hk = sub.add_parser("hook", help="Claude Code hooks (hook JSON on stdin): " + ", ".join(hooks.MODES))
+    hk.add_argument("mode", choices=hooks.MODES)
+    hk.set_defaults(func=cmd_hook)
     return p
+
+
+def _add_gate_args(p: argparse.ArgumentParser) -> None:
+    p.add_argument("--ruling", help="override a rules-gate block: the reason (logged as a house ruling, flagged to the audit)")
+    p.add_argument("--fix", help="this command applies the rules-lawyer's fix for a failed event, e.g. e0014")
 
 
 def _campaign_dispatch(args) -> None:
@@ -1251,14 +2590,66 @@ def _rules_dispatch(args) -> None:
     cmd_rules(args)
 
 
+# Commands (or command actions) that only read: no turn snapshot before them.
+_READ_ONLY = {"status", "recall", "rules", "roll", "export", "web", "hook", "sync", "undo", "audit", "random", "import",
+              "campaign", "playtest", "engine"}
+_READ_ACTIONS = {"pc": {"list", "show", "json"}, "combat": {"status", "log", "attacks", "range"},
+                 "session": {"show", "list", "transcript"}, "memory": {"search", "list", "brief"}, "quest": {"list"},
+                 "lore": {"list", "show", "search", "types", "index", "source"}, "context": {"list", "show", "render"},
+                 "companion": {"list", "show", "brief", "recall", "council"}, "time": {None, "show"},
+                 "clock": {None, "list"}, "faction": {None, "list", "show"}, "scene": {None, "show"},
+                 "world": {None, "show", "gossip"}}
+
+
+def _mutates(args) -> bool:
+    if args.command in _READ_ONLY:
+        return False
+    return getattr(args, "action", None) not in _READ_ACTIONS.get(args.command, set())
+
+
+def _is_rules_command(args) -> bool:
+    action = getattr(args, "action", None)
+    return action in audit.RULES_COMMANDS.get(args.command, ()) or (args.command == "session" and action == "end")
+
+
 def main(argv: list[str] | None = None) -> int:
+    global _CAPTURE
     parser = build_parser()
+    argv = list(sys.argv[1:] if argv is None else argv)
     args = parser.parse_args(argv)
+    gated = _is_rules_command(args)
+    _CAPTURE = [] if gated else None
+    if gated:
+        receipts.start()
     try:
+        if _mutates(args):
+            try:
+                snapshots.ensure(maybe_camp(args))
+            except RoboDMError:
+                pass
+        camp = maybe_camp(args) if gated else None
+        fix_ids = None
+        if camp is not None:
+            if getattr(args, "fix", None):
+                fix_ids = audit.parse_ids(camp, [args.fix])
+                not_failed = [e["id"] for e in audit.events(camp) if e["id"] in fix_ids and e["status"] != "failed"]
+                if not_failed:
+                    raise RoboDMError(f"--fix is for events the rules-lawyer failed; {', '.join(not_failed)} isn't one.")
+            audit.backstop(camp, args.command, getattr(args, "action", None), fix_ids)
         args.func(args)
+        if os.environ.get("ROBODM_AUTOSAVE") and args.command not in ("hook", "import"):
+            bundle.autosave(maybe_camp(args), Path(os.environ["ROBODM_AUTOSAVE"]))
+        if camp is not None and args.command != "session" and \
+                (args.command, getattr(args, "action", None)) not in audit.NOT_RECORDED:
+            audit.record_event(campaign.load(camp.slug), "./dm " + " ".join(shlex.quote(x) for x in argv),
+                               _CAPTURE or [], overridden=getattr(args, "overridden", None), fix_for=fix_ids,
+                               facts=receipts.stop())
     except RoboDMError as e:
         print(f"Error: {e}", file=sys.stderr)
         return 1
     except KeyboardInterrupt:
         return 130
+    finally:
+        _CAPTURE = None
+        receipts.stop()
     return 0

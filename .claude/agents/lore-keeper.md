@@ -46,6 +46,11 @@ EOF
   (check with `./dm lore search` first).
 - Keep summaries to one line — they appear in the DM's session brief.
 
+## Finding what's already known
+`./dm recall "phrasing 1" "phrasing 2"` searches lore entries, reference sources (chunked by heading), memories,
+journals and play transcripts at once. Use it before creating an entry (to avoid duplicates and contradictions)
+and to pull the relevant passages of a long reference instead of reading the whole file.
+
 ## Consistency check (when asked, and before finishing any big batch)
 Scan entries and journals for contradictions (dead NPCs alive elsewhere, conflicting dates/geography, duplicate
 entities under different names, `related` slugs that don't exist). Fix clear errors; report judgement calls.
