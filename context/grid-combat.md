@@ -2,11 +2,12 @@
 title: Grid combat
 scope: combat
 priority: 50
-description: Track positions on a 5-ft grid; show a small ASCII map each round.
+description: Show the battle map to the players every round (text grid, plus the rendered image where it can be shown).
 ---
-- Track every combatant's square on a 5-foot grid (columns A–T, rows 1–20). Store positions with
-  `./dm combat` notes or in the session log so they survive context resets.
-- Show a compact ASCII map at the start of each round (≤ 12×12 visible area). Legend: PCs by initial, enemies by
-  number, `#` walls, `~` difficult terrain.
-- Use PHB movement: diagonals cost 5 ft (DMG optional rule: alternating 5/10 ft only if enabled).
-- Check reach, range and cover from the map before resolving attacks; mention opportunity attacks when someone leaves reach.
+- At the start of each round, show `./dm combat map show --players` in a code block (column letters, row
+  numbers, token codes, a legend).
+- Where images can be shown (the Claude desktop app, claude.ai), also render it with
+  `./dm combat map render --players` and share the file at the start of the fight and when positions change a lot.
+- Players may answer with squares ("I move to D4 and attack G2"); run exactly that with `combat move` and
+  `combat attack`.
+- Mention opportunity attacks, cover and long range when the engine reports them.

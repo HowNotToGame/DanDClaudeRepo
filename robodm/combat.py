@@ -10,7 +10,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from robodm import dice
+from robodm import dice, receipts
 from robodm.campaign import Campaign, pc_init_bonus, pc_save_bonus
 from robodm.util import ABILITIES, RoboDMError, ability_mod, fmt_mod, normalize_ability, now_iso, read_json, slugify, write_json
 
@@ -132,6 +132,8 @@ class Encounter:
             "death_saves": {"success": 0, "fail": 0}, "attacks": kw.get("attacks", []),
             "legendary_max": kw.get("legendary_actions", 0), "legendary_left": kw.get("legendary_actions", 0),
             "recharge_spent": [], "reaction_used": False, "xp": kw.get("xp", 0), "notes": kw.get("notes", ""),
+            "pos": None, "size": kw.get("size", "M"), "speed": int(kw.get("speed", 30) or 0),
+            "speeds": kw.get("speeds") or {"walk": int(kw.get("speed", 30) or 0)}, "moved": 0,
         }
         if kw.get("pc"):
             c["pc"] = kw["pc"]
@@ -150,7 +152,8 @@ class Encounter:
         c = self._new(cid, pc["name"], kind="pc", side="party", init=init, init_bonus=pc_init_bonus(pc),
                       dex=pc["abilities"].get("dex", 10), ac=pc.get("ac", 10), hp=pc["hp"]["current"],
                       max_hp=pc["hp"]["max"], saves=saves, attacks=pc.get("attacks", []), pc=pc["slug"],
-                      resist=pc.get("resist", []), immune=pc.get("immune", []), vulnerable=pc.get("vulnerable", []))
+                      resist=pc.get("resist", []), immune=pc.get("immune", []), vulnerable=pc.get("vulnerable", []),
+                      size=pc.get("size", "M"), speed=pc.get("speed", 30))
         c["temp_hp"] = pc["hp"].get("temp", 0)
         c["death_saves"] = dict(pc.get("death_saves", {"success": 0, "fail": 0}))
         c["conditions"] = [dict(x) for x in pc.get("conditions", []) if isinstance(x, dict) and not x.get("persistent")]
@@ -183,18 +186,19 @@ class Encounter:
                           vulnerable=profile["vulnerable"], cond_defenses=profile.get("cond_defenses", []),
                           condition_immune=profile.get("condition_immune", []), attacks=profile.get("attacks", []),
                           legendary_actions=profile.get("legendary_actions", 0), xp=profile.get("xp", 0),
+                          size=profile.get("size", "M"), speed=profile.get("speed", 30), speeds=profile.get("speeds"),
                           ref={"name": profile["name"], "source": profile.get("source"), "cr": profile.get("cr")})
             added.append(c)
             self.say(f"Added **{label}** (CR {profile.get('cr', '?')}) — HP {hp}{hp_note}, AC {c['ac']}, init {fmt_mod(c['init_bonus'])}")
         return added
 
     def add_custom(self, name: str, hp: int, ac: int, init_bonus: int = 0, side: str = "enemy", count: int = 1,
-                   init: int | None = None, saves: dict | None = None) -> list[dict]:
+                   init: int | None = None, saves: dict | None = None, size: str = "M", speed: int = 30) -> list[dict]:
         out = []
         for i in range(count):
             label = f"{name} {i + 1}" if count > 1 else name
             c = self._new(self._unique_id(label), label, kind="npc", side=side, init=init, init_bonus=init_bonus,
-                          ac=ac, hp=hp, max_hp=hp, saves=saves or {ab: 0 for ab in ABILITIES})
+                          ac=ac, hp=hp, max_hp=hp, saves=saves or {ab: 0 for ab in ABILITIES}, size=size, speed=speed)
             out.append(c)
             self.say(f"Added **{label}** — HP {hp}, AC {ac}, init {fmt_mod(init_bonus)}")
         return out
@@ -234,6 +238,11 @@ class Encounter:
         for t in targets:
             if t.lower() in ("all-enemies", "enemies"):
                 out.extend(c for c in self.combatants.values() if c["side"] == "enemy" and c["status"] != "dead")
+            elif t.lower() == "area":
+                area = self.state.get("last_area") or {}
+                if not area.get("targets"):
+                    raise RoboDMError("No area targets yet: run `./dm combat area …` first.")
+                out.extend(self.combatants[i] for i in area["targets"] if i in self.combatants)
             elif t.lower() in ("party", "all-party"):
                 out.extend(c for c in self.combatants.values() if c["side"] == "party" and c["status"] != "dead")
             else:
@@ -338,6 +347,10 @@ class Encounter:
         if not c:
             return
         c["reaction_used"] = False
+        c["spells_this_turn"] = []
+        c["moved"] = 0
+        c["dashed"] = False
+        c["disengaged"] = False
         if c.get("legendary_max"):
             c["legendary_left"] = c["legendary_max"]
         notes = []
@@ -437,12 +450,13 @@ class Encounter:
             cond["level"] = level
         c["conditions"] = [x for x in c["conditions"] if x["name"] != name] + [cond]
         extra = []
-        if name in ("paralyzed", "petrified", "stunned", "unconscious") and c.get("concentration"):
+        if name in ("incapacitated", "paralyzed", "petrified", "stunned", "unconscious") and c.get("concentration"):
             self._break_concentration(c, f"{name}")
         if name == "unconscious":
             extra.append("also prone")
             if not any(x["name"] == "prone" for x in c["conditions"]):
                 c["conditions"].append({"name": "prone", "tick": "end"})
+        receipts.note("condition", target=c["name"], name=name)
         self.say(f"{c['name']} is now **{self._cond_label(cond)}**{' (' + source + ')' if source else ''}"
                  f"{' — save ' + save.upper() + ' ends' if save else ''}{'; ' + ', '.join(extra) if extra else ''}")
 
@@ -453,6 +467,14 @@ class Encounter:
         if len(c["conditions"]) == before:
             raise RoboDMError(f"{c['name']} isn't {name}.")
         self.say(f"{c['name']} is no longer {name}.")
+
+    def speed_now(self, c: dict, mode: str = "walk") -> int:
+        """Speed this turn after conditions: 0 if grappled, restrained or incapacitating; halved at exhaustion 2+."""
+        if any(self.has(c, x) for x in ("grappled", "restrained", "paralyzed", "petrified", "stunned", "unconscious")):
+            return 0
+        base = int((c.get("speeds") or {}).get(mode, c.get("speed", 30) if mode == "walk" else 0) or 0)
+        ex = self.exhaustion(c)
+        return 0 if ex >= 5 else base // 2 if ex >= 2 else base
 
     def has(self, c: dict, name: str) -> bool:
         return any(x["name"] == name for x in c["conditions"])
@@ -525,17 +547,24 @@ class Encounter:
         if isinstance(parts, int):
             parts = [(parts, dtype)]
         total, notes = 0, []
-        for amount, dt in parts:
+        by_type: dict[str, int] = {}
+        for amount, dt in parts:                  # each damage type is halved (and rounded down) once
+            by_type[dt] = by_type.get(dt, 0) + amount
+        for dt, amount in by_type.items():
             mult, why = self._defense_multiplier(c, dt, nonmagical, silvered, adamantine)
-            dealt = int(amount * mult) if mult != 0.5 else amount // 2
+            if why == "resistant+vulnerable":     # resistance and then vulnerability (PHB p.197): 7 → 3 → 6
+                dealt = amount // 2 * 2
+            else:
+                dealt = int(amount * mult) if mult != 0.5 else amount // 2
             if why:
                 notes.append(f"{amount} {dt} → {dealt} ({why})")
             total += dealt
-        self._apply_damage(c, total, crit=crit, source=source, nonlethal=nonlethal, notes=notes)
+        self._apply_damage(c, total, crit=crit, source=source, nonlethal=nonlethal, notes=notes,
+                           raw=sum(a for a, _ in parts))
         return total
 
     def _apply_damage(self, c: dict, total: int, crit: bool = False, source: str = "", nonlethal: bool = False,
-                      notes: list[str] | None = None) -> None:
+                      notes: list[str] | None = None, raw: int | None = None) -> None:
         notes = notes or []
         if c["status"] == "dead":
             self.say(f"{c['name']} is already dead.")
@@ -557,6 +586,8 @@ class Encounter:
         if c.get("temp_hp"):
             msg += f" (+{c['temp_hp']} temp)"
         self.say(msg)
+        receipts.note("damage", target=c["name"], amount=total, raw=raw, hp=c["hp"], max=c["max_hp"],
+                      pc=c["kind"] == "pc")
         if total <= 0:
             return
         if c["kind"] == "pc":
@@ -576,12 +607,16 @@ class Encounter:
                 if overflow >= c["max_hp"]:
                     self._kill(c, f"massive damage ({overflow} over max HP)")
                     return
-                c["status"] = "down"
+                c["status"] = "stable" if nonlethal else "down"
                 c["death_saves"] = {"success": 0, "fail": 0}
                 if not self.has(c, "unconscious"):
                     c["conditions"].append({"name": "unconscious", "tick": "end", "auto": "dying"})
                     c["conditions"].append({"name": "prone", "tick": "end"})
-                self.say(f"  **{c['name']} drops to 0 HP and falls unconscious!** Death saves begin on their turn.")
+                if nonlethal:                     # knocked out: unconscious and stable (PHB p.198)
+                    self.say(f"  **{c['name']} is knocked out** (nonlethal): unconscious and stable at 0 HP.")
+                else:
+                    self.say(f"  **{c['name']} drops to 0 HP and falls unconscious!** Death saves begin on their turn.")
+                receipts.note("down", target=c["name"])
                 self._break_concentration(c, "dropped to 0 HP")
                 return
         else:
@@ -591,6 +626,7 @@ class Encounter:
                     if not self.has(c, "unconscious"):
                         c["conditions"].append({"name": "unconscious", "tick": "end"})
                     self.say(f"  {c['name']} is knocked out (nonlethal).")
+                    receipts.note("down", target=c["name"])
                     self._break_concentration(c, "knocked out")
                 else:
                     self._kill(c, "reduced to 0 HP")
@@ -615,6 +651,7 @@ class Encounter:
         c["hp"] = 0
         self._break_concentration(c, "died")
         self.say(f"💀 **{c['name']} dies** ({why}).")
+        receipts.note("dead", target=c["name"])
         if c["kind"] != "pc":
             self.state["xp_defeated"] = self.state.get("xp_defeated", 0) + c.get("xp", 0)
             self.state.setdefault("defeated", []).append({"name": c["name"], "ref": c.get("ref", {}).get("name"), "xp": c.get("xp", 0)})
@@ -632,6 +669,7 @@ class Encounter:
             c["conditions"] = [x for x in c["conditions"] if not (x["name"] == "unconscious")]
             msg += " — back on their feet (still prone)"
         self.say(msg)
+        receipts.note("heal", target=c["name"], amount=c["hp"] - before, hp=c["hp"], max=c["max_hp"])
 
     def set_temp_hp(self, target: str, amount: int) -> None:
         c = self.find(target)
@@ -645,7 +683,7 @@ class Encounter:
     def _auto_fail(self, c: dict, ability: str) -> bool:
         return ability in ("str", "dex") and any(self.has(c, x) for x in AUTO_FAIL_STR_DEX)
 
-    def _save_roll(self, c: dict, ability: str, adv: bool = False, dis: bool = False) -> dice.RollResult:
+    def _save_roll(self, c: dict, ability: str, adv: bool = False, dis: bool = False, extra: int = 0) -> dice.RollResult:
         notes = []
         if ability == "dex" and self.has(c, "restrained"):
             dis = True
@@ -653,7 +691,9 @@ class Encounter:
         if self.exhaustion(c) >= 3:
             dis = True
             notes.append("exhaustion 3+: disadv.")
-        r = dice.roll_d20(int(c["saves"].get(ability, 0)), adv=adv, dis=dis, label=f"{c['name']} {ability.upper()} save")
+        r = dice.roll_d20(int(c["saves"].get(ability, 0)) + extra, adv=adv, dis=dis, label=f"{c['name']} {ability.upper()} save")
+        if extra:
+            notes.append(f"+{extra} from cover")
         r.notes.extend(notes)
         return r
 
@@ -661,7 +701,7 @@ class Encounter:
                      half: bool = True, on_fail: str | None = None, rounds: int | None = None, repeat: str | None = None,
                      conc: str | None = None, source: str = "", adv: bool = False, dis: bool = False,
                      results: dict[str, int] | None = None, ends: str | None = None, concentration: bool = False,
-                     nonmagical: bool = False) -> None:
+                     nonmagical: bool = False, bonus: dict[str, int] | None = None) -> None:
         ability = normalize_ability(ability)
         cs = self.find_many(targets)
         results = {k.lower(): v for k, v in (results or {}).items()}
@@ -674,14 +714,18 @@ class Encounter:
             if given is None and c["kind"] == "pc" and not self._auto_rolls_for(c):
                 self.say(f"⏳ {c['name']}: ask the player for a {ability.upper()} save — then re-run with `--results {c['id']}=<total>`.", log=False)
                 continue
+            total = None
             if self._auto_fail(c, ability):
                 ok, txt = False, "automatically fails (incapacitating condition)"
             elif given is not None:
-                ok, txt = int(given) >= dc, f"player rolled {given}"
+                total = int(given)
+                ok, txt = total >= dc, f"player rolled {given}"
             else:
-                r = self._save_roll(c, ability, adv=adv, dis=dis)
+                r = self._save_roll(c, ability, adv=adv, dis=dis, extra=(bonus or {}).get(c["id"], 0))
                 r.label = ""
+                total = r.total
                 ok, txt = r.total >= dc, r.text()
+            receipts.note("save", who=c["name"], ability=ability.upper(), dc=dc, total=total, ok=ok)
             self.say(f"{'✅' if ok else '❌'} {c['name']} {ability.upper()} save vs DC {dc}: {txt} → **{'success' if ok else 'failure'}**")
             if concentration and not ok:
                 self._break_concentration(c, f"failed DC {dc} concentration save")
@@ -704,7 +748,7 @@ class Encounter:
                damage: list[tuple[str, str]] | None = None, adv: bool = False, dis: bool = False, ranged: bool = False,
                nonmagical: bool = False, result: int | None = None, nat: int | None = None,
                damage_result: int | None = None, nonlethal: bool = False, silvered: bool = False,
-               within_5ft: bool | None = None) -> None:
+               within_5ft: bool | None = None, cover: int = 0, extra_dis: list[str] | None = None) -> None:
         self.require_active()
         a = self.find(attacker)
         t = self.find(target)
@@ -745,8 +789,11 @@ class Encounter:
                 reasons_adv.append(why)
         if self.has(t, "invisible"):
             reasons_dis.append("target invisible")
-        if self.has(t, "prone"):
-            (reasons_dis if ranged else reasons_adv).append("target prone" + (" (ranged)" if ranged else " (within 5 ft)"))
+        reasons_dis.extend(extra_dis or [])
+        close = (not ranged) if within_5ft is None else within_5ft
+        if self.has(t, "prone"):                  # advantage from within 5 ft, otherwise disadvantage (PHB p.292)
+            (reasons_adv if close else reasons_dis).append(
+                "target prone (" + ("within 5 ft" if close else "ranged" if within_5ft is None else "beyond 5 ft") + ")")
         has_adv, has_dis = bool(reasons_adv), bool(reasons_dis)
         if any(self.has(a, x) for x in NO_ACTIONS):
             self.say(f"(warning: {a['name']} is incapacitated and normally can't attack)", log=False)
@@ -762,13 +809,16 @@ class Encounter:
             adv_txt = f" [adv: {', '.join(reasons_adv) or '—'} | dis: {', '.join(reasons_dis) or '—'}" + (
                 " → cancel]" if has_adv and has_dis else "]")
         crit = natural == 20
-        hit = crit or (natural != 1 and total >= t["ac"])
-        melee_close = (not ranged) if within_5ft is None else within_5ft
-        if hit and not crit and melee_close and (self.has(t, "paralyzed") or self.has(t, "unconscious")):
+        ac = t["ac"] + (cover if cover < 99 else 0)
+        hit = crit or (natural != 1 and total >= ac)
+        if hit and not crit and close and (self.has(t, "paralyzed") or self.has(t, "unconscious")):
             crit = True
             adv_txt += " (auto-crit: melee hit on paralyzed/unconscious target)"
         verdict = "**CRITICAL HIT!**" if crit else ("**hit**" if hit else ("miss (nat 1)" if natural == 1 else "miss"))
-        self.say(f"🎯 {roll_txt} vs AC {t['ac']} → {verdict}{adv_txt}")
+        cover_txt = f" ({t['ac']} +{cover} {'half' if cover == 2 else 'three-quarters'} cover)" if cover in (2, 5) else ""
+        self.say(f"🎯 {roll_txt} vs AC {ac}{cover_txt} → {verdict}{adv_txt}")
+        receipts.note("attack", by=a["name"], target=t["name"], hit=hit, crit=crit, total=total, ac=ac,
+                      weapon=label)
         if not hit or not damage:
             return
         parts: list[tuple[int, str]] = []
@@ -868,6 +918,10 @@ class Encounter:
                 extra.append(f"LA {c['legendary_left']}/{c['legendary_max']}")
             if c.get("recharge_spent"):
                 extra.append("spent: " + ", ".join(c["recharge_spent"]))
+            if c.get("pos"):
+                from robodm.battlemap import fmt_cell
+
+                extra.append(f"@{fmt_cell(*c['pos'])}")
             if c.get("notes"):
                 extra.append(f"📍 {c['notes']}")
             lines.append(f"{marker} {init}  **{c['name']}**{' ' + tag if tag else ''}{side} · {hp} · AC {c['ac']}"

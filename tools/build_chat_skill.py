@@ -23,10 +23,10 @@ sys.path.insert(0, str(ROOT))
 DEFAULT_SOURCES = ["PHB", "MM", "DMG", "XGE", "TCE"]
 
 
-def add_tree(z: zipfile.ZipFile, src: Path, dest: str) -> int:
+def add_tree(z: zipfile.ZipFile, src: Path, dest: str, skip: tuple = ()) -> int:
     n = 0
     for p in sorted(src.rglob("*")):
-        if p.is_file() and "__pycache__" not in p.parts and not p.name.endswith((".pyc", ".tmp")):
+        if p.is_file() and "__pycache__" not in p.parts and not p.name.endswith((".pyc", ".tmp"))                 and p.relative_to(src).parts[0] not in skip:
             z.write(p, f"{dest}/{p.relative_to(src).as_posix()}")
             n += 1
     return n
@@ -45,7 +45,7 @@ def main() -> int:
     top = "robodm"
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.write(ROOT / "chat" / "SKILL.md", f"{top}/SKILL.md")
-        add_tree(z, ROOT / "robodm", f"{top}/robodm")
+        add_tree(z, ROOT / "robodm", f"{top}/robodm", skip=("web",))   # the web client needs a local machine
         add_tree(z, ROOT / "context", f"{top}/context")
         for ref in ("commands.md", "combat.md"):
             z.write(ROOT / ".claude" / "skills" / "dm" / "reference" / ref, f"{top}/reference/{ref}")

@@ -12,9 +12,10 @@ import re
 
 from robodm import context_blocks, lore
 from robodm.campaign import Campaign, pc_summary
-from robodm.util import RoboDMError, append_jsonl, now_iso, rank_documents, read_json, read_jsonl, truncate, write_text
+from robodm.util import RoboDMError, append_jsonl, now_iso, read_json, read_jsonl, truncate, write_text
 
-MEMORY_TYPES = ["event", "choice", "npc", "location", "item", "quest", "lore", "rule", "secret", "relationship", "other"]
+MEMORY_TYPES = ["event", "choice", "npc", "location", "item", "quest", "lore", "rule", "secret", "relationship", "world",
+                "rumor", "other"]
 
 
 def _memory_file(camp: Campaign):
@@ -25,7 +26,8 @@ def all_memories(camp: Campaign) -> list[dict]:
     return read_jsonl(_memory_file(camp))
 
 
-def add(camp: Campaign, text: str, mtype: str = "event", tags: list[str] | None = None, important: bool = False) -> dict:
+def add(camp: Campaign, text: str, mtype: str = "event", tags: list[str] | None = None, important: bool = False,
+        known_by: list[str] | None = None) -> dict:
     mtype = mtype.lower()
     if mtype not in MEMORY_TYPES:
         raise RoboDMError(f"Memory type must be one of: {', '.join(MEMORY_TYPES)}")
@@ -41,12 +43,16 @@ def add(camp: Campaign, text: str, mtype: str = "event", tags: list[str] | None 
     }
     if important:
         rec["important"] = True
+    if known_by:
+        from robodm.util import slugify
+
+        rec["known_by"] = sorted({slugify(k) for k in known_by if k.strip()})
     append_jsonl(_memory_file(camp), rec)
     return rec
 
 
 def update(camp: Campaign, mem_id: str, text: str | None = None, important: bool | None = None,
-           forget: bool = False) -> dict:
+           forget: bool = False, known_by: list[str] | None = None) -> dict:
     mems = all_memories(camp)
     found = None
     for m in mems:
@@ -59,6 +65,10 @@ def update(camp: Campaign, mem_id: str, text: str | None = None, important: bool
                 m["important"] = important
             if forget:
                 m["retired"] = True
+            if known_by:
+                from robodm.util import slugify
+
+                m["known_by"] = sorted(set(m.get("known_by") or []) | {slugify(k) for k in known_by if k.strip()})
     if not found:
         raise RoboDMError(f"No memory {mem_id}.")
     import json
@@ -68,8 +78,10 @@ def update(camp: Campaign, mem_id: str, text: str | None = None, important: bool
 
 
 def list_memories(camp: Campaign, mtype: str | None = None, recent: int | None = None, tag: str | None = None,
-                  include_retired: bool = False) -> list[dict]:
+                  include_retired: bool = False, important: bool = False) -> list[dict]:
     mems = [m for m in all_memories(camp) if include_retired or not m.get("retired")]
+    if important:
+        mems = [m for m in mems if m.get("important")]
     if mtype:
         mems = [m for m in mems if m["type"] == mtype]
     if tag:
@@ -85,42 +97,12 @@ def fmt_memory(m: dict) -> str:
     return f"{m['id']} [s{m.get('session', 0)} {m['type']}] {star}{m['text']}{tags}"
 
 
-def search(camp: Campaign, query: str, limit: int = 12, scope: str = "all") -> list[dict]:
-    """Rank everything the campaign knows: memories, journals, lore, party sheets, quests."""
-    docs: list[dict] = []
-    if scope in ("all", "memory"):
-        for m in all_memories(camp):
-            if m.get("retired"):
-                continue
-            docs.append({"kind": "memory", "ref": m["id"], "text": f"{m['text']} {' '.join(m.get('tags', []))} {m['type']}",
-                         "show": fmt_memory(m)})
-    if scope in ("all", "journal"):
-        jdir = camp.path("journal")
-        if jdir.exists():
-            for p in sorted(jdir.glob("*.md")):
-                for line in p.read_text(encoding="utf-8").splitlines():
-                    line = line.strip()
-                    if len(line) > 12 and not line.startswith("#"):
-                        docs.append({"kind": "journal", "ref": p.stem, "text": line, "show": f"{p.stem}: {truncate(line, 220)}"})
-    if scope in ("all", "lore"):
-        for e in lore.all_entries(camp):
-            body = e["body"]
-            docs.append({"kind": "lore", "ref": e["slug"],
-                         "text": f"{e['meta'].get('name', '')} {e['meta'].get('name', '')} {e['meta'].get('summary', '')} "
-                                 f"{' '.join(map(str, e['meta'].get('tags', []) or []))} {body}",
-                         "show": f"lore/{e['meta'].get('type', '?')}/{e['slug']}: {e['meta'].get('name')} — "
-                                 f"{truncate(e['meta'].get('summary') or body, 180)}"})
-    if scope in ("all", "party"):
-        for pc in camp.party():
-            docs.append({"kind": "pc", "ref": pc["slug"],
-                         "text": f"{pc['name']} {pc.get('race', '')} {pc.get('class', '')} {pc.get('notes', '')} "
-                                 f"{' '.join(pc.get('inventory', []))} {' '.join(pc.get('features', []))}",
-                         "show": f"PC {pc['name']}: {truncate(pc.get('notes', '') or pc.get('class', ''), 160)}"})
-    if scope in ("all", "quests"):
-        for q in camp.quests():
-            docs.append({"kind": "quest", "ref": q["id"], "text": f"{q['title']} {q.get('notes', '')}",
-                         "show": f"quest {q['id']} [{q['status']}] {q['title']} — {truncate(q.get('notes', ''), 140)}"})
-    return rank_documents(query, docs, limit=limit)
+def search(camp: Campaign, query: str | list[str], limit: int = 12, scope: str = "all") -> list[dict]:
+    """Rank everything the campaign knows (memories, journals, transcripts, lore, sources, party, quests).
+    Pass several phrasings to search by meaning; see robodm/recall.py."""
+    from robodm import recall
+
+    return recall.search(camp, query, limit=limit, scope=scope)
 
 
 # ---------------------------------------------------------------- quests
@@ -172,77 +154,162 @@ def fmt_quest(q: dict) -> str:
 
 # ---------------------------------------------------------------- brief
 
-def brief(camp: Campaign, recent: int = 15) -> str:
+BRIEF_BUDGET = 9000  # characters; the brief is reloaded every session and after every compaction
+
+
+def _section(prio: int, title: str, lines: list[str], keep: str = "head", min_lines: int = 0, more: str = "") -> dict:
+    """prio 0 is never trimmed; higher numbers are trimmed first. keep='tail' trims the oldest lines first."""
+    return {"prio": prio, "title": title, "lines": [x for x in lines if x is not None], "keep": keep,
+            "min": min_lines, "more": more, "cut": 0}
+
+
+def _size(sections: list[dict]) -> int:
+    return sum(len(s["title"]) + 2 + sum(len(x) + 1 for x in s["lines"]) for s in sections if s["lines"])
+
+
+def _fit(sections: list[dict], budget: int) -> None:
+    for prio in sorted({s["prio"] for s in sections if s["prio"] > 0}, reverse=True):
+        for sec in [s for s in sections if s["prio"] == prio]:
+            while _size(sections) > budget and len(sec["lines"]) > sec["min"]:
+                sec["lines"].pop(0 if sec["keep"] == "tail" else -1)
+                sec["cut"] += 1
+        if _size(sections) <= budget:
+            return
+
+
+def _scene_query(camp: Campaign) -> str:
+    """Words describing what's happening now: recent log lines, open quests, who's in the fight."""
+    from robodm import capture
+
+    bits = [ln.split("] ", 1)[-1] for ln in camp.current_log(tail=8)] if camp.session.get("active") else []
+    bits += [text for _, _, text in capture.entries(camp)[-2:]] if camp.session.get("active") else []
+    bits += [q["title"] for q in camp.quests() if q["status"] == "open"]
+    combat = read_json(camp.path("combat.json")) or {}
+    if combat.get("active"):
+        bits += [combat.get("name", "")] + [c["name"] for c in combat.get("combatants", {}).values()]
+    return " ".join(bits)[-1500:]
+
+
+def brief(camp: Campaign, recent: int = 15, budget: int | str | None = "auto", full: bool = False) -> str:
+    """The session digest. Sections are tiered by priority and trimmed to `budget` characters, lowest priority
+    first; every trimmed section says how to get the rest. `full=True` keeps everything untrimmed."""
+    from robodm import audit, capture
+
+    if budget == "auto":                 # sized by the campaign's turn_speed (robodm/costs.py)
+        from robodm import costs
+
+        budget = costs.brief_budget(camp)
+    w = (lambda text, n: str(text)) if full else (lambda text, n: truncate(str(text), n))
     d = camp.data
     s = camp.settings
     sess = camp.session
-    lines = [f"# 📜 {camp.name}"]
     status = f"session {sess.get('number', 0)} in progress" if sess.get("active") else f"next session: {sess.get('number', 0) + 1}"
-    lines.append(f"*{status} · campaign folder: campaigns/{camp.slug}*")
+    from robodm import world
+
+    wd = world.load(camp)
+    head = [f"*{status} · campaign folder: campaigns/{camp.slug}*"]
+    if world.tracking(wd):
+        head.insert(0, f"🕰 **{world.fmt_time(wd)}**")
     for key, label in (("premise", "Premise"), ("setting", "Setting"), ("tone", "Tone")):
         if d.get(key):
-            lines.append(f"**{label}:** {d[key]}")
-    lines.append("**Table settings:** " + ", ".join(
+            head.append(f"**{label}:** {w(d[key], 400)}")
+    head.append("**Table settings:** " + ", ".join(
         f"{k}={','.join(v) if isinstance(v, list) else v}" for k, v in s.items()))
     if d.get("dm_notes"):
-        lines.append(f"**DM notes (secret):** {d['dm_notes']}")
+        head.append(f"**DM notes (secret):** {w(d['dm_notes'], 800)}")
+    sections = [_section(0, f"# 📜 {camp.name}", head)]
 
     party = camp.party()
-    lines.append("\n## Party")
-    if party:
-        lines.extend(f"- {pc_summary(pc)}" for pc in party)
-    else:
-        lines.append("- (no characters yet — run session zero / `./dm pc add`)")
-
-    summaries = camp.session_summaries(limit=2)
-    if summaries:
-        lines.append("\n## Previously")
-        for n, text in reversed(summaries):
-            lines.append(f"**Session {n}:** {text}")
-    log = camp.current_log(tail=20) if sess.get("active") else []
-    if log:
-        lines.append("\n## This session so far")
-        lines.extend(log)
-
+    sections.append(_section(0, "## Party", [f"- {pc_summary(pc)}" for pc in party] if party else
+                             ["- (no characters yet — run session zero / `./dm pc add`)"]))
+    scene_lines, world_lines = world.brief_lines(camp, dm=True)
+    if scene_lines:
+        sections.append(_section(0, "## Scene", scene_lines, min_lines=len(scene_lines)))
+    if world_lines:
+        sections.append(_section(1, "## The world moves (clocks, factions, timers)", world_lines, min_lines=4,
+                                 more="`./dm clock list` · `./dm faction` · `./dm world`"))
+    combat = read_json(camp.path("combat.json"))
+    if combat and combat.get("active"):
+        sections.append(_section(0, f"## ⚔️ Combat in progress: {combat.get('name') or 'unnamed'} "
+                                    f"(round {combat.get('round')})", ["See `./dm combat status`."]))
+    if sess.get("active"):
+        sections.append(_section(1, "## Last exchanges (transcript)", capture.last_exchanges(camp, n=4, width=600),
+                                 keep="tail", min_lines=2, more="`./dm session transcript`"))
+        sections.append(_section(1, "## This session so far", [w(x, 240) for x in camp.current_log(tail=30)],
+                                 keep="tail", min_lines=6, more="`./dm session show`"))
     quests = [q for q in camp.quests() if q["status"] == "open"]
     if quests:
-        lines.append("\n## Open quests")
-        lines.extend(f"- {fmt_quest(q)}" for q in quests)
-
+        sections.append(_section(1, "## Open quests", [f"- {w(fmt_quest(q), 200)}" for q in quests], min_lines=6,
+                                 more="`./dm quest list`"))
     mems = list_memories(camp)
     important = [m for m in mems if m.get("important")]
-    recent_mems = [m for m in mems[-recent:] if not m.get("important")]
     if important:
-        lines.append("\n## Key facts (★ always remember)")
-        lines.extend(f"- {fmt_memory(m)}" for m in important[-25:])
+        sections.append(_section(1, "## Key facts (★ always remember)",
+                                 [f"- {w(fmt_memory(m), 200)}" for m in reversed(important)], min_lines=10,
+                                 more="`./dm memory list --important`"))
+    summaries = camp.session_summaries(limit=4)
+    if summaries:
+        lines = [f"**Session {n}:** {w(text, 1400 if i == 0 else 450)}" for i, (n, text) in enumerate(summaries)]
+        sections.append(_section(2, "## Previously", list(reversed(lines)), keep="tail", min_lines=1,
+                                 more="`./dm session list`"))
+    shown = {m["id"] for m in important}
+    recent_mems = [m for m in mems[-recent:] if not m.get("important")]
+    shown.update(m["id"] for m in recent_mems)
+    query = _scene_query(camp)
+    relevant = []
+    if query.strip() and len(mems) > len(shown):
+        for h in search(camp, query, limit=20, scope="memory"):
+            m = next((x for x in mems if x["id"] == h["ref"]), None)
+            if m and m["id"] not in shown and len(relevant) < 8:
+                relevant.append(m)
+                shown.add(m["id"])
+    if relevant:
+        sections.append(_section(2, "## Relevant to the current scene (older memories)",
+                                 [f"- {w(fmt_memory(m), 200)}" for m in relevant], min_lines=3, more="`./dm recall \"…\"`"))
     if recent_mems:
-        lines.append("\n## Recent memories")
-        lines.extend(f"- {fmt_memory(m)}" for m in recent_mems)
-    if len(mems) > recent + len(important):
-        lines.append(f"_({len(mems)} memories total — search older ones with `./dm memory search <words>`)_")
-
+        sections.append(_section(3, "## Recent memories", [f"- {w(fmt_memory(m), 200)}" for m in recent_mems],
+                                 keep="tail", min_lines=3, more="`./dm memory list --limit 40`"))
     entries = lore.all_entries(camp)
     if entries:
-        lines.append("\n## World lore index")
         by_type: dict[str, list[str]] = {}
         for e in entries:
             by_type.setdefault(e["meta"].get("type", "other"), []).append(e["meta"].get("name", e["slug"]))
-        for t in sorted(by_type):
-            lines.append(f"- **{t}:** {', '.join(sorted(by_type[t]))}")
+        sections.append(_section(3, "## World lore index", [f"- **{t}:** {w(', '.join(sorted(by_type[t])), 400)}"
+                                                             for t in sorted(by_type)], min_lines=3,
+                                 more="`./dm lore list`"))
         npcs = [e for e in entries if e["meta"].get("type") == "npc" and e["meta"].get("summary")]
         if npcs:
-            lines.append("\n**NPCs at a glance:** " + "; ".join(
-                f"{e['meta']['name']} — {truncate(str(e['meta']['summary']), 90)}"
+            sections.append(_section(4, "## NPCs at a glance", [
+                f"- {e['meta']['name']} — {w(e['meta']['summary'], 90)}"
                 + (f" [{e['meta']['status']}]" if e["meta"].get("status") and e["meta"]["status"] != "alive" else "")
-                for e in npcs[:30]))
+                for e in npcs[:30]], more="`./dm lore list --type npc`"))
+    from robodm import companions
 
+    comp = companions.dm_summary(camp)
+    if comp:
+        sections.append(_section(1, "## Companions in play (each has its own mind: consult its agent at decision points)",
+                                 comp, min_lines=len(comp)))
     blocks = context_blocks.active_blocks(camp)
     if blocks:
-        lines.append("\n## Active instruction blocks")
-        lines.append(", ".join(f"{b['name']} ({b['meta'].get('scope', 'always')})" for b in blocks)
-                     + " — load the text with `./dm context render`.")
-    combat = read_json(camp.path("combat.json"))
-    if combat and combat.get("active"):
-        lines.append(f"\n## ⚔️ Combat in progress: {combat.get('name') or 'unnamed'} (round {combat.get('round')})"
-                     " — see `./dm combat status`.")
-    return "\n".join(lines)
+        sections.append(_section(1, "## Active instruction blocks", [
+            ", ".join(f"{b['name']} ({b['meta'].get('scope', 'always')})" for b in blocks)
+            + " — load the text with `./dm context render`."], min_lines=1))
+    opened = audit.open_events(camp)
+    sections.append(_section(0, "## Rules checking (mandatory)", [
+        f"{len(audit.cleared(camp))} item(s) cleared by the rules-lawyer"
+        + (f" · ⚠️ {len(opened)} event(s) awaiting the post-audit — `./dm audit pending`" if opened else "")]))
+
+    if not full and budget:
+        _fit(sections, budget)
+    out = []
+    for sec in sections:
+        if not sec["lines"] and not sec["cut"]:
+            continue
+        out.append(("\n" if out else "") + sec["title"])
+        out.extend(sec["lines"])
+        if sec["cut"]:
+            where = "older" if sec["keep"] == "tail" else "more"
+            out.append(f"_(+{sec['cut']} {where} not shown — {sec['more'] or 'see the files'})_")
+    out.append(f"\n_{len(mems)} memories in total. Search everything by meaning with "
+               "`./dm recall \"phrasing 1\" \"phrasing 2\"` (memories, journals, transcripts, lore, sources)._")
+    return "\n".join(out)

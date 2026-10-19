@@ -18,15 +18,39 @@ VERSION = 1
 SKIP = {".gitkeep"}
 
 
+def _campaign_files(camp: Campaign) -> list[Path]:
+    """Files that belong in a save: everything except derived caches (.cache/) and temp files."""
+    return [p for p in sorted(camp.dir.rglob("*"))
+            if p.is_file() and p.name not in SKIP and not p.name.endswith(".tmp")
+            and ".cache" not in p.relative_to(camp.dir).parts]
+
+
+def autosave(camp: Campaign | None, folder: Path) -> Path | None:
+    """claude.ai: keep <folder>/<slug>.robodm.json current after every command (ROBODM_AUTOSAVE=<folder>),
+    so the latest save is always ready to download. Only rewrites it when a campaign file changed."""
+    if camp is None:
+        return None
+    newest = max((p.stat().st_mtime_ns for p in _campaign_files(camp)), default=0)
+    out = folder / f"{camp.slug}.robodm.json"
+    stamp = camp.path(".cache", "autosave.json")
+    try:
+        last = json.loads(stamp.read_text(encoding="utf-8")).get("newest", -1) if stamp.exists() else -1
+    except ValueError:
+        last = -1
+    if out.exists() and newest == last:
+        return out
+    export(camp, out)
+    write_text(stamp, json.dumps({"newest": newest, "file": str(out), "at": now_iso()}))
+    return out
+
+
 def export(camp: Campaign, out: Path | None = None) -> Path:
     files = {}
-    for p in sorted(camp.dir.rglob("*")):
-        if p.is_file() and p.name not in SKIP and not p.name.endswith(".tmp"):
-            rel = p.relative_to(camp.dir).as_posix()
-            try:
-                files[rel] = p.read_text(encoding="utf-8")
-            except UnicodeDecodeError:
-                continue  # binary reference files are not bundled
+    for p in _campaign_files(camp):
+        try:
+            files[p.relative_to(camp.dir).as_posix()] = p.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue  # binary reference files are not bundled
     bundle = {"format": FORMAT, "version": VERSION, "slug": camp.slug, "name": camp.name, "exported": now_iso(),
               "files": files}
     out = out or (paths.home() / f"{camp.slug}.robodm.json")
@@ -60,7 +84,7 @@ def import_bundle(path: Path, slug: str | None = None, overwrite: bool = False) 
 
 def export_markdown(camp: Campaign, out: Path | None = None) -> Path:
     """Readable campaign digest — paste into a Claude Project's knowledge for chat-only play."""
-    parts = [memory.brief(camp, recent=40), "\n---\n# Party sheets"]
+    parts = [memory.brief(camp, recent=40, full=True), "\n---\n# Party sheets"]
     for pc in camp.party():
         parts.append(pc_summary(pc, full=True))
     quests = camp.quests()

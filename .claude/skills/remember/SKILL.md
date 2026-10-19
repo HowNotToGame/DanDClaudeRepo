@@ -9,9 +9,9 @@ allowed-tools: Bash(./dm:*)
 Input: `$ARGUMENTS`
 
 - If it starts with `?` or reads like a question ("what did the mayor say about the mine?"):
-  run `./dm memory search "<key words>"` (try 2–3 keyword variations if the first finds little), read the most
-  relevant journal/lore files if needed, and answer from what's recorded. Say plainly if nothing is recorded —
-  never invent past events.
+  run `./dm recall "<phrasing 1>" "<phrasing 2>" "<phrasing 3>"` (names, synonyms, what it was about; it searches
+  memories, journals, transcripts, lore and sources at once), read the most relevant journal/lore files if needed,
+  and answer from what's recorded. Say plainly if nothing is recorded — never invent past events.
 - Otherwise save it: pick the best type (event, choice, npc, location, item, quest, lore, rule, secret,
   relationship, other), 1–4 lowercase tags, and run
   `./dm memory add "<fact, written as a clear standalone sentence>" --type <type> --tags <tags>`.

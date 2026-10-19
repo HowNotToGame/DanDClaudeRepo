@@ -1,0 +1,66 @@
+{
+  "status": "party",
+  "history": [
+    {
+      "status": "party",
+      "ts": "2026-10-18T18:52:46",
+      "session": 1
+    }
+  ],
+  "attitude": {
+    "chadickith": {
+      "score": 3,
+      "why": "raised him for 68 years; quenched him in his own blood tonight to keep him alive",
+      "ts": "2026-10-18T18:52:46"
+    },
+    "lorard-hask": {
+      "score": 1,
+      "why": "respects craft",
+      "ts": "2026-10-18T18:52:46"
+    },
+    "kitwin": {
+      "score": -1,
+      "why": "smells the gladness on the boy",
+      "ts": "2026-10-18T18:52:47"
+    },
+    "halda": {
+      "score": -1,
+      "why": "Halda sells everyone",
+      "ts": "2026-10-18T18:52:47"
+    },
+    "oselle-velun": {
+      "score": -1,
+      "why": "believes she hates him, and she does",
+      "ts": "2026-10-18T18:52:47"
+    }
+  },
+  "agenda": [
+    {
+      "id": "a1",
+      "text": "Bring the Gallowsbird down tonight, before it takes Small Tusk or more of Kharun",
+      "status": "open",
+      "ts": "2026-10-18T18:52:47"
+    },
+    {
+      "id": "a2",
+      "text": "Keep the Heartcoal and the ash wafers away from everyone, myself most of all",
+      "status": "open",
+      "ts": "2026-10-18T18:52:48"
+    },
+    {
+      "id": "a3",
+      "text": "Tell Small Tusk what the Quenching costs, and what it has made of him, before the fury shows",
+      "status": "open",
+      "ts": "2026-10-18T18:52:48"
+    },
+    {
+      "id": "a4",
+      "text": "Make sure the Banked can put me down when I turn (unspoken)",
+      "status": "open",
+      "ts": "2026-10-18T18:52:48"
+    }
+  ],
+  "interject": null,
+  "last_brief_turn": -1,
+  "consults": 0
+}

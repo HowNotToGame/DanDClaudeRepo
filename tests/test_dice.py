@@ -59,6 +59,13 @@ class DiceTests(unittest.TestCase):
         self.assertEqual(r.total, 8)
         self.assertEqual(r.expression, "2d8+3")
 
+    def test_crit_expression_keeps_drop_modifiers(self):
+        self.rng.push(1, 2, 3, 4, 5, 6, 6, 6)
+        r = dice.roll("4d6dl1", crit=True)
+        self.assertEqual(r.expression, "8d6dl1")
+        self.assertEqual(r.total, 3 + 4 + 5 + 6 + 6 + 6)     # the drop doubles with the pool: lowest two go
+        self.assertEqual(dice.roll("1d8+d6", crit=True).expression, "2d8+2d6")
+
     def test_crit_max_plus_roll(self):
         self.rng.push(2)
         r = dice.roll("1d8+3", crit=True, crit_rule="max_plus_roll")
