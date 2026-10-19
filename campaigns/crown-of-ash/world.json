@@ -1,0 +1,138 @@
+{
+  "time": {
+    "t": 15540,
+    "calendar": "simple"
+  },
+  "scene": {
+    "since": 15540,
+    "place": "Okton's forge, Steamside",
+    "present": [
+      "okton",
+      "isine-kettle",
+      "gwenmund-cobb"
+    ],
+    "names": {
+      "okton": "Okton",
+      "isine-kettle": "Isine Kettle",
+      "gwenmund-cobb": "Gwenmund Cobb"
+    }
+  },
+  "clocks": [
+    {
+      "id": "k1",
+      "name": "First sitting of the Lamplit Council",
+      "segments": null,
+      "filled": 0,
+      "per": null,
+      "next_tick": null,
+      "deadline": 18000,
+      "public": true,
+      "faction": "lamplit-council",
+      "on_fill": "the eighteen lamps sit for the first time",
+      "status": "running",
+      "created": "2026-10-18T23:26:40",
+      "history": []
+    },
+    {
+      "id": "k2",
+      "name": "Marda gives Halda the parentage record",
+      "segments": null,
+      "filled": 0,
+      "per": null,
+      "next_tick": null,
+      "deadline": 19200,
+      "public": false,
+      "faction": "kharun-watch",
+      "on_fill": "Halda learns Lorard is Pellot Rook's son, not Ivoard's",
+      "status": "running",
+      "created": "2026-10-18T23:26:40",
+      "history": []
+    },
+    {
+      "id": "k3",
+      "name": "Trial ward ends",
+      "segments": null,
+      "filled": 0,
+      "per": null,
+      "next_tick": null,
+      "deadline": 57240,
+      "public": true,
+      "faction": null,
+      "on_fill": "Halda reviews the forge ward: renew, expand or close",
+      "status": "running",
+      "created": "2026-10-18T23:26:41",
+      "history": []
+    }
+  ],
+  "factions": {
+    "kharun-watch": {
+      "rep": 2,
+      "why": "Halda trusts Chadickith's evidence and backed the ward",
+      "pace": "normal",
+      "agenda": [],
+      "history": [
+        {
+          "change": "+2",
+          "why": "Halda trusts Chadickith's evidence and backed the ward",
+          "ts": "2026-10-18T23:26:41"
+        }
+      ]
+    },
+    "order-of-the-banked-fire": {
+      "rep": 3,
+      "why": "Okton's order; Chadickith is his foster son",
+      "pace": "normal",
+      "agenda": [],
+      "history": [
+        {
+          "change": "+3",
+          "why": "Okton's order; Chadickith is his foster son",
+          "ts": "2026-10-18T23:26:41"
+        }
+      ]
+    },
+    "pyrewardens": {
+      "rep": -2,
+      "why": "Coldwell voted against the regency and demanded Isine",
+      "pace": "normal",
+      "agenda": [],
+      "history": [
+        {
+          "change": "-2",
+          "why": "Coldwell voted against the regency and demanded Isine",
+          "ts": "2026-10-18T23:26:41"
+        }
+      ]
+    },
+    "lamplit-council": {
+      "rep": 1,
+      "why": "Chadickith helped found it and amend the elder seats",
+      "pace": "normal",
+      "agenda": [],
+      "history": [
+        {
+          "change": "+1",
+          "why": "Chadickith helped found it and amend the elder seats",
+          "ts": "2026-10-18T23:26:42"
+        }
+      ]
+    },
+    "house-mostana": {
+      "rep": 0,
+      "why": "",
+      "pace": "normal",
+      "agenda": [],
+      "history": [
+        {
+          "change": "0",
+          "why": "",
+          "ts": "2026-10-18T23:26:42"
+        }
+      ]
+    }
+  },
+  "timers": [],
+  "last_long_rest": {},
+  "offscreen": [],
+  "updated": "2026-10-18T23:27:05"
+}

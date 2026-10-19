@@ -194,6 +194,9 @@ def fmt_entry(e: dict, full: bool = False) -> str:
         lines.append(f"Tags: {', '.join(map(str, m['tags']))}")
     if m.get("related"):
         lines.append(f"Related: {', '.join(map(str, m['related']))}")
+    mind = [f"{k[5:]}: {m[k]}" for k in ("mind_feeling", "mind_goal", "mind_opinion", "mind_plan") if m.get(k)]
+    if mind:
+        lines.append(f"Mind (DM only): {' · '.join(mind)}")
     lines.append("")
     lines.append(e["body"])
     return "\n".join(lines)

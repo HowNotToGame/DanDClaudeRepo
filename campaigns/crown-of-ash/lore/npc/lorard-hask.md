@@ -8,7 +8,7 @@ related: [ivoard-hask, ossmaar, kharun, oselle-velun, kitwin, heartcoal, kharun-
 aliases: [the Lord-Marshal, the Camp Prince]
 canon: true
 created_session: 0
-updated: "2026-10-15T05:41:37"
+updated: "2026-10-17T03:40:22"
 ---
 
 # Lorard Hask, the Lord-Marshal
@@ -38,3 +38,6 @@ Blunt, honest, tired. He promises to tear down the Sky Gallows, end the Pyre-tit
 - House Mostana is quietly lending him gold for his soldiers' pay, so the house backs him and Oselle at once. He knows, and he thinks he's using them.
 - Sergeant Wilash Redhand of the Watch passes Watch news to his quartermaster.
 - He respects Okton, whose plate he has worn for years, and for the giant's sake he will treat Chadickith decently, at first.
+
+**Update (session 1):** ## REWORK (v2)
+Ignore the old secrets that Lorard is 'faintly Touched' by battlefield warmth and that destroying the Coal could kill Kitwin or Okton. Under the new rules ash and smoke are harmless; Lorard is NOT infected. Destroying the Coal only stops new infections. The ultimatum was issued the day after the king's death: open Kharun's gates within ten days or he storms it (day 3, roughly 7 days left depending on the count; the table treats it as 6).

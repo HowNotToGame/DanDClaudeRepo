@@ -1,0 +1,5 @@
+# Shell scripts must keep LF endings even on Windows checkouts (core.autocrlf=true would break them);
+# cmd scripts want CRLF.
+dm text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf

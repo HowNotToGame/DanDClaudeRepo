@@ -14,5 +14,6 @@ Roll the dice the player asked for: `$ARGUMENTS`
    a reason like "for stealth" → `--label Stealth`.
 2. If the player names a skill, save or attack of a character in the active campaign (e.g. "/roll stealth for
    Mira"), use `./dm pc check <pc> <skill>` / `./dm pc save <pc> <ability>` instead so their bonuses are applied.
+   Add the DC the DM set (`--dc N`); if there isn't one (the player is just rolling), add `--open`.
 3. Run it and reply with the result in one line (e.g. `🎲 1d20+5 → 14 + 5 = **19**`). Mention natural 20s/1s.
    If a game is in progress, continue the scene using the result.

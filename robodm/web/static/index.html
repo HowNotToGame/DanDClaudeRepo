@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>RoboDM Table</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 58 19v26L32 60 6 45V19z' fill='%23e0803a'/%3E%3Ctext x='32' y='41' font-size='24' text-anchor='middle' fill='%2314110f' font-family='Georgia' font-weight='bold'%3E20%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="d20" aria-hidden="true">⬢</span>
+    <span id="camp-name">RoboDM</span>
+    <span class="pills"><span id="session-pill" class="pill"></span><span id="time-pill" class="pill quiet" title="In-game time"></span><span id="audit-pill" class="pill quiet" title="Rules events waiting for the rules-lawyer"></span><span id="cost-pill" class="pill quiet" title="What the DM's turns cost this session"></span></span>
+  </div>
+  <nav class="top-actions" aria-label="Panels">
+    <button type="button" id="dm-status" class="dm-status offline" data-open="settings" title="The Dungeon Master"><i></i><b>DM offline</b><small id="dm-engine"></small></button>
+    <button type="button" class="icon" data-open="scene" title="Scene and battle map">🗺<span>Scene</span></button>
+    <button type="button" class="icon" data-open="party" title="Party sheets">🛡<span>Party</span></button>
+    <button type="button" class="icon" data-open="world" title="Time, clocks, factions">🌍<span>World</span></button>
+    <button type="button" class="icon" data-open="codex" title="Quests, companions, memory, lore, rules, log">📚<span>Codex</span></button>
+    <button type="button" class="icon host-only" data-open="settings" title="DM engine, model, effort and table settings">⚙<span>Settings</span></button>
+    <button type="button" id="view-toggle" class="ghost small" title="Player view hides DM secrets and hidden monster HP">👁 Player view</button>
+  </nav>
+</header>
+
+<main class="stage" id="stage">
+  <section class="chat" id="chat" aria-label="The table">
+    <div id="combat-strip" class="combat-strip hidden"></div>
+    <div id="dm-banner" class="banner hidden"></div>
+    <div id="messages" class="messages" aria-live="polite"></div>
+    <div id="round-bar" class="round-bar hidden"></div>
+    <form id="chat-form" class="composer">
+      <div class="composer-tools">
+        <label class="as">as <select id="as-select" aria-label="Playing as"><option value="">—</option></select></label>
+        <label class="tog" title="Only you and the DM see this message and the DM's answer"><input type="checkbox" id="chat-private"> 🔒 private</label>
+        <label class="tog" title="An out-of-character question: the DM answers without moving the scene on"><input type="checkbox" id="chat-ooc"> OOC</label>
+        <span class="spacer"></span>
+        <button type="button" id="dice-btn" class="ghost small" aria-expanded="false">🎲 Dice</button>
+        <button type="button" id="round-start" class="ghost small hidden" title="Everyone declares an action, then the DM resolves the round in one go">⏱ Round</button>
+        <button type="button" id="rewind" class="ghost small hidden" title="Undo the last turn's changes">↶ Rewind</button>
+        <button type="button" id="chat-reset" class="ghost small host-only" title="Start a new DM conversation (the campaign is unaffected)">↺ New chat</button>
+      </div>
+      <div id="dice-pop" class="dice-pop hidden">
+        <div class="dice-row">
+          <button type="button" class="die" data-die="d4">d4</button><button type="button" class="die" data-die="d6">d6</button>
+          <button type="button" class="die" data-die="d8">d8</button><button type="button" class="die" data-die="d10">d10</button>
+          <button type="button" class="die" data-die="d12">d12</button><button type="button" class="die big" data-die="d20">d20</button>
+          <button type="button" class="die" data-die="d100">d%</button>
+        </div>
+        <div class="dice-form">
+          <input id="dice-expr" value="1d20" aria-label="Dice expression" autocomplete="off">
+          <label class="tog"><input type="checkbox" id="dice-adv"> adv</label>
+          <label class="tog"><input type="checkbox" id="dice-dis"> dis</label>
+          <button type="button" id="dice-roll">Roll</button>
+        </div>
+        <div id="dice-log" class="dice-log"></div>
+      </div>
+      <div class="composer-main">
+        <textarea id="chat-input" rows="2" placeholder="What do you do?"></textarea>
+        <div class="send-col">
+          <button type="button" id="chat-cancel" class="ghost small hidden">Stop</button>
+          <button type="submit" id="chat-send">Send</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h2 id="drawer-title"></h2>
+      <button type="button" id="drawer-close" class="ghost small" aria-label="Close panel">✕</button>
+    </div>
+    <nav id="drawer-tabs" class="drawer-tabs hidden"></nav>
+    <div id="drawer-body" class="drawer-body"></div>
+  </aside>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

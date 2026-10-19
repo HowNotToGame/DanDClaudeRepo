@@ -8,7 +8,7 @@ Needs code execution enabled in claude.ai (Settings → Capabilities).
 
 ```bash
 ./dm rules fetch                                   # once, to have local data to bundle
-python3 tools/build_chat_skill.py --with-data      # → dist/robodm-skill.zip (~2 MB, core books)
+python3 tools/build_chat_skill.py --with-data      # → dist/robodm-skill.zip (~2 MB, core books); `python` on Windows
 # or without rules data (smaller; Claude will try `rules fetch` itself if the sandbox has network):
 python3 tools/build_chat_skill.py
 ```
