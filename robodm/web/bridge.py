@@ -283,11 +283,15 @@ class Bridge:
         self.proc = subprocess.Popen(args, cwd=str(root), stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE, env=env, text=True, encoding="utf-8", errors="replace",
                                      creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
-        self.proc.stdin.write(prompt)
-        self.proc.stdin.close()
+        proc = self.proc
+        errs: list[str] = []          # drained alongside stdout: a full stderr pipe would stall the child
+        drain = threading.Thread(target=lambda: errs.append(proc.stderr.read()), daemon=True)
+        drain.start()
+        proc.stdin.write(prompt)
+        proc.stdin.close()
         parts: list[str] = []
         streamed: set[str] = set()
-        for line in self.proc.stdout:
+        for line in proc.stdout:
             line = line.strip()
             if not line:
                 continue
@@ -296,10 +300,11 @@ class Bridge:
             except ValueError:
                 continue
             self.handle(ev, slug, parts, streamed)
-        err = self.proc.stderr.read()
-        code = self.proc.wait()
-        self.proc.stdout.close()
-        self.proc.stderr.close()
+        code = proc.wait()
+        drain.join()
+        err = "".join(errs)
+        proc.stdout.close()
+        proc.stderr.close()
         if code != 0 and not parts:
             if self.partial_ok and "include-partial-messages" in err:
                 self.partial_ok = False

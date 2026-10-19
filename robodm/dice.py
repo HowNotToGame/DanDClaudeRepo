@@ -334,7 +334,7 @@ def _crit_expression(expression: str) -> str:
         n = int(m.group(1)) if m.group(1) else 1
         return f"{n * 2}d"
 
-    return re.sub(r"(\d*)d", dbl, expression.strip())
+    return re.sub(r"(\d*)d(?=\d|%)", dbl, expression.strip(), flags=re.IGNORECASE)   # not the d of dl/dh
 
 
 def roll_d20(bonus: int = 0, *, adv: bool = False, dis: bool = False, label: str = "") -> RollResult:

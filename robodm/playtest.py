@@ -227,7 +227,7 @@ def capture_marker() -> str:
 
 def run(campaign_slug: str | None = None, script: list[dict] | None = None, turns: int | None = None,
         out: str | None = None, keep: bool = False, timeout: float = 600, log=print) -> dict:
-    from robodm import audit, campaign, paths
+    from robodm import audit, campaign
     from robodm.web.bridge import Bridge, claude_command
 
     if claude_command() is None:

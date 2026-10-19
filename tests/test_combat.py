@@ -59,6 +59,12 @@ class CombatTests(RoboDMTestCase):
         self.assertEqual(self.enc.damage("mire-imp", 9, "fire"), 0)       # immune
         self.assertEqual(self.enc.damage("bog-brute", 7, "fire"), 14)     # vulnerable
 
+    def test_resistance_rounds_once_per_type_then_vulnerability(self):
+        self.setup_fight()
+        self.assertEqual(self.enc.damage("mire-imp", [(3, "cold"), (3, "cold")]), 3)   # 6 cold halved once, not 1+1
+        self.enc.find("bog-brute")["resist"] = ["fire"]                                 # and fire-vulnerable
+        self.assertEqual(self.enc.damage("bog-brute", 7, "fire"), 6)                   # 7 → 3 → 6 (PHB p.197)
+
     def test_conditional_resistance(self):
         self.setup_fight()
         self.assertEqual(self.enc.damage("mire-imp", 5, "slashing"), 5)                    # magical: no resistance
@@ -120,6 +126,21 @@ class CombatTests(RoboDMTestCase):
         self.enc.damage("mira", 6)
         self.assertIsNone(self.enc.find("mira")["concentration"])
         self.assertFalse(self.enc.has(self.enc.find("bog-brute"), "paralyzed"))
+
+    def test_incapacitated_ends_concentration(self):
+        self.setup_fight()
+        self.enc.set_concentration("mira", "Still Mind")
+        self.enc.add_condition("mira", "incapacitated")
+        self.assertIsNone(self.enc.find("mira")["concentration"])
+
+    def test_knocking_out_a_pc_leaves_them_stable(self):
+        self.setup_fight()
+        self.enc.damage("thorin", 28, nonlethal=True)
+        t = self.enc.find("thorin")
+        self.assertEqual((t["hp"], t["status"]), (0, "stable"))
+        self.assertTrue(self.enc.has(t, "unconscious"))
+        self.enc.next_turn()                     # Thorin's turn: no death save while stable
+        self.assertEqual(t["death_saves"], {"success": 0, "fail": 0})
 
     def test_concentration_holds(self):
         self.setup_fight()
@@ -193,6 +214,16 @@ class CombatTests(RoboDMTestCase):
         self.rng.push(10, 11, 2, 2)  # adv: 11+5=16 vs AC 11 hit -> auto-crit 2d8+3 = 7
         self.enc.attack("thorin", "bog-brute", to_hit=5, damage=[("1d8+3", "slashing")])
         self.assertEqual(self.enc.find("bog-brute")["hp"], 27)
+
+    def test_prone_target_depends_on_distance_not_attack_type(self):
+        self.setup_fight()
+        self.enc.add_condition("bog-brute", "prone")
+        self.rng.push(15, 2)         # reach attack from 10 ft: disadvantage, keep 2 -> 7 vs AC 11 misses
+        self.enc.attack("thorin", "bog-brute", to_hit=5, damage=[("1d8+3", "slashing")], within_5ft=False)
+        self.assertEqual(self.enc.find("bog-brute")["hp"], 40)
+        self.rng.push(2, 15, 3)      # ranged from 5 ft: advantage, keep 15 -> hit for 3+3
+        self.enc.attack("thorin", "bog-brute", to_hit=5, damage=[("1d8+3", "piercing")], ranged=True, within_5ft=True)
+        self.assertEqual(self.enc.find("bog-brute")["hp"], 34)
 
     def test_pc_save_half_damage(self):
         self.setup_fight()

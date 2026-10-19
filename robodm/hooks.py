@@ -13,6 +13,10 @@ Windows, `python3` is often the Microsoft Store placeholder, so hooks can't just
   stop           Stop: the DM's reply goes into the transcript; the DM can't finish while rules events are
                  unaudited
 
+ROBODM_CAPTURE=off is for coding sessions in this repo: `prompt` and `stop` do nothing (no transcript entry, no
+new audit turn, no audit block), so a campaign left mid-session doesn't record the chat as play. The pretool gate
+and session-start still run.
+
 A hook must never wedge the session, so every error is reported on stderr and the action goes through.
 """
 
@@ -26,6 +30,11 @@ import re
 import sys
 
 MODES = ("session-start", "pretool", "prompt", "stop")
+_OFF = ("off", "0", "no", "false")
+
+
+def _env_off(name: str) -> bool:
+    return os.environ.get(name, "").lower() in _OFF
 
 
 def main(mode: str) -> int:
@@ -48,6 +57,8 @@ def run(mode: str, stdin_text: str) -> str:
         data = {}
     if not isinstance(data, dict):
         data = {}
+    if mode in ("prompt", "stop") and _env_off("ROBODM_CAPTURE"):
+        return ""
     try:
         if mode == "session-start":
             return session_start(data)
@@ -277,7 +288,7 @@ def session_start(data: dict) -> str:
 def _sync_lines() -> list[str]:
     """Cloud: pull the newest campaign state from any branch. Desktop: only say a newer one exists.
     ROBODM_SYNC=off skips it (e.g. offline)."""
-    if os.environ.get("ROBODM_SYNC", "").lower() in ("off", "0", "no", "false"):
+    if _env_off("ROBODM_SYNC"):
         return []
     from robodm import sync
 
