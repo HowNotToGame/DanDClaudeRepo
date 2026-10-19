@@ -124,7 +124,10 @@ class RoboDMTestCase(unittest.TestCase):
 
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="robodm-test-"))
-        self._env = {k: os.environ.get(k) for k in ("ROBODM_HOME", "ROBODM_DATA", "ROBODM_AGENTS_DIR")}
+        self._env = {k: os.environ.get(k) for k in ("ROBODM_HOME", "ROBODM_DATA", "ROBODM_AGENTS_DIR",
+                                                    "CLAUDE_CODE_REMOTE", "ROBODM_SYNC", "ROBODM_CAPTURE")}
+        for k in ("CLAUDE_CODE_REMOTE", "ROBODM_SYNC", "ROBODM_CAPTURE"):   # same results on desktop and in the cloud
+            os.environ.pop(k, None)
         os.environ["ROBODM_HOME"] = str(self.tmp / "home")
         os.environ.setdefault("ROBODM_AGENTS_DIR", str(self.tmp / "agents"))   # never touch the repo's .claude/agents
         (self.tmp / "home").mkdir()

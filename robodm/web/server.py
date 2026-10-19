@@ -9,8 +9,7 @@ links. A seat is one player: player view, their own sheet and private messages.
 
 from __future__ import annotations
 
-import contextlib
-import io
+import hmac
 import json
 import mimetypes
 import os
@@ -109,7 +108,7 @@ class Hub:
             time.sleep(interval)
 
 
-from robodm.runner import run_cli  # noqa: E402  (shared with the local DM engine)
+from robodm.runner import command_words, run_cli  # noqa: E402  (shared with the local DM engine)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -156,7 +155,11 @@ class Handler(BaseHTTPRequestHandler):
         if getattr(self, "_who", 0) != 0:
             return self._who
         self._who = None
-        host = (self.headers.get("Host") or "").split(":")[0].lower()
+        raw_host = self.headers.get("Host") or ""
+        try:                                       # "127.0.0.1:8642", "[::1]:8642" → the bare host
+            host = "" if "@" in raw_host else (urllib.parse.urlsplit("//" + raw_host).hostname or "")
+        except ValueError:
+            return None
         if host not in self.allowed_hosts:
             return None
         q = self._query()
@@ -165,8 +168,9 @@ class Handler(BaseHTTPRequestHandler):
             slug, key = q["seat"][0], q["key"][0]
             self._who = ("seat", slug) if table.check_seat(self.token, slug, key) and self._is_pc(slug) else None
             return self._who
-        if q.get("token", [""])[0] == self.token or self.headers.get("X-RoboDM-Token") == self.token or \
-                ("robodm_token" in jar and jar["robodm_token"].value == self.token):
+        given = [q.get("token", [""])[0], self.headers.get("X-RoboDM-Token") or "",
+                 jar["robodm_token"].value if "robodm_token" in jar else ""]
+        if any(g and hmac.compare_digest(g.encode("utf-8"), self.token.encode("utf-8")) for g in given):
             self._who = ("host", None)
         elif "robodm_seat" in jar and "." in jar["robodm_seat"].value:
             slug, key = jar["robodm_seat"].value.split(".", 1)
@@ -412,8 +416,8 @@ class Handler(BaseHTTPRequestHandler):
                     return self.json({"error": "argv must be a list of strings"}, 400)
                 if argv[0] in ("./dm", "dm"):
                     argv = argv[1:]
-                words = [a for a in argv if not a.startswith("-")]
-                if any(tuple(words[:len(d)]) == d for d in DENY):
+                words = command_words(argv)
+                if any(words[:len(d)] == d for d in DENY):
                     return self.json({"error": f"`{' '.join(argv[:2])}` isn't available from the web client."}, 403)
                 if self.seat and not table.seat_may_run(argv, self.seat):
                     return self.json({"error": "From a seat you can roll and manage your own character "

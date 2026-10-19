@@ -278,6 +278,20 @@ class AuditTests(RoboDMTestCase):
         self.assertIn("Gate test — Round 1", r.stdout)         # combat status
         self.assertIn("Rules data", self.hook("session-start", "").stdout)   # no JSON: still reports status
 
+    def test_capture_off_keeps_a_coding_session_out_of_the_campaign(self):
+        from robodm import capture, hooks
+
+        run_cli("session", "start")
+        self.ok("combat", "damage", "thorin", "2")              # an unaudited event would normally block the stop
+        os.environ["ROBODM_CAPTURE"] = "off"                    # restored by tearDown
+        turn = audit.current_turn(campaign.load())
+        self.assertEqual(hooks.run("prompt", json.dumps({"prompt": "review this repo"})), "")
+        self.assertEqual(hooks.run("stop", json.dumps({"last_assistant_message": "Here's the review."})), "")
+        self.assertEqual(audit.current_turn(campaign.load()), turn)
+        self.assertEqual(capture.entries(campaign.load()), [])
+        r = hooks.run("pretool", json.dumps({"tool_name": "Bash", "tool_input": {"command": "./dm audit pass all"}}))
+        self.assertEqual(json.loads(r)["hookSpecificOutput"]["permissionDecision"], "deny")   # the gate still runs
+
 
 class LauncherTests(RoboDMTestCase):
     """`./dm` (sh) and `dm.cmd` must find a Python that runs, even when `python3` is a broken placeholder."""

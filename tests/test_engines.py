@@ -158,6 +158,14 @@ class EngineTests(RoboDMTestCase):
         self.assertIn("TOOL FORMAT", f.requests[1]["messages"][0]["content"])
         self.assertIn("text protocol", " ".join(e["label"] for e in self.kinds("tool")))
 
+    def test_denied_commands_cant_hide_behind_options(self):
+        run_cli("pc", "check", "brann", "athletics", "--dc", "10")
+        dm = local.LocalDM(engines.load(), self.events.append)
+        for command in ("-c local audit pass all", "--campaign local audit pass all", "audit --notes ok pass all",
+                        "-c local campaign delete local"):
+            self.assertIn("isn't available to the DM", dm._exec("local", {"name": "dm", "arguments": {"command": command}}))
+        self.assertEqual([e["status"] for e in audit.open_events(campaign.load("local"))], ["pending"])
+
     def test_koboldcpp_openai_streaming_tool_calls(self):
         f = self.fake("kobold")
         self.rng.push(14)

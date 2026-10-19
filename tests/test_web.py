@@ -115,6 +115,8 @@ class WebTests(RoboDMTestCase):
                                       headers={"Cookie": f"robodm_token={TOKEN}"})[0], 200)
         # DNS rebinding: right token, but the page was loaded from someone else's hostname
         self.assertEqual(self.request("GET", "/api/state", headers={"Host": f"evil.example:{self.port}"})[0], 401)
+        self.assertEqual(self.request("GET", "/api/state", headers={"Host": f"evil.example@127.0.0.1:{self.port}"})[0], 401)
+        self.assertEqual(self.request("GET", "/api/state", headers={"Host": f"[::1]:{self.port}"})[0], 200)
         code, body = self.post("/api/roll", {"expr": "1d4"}, headers={"Origin": "http://evil.example"})
         self.assertEqual(code, 403)
         code, body = self.post("/api/roll", {"expr": "1d4"}, headers={"Origin": f"http://127.0.0.1:{self.port}"})
@@ -128,6 +130,8 @@ class WebTests(RoboDMTestCase):
         code, body = self.post("/api/command", {"argv": ["--quiet", "audit", "clear", "spell", "X"]})
         self.assertEqual(code, 403)
         self.assertEqual(self.post("/api/command", {"argv": ["campaign", "delete", "ash"]})[0], 403)
+        self.assertEqual(self.post("/api/command", {"argv": ["-c", "ash", "audit", "pass", "all"]})[0], 403)
+        self.assertEqual(self.post("/api/command", {"argv": ["audit", "--notes", "ok", "pass", "all"]})[0], 403)
         self.assertEqual(self.post("/api/command", {"argv": 5})[0], 400)
         code, body = self.post("/api/command", {"argv": ["pc", "show", "chadickith"]})
         self.assertEqual(code, 200)
