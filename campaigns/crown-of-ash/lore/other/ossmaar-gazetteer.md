@@ -1,23 +1,23 @@
 ---
 name: Ossmaar Gazetteer
 type: other
-summary: "Official facts and figures for Ossmaar as a chancery or Watch officer knows them (1488 Hearth-Count, 1490 rolls): population, regions, settlements, roads, ancestry, economy, wages, wealth, crime, forces, politics, neighbours."
+summary: "Official facts and figures for Ossmaar as a chancery or Watch officer knows them on the evening of day 11 (1488 Hearth-Count, 1490 rolls): population, regions, settlements, roads, ancestry, economy, wages, crime, forces, politics, neighbours."
 tags: [ossmaar, gazetteer, census, economy, politics]
 canon: true
 created_session: 1
-updated: "2026-10-18T03:43:23"
+updated: "2026-10-19T12:03:59"
 ---
 
 Official facts and figures for Ossmaar as a chancery or Watch officer knows them (1488 Hearth-Count, 1490 rolls): population, regions, settlements, roads, ancestry, economy, wages, wealth, crime, forces, politics, neighbours.
 
 # Ossmaar: the official picture
-What a senior official in the chancery or the Watch would have in front of them, as of the tenth day of the interregnum (1491 DR). The sources are the **1488 Hearth-Count** (Hask's tax census), the chancery's **1490 revenue and customs rolls**, the Watch **charge-books**, and the Ash Companies' **muster rolls**. Figures are rounded. Hill steadings dodge the hearth-tax, so counts for the Cinder Hills run low.
+What a senior official in the chancery or the Watch would have in front of them, as of the evening of the eleventh day of the interregnum (1491 DR). The sources are the **1488 Hearth-Count** (Hask's tax census), the chancery's **1490 revenue and customs rolls**, the Watch **charge-books**, and the Ash Companies' **muster rolls**. Figures are rounded. Hill steadings dodge the hearth-tax, so counts for the Cinder Hills run low.
 
 ## At a glance
 | | |
 |---|---|
 | **Realm** | Kingdom of Ossmaar, a Border Kingdom on the south shore of the Lake of Steam |
-| **Status** | Interregnum since the night of 26 Eleint 1491 DR. The king is dead and no successor is crowned; the Ember Law is unsatisfied because the Heartcoal is missing |
+| **Status** | Interregnum since the night of 26 Eleint 1491 DR. No successor is crowned, and the Ember Law is unsatisfied because the Heartcoal is missing. Since day 10 the realm is governed by the **Lamplit Council** as regency |
 | **Capital** | Kharun (the only walled city, deep harbour and treasury) |
 | **Area** | About 2,400 sq mi of land (60 mi of coast by about 40 mi inland), plus about 600 sq mi of claimed lake water (10 mi out) |
 | **Population** | 40,312 at the 1488 Hearth-Count; the chancery estimates about 39,800 now (after the roc and the burn fever) |
@@ -205,7 +205,7 @@ The Pyrewardens number about 60 wardens and 120 acolytes and are not counted as 
 ## Government and politics
 - **Form of government:**
   - Under Hask the crown was absolute, served by a chancery (clerks and the royal seal), the Watch (the city), the Ash Companies (the army, under the Lord-Marshal) and the Pyrewardens (the dead and the crowning rite).
-  - There has been no standing council since 1453.
+  - There was no standing council from 1453 until day 10 of the interregnum, when the noon council in the Collarhouse adopted the **Lamplit Council** as regency (thirteen lamps; an eighteen-lamp draft with regional elders goes to the first sitting on day 13). See lamplit-council.
 - **Rival claims to the throne:**
   - **The Ember Law:** the Heartcoal must kindle for the new king.
   - **Velun law:** the crown passes through Velun blood.
@@ -218,18 +218,19 @@ The Pyrewardens number about 60 wardens and 120 acolytes and are not counted as 
 | **Lorard Hask**, Lord-Marshal | 1,540 Ash Company soldiers and the March; 300 men inside the walls on Halda's terms since noon on day 9 | Called "camp-born". His quartermaster Unara is in irons for staging a riot at the forge |
 | **Oselle Velun** | The Keep, treasury, chancery, seal and mint; 150 guards; the Lamp Market guilds | Called "Hask's daughter". The army scorns her |
 | **Kitwin** (through High Pyrewarden Tamius Coldwell) | The Pyrehouse, the Crown of Ash, the Ashward's love | The Coal is gone, and his support has slipped since the forge crowd on day 9 |
-| **The Watch** (Halda Barrowe) | The gates, the Collarhouse and the streets | The swing vote. One captain is under arrest |
+| **The Watch** (Halda Barrowe) | The gates, the Collarhouse and the streets; two lamps on the regency | One captain is relieved and confined (Rook) |
+| **The Lamplit Council** (regency, from day 10) | The law: lamp-votes, with the Lady's seal and a delay-only final reading | Coldwell has not accepted it; its first sitting is on day 13 |
 
 - **Key officials:**
   - **Watch captains:** Yarelle Pike, Marda Ironside, Junis Greaves, Tamley Mercer and Branen Underhill. Hesard Rook was relieved of his post and confined on day 9.
   - **The three old houses:** Lady Norelle Whitlock (House Whitlock), Lord Junard Ashdown (House Ashdown), and Wynley Fairweather, heir of House Fairweather since his father went to the Spire after the Velun Plot.
   - **The five great guilds:** the Oilwrights, the Alumners, the Dyers, the Brimstone Brokers (Master Orsikgar Gorunn, a dwarf) and the Moneychangers (Master Bryados Weary, a tiefling).
   - **Foreign:** Factor Seipora Mostana of House Mostana, whose galleys *Sixth Daughter* and *Patient Gull* lie at anchor.
-- **This hour (noon, day 10):**
-  - The gates are open on Halda's terms, and the council sits in the Collarhouse.
-  - On the table is Oselle's **Lamplit Council**: thirteen lamps, a nine-of-thirteen override of her final reading, and a cap of two votes per guild.
-  - The Pyrehouse wants the Coal and Kitwin's crowning. The Coal's whereabouts are officially unknown; the smith told the Lord-Marshal it is not in his forge.
-- **Public mood** (Watch reckoning): the Ashward is for Kitwin but wavering; the Lamp Market is for Oselle; the soldiers and Lowfields smallholders are for Lorard; the Watch itself is split.
+- **This hour (evening, day 11):**
+  - The gates are open on Halda's terms, and the Lamplit Council governs as regency (adopted three to one at noon on day 10, Coldwell against).
+  - The first sitting meets at noon on day 13: the elder seats, Kitwin (to be produced that morning), the forge ward's funding, Captain Rook's inquiry and the Choir's silver.
+  - The Coal's whereabouts are officially unknown; the smith told the Lord-Marshal it is not in his forge. The cupbearer Isine Kettle testified that the king named no heir.
+- **Public mood** (Watch reckoning): the Ashward is for Kitwin but wavering, and angry at the Choir since the forge crowd of day 9; the Lamp Market is for Oselle; the soldiers and Lowfields smallholders are for Lorard; the Watch has closed ranks behind Halda since Rook was relieved.
 
 ## Neighbours
 - **North, the Lake of Steam.** It is hot along the shore but navigable. Calishite trading houses dominate the water, and **Calimshan** lies west across it, 3–6 days' sail to its eastern ports. Free lake towns on the far shores carry Ossmaar's brimstone onward.
@@ -240,7 +241,7 @@ The Pyrewardens number about 60 wardens and 120 acolytes and are not counted as 
 
 ## Climate, health and hazards
 - **Climate:** hot, dry summers and a short wet winter (Uktar to Ches). Steam fogs lie on the shore at dawn.
-- **Health:** pyre-cough in the Ashward (Watch surgeons count about one Ashward child in five coughing). The hot-spring cures draw invalids from across the lake. The burn fever followed the roc.
+- **Health:** pyre-cough in the Ashward (Watch surgeons count about one Ashward child in five coughing). The hot-spring cures draw invalids from across the lake. The burn fever followed the roc. Since day 10 a trial burn ward of three cots, under Watch protection and the Watch-Captain's seal, runs in the smith Okton's cellar in Steamside; the Collarhouse cellar keeps the two worst cases.
 - **Hazards:** vent gas on the shore, bandits on the eastern Shore Road, Shaar raiders, and hill wolves. The Gallowsbird is dead.
 
 ## Gaps in the records

@@ -1,13 +1,13 @@
 ---
 name: Ossmaar
 type: region
-summary: "A small, brimstone-rich Border Kingdom on the steaming south shore of the Lake of Steam; its tyrant king has just died and three heirs circle the empty throne."
+summary: "A small, brimstone-rich Border Kingdom on the steaming south shore of the Lake of Steam; its tyrant king is dead, and since day 10 a Lamplit Council governs as regency."
 tags: [realm, border-kingdoms, lake-of-steam, politics]
-status: interregnum
-related: [kharun, ivoard-hask, lorard-hask, oselle-velun, kitwin, heartcoal, crown-of-ash, ash-reign, hadrun, sky-gallows, kharun-watch, pyrewardens, house-mostana, gallowsbird]
+status: regency
+related: [kharun, ivoard-hask, lorard-hask, oselle-velun, kitwin, heartcoal, crown-of-ash, ash-reign, hadrun, sky-gallows, kharun-watch, pyrewardens, house-mostana, gallowsbird, lamplit-council, dunmarrow]
 canon: true
 created_session: 0
-updated: "2026-10-18T03:43:24"
+updated: "2026-10-19T12:03:59"
 ---
 
 # Ossmaar
@@ -27,7 +27,14 @@ Brimstone, alum and salt go out across the Lake of Steam, mostly to Calishite bu
 ## Why Kharun matters
 Kharun is the realm. It has the only city walls, the only deep harbour and the treasury. It has the Pyrehouse, where kings are crowned and burned, and the Watch that holds the gates. Whoever holds Kharun holds the brimstone revenue, and whoever is crowned in Kharun is king. No claimant can rule from a camp.
 
-## The state of things (Highharvestide, 1491 DR)
+## The state of things (evening, day 11)
+- **No king, a regency.** The **Lamplit Council** governs Ossmaar "until the Heartcoal is broken or found and a king is named" (see lamplit-council). Oselle holds the seal and the treasury; Lorard commands all arms; the Watch keeps Kharun and its gates; the Pyrehouse keeps the rites but has no claim to the crown. The first sitting, which will vote on adding elder seats for the regions, is at noon on day 13.
+- **The gates of Kharun are open** since noon on day 9. Three hundred of the Ash Companies are inside the walls; the rest of the army still camps in the Lowfields.
+- **The Heartcoal's whereabouts are officially unknown.** The Watch has ruled that it did not choose Kitwin, and the Ashward has heard it lay in Okton's forge before it left the city.
+- **The Gallowsbird is dead,** killed at Kharun's Great Pyre on the night of day 2 after it killed about a hundred townsfolk. Its blood spread the burn among the wounded (see ashblood).
+- **The king's last words are out** among the council's leaders: *"Break it."* He named no heir.
+
+## How the interregnum began (Highharvestide, 1491 DR)
 - King Ivoard Hask died on the night of 26 Eleint. He burns on the Great Pyre at dawn on Highharvestide.
 - **The Heartcoal is missing.** It was pried from the Crown of Ash on the night of his death. Under Hask's own Ember Law, no one can be crowned without it.
 - **Three claimants:**
@@ -41,6 +48,7 @@ Kharun is the realm. It has the only city walls, the only deep harbour and the t
 
 ## DM secrets
 - Neighbouring Border Kingdoms realms smell weakness. If Lorard keeps his army at Kharun much longer, a petty lord to the south-east (DM's choice) will test the South March. Pulling the army away costs Lorard his siege. Leaving it there costs the frontier villages.
-- The realm cannot feed Kharun for much more than a month of sealed gates. Starvation in the Ashward is the real clock behind every heir's patience.
+- The sealed-gates hunger clock stopped when the gates opened on day 9. The new clock is the treasury: about five months of the field army's pay.
+- Three hundred Calishite sell-swords are due by galley for Oselle within the month of the king's death (see house-mostana).
 
 **Update (session 1):** Full facts and figures (population, settlements, economy, crime, forces, politics, neighbours) are in the Ossmaar Gazetteer entry (other/ossmaar-gazetteer).
