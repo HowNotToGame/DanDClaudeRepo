@@ -35,6 +35,10 @@ Use the `dm` skill (`.claude/skills/dm/SKILL.md`) and follow it: load `./dm memo
   pre-checks → receipt rewrite → invented-dice guard → local post-audit → hooks.stop), `prompts.py` (condensed
   prompts for small models). `web/bridge.py` dispatches to Claude Code or `LocalDM`; `robodm/runner.py` runs ./dm
   in-process for both (catching argparse's SystemExit). The web ⚙ panel uses `/api/settings`.
+- Subagent choices (`agents` in the engine config, per engine: rules-lawyer, companion, lore-keeper → model, effort;
+  blank = default): `costs.apply_speed` writes them into the agent frontmatter (`model:`, `effort:`) for Claude Code,
+  winning over `turn_speed`; `LocalDM` passes them per call (`engines.agent_profile`: `LAWYER_PROFILES` scope and
+  retries, `COMPANION_PROFILES` temperature and length).
 
 ## Speed, cost, playtests
 - `robodm/costs.py`: `turn_speed` (agent models via `apply_speed`, `MECHANICAL` events auto-passed in fast mode

@@ -11,6 +11,10 @@
 What never changes: the code gate before every rules command, first-use pre-checks by the rules-lawyer, the
 receipt check of the narration, and the audit of anything involving judgement (spells, conditions, rulings,
 overrides, character changes). `dm_model` (web client only) picks the DM's own model.
+
+A model or effort chosen for a subagent in the web client's ⚙ panel (or `./dm engine agent`) wins over the turn
+speed; it lives in the per-machine engine config (`robodm/engines`), and `apply_speed` writes both into the agent
+files' frontmatter (`model:`, `effort:`). Without a chosen effort the agent inherits the DM's.
 """
 
 from __future__ import annotations
@@ -46,8 +50,8 @@ def brief_budget(camp: Campaign | None) -> int:
 
 # =============================================================================== agent models
 
-def set_model(path: Path, model: str) -> bool:
-    """Set `model:` in an agent file's frontmatter. True if the file changed."""
+def set_frontmatter(path: Path, key: str, value: str | None) -> bool:
+    """Set (or, with a blank value, remove) `key:` in an agent file's frontmatter. True if the file changed."""
     if not path.exists():
         return False
     text = path.read_text(encoding="utf-8")
@@ -55,28 +59,56 @@ def set_model(path: Path, model: str) -> bool:
         return False
     end = text.index("\n---", 3)
     head, rest = text[:end], text[end:]
-    new_head = re.sub(r"(?m)^model:.*$", f"model: {model}", head) if re.search(r"(?m)^model:", head) else \
-        head + f"\nmodel: {model}"
+    pat = rf"(?m)^{re.escape(key)}:.*$"
+    if value:
+        new_head = re.sub(pat, f"{key}: {value}", head) if re.search(pat, head) else head + f"\n{key}: {value}"
+    else:
+        new_head = re.sub(pat + r"\n?", "", head).rstrip("\n")
     if new_head == head:
         return False
     path.write_text(new_head + rest, encoding="utf-8")
     return True
 
 
-def apply_speed(camp: Campaign) -> list[str]:
-    """Point the subagents at the models for this campaign's turn speed."""
+def set_model(path: Path, model: str) -> bool:
+    """Set `model:` in an agent file's frontmatter. True if the file changed."""
+    return set_frontmatter(path, "model", model)
+
+
+def agent_choice(camp: Campaign | None, role: str) -> tuple[str, str, bool]:
+    """(model, effort, chosen) for a Claude Code subagent: the ⚙ choice, else the turn speed's model and no effort
+    (the agent inherits the DM's). `chosen` says the model was picked explicitly."""
+    from robodm import engines
+
+    a = engines.agent(engines.load(), role, "claude")
+    return (a["model"] or AGENT_MODELS[speed(camp)][role]), a["effort"], bool(a["model"])
+
+
+def describe(model: str, effort: str, chosen: bool = False) -> str:
+    return f"{model}{'' if chosen else ' (turn speed)'}" + (f" · effort {effort}" if effort else "")
+
+
+def apply_speed(camp: Campaign | None) -> list[str]:
+    """Point the subagents at their models and efforts: the ⚙ choices, else this campaign's turn speed."""
     from robodm import companions
 
-    models = AGENT_MODELS[speed(camp)]
     root = companions.agents_dir()
     lines = []
     for name in ("rules-lawyer", "lore-keeper"):
-        if set_model(root / f"{name}.md", models[name]):
-            lines.append(f"{name} → {models[name]}")
-    for slug in companions.all_slugs(camp):
-        meta, _ = companions.load_persona(camp, slug)
-        p = companions.write_agent(camp, slug, model=models["companion"])
-        lines.append(f"{p.stem} → {models['companion']}")
+        model, effort, chosen = agent_choice(camp, name)
+        changed = set_frontmatter(root / f"{name}.md", "model", model)
+        changed = set_frontmatter(root / f"{name}.md", "effort", effort) or changed
+        if changed:
+            lines.append(f"{name} → {describe(model, effort, chosen)}")
+    if camp is not None:
+        model, effort, chosen = agent_choice(camp, "companion")
+        for slug in companions.all_slugs(camp):
+            p = companions.write_agent(camp, slug, model=model, effort=effort)
+            lines.append(f"{p.stem} → {describe(model, effort, chosen)}")
+        generic = root / "companion.md"
+        changed = set_frontmatter(generic, "model", model)
+        if set_frontmatter(generic, "effort", effort) or changed:
+            lines.append(f"companion → {describe(model, effort, chosen)}")
     return lines
 
 

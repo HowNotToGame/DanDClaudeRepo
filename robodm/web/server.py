@@ -25,7 +25,7 @@ from http import cookies
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from robodm import battlemap as bm, campaign, companions, paths
+from robodm import battlemap as bm, campaign, companions, costs, paths
 from robodm.combat import Encounter
 from robodm.util import RoboDMError
 from robodm.web import table, views
@@ -379,9 +379,12 @@ class Handler(BaseHTTPRequestHandler):
             if path == "/api/settings":
                 from robodm import engines
 
+                applied = []
                 if isinstance(body.get("engine"), dict) and body["engine"]:
                     engines.update(body["engine"])
                     engines._REACH.clear()
+                    if "claude" in (body["engine"].get("agents") or {}):
+                        applied = costs.apply_speed(c)        # write the agent files' model: and effort:
                 problems = []
                 for key, value in (body.get("campaign") or {}).items():
                     if c is None:
@@ -393,6 +396,8 @@ class Handler(BaseHTTPRequestHandler):
                 payload = settings_payload(self._camp())
                 if problems:
                     payload["problems"] = problems
+                if applied:
+                    payload["applied"] = applied
                 return self.json(payload)
             if path == "/api/roll":
                 argv = ["roll", str(body.get("expr", "1d20"))]
@@ -505,7 +510,11 @@ def settings_payload(c) -> dict:
         model_error = str(getattr(e, "reason", e))
     out = {"engine": engines.public(cfg), "engines": engines.ENGINES, "efforts": list(engines.EFFORTS),
            "claude_models": [m for m in engines.CLAUDE_MODELS if m], "models": models, "model_error": model_error,
-           "reachable": ok, "detail": detail, "effort_profiles": engines.EFFORT_PROFILES}
+           "reachable": ok, "detail": detail, "effort_profiles": engines.EFFORT_PROFILES,
+           "agent_roles": engines.AGENT_ROLES, "local_roles": list(engines.LOCAL_ROLES),
+           "lawyer_profiles": engines.LAWYER_PROFILES, "companion_profiles": engines.COMPANION_PROFILES,
+           "agent_defaults": {role: costs.AGENT_MODELS[costs.speed(c)][role] for role in engines.AGENT_ROLES},
+           "turn_speed": costs.speed(c)}
     if c is not None:
         out["campaign"] = {k: c.settings.get(k) for k in TABLE_SETTINGS}
         out["choices"] = {k: v for k, v in campaign.SETTING_CHOICES.items() if k in TABLE_SETTINGS}

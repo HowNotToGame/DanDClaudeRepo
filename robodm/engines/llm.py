@@ -69,13 +69,14 @@ def _post(url: str, body: dict, key: str = "", timeout: float = 600):
 
 def chat(cfg: dict, engine: str, messages: list[dict], tools: list[dict] | None = None, json_mode: bool = False,
          on_delta=None, temperature: float = 0.7, max_tokens: int | None = None,
-         cancel: threading.Event | None = None) -> dict:
-    """One model call. Returns {"content", "tool_calls": [{"id","name","arguments"}], "tokens": int}."""
+         cancel: threading.Event | None = None, model: str | None = None) -> dict:
+    """One model call. Returns {"content", "tool_calls": [{"id","name","arguments"}], "tokens": int}.
+    `model` overrides the engine's model (a subagent with its own)."""
     from robodm.engines import base_url
 
     sub = cfg[engine]
     if engine == "ollama":
-        body = {"model": sub["model"], "messages": _ollama_messages(messages), "stream": True, "keep_alive": "30m",
+        body = {"model": model or sub["model"], "messages": _ollama_messages(messages), "stream": True, "keep_alive": "30m",
                 "options": {"num_ctx": int(sub.get("num_ctx") or 8192), "temperature": temperature}}
         if max_tokens:
             body["options"]["num_predict"] = max_tokens
@@ -84,7 +85,7 @@ def chat(cfg: dict, engine: str, messages: list[dict], tools: list[dict] | None 
         if json_mode:
             body["format"] = "json"
         return _read_ollama(_post(sub["url"].rstrip("/") + "/api/chat", body), on_delta, cancel)
-    body = {"model": sub.get("model") or "local", "messages": _openai_messages(messages), "stream": True,
+    body = {"model": model or sub.get("model") or "local", "messages": _openai_messages(messages), "stream": True,
             "temperature": temperature}
     if max_tokens:
         body["max_tokens"] = max_tokens

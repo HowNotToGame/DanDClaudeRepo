@@ -648,7 +648,7 @@ const ENGINE_BLURB = {
   openai: "LM Studio, llama.cpp server, vLLM…",
 };
 const TABLE_LABELS = {
-  turn_speed: ["Turn speed", "fast: routine engine-computed events skip the rules-lawyer, smaller brief · balanced: everything audited · thorough: opus subagents, bigger brief"],
+  turn_speed: ["Turn speed", "fast: routine engine-computed events skip the rules-lawyer, smaller brief · balanced: everything audited · thorough: opus subagents, bigger brief (a model chosen under Subagents wins)"],
   narration: ["Narration", "How much description per beat"],
   companion_agents: ["Companions", "Consult companion agents at decision points (key), every time (always), or let the DM voice them (off)"],
   dice_mode: ["Dice", "auto: the DM rolls everything · players: players roll their own PC dice and report totals"],
@@ -671,7 +671,61 @@ function seg(name, values, current, labels = {}) {
   return `<div class="seg">${values.map(v => `<button type="button" data-${name}="${esc(String(v))}" class="${String(v) === String(current) ? "on" : ""}">${esc(labels[v] ?? (v === "" ? "default" : String(v)))}</button>`).join("")}</div>`;
 }
 
-function drawSettings(status) {
+const AGENT_INFO = {
+  "rules-lawyer": ["⚖️", "Audits every turn: pre-checks the first use of a spell, feature or ruling, then post-audits the turn's rules events."],
+  companion: ["🗣", "Plays each companion's own mind when the DM consults them."],
+  "lore-keeper": ["📜", "Builds and checks the world's lore and canon."],
+};
+
+function agentDraft(eng) {
+  draft.agents = draft.agents || {};
+  draft.agents[eng] = draft.agents[eng] || {};
+  return draft.agents[eng];
+}
+
+function agentHint(role, own, dmEffort, local) {
+  const s = settings, effort = own || dmEffort;
+  if (!local) return own ? `Written to the agent file as effort: ${own}.` : `Inherits the DM's effort${dmEffort ? ` (${dmEffort})` : ""}.`;
+  if (role === "rules-lawyer") {
+    const p = s.lawyer_profiles[effort] || {};
+    return `Reviews ${p.scope === "all" ? "every rules event" : "judgement calls (routine rolls the engine computed pass on their own)"}${p.retries ? ` · asked again up to ${p.retries}× when its answer can't be read` : ""}.`;
+  }
+  const p = s.companion_profiles[effort] || {};
+  return `Answers up to about ${p.max_tokens} tokens · temperature ${p.temperature}.`;
+}
+
+function agentCard(agentStatus) {
+  const s = settings, eng = draft.engine, local = eng !== "claude";
+  const roles = Object.keys(s.agent_roles).filter(r => !local || s.local_roles.includes(r));
+  const mine = agentDraft(eng);
+  const models = eng === "claude" ? s.claude_models : (engineModels[eng] || []);
+  const dmModel = (draft[eng] || {}).model || "";
+  const dmEffort = draft.effort || (local ? "medium" : "");
+  const rows = roles.map(r => {
+    const a = mine[r] || {}, eff = a.effort || "";
+    const [icon, blurb] = AGENT_INFO[r] || ["🤖", ""];
+    const def = local ? `same as the DM${dmModel ? ": " + dmModel : ""}` : `turn speed (${s.turn_speed}): ${s.agent_defaults[r]}`;
+    return `<div class="agent-row">
+      <div class="agent-head"><b>${icon} ${esc(s.agent_roles[r])}</b><span class="hint">${esc(blurb)}</span></div>
+      <label>Model <input data-agent-model="${esc(r)}" list="st-agent-models" value="${esc(a.model || "")}" placeholder="${esc(def)}" autocomplete="off"></label>
+      <label>Effort <div class="seg">${["", ...s.efforts].map(v => `<button type="button" data-agent="${esc(r)}" data-agent-effort="${esc(v)}" class="${v === eff ? "on" : ""}">${v === "" ? "default" : esc(v)}</button>`).join("")}</div>
+        <span class="hint">${esc(agentHint(r, eff, dmEffort, local))}</span></label>
+    </div>`;
+  }).join("");
+  const note = eng === "claude" ? "Written into .claude/agents/*.md as model: and effort:. A blank model follows the campaign's turn speed; a blank effort inherits the DM's."
+    : eng === "kobold" ? "KoboldCpp serves the one model it was started with, so subagents use it whatever is set here; their effort still applies."
+    : eng === "ollama" ? "A blank model uses the DM's. A different model means Ollama keeps both loaded (more VRAM) or swaps them each turn."
+    : "A blank model uses the DM's. The server must have any model named here.";
+  return `<div class="card settings">
+      <h3>🤖 Subagents <span class="meta">(${esc(s.engines[eng])})</span></h3>
+      ${rows}<datalist id="st-agent-models">${models.map(m => `<option value="${esc(m)}">`).join("")}</datalist>
+      <p class="hint">${esc(note)}</p>
+      ${agentStatus ? `<div class="status-line">${agentStatus}</div>` : ""}
+      <div class="actions"><button type="button" id="st-save-agents">Save subagents</button></div>
+    </div>`;
+}
+
+function drawSettings(status, agentStatus) {
   const s = settings, e = draft, eng = e.engine, sub = e[eng] || {};
   const local = eng !== "claude";
   const models = eng === "claude" ? s.claude_models : (engineModels[eng] || []);
@@ -705,6 +759,7 @@ function drawSettings(status) {
       <p class="hint">Local engines run RoboDM's own DM loop: the same ./dm tools, rules gate, receipt check, transcript and a local rules-lawyer pass. Small models (8B) follow instructions less reliably than Claude; RoboDM catches invented dice and contradictions, but expect a weaker DM. For Ollama, set the context window to what your GPU fits (12k–16k for an 8B model on 8 GB).</p>` : ""}
       <div class="actions">${local ? '<button type="button" class="ghost" id="st-test">Test connection</button>' : ""}<button type="button" id="st-save">Save</button></div>
     </div>
+    ${agentCard(agentStatus)}
     <div class="card settings">
       <h3>🎲 Table <span class="meta">(this campaign)</span></h3>
       ${tc}
@@ -719,6 +774,15 @@ function readEngineInputs() {
   const c = $("#st-ctx"); if (c) sub.num_ctx = parseInt(c.value, 10) || sub.num_ctx;
   const t = $("#st-tools"); if (t) sub.tool_mode = t.value;
   const k = $("#st-key"); if (k) sub.api_key = k.value;
+  const mine = agentDraft(eng);
+  for (const inp of document.querySelectorAll("[data-agent-model]")) {
+    const r = inp.dataset.agentModel;
+    mine[r] = Object.assign({ model: "", effort: "" }, mine[r], { model: inp.value.trim() });
+  }
+}
+
+function appliedLine(s) {
+  return s.applied && s.applied.length ? `<span class="ok-line">✔ ${esc(s.applied.join(" · "))}</span>` : '<span class="ok-line">✔ Subagents saved.</span>';
 }
 
 async function settingsClick(e) {
@@ -733,6 +797,24 @@ async function settingsClick(e) {
     drawSettings(); return true;
   }
   if (t.dataset.effort !== undefined) { readEngineInputs(); draft.effort = t.dataset.effort; drawSettings(); return true; }
+  if (t.dataset.agentEffort !== undefined) {
+    readEngineInputs();
+    const mine = agentDraft(draft.engine), r = t.dataset.agent;
+    mine[r] = Object.assign({ model: "", effort: "" }, mine[r], { effort: t.dataset.agentEffort });
+    drawSettings(); return true;
+  }
+  if (t.id === "st-save-agents") {
+    readEngineInputs();
+    const eng = draft.engine;
+    try {
+      settings = await api("/api/settings", { engine: { agents: { [eng]: agentDraft(eng) } } });
+      const keep = draft.engine === settings.engine.engine ? null : draft.engine;
+      const engDraft = keep ? draft[keep] : null;
+      draft = Object.assign(JSON.parse(JSON.stringify(settings.engine)), keep ? { engine: keep, [keep]: engDraft } : {});
+      drawSettings(undefined, appliedLine(settings));
+    } catch (err) { drawSettings(undefined, `<span class="warn-line">✘ ${esc(err.message)}</span>`); }
+    return true;
+  }
   const campKey = Object.keys(t.dataset).find(k => k.startsWith("camp"));
   if (campKey) {
     readEngineInputs();
@@ -753,12 +835,12 @@ async function settingsClick(e) {
   if (t.id === "st-save") {
     readEngineInputs();
     const eng = draft.engine;
-    const patch = { engine: eng, effort: draft.effort || "", [eng]: draft[eng] };
+    const patch = { engine: eng, effort: draft.effort || "", [eng]: draft[eng], agents: { [eng]: agentDraft(eng) } };
     try {
       settings = await api("/api/settings", { engine: patch });
       draft = JSON.parse(JSON.stringify(settings.engine));
       engineModels[settings.engine.engine] = settings.models;
-      drawSettings();
+      drawSettings(undefined, settings.applied ? appliedLine(settings) : undefined);
       bubble("system", `DM engine: **${settings.engines[eng]}**${draft[eng].model ? " · " + draft[eng].model : ""}${draft.effort ? " · effort " + draft.effort : ""}.`);
     } catch (err) { drawSettings(`<span class="warn-line">✘ ${esc(err.message)}</span>`); }
     loadState();

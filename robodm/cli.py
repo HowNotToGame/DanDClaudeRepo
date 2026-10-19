@@ -1875,6 +1875,16 @@ def cmd_world(args) -> None:
             out(line)
 
 
+def _agent_text(cfg: dict, camp, engine: str, role: str) -> str:
+    from robodm import costs, engines
+
+    if engine == "claude":
+        model, effort, chosen = costs.agent_choice(camp, role)
+        return costs.describe(model, effort, chosen)
+    a = engines.agent(cfg, role, engine)
+    return (a["model"] or "the DM's model") + f" · effort {a['effort'] or 'the DM’s'}"
+
+
 def cmd_engine(args) -> None:
     """Who plays the DM behind the web client (Claude Code, Ollama, KoboldCpp, an OpenAI-compatible server)."""
     from robodm import engines
@@ -1889,12 +1899,31 @@ def cmd_engine(args) -> None:
         if args.effort is not None:
             patch["effort"] = "" if args.effort == "default" else args.effort
         engines.update(patch)
+    camp = maybe_camp(args)
+    if a == "agent":
+        if args.name not in engines.AGENT_ROLES:
+            raise RoboDMError(f"Usage: engine agent <{'|'.join(engines.AGENT_ROLES)}> [--model … | default] "
+                              "[--effort low…max | default] [--for claude|ollama|kobold|openai]")
+        eng = args.for_engine or engines.load()["engine"]
+        choice = {k: v for k, v in (("model", args.model), ("effort", args.effort)) if v is not None}
+        if choice:
+            engines.update({"agents": {eng: {args.name: choice}}})
+        if eng == "claude":
+            from robodm import costs
+
+            changed = costs.apply_speed(camp)
+            if changed:
+                out("Agent files: " + "; ".join(changed) + ". (Claude Code loads changed agent files when it starts; "
+                    "the web client's DM starts fresh every turn.)")
     cfg = engines.load()
     e = cfg["engine"]
     sub = cfg[e]
     ok, detail = engines.reachable(cfg, fresh=True)
     out(f"🧠 DM engine: {engines.ENGINES[e]} · model {sub.get('model') or 'default'} · effort {cfg.get('effort') or ('medium' if e != 'claude' else 'default')}"
         + (f" · {sub['url']} · context {sub.get('num_ctx')} · tools {sub.get('tool_mode')}" if e != "claude" else ""))
+    out("🤖 Subagents: " + " · ".join(f"{label.lower()} {_agent_text(cfg, camp, e, role)}"
+                                      for role, label in engines.AGENT_ROLES.items()
+                                      if e == "claude" or role in engines.LOCAL_ROLES))
     if e != "claude":
         out(("✔ reachable: " + detail) if ok else ("✘ " + engines.help_text(cfg) + f" ({detail})"))
     if a == "models" or (a == "set" and e != "claude" and ok):
@@ -2493,9 +2522,11 @@ def build_parser() -> argparse.ArgumentParser:
     sh.set_defaults(func=cmd_shop)
 
     en = sub.add_parser("engine", help="who plays the DM in the web client: claude, ollama, kobold, openai")
-    en.add_argument("action", nargs="?", choices=["show", "set", "models"])
-    en.add_argument("name", nargs="?", help="set: claude | ollama | kobold | openai")
-    en.add_argument("--model")
+    en.add_argument("action", nargs="?", choices=["show", "set", "models", "agent"])
+    en.add_argument("name", nargs="?", help="set: claude | ollama | kobold | openai · agent: rules-lawyer | companion | lore-keeper")
+    en.add_argument("--model", help="the model (agent: `default` = turn speed for Claude, the DM's model locally)")
+    en.add_argument("--for", dest="for_engine", choices=["claude", "ollama", "kobold", "openai"],
+                    help="agent: which engine's subagent (default: the current engine)")
     en.add_argument("--effort", choices=["default", "low", "medium", "high", "xhigh", "max"])
     en.add_argument("--url", help="the local server's address")
     en.add_argument("--ctx", type=int, help="context window in tokens (local engines)")

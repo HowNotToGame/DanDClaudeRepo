@@ -9,6 +9,12 @@
 With a local engine RoboDM runs the DM loop itself (robodm/engines/local.py): the same ./dm tools, the code gate,
 receipts, transcript and a local rules-lawyer pass. The choice is per machine, not per campaign: it lives in
 <home>/.cache/engine.json (gitignored), set from the web client's ⚙ panel.
+
+Subagents (`agents`, per engine): the rules-lawyer that pre-checks and audits every turn, the companions, and (Claude
+Code only) the lore-keeper each get their own model and effort. Blank means the default: for Claude Code the
+campaign's `turn_speed` picks the model and the agent inherits the DM's effort; for a local engine they use the DM's
+model and effort. Claude Code reads them from the agent files' frontmatter (`model:`, `effort:`), which
+`costs.apply_speed` writes; the local loop passes them on each call.
 """
 
 from __future__ import annotations
@@ -26,6 +32,8 @@ ENGINES = {"claude": "Claude Code", "ollama": "Ollama", "kobold": "KoboldCpp", "
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
 CLAUDE_MODELS = ("", "fable", "opus", "sonnet", "haiku")
 TOOL_MODES = ("native", "text")
+AGENT_ROLES = {"rules-lawyer": "Rules-lawyer", "companion": "Companions", "lore-keeper": "Lore-keeper"}
+LOCAL_ROLES = ("rules-lawyer", "companion")          # the local loop has no lore-keeper
 DEFAULTS = {
     "engine": "claude",
     "effort": "",
@@ -33,6 +41,7 @@ DEFAULTS = {
     "ollama": {"url": "http://127.0.0.1:11434", "model": "llama3.1:8b", "num_ctx": 12288, "tool_mode": "native"},
     "kobold": {"url": "http://127.0.0.1:5001", "model": "", "num_ctx": 8192, "tool_mode": "native"},
     "openai": {"url": "http://127.0.0.1:8000/v1", "model": "", "api_key": "", "num_ctx": 8192, "tool_mode": "native"},
+    "agents": {},                       # {engine: {role: {"model": "", "effort": ""}}}; blank = the default
 }
 # How hard a local engine works per turn.
 EFFORT_PROFILES = {
@@ -41,6 +50,22 @@ EFFORT_PROFILES = {
     "high": {"rounds": 12, "lawyer": "all", "temperature": 0.6, "review": False},
     "xhigh": {"rounds": 16, "lawyer": "all", "temperature": 0.5, "review": True},
     "max": {"rounds": 24, "lawyer": "all", "temperature": 0.4, "review": True},
+}
+# Local subagents. The rules-lawyer: which events it reviews (judgement calls only, or every event) and how often
+# it is asked again when its JSON can't be read. Companions: how long and how loose their answers are.
+LAWYER_PROFILES = {
+    "low": {"scope": "judgement", "retries": 0},
+    "medium": {"scope": "judgement", "retries": 0},
+    "high": {"scope": "all", "retries": 1},
+    "xhigh": {"scope": "all", "retries": 1},
+    "max": {"scope": "all", "retries": 2},
+}
+COMPANION_PROFILES = {
+    "low": {"temperature": 0.9, "max_tokens": 120},
+    "medium": {"temperature": 0.8, "max_tokens": 220},
+    "high": {"temperature": 0.75, "max_tokens": 320},
+    "xhigh": {"temperature": 0.7, "max_tokens": 450},
+    "max": {"temperature": 0.7, "max_tokens": 600},
 }
 
 
@@ -57,6 +82,40 @@ def load() -> dict:
         else:
             cfg[k] = v
     return cfg
+
+
+def _check_claude_model(v: str) -> None:
+    if v and v not in CLAUDE_MODELS and v != "inherit" and not str(v).startswith("claude-"):
+        raise RoboDMError("Claude model: fable, opus, sonnet, haiku, a full model id (claude-…), or default.")
+
+
+def _update_agents(cfg: dict, agents: dict) -> None:
+    for eng, roles in agents.items():
+        if eng not in ENGINES or not isinstance(roles, dict):
+            raise RoboDMError(f"Subagent settings are per engine: {', '.join(ENGINES)}.")
+        for role, choice in roles.items():
+            if role not in AGENT_ROLES:
+                raise RoboDMError(f"Unknown subagent '{role}' (one of: {', '.join(AGENT_ROLES)}).")
+            if eng != "claude" and role not in LOCAL_ROLES:
+                raise RoboDMError("The lore-keeper runs only in Claude Code.")
+            if not isinstance(choice, dict):
+                raise RoboDMError(f"{role}: give a model and/or an effort.")
+            cur = cfg.setdefault("agents", {}).setdefault(eng, {}).setdefault(role, {"model": "", "effort": ""})
+            for k, v in choice.items():
+                v = str(v or "").strip()
+                if k == "effort":
+                    if v == "default":
+                        v = ""
+                    if v not in ("",) + EFFORTS:
+                        raise RoboDMError(f"effort must be one of: {', '.join(EFFORTS)} (or blank for the default)")
+                elif k == "model":
+                    if v == "default":
+                        v = ""
+                    if eng == "claude":
+                        _check_claude_model(v)
+                else:
+                    raise RoboDMError(f"Unknown subagent setting '{k}' (model, effort).")
+                cur[k] = v
 
 
 def update(patch: dict) -> dict:
@@ -87,13 +146,32 @@ def update(patch: dict) -> dict:
                 v = str(v).strip().rstrip("/")
                 if not v.startswith(("http://", "https://")):
                     raise RoboDMError("The server URL must start with http:// or https://")
-            if k == "model" and name == "claude" and v and v not in CLAUDE_MODELS and not str(v).startswith("claude-"):
-                raise RoboDMError("Claude model: fable, opus, sonnet, haiku, a full model id (claude-…), or default.")
+            if k == "model" and name == "claude":
+                _check_claude_model(v)
             if k == "api_key" and v == "••••":
                 continue                          # the masked value came back unchanged
             cfg[name][k] = v
+    if isinstance(patch.get("agents"), dict):
+        _update_agents(cfg, patch["agents"])
     write_json(config_path(), cfg)
     return cfg
+
+
+def agent(cfg: dict, role: str, engine: str | None = None) -> dict:
+    """The explicit model and effort chosen for a subagent on an engine ("" = the default)."""
+    a = ((cfg.get("agents") or {}).get(engine or cfg.get("engine", "claude")) or {}).get(role) or {}
+    return {"model": str(a.get("model") or ""), "effort": str(a.get("effort") or "")}
+
+
+def agent_profile(cfg: dict, role: str) -> dict:
+    """What a local subagent call uses: its model (blank = the DM's), effort and the profile for that effort."""
+    a = agent(cfg, role)
+    effort = a["effort"] or cfg.get("effort") or "medium"
+    if effort not in EFFORTS:
+        effort = "medium"
+    table = LAWYER_PROFILES if role == "rules-lawyer" else COMPANION_PROFILES
+    return {"model": a["model"] or cfg[cfg["engine"]].get("model") or "", "own_model": bool(a["model"]),
+            "effort": effort, **table[effort]}
 
 
 def public(cfg: dict) -> dict:

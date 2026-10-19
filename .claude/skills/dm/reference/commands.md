@@ -92,6 +92,8 @@ note, remove, log, end`. Gate flags: `--reaction`, `--legendary`, `--spell "<nam
 ./dm engine set ollama --model llama3.1:8b [--effort medium] [--ctx 12288] [--tools native|text] [--url …]
 ./dm engine set kobold [--url http://127.0.0.1:5001]  ·  engine set openai --url … --model … [--api-key …]
 ./dm engine models                                  # what the server has
+./dm engine agent rules-lawyer --model haiku --effort low [--for claude]   # a subagent's own model/effort
+./dm engine agent companion --model llama3.2:3b --for ollama              # `default` clears either
 ./dm combat setup "Ambush" --monsters "goblin x2" [--map 12x8]   # start + party + monsters + map + places + initiative
 ```
 

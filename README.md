@@ -119,7 +119,7 @@ reference is in [`.claude/skills/dm/reference/commands.md`](.claude/skills/dm/re
 | `hide_monster_hp` | `true` / `false` | Describe monster health instead of showing numbers |
 | `grid_diagonals` | `5` / `5-10-5` | Battle-map diagonals: 5 ft each (PHB) or alternating 5/10 (DMG variant) |
 | `companion_agents` | `key` / `always` / `off` | Consult companion subagents at decision points, every time they act or speak, or let the DM voice them |
-| `turn_speed` | `fast` / `balanced` / `thorough` | Subagent models (haiku / sonnet / opus), post-audit scope (fast: routine mechanical events the engine computed pass automatically once the narration matches the dice; spells, conditions, rulings and overrides are always audited) and brief size (6k / 9k / 14k chars) |
+| `turn_speed` | `fast` / `balanced` / `thorough` | Subagent models (haiku / sonnet / opus, unless one is chosen in ⚙ or with `./dm engine agent`), post-audit scope (fast: routine mechanical events the engine computed pass automatically once the narration matches the dice; spells, conditions, rulings and overrides are always audited) and brief size (6k / 9k / 14k chars) |
 | `dm_model` | `sonnet`, `opus`, `haiku`, a model id, or `default` | The DM's own model in the web client |
 
 ### Instruction blocks library (`context/`)
@@ -156,7 +156,12 @@ chat shows the round and everyone's health; dice, 🔒 private, OOC, rounds and 
 - **⚙ Settings (host only).** Pick the DM engine (Claude Code, Ollama, KoboldCpp or any OpenAI-compatible server),
   its model (a list from the server, or fable/opus/sonnet/haiku for Claude) and the effort (Claude's `--effort`, or
   how hard a local model works per turn), test the connection, and set the campaign's table settings (turn speed,
-  narration, companions, dice, monster HP, crits, diagonals). `./dm engine` does the same from the command line.
+  narration, companions, dice, monster HP, crits, diagonals). **Subagents** get their own model and effort too: the
+  rules-lawyer that pre-checks and audits every turn, the companions, and (Claude Code) the lore-keeper. With Claude
+  Code they're written into the agent files (`model:`, `effort:`); a blank model follows the turn speed and a blank
+  effort inherits the DM's. With a local engine the rules-lawyer and companions can run on a different model from
+  the DM (a bigger one for verdicts, a small fast one for voices), and their effort sets how much the rules-lawyer
+  reviews and how long companions answer. `./dm engine` does the same from the command line.
 - **The table.** The battle map (the same SVG as `./dm combat map show --svg`) and initiative cards, or a recap
   outside combat; full party sheets (click an attack to say it); the world's clocks and factions; the codex. The
   dice tray rolls with advantage or disadvantage, and **→ chat** reports the result to the DM.

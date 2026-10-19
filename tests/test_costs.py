@@ -62,6 +62,32 @@ class SpeedTests(RoboDMTestCase):
         self.ok("campaign", "set", "dm_model", "default")
         self.assertEqual(campaign.load().settings["dm_model"], "")
 
+    def test_chosen_subagent_models_and_efforts_beat_the_turn_speed(self):
+        from robodm import engines
+
+        agents = Path(os.environ["ROBODM_AGENTS_DIR"])
+        self.ok("companion", "new", "Okton", "--status", "party")
+        out = self.ok("engine", "agent", "rules-lawyer", "--model", "haiku", "--effort", "low", "--for", "claude")
+        lawyer = (agents / "rules-lawyer.md").read_text(encoding="utf-8")
+        self.assertIn("model: haiku\neffort: low\n---", lawyer)
+        self.assertIn("rules-lawyer → haiku · effort low", out)
+        self.assertIn("rules-lawyer haiku · effort low", out)                  # the 🤖 Subagents line
+        self.ok("engine", "agent", "companion", "--effort", "high", "--for", "claude")
+        okton = (agents / "companion-okton.md").read_text(encoding="utf-8")
+        self.assertIn("model: sonnet\neffort: high\n---", okton)              # the turn speed's model, chosen effort
+        self.ok("campaign", "set", "turn_speed", "thorough")                   # doesn't override the chosen model…
+        self.assertIn("model: haiku", (agents / "rules-lawyer.md").read_text(encoding="utf-8"))
+        self.assertIn("model: opus\neffort: high", (agents / "companion-okton.md").read_text(encoding="utf-8"))
+        self.assertIn("model: opus", (agents / "lore-keeper.md").read_text(encoding="utf-8"))   # …but sets the rest
+        self.ok("engine", "agent", "rules-lawyer", "--model", "default", "--effort", "default", "--for", "claude")
+        lawyer = (agents / "rules-lawyer.md").read_text(encoding="utf-8")
+        self.assertIn("model: opus\n---", lawyer)                             # back to the turn speed, no effort line
+        self.assertNotIn("effort:", lawyer.split("\n---", 1)[0])
+        self.ok("companion", "agent", "okton")                                 # regenerating keeps the choices
+        self.assertIn("effort: high", (agents / "companion-okton.md").read_text(encoding="utf-8"))
+        self.assertEqual(engines.load()["engine"], "claude")                   # choosing subagents never switches the DM
+        self.assertEqual(run_cli("engine", "agent", "bard", "--model", "opus")[0], 1)
+
     def test_fast_mode_auto_passes_routine_events_only(self):
         self.ok("campaign", "set", "turn_speed", "fast")
         audit.bump_turn(campaign.load())

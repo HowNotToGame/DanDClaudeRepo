@@ -205,6 +205,49 @@ class EngineTests(RoboDMTestCase):
         self.dm("Brann: I jump the gap.")
         self.assertEqual([e["status"] for e in audit.events(campaign.load())], ["unverified"])
 
+    def test_local_subagents_have_their_own_model_and_effort(self):
+        f = self.fake("ollama")
+        engines.update({"agents": {"ollama": {"rules-lawyer": {"model": "qwen2.5:14b", "effort": "max"},
+                                              "companion": {"model": "llama3.2:3b", "effort": "low"}}}})
+        run_cli("companion", "new", "Okton", "--status", "party")
+        # the companion answers with its own model, short and loose (low effort)
+        f.script = [{"tool_calls": [("companion", {"name": "Okton", "situation": "Brann asks about the gate"})]},
+                    {"content": "Hold it till dawn, little one."},
+                    {"content": "Okton grunts. What do you do?"}]
+        self.dm("Brann: Okton, can we hold the gate?")
+        comp = f.requests[1]
+        self.assertEqual(comp["model"], "llama3.2:3b")
+        self.assertEqual((comp["options"]["num_predict"], comp["options"]["temperature"]), (120, 0.9))
+        self.assertEqual([r["model"] for r in (f.requests[0], f.requests[2])], ["llama3.1:8b"] * 2)   # the DM's own
+        # the rules-lawyer: its own model; at max effort an unreadable verdict is asked for again (twice)
+        f.requests.clear()
+        run_cli("audit", "clear", "ruling", "jump", "--verdict", "CORRECT", "--notes", "ok")
+        f.script = [{"tool_calls": [("dm", {"command": 'ruling "Brann jumps the gap" --key jump'})]},
+                    {"content": "Brann leaps. What now?"},
+                    {"content": "hmm"}, {"content": "not sure"}, {"content": "still not sure"}]
+        self.dm("Brann: I jump the gap.")
+        lawyer = [r for r in f.requests if r.get("format") == "json"]
+        self.assertEqual([r["model"] for r in lawyer], ["qwen2.5:14b"] * 3)
+        evs = audit.events(campaign.load())
+        self.assertEqual(evs[-1]["status"], "unverified")
+        self.assertIn("qwen2.5:14b", evs[-1]["by"])
+
+    def test_subagent_settings_validation(self):
+        self.assertRaises(Exception, engines.update, {"agents": {"ollama": {"lore-keeper": {"model": "x"}}}})
+        self.assertRaises(Exception, engines.update, {"agents": {"claude": {"bard": {"model": "opus"}}}})
+        self.assertRaises(Exception, engines.update, {"agents": {"claude": {"rules-lawyer": {"effort": "turbo"}}}})
+        self.assertRaises(Exception, engines.update, {"agents": {"claude": {"rules-lawyer": {"model": "llama3"}}}})
+        self.assertRaises(Exception, engines.update, {"agents": {"gpt": {"rules-lawyer": {"model": "x"}}}})
+        cfg = engines.update({"agents": {"claude": {"rules-lawyer": {"model": "haiku", "effort": "low"}}}})
+        self.assertEqual(engines.agent(cfg, "rules-lawyer", "claude"), {"model": "haiku", "effort": "low"})
+        cfg = engines.update({"agents": {"claude": {"rules-lawyer": {"effort": "default"}}}})
+        self.assertEqual(engines.agent(cfg, "rules-lawyer", "claude"), {"model": "haiku", "effort": ""})
+        self.assertEqual(engines.agent(cfg, "companion", "claude"), {"model": "", "effort": ""})
+        cfg = engines.update({"engine": "ollama", "effort": "high"})
+        prof = engines.agent_profile(cfg, "rules-lawyer")                  # nothing chosen: the DM's model and effort
+        self.assertEqual((prof["model"], prof["effort"], prof["scope"], prof["own_model"]),
+                         ("llama3.1:8b", "high", "all", False))
+
     def test_bridge_runs_the_local_engine(self):
         f = self.fake("ollama")
         f.script = [{"content": "Rain on the battlements. What do you do?"}]
@@ -235,6 +278,13 @@ class EngineTests(RoboDMTestCase):
         from robodm.web import server, table
 
         f = self.fake("ollama")
+        agents = self.tmp / "agents"
+        agents.mkdir(exist_ok=True)
+        os.environ["ROBODM_AGENTS_DIR"] = str(agents)
+        repo_agents = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".claude", "agents")
+        for name in ("rules-lawyer.md", "lore-keeper.md"):
+            with open(os.path.join(repo_agents, name), encoding="utf-8") as src:
+                (agents / name).write_text(src.read(), encoding="utf-8")
         srv, hub = server.make_server("127.0.0.1", 0, "tok")
         threading.Thread(target=srv.serve_forever, daemon=True).start()
         try:
@@ -263,6 +313,17 @@ class EngineTests(RoboDMTestCase):
                              ("claude", "high", "opus"))
             self.assertEqual(campaign.load().settings["turn_speed"], "fast")
             self.assertIs(campaign.load().settings["hide_monster_hp"], False)
+            self.assertEqual((st["turn_speed"], st["agent_defaults"]["rules-lawyer"]), ("fast", "haiku"))
+            code, st = req("POST", "/api/settings", {"engine": {"agents": {"claude": {
+                "rules-lawyer": {"model": "opus", "effort": "max"}, "companion": {"model": "", "effort": "low"}}}}})
+            self.assertEqual(code, 200)
+            self.assertEqual(st["engine"]["agents"]["claude"]["rules-lawyer"], {"model": "opus", "effort": "max"})
+            self.assertIn("rules-lawyer → opus · effort max", st["applied"])
+            agents = os.environ["ROBODM_AGENTS_DIR"]
+            with open(os.path.join(agents, "rules-lawyer.md"), encoding="utf-8") as fh:
+                self.assertIn("model: opus\neffort: max", fh.read())
+            code, st = req("POST", "/api/settings", {"engine": {"agents": {"ollama": {"lore-keeper": {"model": "x"}}}}})
+            self.assertEqual(code, 400)
             code, m = req("GET", f"/api/settings/models?engine=ollama&url={f.url}")
             self.assertEqual(m["models"], ["llama3.1:8b"])
         finally:

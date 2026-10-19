@@ -24,7 +24,7 @@ import threading
 import time
 
 from robodm import audit, campaign, companions, costs, hooks, memory, runner
-from robodm.engines import effort_profile, llm, prompts
+from robodm.engines import agent_profile, effort_profile, llm, prompts
 from robodm.util import RoboDMError, read_json, truncate, write_json
 
 DM_TOOL = {"type": "function", "function": {
@@ -132,6 +132,8 @@ class LocalDM:
         self.emit = emit
         self.cancel = cancel or threading.Event()
         self.profile = effort_profile(cfg)
+        self.lawyer = agent_profile(cfg, "rules-lawyer")
+        self.companion = agent_profile(cfg, "companion")
         self.tool_mode = self.sub.get("tool_mode", "native")
         self.rounds = 0
         self.tokens = 0
@@ -140,7 +142,7 @@ class LocalDM:
 
     # ------------------------------------------------------------------ model calls
     def _call(self, messages: list[dict], tools: list[dict] | None, json_mode: bool = False, stream: bool = True,
-              temperature: float | None = None) -> dict:
+              temperature: float | None = None, model: str | None = None, max_tokens: int | None = None) -> dict:
         self.rounds += 1
         base = self.streamed
 
@@ -157,7 +159,7 @@ class LocalDM:
         res = llm.chat(self.cfg, self.engine, messages, tools=tools, json_mode=json_mode,
                        on_delta=on_delta if stream else None,
                        temperature=self.profile["temperature"] if temperature is None else temperature,
-                       cancel=self.cancel)
+                       max_tokens=max_tokens, cancel=self.cancel, model=model)
         self.tokens += res.get("tokens", 0)
         return res
 
@@ -303,9 +305,9 @@ class LocalDM:
         kind, name, use = m.group(1), m.group(2), m.group(3) or ""
         self.emit({"kind": "tool", "icon": "⚖️", "label": f"local rules-lawyer: pre-check {kind} {name}", "sub": True})
         _, brief, _ = runner.run_cli(["audit", "brief", kind, name] + (["--use", use] if use else []))
-        res = self._call([{"role": "system", "content": prompts.PRECHECK_SYSTEM},
-                          {"role": "user", "content": brief}], None, json_mode=True, stream=False, temperature=0.1)
-        data = _parse_json(res["content"]) or {}
+        data = self._lawyer_json([{"role": "system", "content": prompts.PRECHECK_SYSTEM},
+                                  {"role": "user", "content": brief}],
+                                 lambda d: str(d.get("verdict", "")).upper() in ("CORRECT", "INCORRECT"))
         verdict = str(data.get("verdict", "")).upper()
         notes = str(data.get("notes", "")).strip()
         if verdict not in ("CORRECT", "INCORRECT"):
@@ -315,12 +317,24 @@ class LocalDM:
         cl = audit.cleared(camp)
         key = audit.item_key(kind, name)
         if key in cl:
-            cl[key]["by"] = f"local rules-lawyer ({self.sub.get('model')})"
+            cl[key]["by"] = f"local rules-lawyer ({self.lawyer['model']})"
             audit._save_cleared(camp, cl)
         if verdict == "INCORRECT":
             return f"Rules-lawyer pre-check: INCORRECT — {notes}. That isn't allowed; choose something else."
         code, out, err2 = runner.run_cli(argv)
         return truncate(f"(rules-lawyer pre-check: CORRECT — {notes})\n" + (out + err2).strip(), 3500)
+
+    def _lawyer_json(self, messages: list[dict], usable) -> dict:
+        """Ask the local rules-lawyer (its own model and effort); at high effort and up, ask again when the
+        answer can't be read."""
+        data: dict = {}
+        for _ in range(1 + self.lawyer["retries"]):
+            res = self._call(messages, None, json_mode=True, stream=False, temperature=0.1,
+                             model=self.lawyer["model"] or None)
+            data = _parse_json(res["content"]) or {}
+            if usable(data):
+                break
+        return data
 
     def _companion(self, slug: str, name: str, situation: str) -> str:
         camp = campaign.load(slug)
@@ -335,7 +349,8 @@ class LocalDM:
         brief = companions.brief(camp, cslug, situation=situation, record=True)
         res = self._call([{"role": "system", "content": brief + prompts.COMPANION_WRAP},
                           {"role": "user", "content": situation or "What do you do?"}], None, stream=False,
-                         temperature=0.8)
+                         temperature=self.companion["temperature"], max_tokens=self.companion["max_tokens"],
+                         model=self.companion["model"] or None)
         said = strip_calls(res["content"]) or "(no answer)"
         return f"{meta.get('name', cslug)} answers (their own choice; you decide outcomes): {said}"
 
@@ -412,12 +427,12 @@ class LocalDM:
         if not opened:
             return reply
         clean = not audit.narration_problems(camp, reply)
-        if clean and (self.profile["lawyer"] == "judgement" or costs.speed(camp) == "fast"):
+        if clean and (self.lawyer["scope"] == "judgement" or costs.speed(camp) == "fast"):
             evs = audit.events(camp)
             for e in evs:
                 if costs.autopassable(e):
                     e["status"] = "passed"
-                    e["by"] = f"engine (local, effort {self.cfg.get('effort') or 'medium'}: computed by the engine, receipts agreed)"
+                    e["by"] = f"engine (local, rules-lawyer effort {self.lawyer['effort']}: computed by the engine, receipts agreed)"
             audit._write_events(camp, evs)
         remaining = audit.open_events(campaign.load(slug))
         if not remaining:
@@ -425,12 +440,12 @@ class LocalDM:
         self.emit({"kind": "tool", "icon": "⚖️", "label": f"local rules-lawyer: post-audit of {len(remaining)} event(s)",
                    "sub": True})
         packet = audit.pending_packet(campaign.load(slug))
-        res = self._call([{"role": "system", "content": prompts.LAWYER_SYSTEM}, {"role": "user", "content": packet}],
-                         None, json_mode=True, stream=False, temperature=0.1)
-        data = _parse_json(res["content"]) or {}
+        data = self._lawyer_json([{"role": "system", "content": prompts.LAWYER_SYSTEM},
+                                  {"role": "user", "content": packet}],
+                                 lambda d: isinstance(d.get("verdicts"), list) and bool(d["verdicts"]))
         verdicts = {str(v.get("id")): v for v in data.get("verdicts", []) if isinstance(v, dict)}
         corrections = []
-        by = f"local rules-lawyer ({self.sub.get('model')})"
+        by = f"local rules-lawyer ({self.lawyer['model']})"
         for e in remaining:
             v = verdicts.get(e["id"])
             camp = campaign.load(slug)
