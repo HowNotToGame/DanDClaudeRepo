@@ -4,10 +4,10 @@ type: npc
 summary: "Watch captain of the river wall, relieved and confined on day 9 as the leak to the Pyrehouse; refuses the inquiry but asked to see the Lord-Marshal alone."
 tags: [npc, kharun-watch, captain, leak]
 status: confined pending inquiry
-related: [kharun-watch, halda-barrowe, lorard-hask, tamius-coldwell, pyrewardens]
+related: [kharun-watch, halda-barrowe, lorard-hask, tamius-coldwell, pyrewardens, fenia, marda-ironside]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # Hesard Rook, Watch captain (relieved)

@@ -1,14 +1,14 @@
 ---
 name: Halda Barrowe
 type: npc
-summary: "Watch-Captain of Kharun: kept the gates until the Coal 'chose', opened them on her own terms on day 9, chaired the noon council and holds a lamp on the regency; protector of Isine and the forge ward."
+summary: "Watch-Captain of Kharun and Chadickith's steadiest ally: kept the gates until the Coal 'chose', opened them on her own terms on day 9, chaired the noon council and holds a lamp on the regency; protector of Isine and the forge ward."
 tags: [npc, kharun-watch, captain, lamplit-council]
 status: alive
-related: [kharun-watch, okton, isine-kettle, lorard-hask, oselle-velun, tamius-coldwell, hesard-rook, lamplit-council, order-of-the-banked-fire, kharun]
+related: [kharun-watch, okton, isine-kettle, lorard-hask, oselle-velun, tamius-coldwell, hesard-rook, lamplit-council, order-of-the-banked-fire, kharun, marda-ironside, fenia, ashlo]
 aliases: [the Watch-Captain]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:49"
 ---
 
 # Halda Barrowe, Watch-Captain of Kharun

@@ -4,11 +4,11 @@ type: npc
 summary: "The Lord-Marshal: the late king's camp-born eldest, commander of all arms under the Lamplit Council regency, with 300 of his Ash Companies inside Kharun since day 9."
 tags: [heir, claimant, army, hask, ash-companies]
 status: alive
-related: [ivoard-hask, ossmaar, kharun, oselle-velun, kitwin, heartcoal, kharun-watch, house-mostana, okton, ash-reign, halda-barrowe, hesard-rook, tamius-coldwell, lamplit-council]
+related: [ivoard-hask, ossmaar, kharun, oselle-velun, kitwin, heartcoal, kharun-watch, house-mostana, okton, ash-reign, halda-barrowe, hesard-rook, tamius-coldwell, lamplit-council, unara, ashlo, marda-ironside]
 aliases: [the Lord-Marshal, the Camp Prince]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # Lorard Hask, the Lord-Marshal

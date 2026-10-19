@@ -3,10 +3,10 @@ name: Gwenmund Cobb
 type: npc
 summary: "Ashward pit-hand's widow in the forge ward with her children Branda and Tam; the burn at its first stirring; she declined the Quenching for now (evening, day 11)."
 tags: [npc, ward, ashward, burn, cobb]
-related: [okton, isine-kettle, order-of-the-banked-fire, ashblood, halda-barrowe]
+related: [okton, isine-kettle, order-of-the-banked-fire, ashblood, halda-barrowe, branda-cobb, tam-cobb]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 status: in the forge ward
 ---
 
@@ -14,6 +14,7 @@ status: in the forge ward
 An Ashward pit-hand's widow in her thirties, broad-handed and blunt, with the dry pyre-cough of everyone who grew up under the Long Smoke. Her husband was one of the Gallowsbird's wounded. Her daughter **Branda** (14) nursed him and touched his blood, and he died of the burn fever raging and bared-toothed about four days before the ward opened.
 
 ## The Cobbs in the forge ward
+(See also branda-cobb and tam-cobb.)
 - **Branda Cobb** (14) was the ward's first patient (evening, day 10), brought with a warden's seal and her mother's signed consent. She has the burn at Stirring, edging toward Frenzied: grey veins climbing from the wrists, heat in her palms, a temper that snaps and then shames her. On the morning of day 11 she tried to bleed the heat off, failed, broke a water jug against the wall and wept. She told Chadickith about her father's last night: he begged her not to let the heat take her, and she is ashamed she was glad when it ended. Isine says Branda has days, not weeks, unless the heat is bled off, and that she should be asked clear-headed, within two days, whether she wants the Quenching.
 - **Gwenmund** was admitted the same night, with the burn at its very first stirring plus ordinary pyre-cough. She had hidden her flush. By midday on day 11 she was a little better: a looser cough and a fading flush.
 - **Tam Cobb** (9) touched his father's sickbed linen and showed the first flush; a warden brought him in on day 11, filling the ward's third cot.

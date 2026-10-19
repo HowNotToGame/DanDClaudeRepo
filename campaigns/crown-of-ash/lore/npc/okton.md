@@ -4,10 +4,10 @@ type: npc
 summary: "Ancient fire giant smith of Steamside and founder of the Order of the Banked Fire; killed the Gallowsbird at the Great Pyre, quenched Chadickith and five Watchmen, and keeps a trial burn ward in his cellar."
 tags: [fire-giant, smith, kharun-watch, chadickith-backstory, ashblood, banked-fire]
 status: alive
-related: [kharun, kharun-watch, gallowsbird, ashblood, hadrun, crown-of-ash, heartcoal, order-of-the-banked-fire, lorard-hask, oselle-velun, kitwin, ash-reign, isine-kettle, gwenmund-cobb, dunmarrow, halda-barrowe, pyrewardens]
+related: [kharun, kharun-watch, gallowsbird, ashblood, hadrun, crown-of-ash, heartcoal, order-of-the-banked-fire, lorard-hask, oselle-velun, kitwin, ash-reign, isine-kettle, gwenmund-cobb, dunmarrow, halda-barrowe, pyrewardens, branda-cobb, tam-cobb]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # Okton

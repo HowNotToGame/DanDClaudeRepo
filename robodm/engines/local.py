@@ -284,14 +284,14 @@ class LocalDM:
             return f"Couldn't read that command ({e}). Quote names with spaces: dm lore add \"Old Mill\" --type location"
         if not argv:
             return "Empty command."
-        words = [a for a in argv if not a.startswith("-")]
-        if any(tuple(words[:len(d)]) == d for d in DENIED) or "--self" in argv:
+        words = runner.command_words(argv)
+        if any(words[:len(d)] == d for d in DENIED) or "--self" in argv:
             return ("That command isn't available to the DM (rules verdicts come from the rules-lawyer; campaigns "
                     "aren't switched or deleted from the table).")
         code, out, err = runner.run_cli(argv)
         if code and "hasn't been cleared by the rules-lawyer" in err:
             return self._precheck_and_retry(slug, argv, err)
-        if code == 0 and (tuple(words[:1]) in ROLLING or tuple(words[:2]) in ROLLING):
+        if code == 0 and (words[:1] in ROLLING or words[:2] in ROLLING):
             self.rolled = True
         if code and "No active combat" in err:
             err += "\nStart the fight first: dm combat setup \"Name\" --monsters \"goblin x2\""

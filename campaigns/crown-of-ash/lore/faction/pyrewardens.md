@@ -4,11 +4,11 @@ type: faction
 summary: "Ossmaar's order of undertakers and pyre-priests, sworn to Kelemvor, who burn the dead, keep the Crown of Ash and back Kitwin; their inner circle, the Choir, serves something else."
 tags: [faction, church, kelemvor, death, pyrehouse]
 status: active
-related: [kitwin, crown-of-ash, heartcoal, ashblood, kharun, sky-gallows, ivoard-hask, isine-kettle, tamius-coldwell, lamplit-council, order-of-the-banked-fire]
+related: [kitwin, crown-of-ash, heartcoal, ashblood, kharun, sky-gallows, ivoard-hask, isine-kettle, tamius-coldwell, lamplit-council, order-of-the-banked-fire, sister-ilsa]
 aliases: [the Order of the Last Ember, the Pyrehouse]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # The Pyrewardens (the Order of the Last Ember)

@@ -5,9 +5,9 @@ summary: "Razed castle town in the high Cinder Hills, burned by Ivoard Hask's As
 tags: [dunmarrow, redoubt, order, cinder-hills]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 status: the Order's hall (founding)
-related: [order-of-the-banked-fire, okton, ash-reign, ossmaar]
+related: [order-of-the-banked-fire, okton, ash-reign, ossmaar, ulric-vane]
 ---
 
 # Dunmarrow

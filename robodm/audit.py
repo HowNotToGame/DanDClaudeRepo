@@ -26,7 +26,7 @@ from typing import Any
 
 from robodm.campaign import Campaign
 from robodm.gatekeeper import pretool as hook_pretool  # noqa: F401
-from robodm.util import RoboDMError, now_iso, read_json, read_jsonl, slugify, truncate, write_json
+from robodm.util import RoboDMError, now_iso, read_json, read_jsonl, slugify, truncate, write_json, write_text
 
 KINDS = ("spell", "condition", "feature", "ruling")
 DAMAGE_TYPES = ("acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison",
@@ -74,11 +74,9 @@ def events(camp: Campaign) -> list[dict]:
 
 
 def _write_events(camp: Campaign, evs: list[dict]) -> None:
-    p = _dir(camp) / "events.jsonl"
-    p.parent.mkdir(parents=True, exist_ok=True)
     import json
 
-    p.write_text("".join(json.dumps(e, ensure_ascii=False) + "\n" for e in evs), encoding="utf-8")
+    write_text(_dir(camp) / "events.jsonl", "".join(json.dumps(e, ensure_ascii=False) + "\n" for e in evs))
 
 
 def cleared(camp: Campaign) -> dict:

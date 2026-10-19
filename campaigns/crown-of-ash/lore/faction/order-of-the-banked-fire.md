@@ -4,11 +4,11 @@ type: faction
 summary: "Okton's order of Blood Hunters, made through his blood rite (the Quenching): Chadickith and five former Watchmen so far; it shelters the burn-sick, denies the Choir and keeps the Coal's secret, with a hall rising at Dunmarrow."
 tags: [faction, hunters, okton, ashblood, blood-hunter, player-canon]
 status: growing
-related: [okton, gallowsbird, ashblood, heartcoal, crown-of-ash, kharun-watch, lorard-hask, pyrewardens, kitwin, hadrun, dunmarrow, isine-kettle, gwenmund-cobb, halda-barrowe]
+related: [okton, gallowsbird, ashblood, heartcoal, crown-of-ash, kharun-watch, lorard-hask, pyrewardens, kitwin, hadrun, dunmarrow, isine-kettle, gwenmund-cobb, halda-barrowe, ulric-vane, branda-cobb, tam-cobb]
 aliases: ["Okton's hunters, our order, the order, the Banked"]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # The Order of the Banked Fire

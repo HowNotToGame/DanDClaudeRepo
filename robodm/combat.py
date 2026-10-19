@@ -450,7 +450,7 @@ class Encounter:
             cond["level"] = level
         c["conditions"] = [x for x in c["conditions"] if x["name"] != name] + [cond]
         extra = []
-        if name in ("paralyzed", "petrified", "stunned", "unconscious") and c.get("concentration"):
+        if name in ("incapacitated", "paralyzed", "petrified", "stunned", "unconscious") and c.get("concentration"):
             self._break_concentration(c, f"{name}")
         if name == "unconscious":
             extra.append("also prone")
@@ -547,9 +547,15 @@ class Encounter:
         if isinstance(parts, int):
             parts = [(parts, dtype)]
         total, notes = 0, []
-        for amount, dt in parts:
+        by_type: dict[str, int] = {}
+        for amount, dt in parts:                  # each damage type is halved (and rounded down) once
+            by_type[dt] = by_type.get(dt, 0) + amount
+        for dt, amount in by_type.items():
             mult, why = self._defense_multiplier(c, dt, nonmagical, silvered, adamantine)
-            dealt = int(amount * mult) if mult != 0.5 else amount // 2
+            if why == "resistant+vulnerable":     # resistance and then vulnerability (PHB p.197): 7 → 3 → 6
+                dealt = amount // 2 * 2
+            else:
+                dealt = int(amount * mult) if mult != 0.5 else amount // 2
             if why:
                 notes.append(f"{amount} {dt} → {dealt} ({why})")
             total += dealt
@@ -601,12 +607,15 @@ class Encounter:
                 if overflow >= c["max_hp"]:
                     self._kill(c, f"massive damage ({overflow} over max HP)")
                     return
-                c["status"] = "down"
+                c["status"] = "stable" if nonlethal else "down"
                 c["death_saves"] = {"success": 0, "fail": 0}
                 if not self.has(c, "unconscious"):
                     c["conditions"].append({"name": "unconscious", "tick": "end", "auto": "dying"})
                     c["conditions"].append({"name": "prone", "tick": "end"})
-                self.say(f"  **{c['name']} drops to 0 HP and falls unconscious!** Death saves begin on their turn.")
+                if nonlethal:                     # knocked out: unconscious and stable (PHB p.198)
+                    self.say(f"  **{c['name']} is knocked out** (nonlethal): unconscious and stable at 0 HP.")
+                else:
+                    self.say(f"  **{c['name']} drops to 0 HP and falls unconscious!** Death saves begin on their turn.")
                 receipts.note("down", target=c["name"])
                 self._break_concentration(c, "dropped to 0 HP")
                 return
@@ -781,8 +790,10 @@ class Encounter:
         if self.has(t, "invisible"):
             reasons_dis.append("target invisible")
         reasons_dis.extend(extra_dis or [])
-        if self.has(t, "prone"):
-            (reasons_dis if ranged else reasons_adv).append("target prone" + (" (ranged)" if ranged else " (within 5 ft)"))
+        close = (not ranged) if within_5ft is None else within_5ft
+        if self.has(t, "prone"):                  # advantage from within 5 ft, otherwise disadvantage (PHB p.292)
+            (reasons_adv if close else reasons_dis).append(
+                "target prone (" + ("within 5 ft" if close else "ranged" if within_5ft is None else "beyond 5 ft") + ")")
         has_adv, has_dis = bool(reasons_adv), bool(reasons_dis)
         if any(self.has(a, x) for x in NO_ACTIONS):
             self.say(f"(warning: {a['name']} is incapacitated and normally can't attack)", log=False)
@@ -800,8 +811,7 @@ class Encounter:
         crit = natural == 20
         ac = t["ac"] + (cover if cover < 99 else 0)
         hit = crit or (natural != 1 and total >= ac)
-        melee_close = (not ranged) if within_5ft is None else within_5ft
-        if hit and not crit and melee_close and (self.has(t, "paralyzed") or self.has(t, "unconscious")):
+        if hit and not crit and close and (self.has(t, "paralyzed") or self.has(t, "unconscious")):
             crit = True
             adv_txt += " (auto-crit: melee hit on paralyzed/unconscious target)"
         verdict = "**CRITICAL HIT!**" if crit else ("**hit**" if hit else ("miss (nat 1)" if natural == 1 else "miss"))

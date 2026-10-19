@@ -1442,7 +1442,7 @@ def cmd_rules(args) -> None:
         out(f"Indexed {len(db.index):,} entries.")
         return
     if a == "status":
-        meta = json.loads((data / "_meta.json").read_text()) if (data / "_meta.json").exists() else None
+        meta = json.loads((data / "_meta.json").read_text(encoding="utf-8")) if (data / "_meta.json").exists() else None
         if not meta:
             out(f"No local data in {data}. Run `./dm rules fetch`.")
             return

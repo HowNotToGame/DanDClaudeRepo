@@ -117,3 +117,5 @@ Use the `dm` skill (`.claude/skills/dm/SKILL.md`) and follow it: load `./dm memo
   `prompt` and `stop` do mandatory rules checking: only the rules-lawyer records verdicts, no direct edits to
   game state, a new turn per prompt, and no reply ends with rules events unaudited. The gate and audit logic
   live in `robodm/audit.py`; `main()` in `robodm/cli.py` records every rules command as an event.
+  `ROBODM_CAPTURE=off` (for coding sessions) turns `prompt` and `stop` off, so a campaign left mid-session
+  doesn't record the chat as play; `ROBODM_SYNC=off` skips the session-start sync.

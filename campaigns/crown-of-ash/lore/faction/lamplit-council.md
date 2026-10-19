@@ -5,9 +5,9 @@ summary: "Ossmaar's interim regency from day 10: the thirteen lamps, the Lady's 
 tags: [regency, lamplit-council, government, oselle, lorard, halda]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 status: regency; first sitting day 13
-related: [halda-barrowe, oselle-velun, lorard-hask, tamius-coldwell, kharun-watch, pyrewardens, kitwin, ossmaar, isine-kettle]
+related: [halda-barrowe, oselle-velun, lorard-hask, tamius-coldwell, kharun-watch, pyrewardens, kitwin, ossmaar, isine-kettle, marda-ironside, wynot-northcott, rosa-hollis]
 ---
 
 # The Lamplit Council

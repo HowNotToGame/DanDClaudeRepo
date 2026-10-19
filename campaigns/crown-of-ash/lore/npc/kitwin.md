@@ -4,11 +4,11 @@ type: npc
 summary: "The Pyre-Born: the late king's gentle, unacknowledged son, raised in the Pyrehouse and beloved of the Ashward; crowned in a kindling the Watch refused, unseen since; to be produced to the regency on day 13."
 tags: [heir, claimant, pyrewardens, ashblood, ashward]
 status: "in the Pyrehouse, unseen since day 2"
-related: [ivoard-hask, pyrewardens, kharun, lorard-hask, oselle-velun, heartcoal, crown-of-ash, ashblood, okton, isine-kettle, tamius-coldwell, lamplit-council, halda-barrowe]
+related: [ivoard-hask, pyrewardens, kharun, lorard-hask, oselle-velun, heartcoal, crown-of-ash, ashblood, okton, isine-kettle, tamius-coldwell, lamplit-council, halda-barrowe, sister-ilsa]
 aliases: [Kitwin the Pyre-Born, the Gentle Heir]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # Kitwin, the Pyre-Born

@@ -223,15 +223,9 @@ class SyncTests(RoboDMTestCase):
         self.assertIn("Unsaved desktop note", (self.a / "campaigns/sync-camp/memory.jsonl").read_text())
 
     def test_session_start_hook_reports_on_desktop_and_applies_in_cloud(self):
-        os.environ["ROBODM_SYNC"] = ""
         self.assertIn("Run `./dm sync`", hooks.session_start({"source": "startup"}))
-        os.environ["CLAUDE_CODE_REMOTE"] = "true"
-        try:
-            out = hooks.session_start({"source": "startup"})
-        finally:
-            os.environ.pop("CLAUDE_CODE_REMOTE", None)
-            os.environ.pop("ROBODM_SYNC", None)
-        self.assertIn("RoboDM sync: ⤵ Synced sync-camp", out)
+        os.environ["CLAUDE_CODE_REMOTE"] = "true"          # restored by tearDown
+        self.assertIn("RoboDM sync: ⤵ Synced sync-camp", hooks.session_start({"source": "startup"}))
 
 
 class ContextModeCompatTests(unittest.TestCase):

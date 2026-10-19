@@ -4,11 +4,11 @@ type: faction
 summary: "Kharun's city guard, the 'Redcollars' in Okton-forged gorgets: ruled the Coal did not choose Kitwin, opened the gates on Halda's terms on day 9, and holds the city and two lamps under the regency."
 tags: [faction, city-guard, kharun, swing-vote]
 status: active
-related: [kharun, okton, heartcoal, lorard-hask, oselle-velun, kitwin, sky-gallows, house-mostana, order-of-the-banked-fire, halda-barrowe, hesard-rook, lamplit-council]
+related: [kharun, okton, heartcoal, lorard-hask, oselle-velun, kitwin, sky-gallows, house-mostana, order-of-the-banked-fire, halda-barrowe, hesard-rook, lamplit-council, marda-ironside, fenia]
 aliases: [the Redcollars, the Watch]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # The Kharun Watch ("the Redcollars")

@@ -4,11 +4,11 @@ type: npc
 summary: "High Pyrewarden of the Pyrehouse: chain-veiled, speaks as 'we', claims the dying king named Kitwin, crowned the boy in a kindling the Watch refused, and voted alone against the regency."
 tags: [npc, pyrewardens, choir, antagonist]
 status: alive
-related: [pyrewardens, kitwin, crown-of-ash, heartcoal, isine-kettle, halda-barrowe, hesard-rook, lamplit-council, kharun]
+related: [pyrewardens, kitwin, crown-of-ash, heartcoal, isine-kettle, halda-barrowe, hesard-rook, lamplit-council, kharun, sister-ilsa, ashlo, unara]
 aliases: [the High Pyrewarden]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # Tamius Coldwell, High Pyrewarden

@@ -4,10 +4,10 @@ type: npc
 summary: "The late king's cupbearer, who pried the Heartcoal from the crown on his last order and testified at the noon council that he named no heir; now nurse of the forge ward, under Watch protection."
 tags: [npc, servant, witness, heartcoal, ward, burn]
 status: "at Okton's forge, under Watch protection"
-related: [ivoard-hask, heartcoal, crown-of-ash, okton, pyrewardens, kharun-watch, kharun, oselle-velun, halda-barrowe, tamius-coldwell, gwenmund-cobb, lamplit-council, ashblood]
+related: [ivoard-hask, heartcoal, crown-of-ash, okton, pyrewardens, kharun-watch, kharun, oselle-velun, halda-barrowe, tamius-coldwell, gwenmund-cobb, lamplit-council, ashblood, branda-cobb, tam-cobb]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-19T12:05:50"
 ---
 
 # Isine Kettle
