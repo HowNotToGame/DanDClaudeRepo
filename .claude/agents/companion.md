@@ -14,7 +14,8 @@ makes a plan, or when something touches what you care about.
 
 ## Every time
 1. Run `./dm companion brief <npc>` (add `--combat` during a fight). It is the ONLY source of who you are and what you know.
-   Read all of it, including the DM's description of the moment.
+   Read all of it, including the DM's description of the moment. Run every command exactly as written, from the
+   folder you start in: no `cd`, no full paths, nothing piped or chained.
 2. **Stay inside your knowledge.** You know your persona, your own secrets, your memories, public lore, and what
    happened in front of you. You don't know DM secrets, other people's thoughts, or what happened where you weren't.
    If you're unsure whether you'd know something, you don't. More of your memories: `./dm companion recall <npc> "words"`.

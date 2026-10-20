@@ -145,6 +145,25 @@ class CompanionTests(RoboDMTestCase):
                                                  "tool_input": {"file_path": "x.md"}})))
         self.assertIsNone(gatekeeper.pretool({"tool_name": "Bash", "tool_input": {"command": "./dm roll 1d20"}}))
 
+    def test_companion_gate_accepts_harmless_wrappers(self):
+        """Agents often write `cd <project> && …`, the launcher's full path, or `| head`: fine for this project only."""
+        root = str(Path(__file__).resolve().parent.parent)
+        fwd = root.replace("\\", "/")
+
+        def ok(cmd):
+            return gatekeeper.pretool({"tool_name": "Bash", "agent_type": "companion-okton", "cwd": root,
+                                       "tool_input": {"command": cmd}}) is None
+
+        self.assertTrue(ok(f'cd "{fwd}" && ./dm companion brief okton -c ash --combat 2>&1 | head -c 20000'))
+        self.assertTrue(ok(f'"{fwd}/dm" companion brief okton'))
+        self.assertTrue(ok(f'"{root}\\dm.cmd" companion recall okton "the choir"'))
+        self.assertTrue(ok("./dm combat status --players | head -40"))
+        self.assertFalse(ok("cd /tmp && ./dm companion brief okton"))                  # another folder's dm
+        self.assertFalse(ok('"/tmp/evil dir/dm" companion brief okton'))
+        self.assertFalse(ok(f'cd "{fwd}" && ./dm pc hp chadickith -5'))                 # the command itself still counts
+        self.assertFalse(ok(f'cd "{fwd}" && ./dm companion brief okton && ./dm roll 1d20'))
+        self.assertFalse(ok("./dm companion brief okton | sh"))
+
     def test_hooks_interjections_and_unconsulted_voices(self):
         self.make_okton()
         self.camp.start_session()

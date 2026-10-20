@@ -146,6 +146,15 @@ class ReceiptTests(Base):
         self.assertTrue(receipts.check("Goblin 1 fails its DEX save and is engulfed.", s))
         self.assertEqual(receipts.check("Goblin 1 makes its DEX save and leaps clear.", s), [])
 
+    def test_hidden_rolls_keep_secret_check_numbers_out(self):
+        f = [{"kind": "check", "who": "Chadickith", "what": "Insight", "total": 6, "vs": 5, "ok": True}]
+        hidden = receipts.HIDDEN_CHECKS
+        self.assertTrue(receipts.check("Insight 6 against her 5, a narrow read.", f, hidden_checks=hidden))
+        self.assertEqual(receipts.check("You watch her face: fear first, then shame.", f, hidden_checks=hidden), [])
+        self.assertEqual(receipts.check("Insight 6 against her 5.", f), [])          # without the block, numbers are fine
+        p = [{"kind": "check", "who": "Mira", "what": "Persuasion", "total": 17, "dc": 11, "ok": True}]
+        self.assertEqual(receipts.check("🎲 Persuasion 17 vs DC 11 — success", p, hidden_checks=hidden), [])
+
 
 class StopHookTests(Base):
     def setUp(self):

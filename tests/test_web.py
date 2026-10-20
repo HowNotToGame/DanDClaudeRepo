@@ -258,6 +258,25 @@ class WebTests(RoboDMTestCase):
             if ev["kind"] == "idle":
                 return got
 
+    def test_a_revised_reply_replaces_the_draft(self):
+        from robodm import audit
+
+        self.assertEqual(bridge_mod.compose(["Insight 6 against her 5. She is afraid.", "[REVISED]\nShe is afraid.",
+                                             "Rules check: fine."]), "She is afraid.\n\nRules check: fine.")
+        self.assertEqual(bridge_mod.compose(["The gate holds.", "", "Rules check: fine."]),
+                         "The gate holds.\n\nRules check: fine.")
+        os.environ["ROBODM_WEB_CLIENT"] = "1"
+        try:
+            camp = campaign.load()
+            audit.bump_turn(camp)
+            audit.record_event(camp, "./dm pc check chadickith athletics --dc 10", ["🎲 Athletics 12 vs DC 10 → success"])
+            block = audit.hook_stop(campaign.load(), {"last_assistant_message": "You heave the gate open."})
+            self.assertEqual(block["decision"], "block")
+            self.assertIn("[REVISED]", block["reason"])
+            self.assertIn("foreground", block["reason"])
+        finally:
+            os.environ.pop("ROBODM_WEB_CLIENT", None)
+
     def test_bridge_holds_the_reply_until_the_turn_is_done_and_resumes(self):
         log = self.fake_claude()
         events: queue.Queue = queue.Queue()

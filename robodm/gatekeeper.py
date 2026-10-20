@@ -1,12 +1,13 @@
 """PreToolUse rules gate for Claude Code (`./dm hook pretool`).
 
-Runs before every Bash/PowerShell/Edit/Write and code-running MCP tool call, so it imports nothing but `re`:
+Runs before every Bash/PowerShell/Edit/Write and code-running MCP tool call, so it imports nothing heavy:
 only the rules-lawyer subagent may record `./dm audit` verdicts, and nobody edits game state (combat.json,
 party sheets, audit records) behind the engine's back.
 """
 
 from __future__ import annotations
 
+import os
 import re
 
 # `./dm`, `.\dm`, `dm.cmd`, `python -m robodm`, `py -3 -m robodm` … followed by an audit verdict
@@ -41,18 +42,51 @@ _DM_PREFIX = re.compile(r"^\s*(?:\./dm|\.\\dm|dm|dm\.cmd|python3?\s+-m\s+robodm|
 _COMPANION_OWN = re.compile(r"^companion\s+(?:brief|recall|remember|agenda|attitude|interject)\s+(?P<slug>[a-z0-9-]+)\b")
 _COMPANION_READ = re.compile(r"^(?:rules\s+(?:show|search)|combat\s+(?:status|range)|combat\s+map\s+show)\b")
 _SHELL_CONTROL = re.compile(r"[;|&<>`]|\$\(")
+# Harmless wrappers models put around a command: `cd <this project> && …` in front, and `2>&1` or `| head …` behind.
+_CD_PREFIX = re.compile(r"^\s*(?:cd|Set-Location|sl)\s+(?P<dir>\"[^\"]+\"|'[^']+'|\S+)\s*(?:&&|;)\s*", re.IGNORECASE)
+_OUTPUT_TAIL = re.compile(r"(?:\s+2>&1)?(?:\s*\|\s*(?:head|Select-Object)(?:\s+-(?:[nc]|First)\s*\d+|\s+-\d+)?)?\s*$",
+                          re.IGNORECASE)
 
 
-def _companion(agent: str, tool: str, tin: dict) -> dict | None:
+def _norm_dir(p: str) -> str:
+    return os.path.normcase(os.path.normpath(p.strip().strip("\"'"))).rstrip("\\/")
+
+
+def _project_dirs(data: dict) -> set[str]:
+    dirs = {os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}     # this checkout of RoboDM
+    for d in (data.get("cwd"), os.environ.get("CLAUDE_PROJECT_DIR")):
+        if d:
+            dirs.add(d)
+    return {_norm_dir(d) for d in dirs}
+
+
+def _companion_command(cmd: str, data: dict) -> str:
+    """The command with the harmless wrappers removed: a `cd` into this project, this project's own launcher
+    spelled as a full path, a trailing `2>&1` or `| head -n N`. Anything else is left alone (and refused)."""
+    m = _CD_PREFIX.match(cmd)
+    if m and _norm_dir(m.group("dir")) in _project_dirs(data):
+        cmd = cmd[m.end():]
+    cmd = _OUTPUT_TAIL.sub("", cmd.strip())
+    launcher = re.match(r"^\s*(?:\"(?P<dq>[^\"]*?[\\/]dm(?:\.cmd)?)\"|'(?P<sq>[^']*?[\\/]dm(?:\.cmd)?)'|"
+                        r"(?P<bare>[^\"'\s]*?[\\/]dm(?:\.cmd)?))(?=\s)", cmd)
+    path = launcher and (launcher.group("dq") or launcher.group("sq") or launcher.group("bare"))
+    if path and _norm_dir(os.path.dirname(path)) in _project_dirs(data):
+        cmd = "./dm" + cmd[launcher.end():]
+    return cmd
+
+
+def _companion(agent: str, tool: str, tin: dict, data: dict | None = None) -> dict | None:
     """Companion subagents see the world only through their brief: read-only ./dm commands and their own memory."""
     if tool not in ("Bash", "PowerShell"):
         return _deny("Companions work only through `./dm companion …` commands; they can't touch files or tools.")
-    cmd = str(tin.get("command", ""))
+    cmd = _companion_command(str(tin.get("command", "")), data or {})
     m = _DM_PREFIX.match(cmd)
     bare = re.sub(r'"(?:\\.|[^"\\])*"|\'[^\']*\'', '""', cmd)   # quoted text (a memory, a query) may say anything
     if _SHELL_CONTROL.search(bare) or "\n" in bare.strip() or not m:
         return _deny("Companions can run single `./dm companion brief|recall|remember|agenda|attitude|interject <npc>` "
-                     "commands, `./dm rules show|search`, and `./dm combat status|range|map show --players`. Nothing else.")
+                     "commands, `./dm rules show|search`, and `./dm combat status|range|map show --players`. Nothing else. "
+                     "Run it from the current folder exactly as written, e.g. `./dm -c <campaign> companion brief <npc>`, "
+                     "with nothing chained to it.")
     rest = m.group("rest").strip()
     own = _COMPANION_OWN.match(rest)
     if own:
@@ -74,7 +108,7 @@ def pretool(data: dict) -> dict | None:
     tin = data.get("tool_input") or {}
     agent = str(data.get("agent_type") or "")
     if agent.startswith("companion"):
-        return _companion(agent, tool, tin)
+        return _companion(agent, tool, tin, data)
     runs_code = tool.startswith("mcp__") and _CODE_TOOL.search(tool.split("__")[-1])
     if tool in ("Bash", "PowerShell") or runs_code:
         # MCP tools that run code (e.g. context-mode's ctx_execute / ctx_batch_execute) get the same checks

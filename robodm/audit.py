@@ -493,7 +493,23 @@ def narration_problems(camp: Campaign, reply: str) -> list[str]:
 
     combat = read_json(camp.path("combat.json")) or {}
     creatures = {c["name"]: c for c in (combat.get("combatants") or {}).values()} if combat.get("active") else {}
-    return receipts.check(reply, turn_facts(camp), creatures, bool(camp.settings.get("hide_monster_hp", True)))
+    return receipts.check(reply, turn_facts(camp), creatures, bool(camp.settings.get("hide_monster_hp", True)),
+                          receipts.HIDDEN_CHECKS if _hidden_rolls(camp) else ())
+
+
+def _hidden_rolls(camp: Campaign) -> bool:
+    from robodm import context_blocks
+
+    try:
+        return context_blocks.is_enabled(camp, context_blocks.find(camp, "hidden-rolls"))
+    except RoboDMError:
+        return False
+
+
+# The web client holds the reply until the turn ends, so a correction can replace the draft instead of trailing it.
+REVISED = "[REVISED]"
+WEB_REVISE = (f" (Web client: the players haven't seen your reply yet. To fix it, write the whole corrected reply "
+              f"starting with the line {REVISED}; they will see only that version. Don't add notes about the fix.)")
 
 
 def hook_stop(camp: Campaign | None, data: dict) -> dict | None:
@@ -513,8 +529,10 @@ def hook_stop(camp: Campaign | None, data: dict) -> dict | None:
             return {"decision": "block", "reason":
                     "RoboDM receipt check: your reply may not match the dice this turn:\n"
                     + "\n".join(f"- {p}" for p in problems)
-                    + "\nIf it really doesn't, send the players a one-line correction (e.g. \"Correction: the "
-                      "goblin's blade glances off; it missed.\"). If it's a false alarm, just finish."}
+                    + ("\nIf it really doesn't match, or breaks a table rule, fix it." + WEB_REVISE
+                       + " If it's a false alarm, just finish." if os.environ.get("ROBODM_WEB_CLIENT") else
+                       "\nIf it really doesn't, send the players a one-line correction (e.g. \"Correction: the "
+                       "goblin's blade glances off; it missed.\"). If it's a false alarm, just finish.")}
     opened = open_events(camp)
     if not opened:
         return None
@@ -537,6 +555,7 @@ def hook_stop(camp: Campaign | None, data: dict) -> dict | None:
         reason += f" Unfixed failures: {', '.join(e['id'] for e in failed)}."
     if os.environ.get("ROBODM_WEB_CLIENT"):
         reason += (" (Web client: the players see nothing until you finish, and your reply so far is already kept. "
-                   "Don't write a progress note: run the rules-lawyer in the foreground, wait for its verdict, then "
-                   "add only what the players need, such as a one-line rules note, and end there.)")
+                   "Don't write a progress note: run the rules-lawyer in the foreground and wait for its verdict. "
+                   "If nothing changes for the players, end with no further text. If the reply must change, write the "
+                   f"whole corrected reply starting with the line {REVISED}; they will see only that version.)")
     return {"decision": "block", "reason": reason}

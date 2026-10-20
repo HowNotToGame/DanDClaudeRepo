@@ -106,6 +106,22 @@ def classify(name: str, inp: dict) -> tuple[str, str]:
     return "⚙️", name
 
 
+def compose(parts: list[str]) -> str:
+    """The reply the players see: everything the DM wrote this turn, unless a later message starts with
+    `[REVISED]` (sent after a hook asked for a fix), which replaces what came before it."""
+    from robodm.audit import REVISED
+
+    kept: list[str] = []
+    for p in parts:
+        p = p.strip()
+        if p.startswith(REVISED):
+            kept = []
+            p = p[len(REVISED):].strip()
+        if p:
+            kept.append(p)
+    return "\n\n".join(kept)
+
+
 class Bridge:
     """One DM conversation per campaign. `send()` runs a turn in a thread and reports through `emit`."""
 
@@ -325,7 +341,7 @@ class Bridge:
             if sid and ("session" in err.lower() and "not found" in err.lower()):
                 self._set_session(slug, None)
             self.emit({"kind": "error", "text": (err.strip().splitlines() or [f"claude exited with code {code}"])[-1]})
-        text = "\n\n".join(p.strip() for p in parts if p.strip())
+        text = compose(parts)
         self.emit({"kind": "done", "text": text})
         if self._results:                  # one chip for the whole turn, however many results the run reported
             last = self._results[-1]

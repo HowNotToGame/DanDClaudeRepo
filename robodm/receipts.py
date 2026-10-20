@@ -91,10 +91,15 @@ def _mentions(sentence: str, aliases: list[str]) -> bool:
     return any(re.search(rf"(?<![\w-]){re.escape(a)}(?![\w-])", s) for a in aliases)
 
 
+# Checks the hidden-rolls block keeps secret: the reply says what the character notices, never the number.
+HIDDEN_CHECKS = ("Perception", "Insight", "Investigation", "Stealth", "Survival")
+
+
 def check(reply: str, facts: list[dict], creatures: dict[str, dict] | None = None,
-          hide_monster_hp: bool = False) -> list[str]:
+          hide_monster_hp: bool = False, hidden_checks: tuple[str, ...] = ()) -> list[str]:
     """Contradictions between the reply and the facts. `creatures`: name → {"hp", "max_hp", "kind", "status"} from
-    the live combat state (used for creatures that weren't damaged this turn)."""
+    the live combat state (used for creatures that weren't damaged this turn). `hidden_checks`: skills whose totals
+    the table rolls in secret (the hidden-rolls block)."""
     if not reply or not (facts or creatures):
         return []
     creatures = creatures or {}
@@ -172,6 +177,17 @@ def check(reply: str, facts: list[dict], creatures: dict[str, dict] | None = Non
                 if _mentions(s, al.get(name, [name.lower()])) and _HP_NUM.search(s):
                     problems.append(f"“{_short(s)}” — hide_monster_hp is on: describe {name} as "
                                     "scratched/wounded/bloodied/near death instead of HP numbers.")
+
+    # Secret checks shown with their numbers.
+    hidden = {h.lower() for h in hidden_checks}
+    for f in facts:
+        word = str(f.get("what") or "")
+        if f["kind"] != "check" or f.get("total") is None or word.lower() not in hidden:
+            continue
+        for line in reply.splitlines():
+            if re.search(rf"\b{re.escape(word)}\b\D{{0,12}}?\d{{1,2}}\b", line, re.I):
+                problems.append(f"“{_short(line)}” — hidden-rolls is on: say what {f.get('who') or 'the character'} "
+                                f"notices or reads, without the {word} number (or the opposing roll).")
 
     # Checks and saves: the number shown and the outcome claimed.
     for f in facts:
