@@ -508,8 +508,10 @@ def _hidden_rolls(camp: Campaign) -> bool:
 
 # The web client holds the reply until the turn ends, so a correction can replace the draft instead of trailing it.
 REVISED = "[REVISED]"
+KEEP = "[KEEP]"          # a hook was a false alarm: keep the reply as it was, say nothing more
 WEB_REVISE = (f" (Web client: the players haven't seen your reply yet. To fix it, write the whole corrected reply "
-              f"starting with the line {REVISED}; they will see only that version. Don't add notes about the fix.)")
+              f"starting with the line {REVISED}; they will see only that version. Don't add notes about the fix. If the hook "
+              f"was a false alarm, answer with only the line {KEEP}: never explain it, they would read the explanation.)")
 
 
 def hook_stop(camp: Campaign | None, data: dict) -> dict | None:

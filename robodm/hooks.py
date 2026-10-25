@@ -255,8 +255,10 @@ def npc_stop(camp, reply: str) -> str | None:
     write_json(path, {"turn": turn, "missed": [r["slug"] for r in missed]})
     import os
 
-    fix = (" (Web client: start the revised reply with the line [REVISED]; the players will see only that version.)"
-           if os.environ.get("ROBODM_WEB_CLIENT") else "")
+    fix = (" (Web client: start the revised reply with the line [REVISED]; the players will see only that version. "
+           "False alarm (they're only mentioned, or quoted from earlier, and don't speak or act now)? Answer with only "
+           "the line [KEEP]: never explain it, the players would read the explanation.)"
+           if os.environ.get("ROBODM_WEB_CLIENT") else " If they only appear as a mention or an earlier quote, just finish.")
     return ("RoboDM NPC minds: your reply voices " + ", ".join(r["name"] for r in missed) + " without consulting their "
             "mind. Every named NPC speaks and decides through their own subagent: launch "
             + ", ".join(f"`{npcs.mind_agent(camp, r)}` (slug {r['slug']})" for r in missed)

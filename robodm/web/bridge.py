@@ -109,11 +109,11 @@ def classify(name: str, inp: dict) -> tuple[str, str]:
 def compose(parts: list[str]) -> str:
     """The reply the players see: everything the DM wrote this turn, unless a later message starts with
     `[REVISED]` (sent after a hook asked for a fix), which replaces what came before it."""
-    from robodm.audit import REVISED
+    from robodm.audit import KEEP, REVISED
 
     kept: list[str] = []
     for p in parts:
-        p = p.strip()
+        p = "\n".join(ln for ln in p.strip().splitlines() if ln.strip() != KEEP).strip()
         if p.startswith(REVISED):
             kept = []
             p = p[len(REVISED):].strip()

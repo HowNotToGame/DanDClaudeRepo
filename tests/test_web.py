@@ -263,6 +263,7 @@ class WebTests(RoboDMTestCase):
 
         self.assertEqual(bridge_mod.compose(["Insight 6 against her 5. She is afraid.", "[REVISED]\nShe is afraid.",
                                              "Rules check: fine."]), "She is afraid.\n\nRules check: fine.")
+        self.assertEqual(bridge_mod.compose(["The gate holds.", "[KEEP]"]), "The gate holds.")
         self.assertEqual(bridge_mod.compose(["The gate holds.", "", "Rules check: fine."]),
                          "The gate holds.\n\nRules check: fine.")
         os.environ["ROBODM_WEB_CLIENT"] = "1"
