@@ -684,6 +684,7 @@ const AGENT_INFO = {
   "rules-lawyer": ["⚖️", "Audits every turn: pre-checks the first use of a spell, feature or ruling, then post-audits the turn's rules events."],
   companion: ["🗣", "Plays each companion's own mind when the DM consults them."],
   "lore-keeper": ["📜", "Builds and checks the world's lore and canon."],
+  "npc-creator": ["🧑", "Writes NPC records: race, alignment, backstory, relationships, a stat block or a character sheet. (NPC minds themselves always run on haiku.)"],
 };
 
 function agentDraft(eng) {

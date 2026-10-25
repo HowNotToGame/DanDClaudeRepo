@@ -212,7 +212,7 @@ Never contradict saved lore; if the story must change it, update the entry (`./d
 When a player message arrives with a note that **names from your last reply aren't recorded** (bold new NPCs and
 places with no lore or memory entry), record the ones that matter before you continue.
 
-## 5b. Companions: NPCs with their own minds
+## 5b. Companions and NPC minds
 
 NPC party members, and important NPCs in a scene, are **companions**: each has a persona, a first-person
 memory, attitudes and an agenda, and **their own subagent** (`companion-<npc>`, or the generic `companion`
@@ -240,6 +240,21 @@ HIDES / FRICTION:
 - They never decide for a player character. If an answer does, ignore that part.
 - `./dm memory add "…" --known-by <npc>` tells a companion about something they learned off-screen.
 - `./dm companion join|here|leave <npc>` when they enter or leave the party or scene.
+
+**Every other named NPC has a mind too.** Each has an NPC record (`./dm npc show <name>`): race, alignment,
+backstory, relationships, secrets, and a stat block (minor NPCs) or character sheet (significant ones). The generic
+**`npc` agent** plays any of them from `./dm npc brief <npc>`, which holds only what that character knows. Its model
+is fixed (haiku), so consulting it is cheap; it isn't a table setting. The brief's Scene section marks who has a
+record and which slug to pass.
+- **Consult it** when a non-companion NPC must decide, lie, bargain, refuse or react to something that matters to
+  them. Launch `npc` with their slug, the campaign, and the moment from their point of view. Answers come as
+  INTENT / DOES / SAYS / HIDES; narrate them as you would a companion's. Several NPCs at once: launch in parallel.
+- **Skip it** for walk-ons and small talk: voice them yourself from the record.
+- **Fights:** `./dm combat add "<npc name>"` uses their sheet or stat block. No `--monster` is needed.
+- **Every named character gets a record.** When you name someone new, make a minor one on the spot with
+  `./dm npc add "Name" --race … --alignment "…" --backstory "…" --statblock commoner|mm [--rel "slug: how"]`. For
+  significant ones, or a batch, launch the **`npc-creator`** agent, which writes full records and character sheets.
+  `./dm npc check` lists everyone missing a record.
 
 ## 5c. Time and the living world
 

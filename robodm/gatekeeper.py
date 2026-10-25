@@ -40,6 +40,7 @@ def _deny(reason: str) -> dict:
 _DM_PREFIX = re.compile(r"^\s*(?:\./dm|\.\\dm|dm|dm\.cmd|python3?\s+-m\s+robodm|py\s+-3\s+-m\s+robodm)\s+"
                         r"(?:(?:-c|--campaign)\s+\S+\s+)?(?P<rest>.+)$", re.IGNORECASE | re.DOTALL)
 _COMPANION_OWN = re.compile(r"^companion\s+(?:brief|recall|remember|agenda|attitude|interject)\s+(?P<slug>[a-z0-9-]+)\b")
+_NPC_OWN = re.compile(r"^npc\s+(?:brief|recall|remember|attitude)\s+(?P<slug>[a-z0-9-]+)\b")
 _COMPANION_READ = re.compile(r"^(?:rules\s+(?:show|search)|combat\s+(?:status|range)|combat\s+map\s+show)\b")
 _SHELL_CONTROL = re.compile(r"[;|&<>`]|\$\(")
 # Harmless wrappers models put around a command: `cd <this project> && …` in front, and `2>&1` or `| head …` behind.
@@ -76,19 +77,24 @@ def _companion_command(cmd: str, data: dict) -> str:
 
 
 def _companion(agent: str, tool: str, tin: dict, data: dict | None = None) -> dict | None:
-    """Companion subagents see the world only through their brief: read-only ./dm commands and their own memory."""
+    """Companion and NPC subagents see the world only through their brief: read-only ./dm commands and their own
+    memory. Companion agents use `./dm companion …`; the `npc` agent uses `./dm npc …`."""
+    npc = agent == "npc"
+    family = "npc brief|recall|remember|attitude" if npc else "companion brief|recall|remember|agenda|attitude|interject"
     if tool not in ("Bash", "PowerShell"):
-        return _deny("Companions work only through `./dm companion …` commands; they can't touch files or tools.")
+        return _deny(f"You work only through `./dm {family.split()[0]} …` commands; you can't touch files or tools.")
     cmd = _companion_command(str(tin.get("command", "")), data or {})
     m = _DM_PREFIX.match(cmd)
     bare = re.sub(r'"(?:\\.|[^"\\])*"|\'[^\']*\'', '""', cmd)   # quoted text (a memory, a query) may say anything
     if _SHELL_CONTROL.search(bare) or "\n" in bare.strip() or not m:
-        return _deny("Companions can run single `./dm companion brief|recall|remember|agenda|attitude|interject <npc>` "
+        return _deny(f"{'NPCs' if npc else 'Companions'} can run single `./dm {family} <npc>` "
                      "commands, `./dm rules show|search`, and `./dm combat status|range|map show --players`. Nothing else. "
-                     "Run it from the current folder exactly as written, e.g. `./dm -c <campaign> companion brief <npc>`, "
-                     "with nothing chained to it.")
+                     f"Run it from the current folder exactly as written, e.g. `./dm -c <campaign> {family.split()[0]} brief "
+                     "<npc>`, with nothing chained to it.")
     rest = m.group("rest").strip()
-    own = _COMPANION_OWN.match(rest)
+    own = (_NPC_OWN if npc else _COMPANION_OWN).match(rest)
+    if own and npc:
+        return None                       # the generic npc agent plays whichever NPC the DM names
     if own:
         slug = own.group("slug")
         if agent != "companion" and not agent.endswith("-" + slug):
@@ -98,7 +104,8 @@ def _companion(agent: str, tool: str, tin: dict, data: dict | None = None) -> di
         if rest.startswith(("combat status", "combat map")) and "--players" not in rest:
             return _deny("Add --players: you see the fight the way your character does (no hidden numbers).")
         return None
-    return _deny("Companions can't roll dice or change the game: propose it in your answer and the DM will run it.")
+    return _deny("You can't roll dice, read other records or change the game: propose it in your answer and the DM "
+                 "will run it.")
 
 
 def pretool(data: dict) -> dict | None:
@@ -107,7 +114,7 @@ def pretool(data: dict) -> dict | None:
     tool = data.get("tool_name", "")
     tin = data.get("tool_input") or {}
     agent = str(data.get("agent_type") or "")
-    if agent.startswith("companion"):
+    if agent.startswith("companion") or agent == "npc":
         return _companion(agent, tool, tin, data)
     runs_code = tool.startswith("mcp__") and _CODE_TOOL.search(tool.split("__")[-1])
     if tool in ("Bash", "PowerShell") or runs_code:

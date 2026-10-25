@@ -27,6 +27,15 @@ Use the `dm` skill (`.claude/skills/dm/SKILL.md`) and follow it: load `./dm memo
   `PROTOCOL`; regenerate rather than hand-edit). `robodm/gatekeeper.py` limits companion agents to their own
   records and read-only `./dm` commands. The prompt/stop hooks surface interjections and companions voiced
   without their agent.
+- `robodm/npcs.py`: an NPC record per named character (`campaigns/<slug>/npcs/<npc>.json`: race, alignment,
+  backstory, relationships, `secrets` the NPC knows vs `dm_only`, and a `statblock` ref into the rules data or a
+  compact `sheet` whose derived numbers `compile_sheet` computes into a 5etools-shaped creature, so
+  `format_monster`, `combat_profile` and `combat add` work unchanged; `{"file": …}` points at a full PC-style
+  sheet). NPC minds: `brief()` (knowledge-limited; companions hand over to their companion brief), memories in
+  `npcs/memory.jsonl`, attitudes in the record, and the generic `npc` subagent (`agent_text()`, fixed
+  `NPC_MODEL`/`NPC_EFFORT`, never touched by `costs.apply_speed`; the gatekeeper allows it only `./dm npc
+  brief|recall|remember|attitude`). The `npc-creator` agent (`.claude/agents/npc-creator.md`, a ⚙ role) writes
+  records through `./dm npc import`, which validates them.
 
 ## DM engines (the web client)
 - `robodm/engines/`: the engine config per machine (`<home>/.cache/engine.json`: claude | ollama | kobold | openai,

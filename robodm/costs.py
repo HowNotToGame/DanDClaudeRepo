@@ -27,9 +27,10 @@ from robodm.campaign import Campaign
 from robodm.util import now_iso, read_jsonl
 
 SPEEDS = ("fast", "balanced", "thorough")
-AGENT_MODELS = {"fast": {"rules-lawyer": "haiku", "lore-keeper": "sonnet", "companion": "haiku"},
-                "balanced": {"rules-lawyer": "sonnet", "lore-keeper": "sonnet", "companion": "sonnet"},
-                "thorough": {"rules-lawyer": "opus", "lore-keeper": "opus", "companion": "opus"}}
+AGENT_MODELS = {"fast": {"rules-lawyer": "haiku", "lore-keeper": "sonnet", "companion": "haiku", "npc-creator": "sonnet"},
+                "balanced": {"rules-lawyer": "sonnet", "lore-keeper": "sonnet", "companion": "sonnet", "npc-creator": "sonnet"},
+                "thorough": {"rules-lawyer": "opus", "lore-keeper": "opus", "companion": "opus", "npc-creator": "opus"}}
+# NPC minds (the generic `npc` agent) are not a table setting: they always run on npcs.NPC_MODEL / NPC_EFFORT.
 BRIEF_BUDGETS = {"fast": 6000, "balanced": 9000, "thorough": 14000}
 # Rules commands whose result the engine computes itself (dice, arithmetic, resistances, death saves…): in fast
 # mode they pass the post-audit automatically when there was no override and the narration matched the dice.
@@ -94,7 +95,7 @@ def apply_speed(camp: Campaign | None) -> list[str]:
 
     root = companions.agents_dir()
     lines = []
-    for name in ("rules-lawyer", "lore-keeper"):
+    for name in ("rules-lawyer", "lore-keeper", "npc-creator"):
         model, effort, chosen = agent_choice(camp, name)
         changed = set_frontmatter(root / f"{name}.md", "model", model)
         changed = set_frontmatter(root / f"{name}.md", "effort", effort) or changed

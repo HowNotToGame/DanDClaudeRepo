@@ -109,8 +109,10 @@ def prompt(camp, data: dict) -> dict | None:
     notes = []
     if names:
         notes.append("RoboDM memory: names from your last reply that aren't recorded anywhere yet: "
-                     + ", ".join(names) + ". If they matter, record them (`./dm lore add …` or `./dm memory add …`).")
+                     + ", ".join(names) + ". If they matter, record them (`./dm lore add …` or `./dm memory add …`; "
+                     "a person also gets an NPC record: `./dm npc add …` or the npc-creator agent).")
     notes.extend(companion_notes(camp))
+    notes.extend(npc_notes(camp))
     notes.extend(world_notes(camp))
     from robodm import snapshots
 
@@ -158,6 +160,32 @@ def companion_notes(camp) -> list[str]:
                        "Their choices and words come from their own agent: consult it at the next decision point.")
             co.save_state(camp, slug, st)
     return out
+
+
+def npc_notes(camp) -> list[str]:
+    """Characters in the scene who have no NPC record yet: once per character per session."""
+    from robodm import companions as co, npcs, world
+    from robodm.util import read_json, write_json
+
+    if not camp.session.get("active"):
+        return []
+    records = npcs.by_slug_or_lore(camp)
+    comps = set(co.all_slugs(camp))
+    missing = [(s, n) for s, n in world.scene_cast(camp) if s not in records and s not in comps]
+    if not missing:
+        return []
+    path = camp.path(".cache", "npc-notes.json")
+    st = read_json(path) or {}
+    sess = str(camp.session.get("number", 0))
+    told = set(st.get(sess, []))
+    new = [(s, n) for s, n in missing if s not in told]
+    if not new:
+        return []
+    write_json(path, {sess: sorted(told | {s for s, _ in new})})
+    return ["RoboDM NPCs: " + ", ".join(n for _, n in new) + " in the scene " + ("has" if len(new) == 1 else "have")
+            + " no NPC record yet (race, alignment, backstory, relationships, stat block or sheet). A minor one: "
+            "`./dm npc add \"Name\" --race … --alignment … --backstory \"…\" --statblock commoner|mm`; a significant "
+            "one, or several: ask the npc-creator agent."]
 
 
 def companion_stop(camp, reply: str) -> str | None:

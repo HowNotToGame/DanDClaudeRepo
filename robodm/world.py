@@ -850,6 +850,10 @@ def brief_lines(camp: Campaign, dm: bool = True) -> tuple[list[str], list[str]]:
         if sc.get("place"):
             since = f" (since {fmt_point(sc['since'])})" if sc.get("since") is not None else ""
             scene.append(f"**Where:** {sc['place']}{since}")
+        from robodm import companions as co, npcs
+
+        records = npcs.by_slug_or_lore(camp) if dm else {}
+        comps = set(co.all_slugs(camp)) if dm else set()
         for slug, name in scene_cast(camp):
             e = entries.get(slug)
             bits = [f"- **{name}**"]
@@ -857,6 +861,10 @@ def brief_lines(camp: Campaign, dm: bool = True) -> tuple[list[str], list[str]]:
                 bits.append(f"— {truncate(str(e['meta']['summary']), 100)}")
             if dm and e and mind(e["meta"]):
                 bits.append(f"· mind: {fmt_mind(e['meta'])}")
+            if dm and slug not in comps:
+                rec = records.get(slug)
+                bits.append(f"· {npcs.short(rec)} · mind: `npc` agent ({rec['slug']})" if rec else
+                            "· no NPC record yet (`./dm npc add` or the npc-creator agent)")
             scene.append(" ".join(bits))
     world = []
     beats = open_beats(w)

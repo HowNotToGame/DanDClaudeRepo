@@ -32,7 +32,8 @@ ENGINES = {"claude": "Claude Code", "ollama": "Ollama", "kobold": "KoboldCpp", "
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
 CLAUDE_MODELS = ("", "fable", "opus", "sonnet", "haiku")
 TOOL_MODES = ("native", "text")
-AGENT_ROLES = {"rules-lawyer": "Rules-lawyer", "companion": "Companions", "lore-keeper": "Lore-keeper"}
+AGENT_ROLES = {"rules-lawyer": "Rules-lawyer", "companion": "Companions", "lore-keeper": "Lore-keeper",
+               "npc-creator": "NPC creator"}
 LOCAL_ROLES = ("rules-lawyer", "companion")          # the local loop has no lore-keeper
 DEFAULTS = {
     "engine": "claude",

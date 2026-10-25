@@ -958,8 +958,13 @@ def cmd_combat(args) -> None:
         enc.require_active()
         name = " ".join(args.args)
         pc = c.find_pc(name) if not args.monster and args.hp is None else None
+        from robodm import npcs
+
+        npc = npcs.find_or_none(c, name) if not pc and not args.monster and args.hp is None else None
         if pc:
             enc.add_pc(pc, init=args.init)
+        elif npc:
+            npcs.add_to_combat(c, enc, npcs.load(c, npc), side=args.side, init=args.init)
         elif args.hp is not None and not args.monster:
             enc.add_custom(name, hp=args.hp, ac=args.ac or 10, init_bonus=args.init_bonus or 0, side=args.side,
                            count=args.count, init=args.init, size=(args.size or "M").upper(), speed=args.speed or 30)
@@ -1999,6 +2004,97 @@ def cmd_import(args) -> None:
     out(f"Imported {c.name} as campaigns/{c.slug}/ (now active).")
 
 
+def cmd_npc(args) -> None:
+    """Every named character: a record (race, alignment, backstory, relationships, stat block or sheet) and a mind."""
+    from robodm import npcs
+
+    c = get_camp(args)
+    a, rest = args.action, list(args.args)
+
+    def who() -> str:
+        if not rest:
+            raise RoboDMError(f"Usage: npc {a} <npc> …")
+        return npcs.find(c, rest.pop(0))
+
+    if a == "list":
+        recs = npcs.all_records(c)
+        if args.tier:
+            recs = [r for r in recs if r.get("tier") == args.tier]
+        if not recs:
+            out("No NPC records yet: `./dm npc add \"Name\" …`, or ask the npc-creator agent.")
+        for r in recs:
+            out(npcs.summary_line(r))
+        missing = npcs.named_without_records(c)
+        if missing:
+            out(f"_{len(missing)} named character(s) without a record: {', '.join(n for _, n in missing[:12])}"
+                + ("…" if len(missing) > 12 else "") + " (`./dm npc check`)._")
+    elif a == "show":
+        rec = npcs.load(c, who())
+        out(npcs.summary_line(rec))
+        for label, key in (("Backstory", "backstory"), ("Appearance", "appearance"), ("Voice", "voice"),
+                           ("Wants", "wants"), ("Fears", "fears")):
+            if rec.get(key):
+                out(f"**{label}:** {rec[key]}")
+        if rec.get("relationships"):
+            out("**Relationships:** " + "; ".join(f"{r.get('name') or r['who']} ({r.get('how', '')})" for r in rec["relationships"]))
+        else:
+            out("**Relationships:** none")
+        for label, key in (("Secrets (they know)", "secrets"), ("DM only", "dm_only")):
+            if rec.get(key):
+                out(f"**{label}:** " + " · ".join(rec[key]))
+        if rec.get("lore"):
+            out(f"_Lore: `./dm lore show {rec['lore']}`_")
+        out("")
+        out(npcs.statblock_text(c, rec))
+    elif a == "statblock":
+        out(npcs.statblock_text(c, npcs.load(c, who())))
+    elif a == "add":
+        if not rest:
+            raise RoboDMError('Usage: npc add "Name" --race human --alignment "lawful neutral" --backstory "…" '
+                              '--statblock commoner|mm [--role "…"] [--rel "slug: how"]… [--lore <entry>] [--tier minor]')
+        rec = {"name": " ".join(rest), "race": args.race, "alignment": args.alignment, "backstory": args.backstory,
+               "role": args.role, "voice": args.voice, "statblock": args.statblock, "lore": args.lore,
+               "tier": args.tier or "minor", "status": args.status or "alive",
+               "relationships": list(args.rel or []), "secrets": list(args.secret or [])}
+        p = npcs.save(c, {k: v for k, v in rec.items() if v not in (None, [], "")} | {"relationships": rec["relationships"]},
+                      overwrite=args.overwrite)
+        out(f"Saved **{rec['name']}** ({p.relative_to(c.dir).as_posix()}).")
+    elif a == "import":
+        if not rest:
+            raise RoboDMError("Usage: npc import <file.json> [--overwrite]  (one record, a list, or {\"npcs\": [...]})")
+        saved = npcs.import_records(c, npcs.load_import_file(rest[0]), overwrite=args.overwrite)
+        out(f"Saved {len(saved)} NPC record(s): {', '.join(saved)}.")
+    elif a == "check":
+        problems, missing = npcs.check(c)
+        out(f"🧑 {len(npcs.all_slugs(c))} NPC record(s) · {len(problems)} problem(s) · {len(missing)} named without a record")
+        for p in problems:
+            out(f"- ✘ {p}")
+        for slug, name in missing:
+            out(f"- ＋ {name} (lore: {slug})")
+        if not problems and not missing:
+            out("Every named character has a complete record.")
+    elif a == "brief":
+        out(npcs.brief(c, who(), situation=args.situation or "", combat=args.combat))
+    elif a == "remember":
+        slug = who()
+        npcs.remember(c, slug, " ".join(rest))
+        out(f"Remembered by {slug}.")
+    elif a == "recall":
+        slug = who()
+        hits = npcs.recall(c, slug, " ".join(rest), limit=args.limit or 8)
+        out("\n".join(f"- {h}" for h in hits) if hits else "Nothing you know matches that.")
+    elif a == "attitude":
+        slug = who()
+        if len(rest) < 2:
+            raise RoboDMError('Usage: npc attitude <npc> <who> +1|-1|<-3..3> [--why "…"]')
+        cur = npcs.attitude(c, slug, rest[0], rest[1], args.why or "")
+        out(f"{slug} → {rest[0]}: {cur['score']:+d}" + (f" ({cur['why']})" if cur.get("why") else ""))
+    elif a == "agent":
+        p = npcs.write_agent()
+        out(f"Wrote .claude/agents/{p.name} (model {npcs.NPC_MODEL}, effort {npcs.NPC_EFFORT}; fixed, not a table "
+            "setting). New agent files load when Claude Code starts.")
+
+
 def cmd_companion(args) -> None:
     from robodm import companions as co
 
@@ -2580,6 +2676,28 @@ def build_parser() -> argparse.ArgumentParser:
     co.add_argument("--limit", type=int)
     co.set_defaults(func=cmd_companion)
 
+    nc = sub.add_parser("npc", help="every named character: record, stat block or sheet, and a mind (the npc agent)")
+    nc.add_argument("action", choices=["list", "show", "statblock", "add", "import", "check", "brief", "remember",
+                                       "recall", "attitude", "agent"])
+    nc.add_argument("args", nargs="*")
+    nc.add_argument("--race")
+    nc.add_argument("--alignment")
+    nc.add_argument("--backstory")
+    nc.add_argument("--role")
+    nc.add_argument("--voice")
+    nc.add_argument("--statblock", help="add: a creature from the rules data, e.g. commoner|mm or veteran")
+    nc.add_argument("--lore", help="add: the lore entry about them")
+    nc.add_argument("--tier", choices=["major", "minor"])
+    nc.add_argument("--status", choices=["alive", "dead", "missing", "unknown"])
+    nc.add_argument("--rel", action="append", help='add: a relationship, "slug: how" (repeatable)')
+    nc.add_argument("--secret", action="append", help="add: something they know and keep (repeatable)")
+    nc.add_argument("--overwrite", action="store_true")
+    nc.add_argument("--situation", help="brief: what's happening right now, from the NPC's point of view")
+    nc.add_argument("--combat", action="store_true", help="brief: include the fight")
+    nc.add_argument("--why")
+    nc.add_argument("--limit", type=int)
+    nc.set_defaults(func=cmd_npc)
+
     rc = sub.add_parser("recall", help="search everything the campaign knows, by meaning: give 2–4 phrasings")
     rc.add_argument("queries", nargs="*")
     rc.add_argument("--scope", choices=["all", "memory", "journal", "transcript", "lore", "party", "quests", "companions"])
@@ -2631,6 +2749,7 @@ _READ_ACTIONS = {"pc": {"list", "show", "json"}, "combat": {"status", "log", "at
                  "session": {"show", "list", "transcript"}, "memory": {"search", "list", "brief"}, "quest": {"list"},
                  "lore": {"list", "show", "search", "types", "index", "source"}, "context": {"list", "show", "render"},
                  "companion": {"list", "show", "brief", "recall", "council"}, "time": {None, "show"},
+                 "npc": {"list", "show", "statblock", "check", "brief", "recall"},
                  "clock": {None, "list"}, "faction": {None, "list", "show"}, "scene": {None, "show"},
                  "world": {None, "show", "gossip"}}
 

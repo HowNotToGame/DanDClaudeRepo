@@ -34,7 +34,7 @@ DM_TOOL = {"type": "function", "function": {
         "type": "string", "description": "The command after ./dm, e.g. pc check brann athletics --dc 15"}},
         "required": ["command"]}}}
 COMPANION_TOOL = {"type": "function", "function": {
-    "name": "companion", "description": "Ask a companion (an NPC with its own mind) what they do or say right now.",
+    "name": "companion", "description": "Ask a companion, or a named NPC in the scene, what they do or say right now.",
     "parameters": {"type": "object", "properties": {
         "name": {"type": "string", "description": "The companion's name"},
         "situation": {"type": "string", "description": "What is happening and what they're reacting to"}},
@@ -200,9 +200,9 @@ class LocalDM:
         parts = [prompts.DM_SYSTEM.replace("{length}", prompts.LENGTH.get(camp.settings.get("narration", "standard"),
                                                                            prompts.LENGTH["standard"]))]
         active = [s for s in companions.active(camp)] if camp.settings.get("companion_agents", "key") != "off" else []
-        if active:
-            names = ", ".join(companions.load_persona(camp, s)[0].get("name", s) for s in active)
-            parts.append(prompts.COMPANIONS.format(names=names))
+        names = [companions.load_persona(camp, s)[0].get("name", s) for s in active] + self._scene_npcs(camp)
+        if names:
+            parts.append(prompts.COMPANIONS.format(names=", ".join(names)))
         if self.tool_mode == "text":
             parts.append(prompts.TEXT_PROTOCOL)
         parts += ["=== CAMPAIGN BRIEF ===", memory.brief(camp, budget=budget)]
@@ -218,9 +218,18 @@ class LocalDM:
     def _tools(self, slug: str) -> list[dict]:
         camp = campaign.load(slug)
         tools = [DM_TOOL]
-        if companions.active(camp) and camp.settings.get("companion_agents", "key") != "off":
+        if (companions.active(camp) and camp.settings.get("companion_agents", "key") != "off") or self._scene_npcs(camp):
             tools.append(COMPANION_TOOL)
         return tools
+
+    @staticmethod
+    def _scene_npcs(camp) -> list[str]:
+        """Named NPCs in the scene who have a record (and so a mind), companions excluded."""
+        from robodm import npcs, world
+
+        records = npcs.by_slug_or_lore(camp)
+        comps = set(companions.all_slugs(camp))
+        return [records[s]["name"] for s, _ in world.scene_cast(camp) if s in records and s not in comps]
 
     def _loop(self, slug: str, messages: list[dict], allow_tools: bool = True) -> str:
         text = self._loop_rounds(slug, messages, allow_tools)
@@ -343,7 +352,20 @@ class LocalDM:
         try:
             cslug = companions.find(camp, name)
         except RoboDMError as e:
-            return str(e)
+            from robodm import npcs
+
+            nslug = npcs.find_or_none(camp, name)
+            if not nslug:
+                return str(e)
+            rec = npcs.load(camp, nslug)
+            self.emit({"kind": "tool", "icon": "🧑", "label": f"consulting {rec['name']}", "sub": True})
+            brief = npcs.brief(camp, nslug, situation=situation, record=True)
+            res = self._call([{"role": "system", "content": brief + prompts.COMPANION_WRAP},
+                              {"role": "user", "content": situation or "What do you do?"}], None, stream=False,
+                             temperature=self.companion["temperature"], max_tokens=self.companion["max_tokens"],
+                             model=self.companion["model"] or None)
+            said = strip_calls(res["content"]) or "(no answer)"
+            return f"{rec['name']} answers (their own choice; you decide outcomes): {said}"
         meta, _ = companions.load_persona(camp, cslug)
         self.emit({"kind": "tool", "icon": "🗣", "label": f"consulting {meta.get('name', cslug)}", "sub": True})
         brief = companions.brief(camp, cslug, situation=situation, record=True)

@@ -64,6 +64,18 @@ range, area, attack, attacks, cast, save, damage, heal, temp, condition, conc, d
 note, remove, log, end`. Gate flags: `--reaction`, `--legendary`, `--spell "<name>"`, `--target a,b` (cast),
 `--custom`, `--ruling "why"`, `--fix <event id>`. Map: `combat map new|draw|set|show|render|save|load|list|background|clear`.
 
+## NPC records and minds (every named character)
+```
+./dm npc list [--tier major|minor] · npc check            # who has a record, what's missing or wrong
+./dm npc show <npc> · npc statblock <npc>                 # the record (DM-only notes included) · their stat block
+./dm npc add "Name" --race human --alignment "neutral" --backstory "…" --statblock commoner|mm [--role "…"] [--rel "slug: how"]… [--secret "…"] [--lore <entry>]
+./dm npc import <file.json> [--overwrite]                 # one record, a list, or {"npcs": [...]} (the npc-creator's drafts)
+./dm npc brief <npc> [--situation "…"] [--combat]         # what the `npc` agent reads (their knowledge only)
+./dm npc remember <npc> "…" · npc recall <npc> "…" · npc attitude <npc> <who> +1 --why "…"
+./dm npc agent                                            # (re)write .claude/agents/npc.md (haiku, fixed)
+./dm combat add "<npc name>"                              # from their sheet or stat block
+```
+
 ## Companions (NPCs with their own minds and subagents)
 ```
 ./dm companion new "Okton" --from-lore okton [--alignment "lawful neutral"] [--status party]
