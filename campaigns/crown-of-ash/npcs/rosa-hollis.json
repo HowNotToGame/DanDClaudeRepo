@@ -1,0 +1,33 @@
+{
+  "name": "Rosa Hollis",
+  "slug": "rosa-hollis",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful good",
+  "role": "Hollis bathhouse keeper; Keeper of the Vent Games' slate",
+  "age": "48",
+  "voice": "A bellow of a laugh; counts on her fingers; \"and that's the long and short of it\"; calls people love.",
+  "backstory": "Rosa keeps the Hollis bathhouse on the lip of the Third Vent and, since 1480, the slate of the Vent Games, judging from an upturned tub with Old Marl's spoon. Half of Steamside brings its quarrels to her steps; Okton and Isine guess she'll be the Kharun commons elder.",
+  "relationships": [
+    {
+      "who": "old-wenna-hollis",
+      "name": "Old Wenna Hollis",
+      "how": "her mother"
+    },
+    {
+      "who": "joss-marl",
+      "name": "Joss Marl",
+      "how": "denies his Hollis claim every year"
+    },
+    {
+      "who": "gorm-halfhand",
+      "name": "Gorm Halfhand",
+      "how": "gave her the Hawk's rules"
+    }
+  ],
+  "statblock": "commoner|mm",
+  "lore": "rosa-hollis",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

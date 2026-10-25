@@ -1,0 +1,50 @@
+{
+  "name": "Ivoard Hask",
+  "slug": "ivoard-hask",
+  "tier": "major",
+  "status": "dead",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "the Ash King, 1453–1491 DR",
+  "age": "died at 70",
+  "appearance": "Big, bald and soft-voiced, a long scar through one eyebrow.",
+  "voice": "Never shouted, never needed to.",
+  "backstory": "A nobody from Tethyr who captained the Ash Company, Ivoard turned on the last Velun king in the Night of Cinders (1453) and ruled Ossmaar for 38 years under the Ember Law and the Sky Gallows. In the Quiet Year he stopped every execution. He died on 26 Eleint 1491 with the Heartcoal pried from his crown; his last words were \"Break it\".",
+  "secrets": [
+    "He knew the coal was killing him and tried to starve it.",
+    "He knew Lorard was Pellot Rook's son."
+  ],
+  "dm_only": [
+    "The Heartcoal killed him; Oselle's poison only hastened it."
+  ],
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "name": "Lorard Hask",
+      "how": "acknowledged him as firstborn, knowing he wasn't his"
+    },
+    {
+      "who": "oselle-velun",
+      "name": "Oselle Velun",
+      "how": "his daughter by Queen Ylia"
+    },
+    {
+      "who": "kitwin",
+      "name": "Kitwin",
+      "how": "his unacknowledged son"
+    },
+    {
+      "who": "isine-kettle",
+      "name": "Isine Kettle",
+      "how": "his cupbearer of thirty years"
+    },
+    {
+      "who": "okton",
+      "name": "Okton",
+      "how": "the smith he made forge the crown"
+    }
+  ],
+  "lore": "ivoard-hask",
+  "created": "2026-10-25T00:13:08",
+  "updated": "2026-10-25T00:13:08"
+}

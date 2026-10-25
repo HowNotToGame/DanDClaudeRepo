@@ -1,0 +1,19 @@
+{
+  "name": "Brother Garn",
+  "slug": "brother-garn",
+  "tier": "minor",
+  "status": "dead",
+  "race": "human",
+  "alignment": "neutral evil",
+  "role": "Choir brother",
+  "backstory": "Garn killed the old volunteer on the dais to make the crown kindle. Okton knocked him out; Chadickith broke his leg and threw him out as bait, and the Gallowsbird took him.",
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "name": "Tamius Coldwell",
+      "how": "served him"
+    }
+  ],
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

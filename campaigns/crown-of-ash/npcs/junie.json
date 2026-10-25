@@ -1,0 +1,24 @@
+{
+  "name": "Junie",
+  "slug": "junie",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "chaotic good",
+  "role": "ragged Ashward girl",
+  "age": "about 9",
+  "backstory": "Junie told Chadickith that covered carts go into the almshouse dead-house at night and the sisters are forbidden to look; he told her the story of the roc and Okton.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "told her the roc story"
+    }
+  ],
+  "statblock": {
+    "ref": "commoner|mm",
+    "notes": "a child"
+  },
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

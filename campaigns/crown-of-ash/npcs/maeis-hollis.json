@@ -1,0 +1,17 @@
+{
+  "name": "Maeis Hollis",
+  "slug": "maeis-hollis",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "headman of the charcoal-burners below Dunmarrow",
+  "backstory": "Maeis shared bread with three 'couriers' on the hill track, told them about the old Dunmar road and the quiet Roc Bell, and frowned but kept quiet when his dog shied from the casket.",
+  "dm_only": [
+    "He saw the couriers' crate go up the Dunmar road."
+  ],
+  "relationships": [],
+  "statblock": "commoner|mm",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

@@ -1,0 +1,161 @@
+{
+  "name": "Tamius Coldwell",
+  "slug": "tamius-coldwell",
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral evil",
+  "role": "High Pyrewarden; leader of the Choir",
+  "age": "60s",
+  "appearance": "Tall and stooped, his face hidden behind a veil of fine steel chain.",
+  "voice": "Only the liturgical \"we\"; sifts ash through his fingers while he talks and reads it like tea leaves.",
+  "backstory": "Coldwell has led the Pyrewardens and, behind them, the Choir. He swears the dying king named Kitwin heir, crowned the boy with grains on day 2, proclaimed him kindled, and lit the Long Smoke green-grey on day 9 to accuse the smith and the Watch of stealing the Coal. At the noon council he demanded Isine's seizure and voted alone against the regency.",
+  "wants": "Kitwin crowned with the Coal, and the death-tithe restored.",
+  "fears": "A Doomguide from Kelemvor's true church arriving to ask why the Pyrehouse ash makes people smile.",
+  "secrets": [
+    "He reached the king's chamber after the king was dead and invented the deathbed naming.",
+    "He leads the Glad Choir and serves Bhaal behind Kelemvor's mask.",
+    "He wears the key to the Last Ember casket in the crypt.",
+    "He swore to Rook that the Pyrehouse would back Lorard if the Coal were recovered."
+  ],
+  "dm_only": [
+    "The flame-stamped coins carry a thread to the casket; the Choir can feel roughly where they are.",
+    "Sheet built by the NPC creator as a Death-domain cleric (invented: class and numbers)."
+  ],
+  "relationships": [
+    {
+      "who": "kitwin",
+      "name": "Kitwin",
+      "how": "the boy the Choir raised under the smoke for its crown"
+    },
+    {
+      "who": "sister-ilsa",
+      "name": "Sister Ilsa",
+      "how": "his cantor"
+    },
+    {
+      "who": "hesard-rook",
+      "name": "Hesard Rook",
+      "how": "his informer in the Watch, bought with a promise"
+    },
+    {
+      "who": "isine-kettle",
+      "name": "Isine Kettle",
+      "how": "the servant who can prove his lie; his knife missed her"
+    },
+    {
+      "who": "halda-barrowe",
+      "name": "Halda Barrowe",
+      "how": "the captain who refused his claim"
+    }
+  ],
+  "sheet": {
+    "class": "Cleric 9",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 15,
+    "ac_from": "breastplate under vestments",
+    "hp": 49,
+    "hit_dice": "9d8+9",
+    "speed": 30,
+    "abilities": {
+      "str": 10,
+      "dex": 10,
+      "con": 12,
+      "int": 14,
+      "wis": 18,
+      "cha": 15
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "religion": 1,
+      "insight": 1,
+      "deception": 1,
+      "persuasion": 1,
+      "history": 1
+    },
+    "languages": [
+      "Common",
+      "Alzhedo",
+      "Abyssal"
+    ],
+    "traits": [
+      {
+        "name": "Death Domain (DMG)",
+        "text": "Reaper (necromancy cantrips can target two creatures); Channel Divinity (2/rest): Touch of Death (+23 necrotic on a melee hit) or Turn Undead; Inescapable Destruction (necrotic ignores resistance); Divine Strike +1d8 necrotic once per turn."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mace",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d6 bludgeoning",
+        "extra_damage": [
+          "1d8 necrotic"
+        ]
+      }
+    ],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 1
+      },
+      "spells": {
+        "0": [
+          "chill touch",
+          "sacred flame",
+          "toll the dead",
+          "thaumaturgy"
+        ],
+        "1": [
+          "false life",
+          "ray of sickness",
+          "command",
+          "bane",
+          "inflict wounds"
+        ],
+        "2": [
+          "blindness/deafness",
+          "ray of enfeeblement",
+          "hold person",
+          "silence"
+        ],
+        "3": [
+          "animate dead",
+          "vampiric touch",
+          "spirit guardians",
+          "bestow curse"
+        ],
+        "4": [
+          "blight",
+          "death ward",
+          "banishment"
+        ],
+        "5": [
+          "antilife shell",
+          "cloudkill",
+          "contagion"
+        ]
+      }
+    },
+    "gear": [
+      "steel-chain veil",
+      "vestments over a breastplate",
+      "mace",
+      "the key to the Last Ember casket",
+      "a pouch of pyre-ash"
+    ]
+  },
+  "lore": "tamius-coldwell",
+  "created": "2026-10-25T00:13:08",
+  "updated": "2026-10-25T00:13:08"
+}

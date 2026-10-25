@@ -1,0 +1,31 @@
+{
+  "name": "Teo Varrow",
+  "slug": "teo-varrow",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Quay porter; Kharun's Knot-man",
+  "age": "55",
+  "voice": "Soft-spoken; lies down on any floor to show you something.",
+  "backstory": "Son of a Calishite mother and a Kharun porter, Teo learned Calishite ground-wrestling off the galleys, reached the 1486 Open final fighting off his back, and has taught the Knot for a cinder a lesson in a Mostana-leased warehouse since the Open barred it.",
+  "secrets": [
+    "What he hears in the Mostana warehouse."
+  ],
+  "relationships": [
+    {
+      "who": "joss-marl",
+      "name": "Joss Marl",
+      "how": "his pupil"
+    },
+    {
+      "who": "big-hesta",
+      "name": "Big Hesta",
+      "how": "sat on him for the 1486 title"
+    }
+  ],
+  "statblock": "thug|mm",
+  "lore": "teo-varrow",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

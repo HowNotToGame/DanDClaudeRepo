@@ -1,0 +1,26 @@
+{
+  "name": "Dorrik Pell",
+  "slug": "dorrik-pell",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "chaotic good",
+  "role": "journeyman dye-worker; Bellow champion 1487–89",
+  "backstory": "Blue to the elbows from the Steamside vats and loud with it, Dorrik has boasted since sixteen that he can throw anything on two legs. Chadickith drove him over the chalk in the 1491 quarterfinal; he sat down laughing and bought the giant's boy two ciders.",
+  "relationships": [
+    {
+      "who": "ilk-venn",
+      "name": "Ilk Venn",
+      "how": "his friend in the Blue Hands"
+    },
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "beat him; owed a cider, paid two"
+    }
+  ],
+  "statblock": "thug|mm",
+  "lore": "dorrik-pell",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

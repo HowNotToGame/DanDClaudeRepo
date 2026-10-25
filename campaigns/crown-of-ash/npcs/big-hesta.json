@@ -1,0 +1,36 @@
+{
+  "name": "Big Hesta",
+  "slug": "big-hesta",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "retired pit-hand; 22-time champion of the Vent Games' Open",
+  "age": "50",
+  "appearance": "Broad shoulders, grey-streaked braids, forearms like ship's cable, a missing front tooth.",
+  "backstory": "Hesta Crall worked the guild brimstone pits for thirty years and retired at 45 when her knee went. She won the Vent Games' Open 22 times between 1466 and 1490, losing finals only to Marda Ironside (1476) and Tess Aldin (1482), until Chadickith pinned her in the 1491 semifinal.",
+  "relationships": [
+    {
+      "who": "tess-aldin",
+      "name": "Tess Aldin",
+      "how": "her great rival; beat her in five finals"
+    },
+    {
+      "who": "marda-ironside",
+      "name": "Marda Ironside",
+      "how": "beat her in the 1476 final"
+    },
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "the loxodon who finally pinned her"
+    }
+  ],
+  "statblock": {
+    "ref": "thug|mm",
+    "notes": "a wrestler, not a killer: grapples and shoves rather than strikes"
+  },
+  "lore": "big-hesta",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

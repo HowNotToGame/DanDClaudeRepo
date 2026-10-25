@@ -1,0 +1,129 @@
+{
+  "name": "Kitwin",
+  "slug": "kitwin",
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "the Pyre-Born; the late king's unacknowledged son",
+  "age": "19",
+  "appearance": "Slight and pale, soft brown curls, his father's heavy-lidded grey eyes, an acolyte's grey robe with the sleeves rolled up, ash in the creases of his hands.",
+  "voice": "A near-whisper; asks your name and repeats it; hums funeral hymns; smiles at the wrong moments and apologises.",
+  "backstory": "Son of the Pyrehouse acolyte Doret, who died when he was a year old, Kitwin was raised among the pyres and washes the Ashward's dead with his own hands. The High Pyrewarden says the dying king named him heir. On the night of day 2 Coldwell crowned him with grains in the empty socket, and the crown kindled after a killing on the dais; he wept and smiled at once. He has not been seen since.",
+  "wants": "To be good, to end suffering, and to be the son his father never once called him.",
+  "fears": "The heat that comes over him when someone dies, and what it says about him.",
+  "secrets": [
+    "During the Quiet Year the king summoned him in secret and the crown glowed in his hands.",
+    "He has helped dying paupers on their way in the infirmary, with a pillow or a cup of poppy, and calls it mercy."
+  ],
+  "dm_only": [
+    "He carries the burn, an anomaly: Stirring close to Frenzied, held down by the Choir's hymns.",
+    "Some of those he helped weren't dying fast enough; a few weren't dying at all.",
+    "He doesn't know the Choir kills, or that the deathbed naming was invented.",
+    "Sheet built by the NPC creator as a Grave cleric (invented: class and numbers)."
+  ],
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "name": "Tamius Coldwell",
+      "how": "the High Pyrewarden who raised and crowned him"
+    },
+    {
+      "who": "sister-ilsa",
+      "name": "Sister Ilsa",
+      "how": "the cantor who led him off the dais"
+    },
+    {
+      "who": "ivoard-hask",
+      "name": "Ivoard Hask",
+      "how": "the father who once put the crown in his hands and sent him away"
+    },
+    {
+      "who": "isine-kettle",
+      "name": "Isine Kettle",
+      "how": "sat by her cot after she was knifed"
+    }
+  ],
+  "sheet": {
+    "class": "Cleric 3",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 11,
+    "ac_from": "acolyte's robe",
+    "hp": 17,
+    "hit_dice": "3d8+3",
+    "speed": 30,
+    "abilities": {
+      "str": 9,
+      "dex": 12,
+      "con": 12,
+      "int": 11,
+      "wis": 16,
+      "cha": 14
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "insight": 1,
+      "medicine": 1,
+      "religion": 1,
+      "history": 1
+    },
+    "languages": [
+      "Common",
+      "Alzhedo"
+    ],
+    "traits": [
+      {
+        "name": "Grave Domain (Kelemvor)",
+        "text": "Circle of Mortality: healing a creature at 0 hit points uses maximum dice; spare the dying as a bonus action at 30 feet. Eyes of the Grave. Channel Divinity: Path to the Grave."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Dagger",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d4 piercing"
+      }
+    ],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "spells": {
+        "0": [
+          "spare the dying",
+          "sacred flame",
+          "toll the dead"
+        ],
+        "1": [
+          "bane",
+          "false life",
+          "bless",
+          "cure wounds",
+          "healing word"
+        ],
+        "2": [
+          "gentle repose",
+          "ray of enfeeblement",
+          "lesser restoration"
+        ]
+      }
+    },
+    "gear": [
+      "acolyte's robe",
+      "dagger",
+      "a censer",
+      "the Crown of Ash (kept by the Pyrehouse)"
+    ]
+  },
+  "lore": "kitwin",
+  "created": "2026-10-25T00:13:08",
+  "updated": "2026-10-25T00:13:08"
+}

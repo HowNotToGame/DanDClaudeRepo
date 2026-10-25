@@ -1,0 +1,46 @@
+{
+  "name": "Gwenis Dunmore",
+  "slug": "gwenis-dunmore",
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "one of the Banked (Blood Hunter 3, Pale Moon, Crow); the Order's eyes",
+  "backstory": "A Watchman lost to the burn after the Gallowsbird, Gwenis was Berserk in the Collarhouse cellar and was quenched in a lucid moment on day 3. Sharp-eyed in and out of her Crow form, she scouted the Saltgate, spotted Rook's man on the wall-walk, carried the Coal through the salt ditches and up the Dunmar Road, and stays at Dunmarrow with Kita and Ulric Vane.",
+  "wants": "To keep the Coal's resting place secret and the hall standing.",
+  "fears": "Going back to where the rage had her.",
+  "secrets": [
+    "The Heartcoal lies in the Dunmarrow vault; she helped carry it there."
+  ],
+  "dm_only": [
+    "Full sheet: banked/gwenis-dunmore.json.",
+    "Kinship between Gwenis and Kita Dunmore isn't recorded; ask the player."
+  ],
+  "relationships": [
+    {
+      "who": "okton",
+      "name": "Okton",
+      "how": "brought her back from the rage"
+    },
+    {
+      "who": "kita-dunmore",
+      "name": "Kita Dunmore",
+      "how": "fellow Banked; with her at Dunmarrow"
+    },
+    {
+      "who": "ulric-vane",
+      "name": "Ulric Vane",
+      "how": "the gravekeeper they share Dunmarrow with"
+    },
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "her senior in the Order; shared the run"
+    }
+  ],
+  "sheet": {
+    "file": "banked/gwenis-dunmore.json"
+  },
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

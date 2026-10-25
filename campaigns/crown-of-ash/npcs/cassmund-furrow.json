@@ -1,0 +1,38 @@
+{
+  "name": "Cassmund Furrow",
+  "slug": "cassmund-furrow",
+  "tier": "major",
+  "status": "alive",
+  "race": "half-orc",
+  "alignment": "neutral",
+  "role": "one of the Banked (Blood Hunter 2, Pale Moon; Hawk at level 3)",
+  "backstory": "A Watchman quenched from Frenzy on day 3, Cassmund is the Order's strong arms: he grabbed Rook's tail in a dye-works alley and had him bound before he could shout. On day 10 he left Kharun with Warden Kaselle Redfern by the Lowfields farms for Dunmarrow.",
+  "secrets": [
+    "He is one of the Banked."
+  ],
+  "dm_only": [
+    "Full sheet: banked/cassmund-furrow.json."
+  ],
+  "relationships": [
+    {
+      "who": "kaselle-redfern",
+      "name": "Kaselle Redfern",
+      "how": "travelling with her to Dunmarrow"
+    },
+    {
+      "who": "kita-dunmore",
+      "name": "Kita Dunmore",
+      "how": "took Rook's tail together"
+    },
+    {
+      "who": "okton",
+      "name": "Okton",
+      "how": "quenched him"
+    }
+  ],
+  "sheet": {
+    "file": "banked/cassmund-furrow.json"
+  },
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

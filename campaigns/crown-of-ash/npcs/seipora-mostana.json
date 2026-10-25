@@ -1,0 +1,31 @@
+{
+  "name": "Seipora Mostana",
+  "slug": "seipora-mostana",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral evil",
+  "role": "Factor of House Mostana in Kharun",
+  "age": "40s",
+  "voice": "Unhurried; offers candied dates; calls every deal a friendship and every threat a misunderstanding between friends.",
+  "backstory": "The third daughter of a Calishite trading house, Seipora runs its warehouses on Brimstone Quay and its loans to every heir. She wants the brimstone monopoly and a prize big enough that her mother names her heir.",
+  "secrets": [
+    "She holds the Saltwater Compact in her strongbox aboard the Sixth Daughter.",
+    "A syl-pasha in Calimshan will pay a fortune for the Heartcoal."
+  ],
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "name": "Oselle Velun",
+      "how": "holds the Saltwater Compact she signed"
+    },
+    {
+      "who": "lorard-hask",
+      "name": "Lorard Hask",
+      "how": "lends him gold for his soldiers' pay"
+    }
+  ],
+  "statblock": "noble|mm",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

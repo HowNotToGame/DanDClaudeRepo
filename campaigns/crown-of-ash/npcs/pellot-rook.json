@@ -1,0 +1,29 @@
+{
+  "name": "Pellot Rook",
+  "slug": "pellot-rook",
+  "tier": "minor",
+  "status": "dead",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Ivoard Hask's sword-brother",
+  "backstory": "Hask's sword-brother in the Ash Company, Pellot died in the South March campaign of 1450 before his son Lorard was born.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "name": "Lorard Hask",
+      "how": "his son"
+    },
+    {
+      "who": "hesard-rook",
+      "name": "Hesard Rook",
+      "how": "his nephew"
+    },
+    {
+      "who": "ivoard-hask",
+      "name": "Ivoard Hask",
+      "how": "his sword-brother"
+    }
+  ],
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

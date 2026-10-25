@@ -1,0 +1,26 @@
+{
+  "name": "Fenia",
+  "slug": "fenia",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Rook's orderly; a Watch witness",
+  "backstory": "A thin young orderly in Rook's company, Fenia listened at Halda's doors and reported to a woman at the chandler's for small coin, believing it was for the Marshal. Okton caught him by the collar before dawn on day 9, and he swore the truth at the war-table.",
+  "relationships": [
+    {
+      "who": "hesard-rook",
+      "name": "Hesard Rook",
+      "how": "the captain he served and testified against"
+    },
+    {
+      "who": "ashlo",
+      "name": "Ashlo",
+      "how": "his cellmate"
+    }
+  ],
+  "statblock": "guard|mm",
+  "lore": "fenia",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

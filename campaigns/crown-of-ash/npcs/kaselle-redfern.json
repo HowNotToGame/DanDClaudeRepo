@@ -1,0 +1,128 @@
+{
+  "name": "Kaselle Redfern",
+  "slug": "kaselle-redfern",
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "junior Pyrewarden who exposed the Choir's killings",
+  "age": "late 20s",
+  "appearance": "Cropped dark hair, a scar along the left jaw; smells only of lye, ash and lavender.",
+  "voice": "Low and careful, as if someone is always listening.",
+  "backstory": "A sincere Warden of Kelemvor, Kaselle left Chadickith the grey burial-notice note that led to the almshouse dead-house, where she showed him the Choir's smiling dead. She hid in the shroud-stacks during the fight, helped search Peret, guarded the forge and the hearth slab while the others were away, and left Kharun on day 10 with Cassmund Furrow for Dunmarrow.",
+  "wants": "The Choir's killings exposed and Kelemvor's rites made honest again.",
+  "fears": "That the High Pyrewarden will hang her; that the Watch is sold.",
+  "secrets": [
+    "She knows the plague road runs from the dead-house cellar to the crypt."
+  ],
+  "dm_only": [
+    "She does not know where the Coal was hidden in the forge's roof-beams or the Dunmarrow vault's contents.",
+    "Sheet built by the NPC creator as a Grave cleric (invented: class and numbers)."
+  ],
+  "relationships": [
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "she trusted him with the dead-house"
+    },
+    {
+      "who": "okton",
+      "name": "Okton",
+      "how": "sheltered at his forge"
+    },
+    {
+      "who": "cassmund-furrow",
+      "name": "Cassmund Furrow",
+      "how": "her travelling companion to Dunmarrow"
+    },
+    {
+      "who": "tamius-coldwell",
+      "name": "Tamius Coldwell",
+      "how": "her High Pyrewarden, whom she fears"
+    },
+    {
+      "who": "peret",
+      "name": "Peret",
+      "how": "the Choir knife-man she named"
+    }
+  ],
+  "sheet": {
+    "class": "Cleric 3",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 14,
+    "ac_from": "chain shirt",
+    "hp": 21,
+    "hit_dice": "3d8+6",
+    "speed": 30,
+    "abilities": {
+      "str": 12,
+      "dex": 12,
+      "con": 14,
+      "int": 12,
+      "wis": 15,
+      "cha": 10
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "religion": 1,
+      "medicine": 1,
+      "insight": 1,
+      "investigation": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Grave Domain (Kelemvor)",
+        "text": "Circle of Mortality; Eyes of the Grave; Channel Divinity: Path to the Grave."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mace",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d6 bludgeoning"
+      }
+    ],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "spells": {
+        "0": [
+          "spare the dying",
+          "sacred flame",
+          "light"
+        ],
+        "1": [
+          "bane",
+          "false life",
+          "cure wounds",
+          "detect evil and good"
+        ],
+        "2": [
+          "gentle repose",
+          "ray of enfeeblement",
+          "lesser restoration"
+        ]
+      }
+    },
+    "gear": [
+      "chain shirt under grey robes",
+      "mace",
+      "a lantern",
+      "burial-notice paper"
+    ]
+  },
+  "created": "2026-10-25T00:13:08",
+  "updated": "2026-10-25T00:13:08"
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Hesby Bramble",
+  "slug": "hesby-bramble",
+  "tier": "major",
+  "status": "alive",
+  "race": "bronze dragonborn",
+  "alignment": "lawful neutral",
+  "role": "Watch sergeant; one of the Banked (Blood Hunter 4, Pale Moon, Eagle)",
+  "voice": "A sergeant's bark kept low; reports in short lists.",
+  "backstory": "A Watch sergeant wounded by the Gallowsbird's blood, Hesby was Frenzied in the Collarhouse cellar when Okton quenched him on day 3. He had been posted at the Pyrehouse during the rite and saw the Choir carry a crowned boy through the north postern. He keeps his collar and post as 'ill', drills before shift, and carried messages to Halda during the Coal's escape. On day 10 he set out for Dunmarrow with Samson Cobb.",
+  "wants": "To hold the heat and serve the Order without losing his post or his wife.",
+  "fears": "His wife learning what he is; losing control in front of his watchmen.",
+  "secrets": [
+    "He is one of the Banked; his wife has been told only that he is ill."
+  ],
+  "dm_only": [
+    "Full sheet: banked/hesby-bramble.json."
+  ],
+  "relationships": [
+    {
+      "who": "okton",
+      "name": "Okton",
+      "how": "the one who quenched him; he feels the giant like a banked fire in the next room"
+    },
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "his senior in the Order"
+    },
+    {
+      "who": "samson-cobb",
+      "name": "Samson Cobb",
+      "how": "travelling with him to Dunmarrow"
+    },
+    {
+      "who": "halda-barrowe",
+      "name": "Halda Barrowe",
+      "how": "his captain"
+    }
+  ],
+  "sheet": {
+    "file": "banked/hesby-bramble.json"
+  },
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

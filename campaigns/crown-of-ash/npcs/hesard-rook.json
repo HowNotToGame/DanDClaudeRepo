@@ -1,0 +1,118 @@
+{
+  "name": "Hesard Rook",
+  "slug": "hesard-rook",
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watch captain of the river wall, relieved and confined",
+  "age": "40s",
+  "appearance": "A Redcollar captain's blackened half-plate, now hung on a peg in a guarded room.",
+  "voice": "Smooth and quick to deny; goes quiet when cornered.",
+  "backstory": "One of Halda's six captains, Rook commanded the river wall. A canary trap and his orderly Fenia's testimony exposed him as the Choir's informer in the Watch; Halda relieved him and confined him to quarters on day 9. On day 11 he refused the inquiry but asked to see the Lord-Marshal alone.",
+  "wants": "His cousin crowned.",
+  "fears": "The rope; being disowned by the only family he has left.",
+  "secrets": [
+    "He fed the Choir news of the forge and of Chadickith's movements.",
+    "Lorard is his cousin, Pellot Rook's son, not the king's."
+  ],
+  "dm_only": [
+    "He didn't know the Choir meant to burn the ward or the forge; the flame-silver sickened him.",
+    "Marda's record of his confession reaches Halda on day 14.",
+    "Sheet built by the NPC creator (invented: class and numbers)."
+  ],
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "name": "Lorard Hask",
+      "how": "his cousin: Lorard's real father was Hesard's uncle"
+    },
+    {
+      "who": "pellot-rook",
+      "name": "Pellot Rook",
+      "how": "his late uncle"
+    },
+    {
+      "who": "tamius-coldwell",
+      "name": "Tamius Coldwell",
+      "how": "promised the Pyrehouse would back Lorard"
+    },
+    {
+      "who": "fenia",
+      "name": "Fenia",
+      "how": "his orderly, who testified against him"
+    },
+    {
+      "who": "halda-barrowe",
+      "name": "Halda Barrowe",
+      "how": "the captain he betrayed"
+    }
+  ],
+  "sheet": {
+    "class": "Fighter 5",
+    "background": "City Watch",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 16,
+    "ac_from": "half plate",
+    "hp": 42,
+    "hit_dice": "5d10+15",
+    "speed": 30,
+    "abilities": {
+      "str": 15,
+      "dex": 13,
+      "con": 16,
+      "int": 12,
+      "wis": 11,
+      "cha": 14
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "deception": 1,
+      "insight": 1,
+      "persuasion": 1,
+      "perception": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Second Wind",
+        "text": "Once per short rest, as a bonus action, he regains 1d10 + 5 hit points."
+      },
+      {
+        "name": "Action Surge",
+        "text": "Once per short rest, one additional action on his turn."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "Rook makes two longsword attacks."
+      },
+      {
+        "name": "Longsword",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 slashing"
+      },
+      {
+        "name": "Heavy Crossbow",
+        "attack": "dex",
+        "range": "100/400",
+        "damage": "1d10 piercing"
+      }
+    ],
+    "gear": [
+      "half plate (confiscated)",
+      "longsword (confiscated)"
+    ]
+  },
+  "lore": "hesard-rook",
+  "created": "2026-10-25T00:13:08",
+  "updated": "2026-10-25T00:13:08"
+}

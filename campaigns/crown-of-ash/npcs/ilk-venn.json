@@ -1,0 +1,26 @@
+{
+  "name": "Ilk Venn",
+  "slug": "ilk-venn",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "dye-worker; the Blue Hands' Linen thrower",
+  "backstory": "A barrel-chested dye-worker and the Blue Hands' best thrower, Ilk carried the dye-workers' money after Dorrik went out, until Joss Marl slipped him and rode him down in the 1491 quarterfinal.",
+  "relationships": [
+    {
+      "who": "dorrik-pell",
+      "name": "Dorrik Pell",
+      "how": "his friend"
+    },
+    {
+      "who": "joss-marl",
+      "name": "Joss Marl",
+      "how": "beat him"
+    }
+  ],
+  "statblock": "thug|mm",
+  "lore": "ilk-venn",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

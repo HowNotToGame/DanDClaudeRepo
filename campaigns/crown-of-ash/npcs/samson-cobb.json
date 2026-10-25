@@ -1,0 +1,34 @@
+{
+  "name": "Samson Cobb",
+  "slug": "samson-cobb",
+  "tier": "major",
+  "status": "alive",
+  "race": "giff",
+  "alignment": "lawful neutral",
+  "role": "one of the Banked (Blood Hunter 2, Pale Moon; Owl at level 3)",
+  "backstory": "A giff Watchman quenched from Frenzy on day 3, Samson kept watch over the forge on the night of day 3 and helped walk the agitator Ashlo to Halda's cells. On day 10 he set out for Dunmarrow with Hesby Bramble by the north shore.",
+  "secrets": [
+    "He is one of the Banked."
+  ],
+  "dm_only": [
+    "Full sheet: banked/samson-cobb.json.",
+    "No relation to the Ashward Cobbs is recorded."
+  ],
+  "relationships": [
+    {
+      "who": "hesby-bramble",
+      "name": "Hesby Bramble",
+      "how": "travelling with him to Dunmarrow"
+    },
+    {
+      "who": "okton",
+      "name": "Okton",
+      "how": "quenched him"
+    }
+  ],
+  "sheet": {
+    "file": "banked/samson-cobb.json"
+  },
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

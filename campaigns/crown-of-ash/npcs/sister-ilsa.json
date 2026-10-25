@@ -1,0 +1,130 @@
+{
+  "name": "Sister Ilsa",
+  "slug": "sister-ilsa",
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "cantor of the Choir",
+  "age": "40s",
+  "appearance": "A grey shawl over a singer's plain robe; a voice that carries across a square.",
+  "voice": "Sung more than spoken; falters when she's caught out.",
+  "backstory": "Ilsa leads the Choir's singing. She hurried the crowned Kitwin off the dais on the night of day 2, and on day 9 led an Ashward crowd to Okton's forge, until Chadickith asked why the Choir would knife Isine if it already held the Coal; she stumbled and withdrew.",
+  "wants": "The hymn to hold; Kitwin crowned.",
+  "fears": "The crowd turning on the Choir, as it did at the forge.",
+  "secrets": [
+    "She knows what the Last Ember is and what the wafers do.",
+    "The Choir's hymns hold Kitwin's rage down."
+  ],
+  "dm_only": [
+    "(Invented by the NPC creator: by the Choir's faith she is likely a Singer, holding the burn under her own song.)",
+    "Sheet built by the NPC creator as a Bard (invented: class and numbers)."
+  ],
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "name": "Tamius Coldwell",
+      "how": "her High Pyrewarden"
+    },
+    {
+      "who": "kitwin",
+      "name": "Kitwin",
+      "how": "she keeps him close and sings his rage down"
+    },
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "the loxodon who turned her crowd"
+    }
+  ],
+  "sheet": {
+    "class": "Bard 4",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 12,
+    "ac_from": "leather under the shawl",
+    "hp": 26,
+    "hit_dice": "4d8+4",
+    "speed": 30,
+    "abilities": {
+      "str": 8,
+      "dex": 13,
+      "con": 12,
+      "int": 11,
+      "wis": 12,
+      "cha": 16
+    },
+    "saves": [
+      "dex",
+      "cha"
+    ],
+    "skills": {
+      "performance": 2,
+      "persuasion": 2,
+      "deception": 1,
+      "religion": 1,
+      "insight": 1
+    },
+    "languages": [
+      "Common",
+      "Alzhedo"
+    ],
+    "traits": [
+      {
+        "name": "Bardic Inspiration",
+        "text": "Three times per long rest, a d6 inspiration die as a bonus action."
+      },
+      {
+        "name": "Jack of All Trades",
+        "text": "Adds +1 to ability checks she isn't proficient in."
+      },
+      {
+        "name": "Song of Rest",
+        "text": "Allies regain an extra 1d6 hit points during a short rest she sings through."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Dagger",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d4 piercing"
+      }
+    ],
+    "spellcasting": {
+      "ability": "cha",
+      "slots": {
+        "1": 4,
+        "2": 3
+      },
+      "spells": {
+        "0": [
+          "vicious mockery",
+          "friends",
+          "minor illusion"
+        ],
+        "1": [
+          "charm person",
+          "dissonant whispers",
+          "healing word",
+          "sleep"
+        ],
+        "2": [
+          "calm emotions",
+          "hold person",
+          "suggestion"
+        ]
+      }
+    },
+    "gear": [
+      "grey shawl",
+      "a hymnal",
+      "a dagger",
+      "a lantern"
+    ]
+  },
+  "lore": "sister-ilsa",
+  "created": "2026-10-25T00:13:08",
+  "updated": "2026-10-25T00:13:08"
+}

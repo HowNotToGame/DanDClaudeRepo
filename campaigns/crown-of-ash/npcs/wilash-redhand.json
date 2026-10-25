@@ -1,0 +1,35 @@
+{
+  "name": "Wilash Redhand",
+  "slug": "wilash-redhand",
+  "tier": "minor",
+  "status": "alive",
+  "race": "half-orc",
+  "alignment": "lawful neutral",
+  "role": "Watch sergeant; Chadickith's sparring partner of twenty years",
+  "age": "40s",
+  "voice": "Gruff and loyal, a laugh like a dropped anvil.",
+  "backstory": "Wilash has sparred with Chadickith for twenty years and insists he taught the big lump to fight dirty. He guarded Isine at the triage tent and took it over with Halda's orderlies when she went to the forge.",
+  "secrets": [
+    "He passes Watch news to the Lord-Marshal's quartermaster's office to keep his younger brother, an Ash Company soldier, safe."
+  ],
+  "relationships": [
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "sparring partner and friend"
+    },
+    {
+      "who": "halda-barrowe",
+      "name": "Halda Barrowe",
+      "how": "his captain"
+    },
+    {
+      "who": "isine-kettle",
+      "name": "Isine Kettle",
+      "how": "guarded her"
+    }
+  ],
+  "statblock": "veteran|mm",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

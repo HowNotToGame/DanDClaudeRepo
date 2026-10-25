@@ -1,0 +1,20 @@
+{
+  "name": "Gwenet Marlow",
+  "slug": "gwenet-marlow",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watchman lost to the burn",
+  "backstory": "Berserk in the Collarhouse cellar since the Gallowsbird's attack, Gwenet waits with Joris Marsh for a lucid moment Okton can ask a yes in.",
+  "relationships": [
+    {
+      "who": "joris-marsh",
+      "name": "Joris Marsh",
+      "how": "lost with her in the cellar"
+    }
+  ],
+  "statblock": "guard|mm",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

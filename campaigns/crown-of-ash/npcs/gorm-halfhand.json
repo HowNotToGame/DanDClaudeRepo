@@ -1,0 +1,30 @@
+{
+  "name": "Gorm Halfhand",
+  "slug": "gorm-halfhand",
+  "tier": "minor",
+  "status": "alive",
+  "race": "half-orc",
+  "alignment": "neutral good",
+  "role": "Quay porter, ex-Ash Company; the Hawk's grand old man",
+  "age": "about 55",
+  "backstory": "Gorm served eight years in the Ash Companies on the South March until he lost two fingers at Fort Vell, learned the Hawk from Shaaran horse-traders there, and won the Open three times, dancing the hawk dance on the chalk after each.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "name": "Rosa Hollis",
+      "how": "gave her the Hawk's rules"
+    },
+    {
+      "who": "old-wenna-hollis",
+      "name": "Old Wenna Hollis",
+      "how": "she made him buy a round for taunting, every time"
+    }
+  ],
+  "statblock": {
+    "ref": "veteran|mm",
+    "notes": "missing two fingers of his left hand; older and slower now"
+  },
+  "lore": "gorm-halfhand",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

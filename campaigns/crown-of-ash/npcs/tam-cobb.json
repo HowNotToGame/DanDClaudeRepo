@@ -1,0 +1,38 @@
+{
+  "name": "Tam Cobb",
+  "slug": "tam-cobb",
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "patient in the forge ward",
+  "age": "9",
+  "backstory": "Branda's little brother touched their father's sickbed linen and showed the first flush of the burn on day 11; he takes the forge job Chadickith gave him, sorting nails, very seriously.",
+  "dm_only": [
+    "Level 0, under fifteen: quenched only to save a life, with his own yes, a parent's consent and a warden's witness."
+  ],
+  "relationships": [
+    {
+      "who": "branda-cobb",
+      "name": "Branda Cobb",
+      "how": "his sister"
+    },
+    {
+      "who": "gwenmund-cobb",
+      "name": "Gwenmund Cobb",
+      "how": "his mother"
+    },
+    {
+      "who": "chadickith",
+      "name": "Chadickith",
+      "how": "the biggest thing in the room; gave him a job"
+    }
+  ],
+  "statblock": {
+    "ref": "commoner|mm",
+    "notes": "a child: halve its hit points"
+  },
+  "lore": "tam-cobb",
+  "created": "2026-10-25T00:15:13",
+  "updated": "2026-10-25T00:15:13"
+}

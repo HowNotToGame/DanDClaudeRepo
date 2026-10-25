@@ -366,7 +366,7 @@ def compile_sheet(rec: dict) -> dict:
                 entry["slots"] = int(slots)
             spells[str(lvl)] = entry
         m["spellcasting"] = [{"name": "Spellcasting", "type": "spellcasting", "ability": sab, "spells": spells,
-                              "headerEntries": [f"{rec.get('name')} is a spellcaster. Its spellcasting ability is "
+                              "headerEntries": [f"{rec.get('name')} is a spellcaster. Their spellcasting ability is "
                                                 f"{ {'int': 'Intelligence', 'wis': 'Wisdom', 'cha': 'Charisma'}.get(sab, sab) } "
                                                 f"(spell save {{@dc {dc}}}, {{@hit {atk}}} to hit with spell attacks)."]}]
     return m
@@ -644,7 +644,7 @@ def named_without_records(camp: Campaign) -> list[tuple[str, str]]:
         if e["meta"].get("type") == "npc" and e["slug"] not in have:
             out.append((e["slug"], str(e["meta"].get("name") or e["slug"])))
     for slug in co.all_slugs(camp):
-        if slug not in have:
+        if slug not in have and slug not in {x for x, _ in out}:
             meta, _ = co.load_persona(camp, slug)
             out.append((slug, meta.get("name", slug)))
     return out
