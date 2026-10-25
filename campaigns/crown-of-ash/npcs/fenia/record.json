@@ -1,0 +1,49 @@
+{
+  "name": "Fenia",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Rook's orderly, the eavesdropper at Halda's door; a Watch witness held in the Collarhouse inner cells under double guard",
+  "age": "about nineteen",
+  "appearance": "Thin and young, bitten nails, a Watch collar too big for him.",
+  "voice": "Nervous and over-polite: 'beg pardon, sir.' Swallows before he answers.",
+  "backstory": "A young orderly in Rook's company, told by his captain to listen at doors and report to a woman at the chandler's by the dye-works for small coin, which he thought was for the Marshal. He was the eavesdropper at Halda's door, and Okton's people took him. At the dawn war-table on day 9 he swore to Rook's order before the captains, who believed him. Halda moved him to the inner cells beside Ashlo and doubled the guard after the crossbowman's attempt on Ashlo, and brought him to the forge at dawn on day 10 to break Lorard's search. He is now a Watch witness.",
+  "wants": "Not to hang; to be forgiven; to go home.",
+  "fears": "Rook; the grey-shawled woman; a crossbow bolt through the cell window.",
+  "relationships": [
+    {
+      "who": "hesard-rook",
+      "how": "his captain, who used him and whom he betrayed",
+      "attitude": -2
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain who spared him and uses his testimony",
+      "attitude": 1
+    },
+    {
+      "who": "marda-ironside",
+      "how": "keeps his cell guard",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the giant whose people took him; he is terrified of him",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "The woman at the chandler's gave you small silver for what you heard at doors. When you saw the Choir's flame-stamped silver at dawn on day 10 you understood she was never the Marshal's."
+  ],
+  "dm_only": [
+    "Canon: Rook's orderly, taken by Okton, swore at the war-table, now a Watch witness. Invented by npc-creator: his age, voice, appearance, and that he can now tie the woman to the Choir's silver.",
+    "The Choir may try to silence him as it tried with Ashlo."
+  ],
+  "lore": "fenia",
+  "statblock": "Commoner|MM",
+  "slug": "fenia",
+  "created": "2026-10-25T04:44:09",
+  "updated": "2026-10-25T04:44:09"
+}

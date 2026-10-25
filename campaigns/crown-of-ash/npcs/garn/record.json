@@ -1,0 +1,74 @@
+{
+  "name": "Garn",
+  "aliases": [
+    "Brother Garn"
+  ],
+  "tier": "minor",
+  "status": "dead",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "Brother of the Choir who killed the old volunteer on the dais at the Great Pyre; dead, thrown to the Gallowsbird by Chadickith",
+  "age": "forties",
+  "appearance": "A calm, smiling man in Choir grey with a narrow blade. His steadiness has an edge: a man holding back a storm.",
+  "voice": "Gentle, unhurried and smiling. Answers accusations with 'The man gave himself'; blesses crowds with raised hands.",
+  "backstory": "Garn was a senior brother of the Choir, one of its Singers. On the night of day 2, at the Great Pyre rite, he drew a narrow blade behind a smiling old Ashward volunteer and killed him on the dais while Kitwin held the man's hand; the grains in the Crown of Ash flared and the crown kindled. Chadickith accused him publicly, Lorard moved to arrest him and Garn answered that the man gave himself; Kitwin told Lorard to stand away. When the Gallowsbird stooped it veered off from Garn and Kitwin. Okton knocked Garn out at the stair foot and Chadickith bound and gagged him; under questioning he said he did not control the roc, that he had raised his hands only to bless the crowd, and that the bird knows the chosen. Chadickith broke his leg and threw him bound out of the guildhall door as bait; the roc took him in front of Lorard and a surgeon.",
+  "wants": "(In life) to see the crown kindle for Kitwin, and the Choir's mercy keep going.",
+  "fears": "(In life) dying outside the Ember's keeping; the storm in his own blood getting loose.",
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden he served; told him the plan for the first sitting in the crypt",
+      "attitude": 3
+    },
+    {
+      "who": "kitwin",
+      "how": "the boy he believed the Hearth had chosen",
+      "attitude": 2
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "the Choir's cantor, who sang over his volunteers",
+      "attitude": 1
+    },
+    {
+      "who": "peret",
+      "how": "fellow knife of the Choir",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who bound him and threw him to the roc",
+      "attitude": -3
+    },
+    {
+      "who": "okton",
+      "how": "the giant who knocked him out at the stair foot",
+      "attitude": -1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Marshal who moved to arrest him on the dais",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "His 'volunteers' were never willing. They were drugged with poppy and a crumb of the wafer, and Ilsa sang over them.",
+    "Coldwell told him in the crypt that Kitwin himself would be the willing death at the first sitting, and that the crown would be kept warm in the crypt beside the Last Ember casket.",
+    "The Choir serves the Lord of Murder behind Kelemvor's mask; the older hymns name him. He is a Singer who holds the burn down under song.",
+    "He does not control the roc, and he does not know why it veered from him."
+  ],
+  "dm_only": [
+    "He is dead. The roc lifted him away from the Great Pyre square, so there is no body. Dead people keep stats for flashbacks, visions and the restless dead.",
+    "Invented by npc-creator: age, looks and the phrase 'The man gave himself' (canon has only that Garn answered the man gave himself). That he is a Singer extends the lore line that his calm smile was a man holding back a storm.",
+    "Played as a Cult Fanatic (HP 33, AC 13). The DM called for Acrobatics 15 in the grapple; the Cult Fanatic block has no Acrobatics, so that was a ruling at the table.",
+    "The roc is Glad (Ashblood): it veered because of the loose Heartcoal and the kin-sensing of Kitwin, not because of Garn."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Cult Fanatic|MM",
+    "notes": "Played as HP 33, AC 13 at the stair foot. Fought with a narrow blade (use the Dagger line)."
+  },
+  "slug": "garn",
+  "created": "2026-10-25T04:42:18",
+  "updated": "2026-10-25T04:42:18"
+}

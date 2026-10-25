@@ -1,0 +1,60 @@
+{
+  "name": "Gwenmund Cobb",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "Ashward pit-hand and widow; patient in the forge ward",
+  "age": "mid-thirties",
+  "appearance": "Broad-handed and blunt, with the dry pyre-cough of everyone raised under the Long Smoke. Her flush is fading.",
+  "voice": "Blunt: the plain fact and nothing wrapped round it. Coughs into her sleeve before she says anything hard.",
+  "backstory": "An Ashward pit-hand's widow. Her husband was one of the Gallowsbird's wounded; their daughter Branda nursed him and touched his blood, and he died of the burn fever, raging and bared-toothed, about four days before the ward opened. Gwenmund hid her own first flush until Isine examined her on the night of day 10, then consented freely and was admitted with Halda's seal. On the evening of day 11, after Okton explained the Quenching's risks in plain words, she chose not to be quenched now. She will learn to hold the heat with Isine and decide for her children when Branda can answer clear-headed.",
+  "wants": "Her children alive, and her place at the pits kept. Isine told her the Watch will hear it is sickness, not crime.",
+  "fears": "Dying and leaving Tam and Mina with no one. Becoming what her husband became.",
+  "relationships": [
+    {
+      "who": "branda-cobb",
+      "how": "eldest daughter, in the next cot",
+      "attitude": 3
+    },
+    {
+      "who": "tam-cobb",
+      "how": "son, in the third cot",
+      "attitude": 3
+    },
+    {
+      "who": "mina-cobb",
+      "how": "youngest daughter, staying with a neighbour",
+      "attitude": 3
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the nurse who tells her the truth",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the giant who explained the risks plainly and promised shelter for her children",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who sits with her daughter",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You hid your flush at first for fear of losing your place at the pits.",
+    "You asked what becomes of Tam and Mina if you die; Okton promised the Order will shelter them."
+  ],
+  "dm_only": [
+    "Level 0. The burn at first stirring, mild and holding; the locked burn and Quenching rules govern what comes next.",
+    "Her husband is unnamed in canon. Invented by npc-creator: age, voice habit, the neighbour minding Mina is unnamed."
+  ],
+  "lore": "gwenmund-cobb",
+  "statblock": "Commoner|MM",
+  "slug": "gwenmund-cobb",
+  "created": "2026-10-25T04:43:43",
+  "updated": "2026-10-25T04:43:43"
+}

@@ -1,0 +1,74 @@
+{
+  "name": "Vesan",
+  "aliases": [
+    "Brother Vesan"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral evil",
+  "role": "Choir brother turned witness: swore before Halda's captains that the Choir lit the crown with casket grains; whereabouts since day 3 not recorded",
+  "age": "thirties",
+  "appearance": "The taller of the two Choir brothers, pale and big-handed, in grey wool. His lips move when he is afraid.",
+  "voice": "Earnest and rehearsed, quoting the Choir's phrases ('it is mercy') a beat too fast when frightened.",
+  "backstory": "Vesan is a brother of the Pyrehouse's inner circle, the Choir. In the almshouse dead-house he and Wyn froze and then surrendered to Chadickith, and under questioning they said the grey wafers are grains of the Last Ember kept in the crypt by Coldwell, that the Choir ends the lives of dying Ashward paupers who 'ask to go gladly' with a blade, a wafer and a hymn, about forty-one since the Quiet Year, and that Coldwell meant the Ember to kindle for Kitwin at the Great Pyre, 'coal or none'. Vesan claimed Kitwin blesses it. Okton kept the two bound at his forge; on the noon of day 3 Chadickith and Okton walked them to the Collarhouse courtyard, where both swore before Halda's six captains that the Choir lit the crown with grains from the casket. Where they are held now is not recorded.",
+  "wants": "To live out the week and not be handed back to Coldwell.",
+  "fears": "Coldwell's reach; the Choir singing outside his window; the giant.",
+  "relationships": [
+    {
+      "who": "wyn",
+      "how": "fellow Choir brother and fellow witness",
+      "attitude": 2
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden he betrayed before the Watch",
+      "attitude": -3
+    },
+    {
+      "who": "peret",
+      "how": "the knife-man whose team he surrendered with",
+      "attitude": -1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Captain he swore before",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "his captor, who walked him to the hearing unharmed",
+      "attitude": -1
+    },
+    {
+      "who": "okton",
+      "how": "the giant who held him bound at the forge",
+      "attitude": -1
+    },
+    {
+      "who": "kitwin",
+      "how": "the Pyre-Born he reveres and believes blesses the Choir's work",
+      "attitude": 1
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "the Choir's cantor",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "The grey wafers come from the iron Last Ember casket in the crypt; Coldwell wears the key. The Choir presses the grains into the crown's socket and sings it alight.",
+    "The older hymns he was taught name the Lord of Murder, and he was told that is Kelemvor's older face.",
+    "He has carried the dead to the dead-house for the Choir many times and has heard them told to go gladly."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: age, build and the phrase habit; that he has carried the dead many times; the older hymns being sold to him as Kelemvor's older face (they name Bhaal).",
+    "Which brother is 'Choir Brother 1' and which 'Choir Brother 2' in the dead-house combat is not canon. Both played as Cultists (HP 9, AC 12).",
+    "His whereabouts since the hearing on day 3 are not recorded. If the DM wants them reachable: under Halda's seal in the Collarhouse cells, or smuggled out."
+  ],
+  "lore": null,
+  "statblock": "Cultist|MM",
+  "slug": "vesan",
+  "created": "2026-10-25T04:42:18",
+  "updated": "2026-10-25T04:42:18"
+}

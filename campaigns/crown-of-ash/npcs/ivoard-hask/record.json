@@ -1,0 +1,166 @@
+{
+  "name": "Ivoard Hask",
+  "aliases": [
+    "the Ash King",
+    "King Ivoard"
+  ],
+  "tier": "major",
+  "status": "dead",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "King of Ossmaar for 38 years (1453-1491 DR), the Ash King; dead, burned on the Great Pyre at Highharvestide 1491.",
+  "age": "70 at death (looked about fifty until his last year)",
+  "appearance": "Big, bald and heavy-lidded, grey-eyed, with a long scar through one eyebrow. He wore the cold black iron of the Crown of Ash like a soldier's helm.",
+  "voice": "Soft, unhurried, never raised; he never shouted and never needed to. Says a person's name gently before he sentences them, and asks quiet questions he already knows the answer to.",
+  "backstory": "Born a nobody somewhere in Tethyr, Ivoard Hask was captain of the Ash Company of sellswords by thirty. About 1449 the last Velun king, Tazhar, hired him to break the raiders of the South March; he broke them, then turned on his employer in the Night of Cinders (1453): the old palace burned, Tazhar and his sons died, and the Velun princess Ylia became his queen. The Glad Choir of the Pyrehouse opened its crypt to him, the giant Okton forged the Crown of Ash around the Heartcoal, and he proclaimed the Ember Law and ruled Ossmaar for 38 years: the Watch, the walls of Kharun, safe roads, honest weights, brimstone wealth, and the Sky Gallows kept fed for the roc. Ylia died in 1480 of what he called fever, and Mara, the camp-wife who bore his eldest, in 1489. In Flamerule 1490 he stopped every execution in the realm to starve what he wore, kept to his chambers with his cupbearer Isine Kettle, and died in the night of 26 Eleint 1491.",
+  "wants": "The Heartcoal broken before it passes to any of his children, and the feeding ended.",
+  "fears": "What the Coal made of him, and what it will make of the boy Kitwin; leaving his children to it.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "acknowledged firstborn, the camp-born son of Mara; sent him to the South March for twenty years and never praised him",
+      "attitude": 2
+    },
+    {
+      "who": "oselle-velun",
+      "how": "daughter by Queen Ylia; raised a hostage in his court",
+      "attitude": 1
+    },
+    {
+      "who": "kitwin",
+      "how": "youngest son by the Pyrehouse acolyte Doret; never acknowledged; he feared what the Coal would make of him",
+      "attitude": 1
+    },
+    {
+      "who": "isine-kettle",
+      "how": "cupbearer and body-servant for thirty years; the one person he trusted with his last order",
+      "attitude": 3
+    },
+    {
+      "who": "pellot-rook",
+      "how": "sword-brother in the Ash Company, dead in the South March in 1450",
+      "attitude": 3
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "High Pyrewarden; keeper of the Crown and the rites; useful, never trusted at the end",
+      "attitude": -1
+    },
+    {
+      "who": "okton",
+      "how": "the fire giant who forged the Crown of Ash at his order in 1453; knows more of the Coal than he says",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "captain of the Watch he founded; the Watch answered to him alone",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "Lorard is not his blood. The boy is the son of Pellot Rook, his sword-brother, who died in the South March in 1450. He took the pregnant Mara, acknowledged the child at seven and raised him as his own out of love for Mara, and never told a soul.",
+    "By 1490 he understood what the Heartcoal was: that it drank the deaths he fed it, that it had kept him hale far beyond his years, and that left unfed it would burn him from within. The Quiet Year was his attempt to starve it. He understood too what it would make of Kitwin.",
+    "The Pyrehouse's Glad Choir told him of the Coal and opened the crypt to him on the Night of Cinders; the Velun kings had hidden it there for half a century. He let everyone believe it was his own.",
+    "In 1480 Queen Ylia tried to pry the Coal out of the crown to destroy it, and it burned her; she died of the burns over nine days. He called it fever and sent the physicians who knew the truth to the Spire.",
+    "His last order to Isine Kettle, 'Break it. Not them, none of them. Break it', meant the Heartcoal, and he meant to spare his three children from it. He trusted no one else with the task, least of all the Pyrehouse. He never named an heir."
+  ],
+  "dm_only": [
+    "TRUE CAUSE OF DEATH: the Heartcoal killed him. Starved, it burned him from the inside (blackened lungs, a cooked heart); the Pyrewardens' 'fever of age' covers it up. Oselle's pale tincture (DMG p.258, supplied by House Mostana through a bribed taster) had weakened him for months; she believes she killed him and did not. Isine tasted from the same cups some nights. Whether he guessed at the wine is undecided.",
+    "He never knew that the Ember Law was the Glad Choir's own design (he thought it his idea), that the Choir was feeding the Coal in the Quiet Year through 'gladly going' wafers, that it kindled in secret for Kitwin, or that it began as Yaga-Shura's heart (see heartcoal).",
+    "Tamius Coldwell invented the deathbed naming of Kitwin; Hask named no heir. Isine alone heard the true last words.",
+    "Who now knows Lorard's parentage (day 11): Lorard, Chadickith, Marda Ironside and Hesard Rook. Halda does not yet. Marda gives Halda the sealed record on day 14 unless Chadickith intervenes.",
+    "Invented by npc-creator: the sheet (Fighter 12, Champion; plate with Defense style, greatsword with Great Weapon Fighting, heavy crossbow). Stats are the hale king at his height, wearing the Coal's vigour, not the burnt old man of his last night. No Heartcoal powers are on the sheet; the DM may add them.",
+    "Invented by npc-creator: birth about 1421 and age 70 (derived from 'king by thirty-two' in 1453; the lore says he looked no older than fifty until his last year); the habit of saying a name gently before a sentence; grey heavy-lidded eyes (taken from Kitwin's lore, 'his father's'); alignment lawful evil.",
+    "Roster limit: Queen Ylia Velun, Mara and King Tazhar have no records, so they appear only in backstory."
+  ],
+  "lore": "ivoard-hask",
+  "sheet": {
+    "class": "Fighter 12",
+    "background": "Soldier",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 19,
+    "ac_from": "plate, Defense style",
+    "hp": 112,
+    "hit_dice": "12d10+36",
+    "speed": 30,
+    "abilities": {
+      "str": 18,
+      "dex": 12,
+      "con": 16,
+      "int": 12,
+      "wis": 14,
+      "cha": 16
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "intimidation": 1,
+      "insight": 1,
+      "perception": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Action Surge",
+        "text": "Once per short rest, takes one additional action on his turn."
+      },
+      {
+        "name": "Improved Critical",
+        "text": "His weapon attacks score a critical hit on a roll of 19 or 20."
+      },
+      {
+        "name": "Remarkable Athlete",
+        "text": "Adds +2 to any Strength, Dexterity or Constitution check he is not proficient in."
+      },
+      {
+        "name": "Indomitable",
+        "text": "Once per long rest, rerolls a failed saving throw."
+      },
+      {
+        "name": "Great Weapon Fighting",
+        "text": "Rerolls a 1 or 2 on a damage die with a two-handed weapon (must use the new roll)."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "Three greatsword attacks (Extra Attack, twice)."
+      },
+      {
+        "name": "Greatsword",
+        "attack": "str",
+        "reach": 5,
+        "damage": "2d6 slashing"
+      },
+      {
+        "name": "Heavy Crossbow",
+        "attack": "dex",
+        "range": "100/400",
+        "damage": "1d10 piercing"
+      }
+    ],
+    "bonus_actions": [
+      {
+        "name": "Second Wind",
+        "text": "Regains 1d10+12 hit points. Once per short rest."
+      }
+    ],
+    "reactions": [],
+    "gear": [
+      "plate",
+      "greatsword",
+      "heavy crossbow",
+      "the Crown of Ash (worn in hall)"
+    ]
+  },
+  "slug": "ivoard-hask",
+  "created": "2026-10-25T04:40:36",
+  "updated": "2026-10-25T04:40:36"
+}

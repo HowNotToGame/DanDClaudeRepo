@@ -1,0 +1,52 @@
+{
+  "name": "Marl Hollis",
+  "aliases": [
+    "Old Marl Hollis",
+    "Old Marl"
+  ],
+  "tier": "minor",
+  "status": "historical",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "Founder of the Vent Games and first Keeper of the Slate (c. 1330 to 1362); bath-keeper at the Hollis bathhouse by the Third Vent, Steamside",
+  "age": "died 1362 at about seventy",
+  "appearance": "A squat, broad-armed woman with salt-cracked hands, a hauling strap over one shoulder and a wooden spoon thrust through her sash. Chalk to the elbow.",
+  "voice": "Gruff and plain. Settles every quarrel with the same two words, 'On the ash.' Spits to seal a bargain.",
+  "backstory": "The Hollises were salt-pan people from the Saltreach shore who took the bathhouse at the Third Vent from the old dead-washers' heirs around 1300. Marl hauled salt before she kept baths, which is why the Games begin with a grip on the hauling strap. In the Hot-Water Quarrels of about 1330, when bath-keepers, dyers and laundresses had drawn knives twice in one summer, she chalked a circle by the crack and set the rule: settle it on the ash with the whole street watching, push your rival out, shake on it, and soak together after. She kept the slate until she died in 1362; her son Hobb took it after her. Rosa Hollis calls her 'great-gran', and the rail tells Rosa every year that there are two more greats in it than that.",
+  "wants": "The street's quarrels settled in the open, on the ash, and never again with knives.",
+  "fears": "A drawn knife in the bathhouse; a fire in the dye-lanes; the old sick-washing days coming back.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "five generations back; Rosa calls her 'great-gran' and judges with her spoon",
+      "attitude": 1
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "ancestor; Wenna kept her rules and her slate",
+      "attitude": 1
+    },
+    {
+      "who": "joss-marl",
+      "how": "claimed ancestor of his; Rosa denies it every year",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "She read the Third Vent dead-washers' ledger from the Grey Cough and wrote her first rules on the blank backs of its pages. She noted what it said of dead that would not lie still, with the heat still in them, and told nobody what she made of it. She left the ledger in the cedar box behind the Spoon Wall."
+  ],
+  "dm_only": [
+    "invented by npc-creator: Marl's gender as a woman (the lore gives 'her son Hobb' and Rosa's 'great-gran'), age at death, appearance, voice, the 'On the ash' catchphrase, and that she hauled salt before keeping baths.",
+    "invented by npc-creator: the spit-to-seal habit and the spoon in her sash. Canon: Rosa judges with 'Old Marl's wooden spoon'.",
+    "Canon leaves open whether the ledger's 'heat still in them' is the early burn or only plague (see the-vent-games DM secrets). npc-creator did not resolve it.",
+    "Genealogy: Rosa, Wenna, Meg, Annis, Hobb, Marl is the family's own count; the slate may not have gone parent to child each time."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "Hard-handed salt-hauler's strength: treat Athletics as +3. Use for a vision or a restless shade."
+  },
+  "slug": "marl-hollis",
+  "created": "2026-10-25T04:35:16",
+  "updated": "2026-10-25T04:35:16"
+}

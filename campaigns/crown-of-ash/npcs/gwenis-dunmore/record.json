@@ -1,0 +1,68 @@
+{
+  "name": "Gwenis Dunmore",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "homebrew": true,
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "Watchwoman turned Blood Hunter of the Banked; one of the three who carried the Heartcoal out of Kharun; at Dunmarrow with her sister Kita",
+  "age": "29",
+  "appearance": "Lean and sharp-eyed, a long braid down her back, a hunter's stillness. Wears her Watch collar.",
+  "voice": "Quiet and exact. Stops mid-sentence to listen. Reports what she saw, not what she thinks. Her voice drops when the roc's blood comes up.",
+  "backstory": "A Watchwoman who took the roc's blood on the night of the Great Pyre and went Berserk in the Collarhouse cellar. In one clear moment on day 3 she said yes to Okton and was quenched; she came back remembering everything she did in the rage and is guilty over it. With Chadickith and her younger sister Kita she carried the Heartcoal out by the Saltgate postern, took it through the Cinder Hills, scouted ahead in her Crow shape, and helped open the sealed vault under Dunmarrow's keep where it now lies. She and Kita stayed at Dunmarrow when Chadickith flew back to Kharun.",
+  "wants": "To be worth the second chance; to keep Kita alive; to finish the hall and keep the Coal where it lies.",
+  "fears": "The rage coming back as it did in the cellar. The Coal's pulse. That Kita will pay for her mistakes.",
+  "relationships": [
+    {
+      "who": "kita-dunmore",
+      "how": "younger sister, fiercely loved",
+      "attitude": 3
+    },
+    {
+      "who": "okton",
+      "how": "quenched her from Berserk; she feels him like a banked fire in the next room",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "ran the Coal out of Kharun with him",
+      "attitude": 2
+    },
+    {
+      "who": "ulric-vane",
+      "how": "the gravekeeper at Dunmarrow, who shares his chapel fire",
+      "attitude": 1
+    },
+    {
+      "who": "hesby-bramble",
+      "how": "her sergeant and fellow Banked",
+      "attitude": 1
+    },
+    {
+      "who": "joris-marsh",
+      "how": "Watchman still lost in the rage she came back from",
+      "attitude": 1
+    },
+    {
+      "who": "gwenet-marlow",
+      "how": "Watchwoman still lost in the rage she came back from",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You remember all of what you did while Berserk, and the guilt sits in you.",
+    "You know the Heartcoal lies behind the inner iron door in the vault under Dunmarrow's keep, and that Ulric Vane thinks the box was an entombment. You know the real route out of Kharun, the Saltgate postern, known only to the runners, Okton and Halda."
+  ],
+  "dm_only": [
+    "What Gwenis did in the rage is not in canon; the DM decides whether anyone was hurt. Her watch missed Ulric lingering at the top of the lane on day 8.",
+    "Invented by npc-creator: the listening habit; her attitudes toward Ulric, Joris and Gwenet; that she knows the vault (Order lore says the Order knows it).",
+    "Sheet: banked/gwenis-dunmore.json is authoritative (level 3, Crow)."
+  ],
+  "sheet": {
+    "file": "banked/gwenis-dunmore.json"
+  },
+  "slug": "gwenis-dunmore",
+  "created": "2026-10-25T04:42:42",
+  "updated": "2026-10-25T04:42:42"
+}

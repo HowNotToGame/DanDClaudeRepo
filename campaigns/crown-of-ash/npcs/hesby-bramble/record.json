@@ -1,0 +1,75 @@
+{
+  "name": "Hesby Bramble",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "homebrew": true,
+  "race": "bronze dragonborn",
+  "alignment": "lawful good",
+  "role": "sergeant of the Kharun Watch and one of the Banked; on the road to Dunmarrow with Samson",
+  "age": "46",
+  "appearance": "Thick and grizzled, his bronze scales dulled with age, a sergeant's flat gaze. Keeps his Watch collar on.",
+  "voice": "Flat and clipped, a sergeant giving a report: facts first, no ornament ('Two singers, one guard, the north postern.'). Says 'Right' before he commits to anything. Does not swear.",
+  "backstory": "A Watch sergeant who drew the Pyrehouse beat for years, married to Marta. The roc's blood put the burn in him on the night of the Great Pyre; Frenzied and willing, he was quenched by Okton in the Collarhouse cellar on day 3. Since then he has kept his collar, his post and his four o'clock waking, drilled before shift, and carries a small blade for bleeding the heat off. He cannot drink; spirits make the heat harder to hold. Okton set him as a quiet lookout on the Pyrehouse north postern, where a singer in grey hailed him 'Sergeant'. He carried the redoubt message to Halda, drafted the forged order that exposed Captain Rook's leak, guarded the forge door, and on the morning of day 10 left for Dunmarrow with Samson.",
+  "wants": "To hold the heat and keep his post; to guard the Order's secret and the Watch's trust; to tell Marta the truth himself when it is safe.",
+  "fears": "Losing the heat in front of Marta or a child. The Choir singers who know his face. That 'ill' on the rolls stops being believable.",
+  "relationships": [
+    {
+      "who": "okton",
+      "how": "quenched him; he feels Okton at a distance like a banked fire in the next room",
+      "attitude": 3
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "loyal to her; carried her messages",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "fellow Banked who leads the Order's runs",
+      "attitude": 1
+    },
+    {
+      "who": "samson-cobb",
+      "how": "travelling with him to Dunmarrow",
+      "attitude": 2
+    },
+    {
+      "who": "cassmund-furrow",
+      "how": "fellow Banked; looks up to him",
+      "attitude": 1
+    },
+    {
+      "who": "gwenis-dunmore",
+      "how": "fellow Banked, now at Dunmarrow",
+      "attitude": 1
+    },
+    {
+      "who": "kita-dunmore",
+      "how": "fellow Banked, now at Dunmarrow",
+      "attitude": 1
+    },
+    {
+      "who": "hesard-rook",
+      "how": "the captain whose men leaked; Hesby forged the order that exposed it",
+      "attitude": -2
+    }
+  ],
+  "secrets": [
+    "Your wife Marta has been told only that you are ill. You wake at four to drill before shift.",
+    "You carry the burn at Stirring and can bleed it off with your small blade; even a clean kill takes effort to put down.",
+    "Around the dusk bell of day 2 you saw hooded Choir singers carry a crowned boy in through the Pyrehouse north postern by the charnel wall. A singer in grey hailed you by rank, so the Choir knows a Watch sergeant has been watching.",
+    "You know the Order's hall is Dunmarrow and that the Heartcoal lies in its vault."
+  ],
+  "dm_only": [
+    "Conflict: his file notes call him 'grey-bearded', written when he was human; as a bronze dragonborn he has no beard, so appearance says dulled scales. Memory m0097 (Human, Brown Bear) is superseded by m0100 (Bronze Dragonborn, Eagle).",
+    "Invented by npc-creator: that all five Banked know the Coal lies in the Dunmarrow vault (lore says the Order knows the vault); the verbal habit 'Right'; relationship attitudes except Okton. Marta has no record.",
+    "Sheet: banked/hesby-bramble.json is authoritative (level 4, Eagle, bronze breath)."
+  ],
+  "sheet": {
+    "file": "banked/hesby-bramble.json"
+  },
+  "slug": "hesby-bramble",
+  "created": "2026-10-25T04:42:42",
+  "updated": "2026-10-25T04:42:42"
+}

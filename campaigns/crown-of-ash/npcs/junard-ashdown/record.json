@@ -1,0 +1,184 @@
+{
+  "name": "Junard Ashdown",
+  "aliases": [
+    "Lord Junard Ashdown",
+    "the Lord of Ashdown"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Lord of House Ashdown and one of the three old-house lamps on the Lamplit Council; holds the Saltreach salt-pans and the ground-leases of much of the Ashward, and trades in news the way other lords trade in horses",
+  "age": "57",
+  "appearance": "Soft, silver-fringed and well kept, with a ring on nearly every finger and a smell of lavender over damp cellar-stone. Smiles with his mouth and listens with his eyes. His clothes are always exactly one season behind the Calishite fashion.",
+  "voice": "Warm, confiding, a conspirator's murmur; he leans in. Starts with 'Between us,' calls everyone 'my friend,' and ends sentences with a small question, 'wouldn't you say?', that rarely wants an answer.",
+  "backstory": "The only son of Lord Aldred Ashdown, whose house kept its lands, and gained Saltreach's salt-pans, when the Velun Plot of 1474 hanged forty of its peers. Junard was forty and told himself his father was lucky. He learned otherwise when Aldred died in 1485 and the strongbox yielded a chancery receipt, in a clerk's hand, for a list of names. He has kept the receipt and the pans and made himself useful: a man who knows what every household in the Lamp Market whispers cannot easily be spared. He collects secrets the way other lords collect hounds, and sits on the council as Oselle's friend because she holds the Keep and he wants to stand near whoever does.",
+  "wants": "To be on the winning side of whatever comes; to keep Ashdown's lands, the pans and the Ashward leases, intact; for the receipt never to be read aloud in the long hall.",
+  "fears": "Wynley Fairweather finding the receipt. The Ashward, who pay his rents, learning that their landlord sits on the council. A king or regent who reads the Plot's records and sees who talked.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "friend of convenience; she needs the old-house votes, and he needs to be near the Keep",
+      "attitude": 1
+    },
+    {
+      "who": "kaslo-ashdown",
+      "how": "natural half-sister, his father's bastard by a Steamside bath-maid; he pays her rent quarterly and uses her as an ear in the Vents",
+      "attitude": 1,
+      "hidden": true
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "trades gossip and favours with the Factor over candied dates",
+      "attitude": 1
+    },
+    {
+      "who": "wynley-fairweather",
+      "how": "the heir whose family's pans he holds; avoids him and fears him",
+      "attitude": -1
+    },
+    {
+      "who": "norelle-whitlock",
+      "how": "fellow survivor of the Plot; she does not like him and he knows it",
+      "attitude": 0
+    },
+    {
+      "who": "bryados-weary",
+      "how": "banker; moves the quarterly sum to Kaslo and has never asked",
+      "attitude": 0
+    },
+    {
+      "who": "wilmund-redfern",
+      "how": "fellow lamp; pleasantly dull and honest",
+      "attitude": 0
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "Watch-Captain; a woman who cannot be flattered, which he finds restful and alarming",
+      "attitude": 0
+    },
+    {
+      "who": "chadickith",
+      "how": "the old man who pressed the council; he wants to know whose man he is",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "The receipt: his father Aldred sold the Plot's list of names to Hask's chancery in 1474 and was paid with Fairweather's Saltreach pans. Junard keeps the receipt in a locked case in his house; he has not burned it, because it is also the only proof that the chancery paid for names.",
+    "Kaslo Ashdown, the midwife of the Vents, is his half-sister. He pays her rent through the Moneychangers and hears from her every rumour that crosses a Steamside bath-bench.",
+    "He has told Seipora Mostana more about the lamps than he meant to."
+  ],
+  "dm_only": [
+    "invented by npc-creator: all of Junard's personal detail: age, appearance, the verbal habit, being Aldred Ashdown's only son, being forty in 1474.",
+    "invented by npc-creator: the receipt is real. Aldred Ashdown sold the list of names; Saltreach's salt-pans were Fairweather's and went to Ashdown as the price. House Ashdown also holds the ground-leases of much of the Ashward. Overrule any of it.",
+    "invented by npc-creator: Kaslo Ashdown (canon: midwife in the Vents who repeated the rumour that Okton made the Crown) is Aldred's natural daughter and Junard's half-sister. Check against her record and overrule if she is no kin.",
+    "invented by npc-creator: alignment and sheet (Lore bard 3, courtier; Cutting Words, Detect Thoughts and Suggestion).",
+    "Leaning (invented): will swing to whoever holds the Keep. If the receipt comes out he panics and offers the pans back, then tries to buy silence."
+  ],
+  "sheet": {
+    "class": "Bard 3",
+    "background": "Noble",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 13,
+    "ac_from": "leather armor",
+    "hp": 24,
+    "hit_dice": "3d8+6",
+    "speed": 30,
+    "abilities": {
+      "str": 9,
+      "dex": 15,
+      "con": 14,
+      "int": 13,
+      "wis": 11,
+      "cha": 16
+    },
+    "saves": [
+      "dex",
+      "cha"
+    ],
+    "skills": {
+      "persuasion": 2,
+      "deception": 2,
+      "insight": 1,
+      "history": 1,
+      "performance": 1,
+      "investigation": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Chondathan",
+      "Alzhedo"
+    ],
+    "traits": [
+      {
+        "name": "Bardic Inspiration",
+        "text": "Bonus action: one creature within 60 ft. gains a d6 to add to one roll in the next 10 minutes. Three uses, regained on a long rest."
+      },
+      {
+        "name": "Jack of All Trades",
+        "text": "Adds half his proficiency bonus to ability checks he is not proficient in."
+      },
+      {
+        "name": "Song of Rest",
+        "text": "During a short rest, allies who heal gain an extra 1d6 hit points."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Rapier",
+        "attack": "dex",
+        "reach": 5,
+        "damage": "1d8 piercing"
+      },
+      {
+        "name": "Dagger",
+        "attack": "finesse",
+        "reach": 5,
+        "range": "20/60",
+        "damage": "1d4 piercing"
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Cutting Words",
+        "text": "Spends a Bardic Inspiration die to subtract it from a creature's attack roll, ability check or damage roll within 60 ft. that can hear him."
+      }
+    ],
+    "spellcasting": {
+      "ability": "cha",
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "spells": {
+        "0": [
+          "Vicious Mockery",
+          "Minor Illusion"
+        ],
+        "1": [
+          "Charm Person",
+          "Disguise Self",
+          "Healing Word",
+          "Dissonant Whispers"
+        ],
+        "2": [
+          "Detect Thoughts",
+          "Suggestion"
+        ]
+      }
+    },
+    "gear": [
+      "leather armor",
+      "rapier",
+      "dagger",
+      "rings",
+      "locked case with the chancery receipt",
+      "lute"
+    ]
+  },
+  "slug": "junard-ashdown",
+  "created": "2026-10-25T04:42:32",
+  "updated": "2026-10-25T04:42:32"
+}

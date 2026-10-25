@@ -1,0 +1,42 @@
+{
+  "name": "Osric Thell",
+  "aliases": [
+    "Baron Osric Thell"
+  ],
+  "tier": "background",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Baron of Thell, a grain barony of about 18,000 people beyond the Thorn, east of Ossmaar and Thornwater's main grain supplier",
+  "age": "late sixties",
+  "appearance": "Heavy and slow-moving, with a farmer's hands and a baron's signet worn on a thong. Prefers a worn riding cloak to a coat of arms.",
+  "voice": "Slow and weighing. Talks of weather and harvests before business, and answers hard questions with 'We shall see what the river says.'",
+  "backstory": "The Thells have held the east bank of the Thorn for generations and have grown rich by selling grain to whoever rules in Kharun. After the Thornwater Tithe in 1484, with many Thornwater families having kin across the river, he went cold on Kharun: no more courtesy to the Lord-Marshal's collectors, no more gifts at the bridge. He kept selling grain, because the bread is his own people's too. He wants no war and would sell to any crown that paid on time.",
+  "wants": "His barony kept out of everyone's war; a fair price for his grain; shelter for the kin of his tenants.",
+  "fears": "Lorard's army on the Thorn Bridge; a hungry Kharun that decides to take his grain by force; being caught between the lake and the hills.",
+  "relationships": [
+    {
+      "who": "cora-underbough",
+      "how": "sells her town its bread; cousins and in-laws on both banks",
+      "attitude": 2
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal who hanged the cousins of his tenants",
+      "attitude": -2
+    }
+  ],
+  "secrets": [
+    "He has told Reeve Underbough privately that he will take Thornwater families across the Thorn if the Lord-Marshal's army marches east.",
+    "His granaries hold two winters of grain. Nobody in Kharun knows, and the price of bread in the interregnum is his lever."
+  ],
+  "dm_only": [
+    "invented by npc-creator: his age, appearance, voice, the signet, and the private offer to Cora Underbough.",
+    "invented by npc-creator: the two-winter reserve. Canon says only that he is Thornwater's main grain supplier and cool toward Kharun since the Tithe."
+  ],
+  "lore": null,
+  "statblock": "Noble|MM",
+  "slug": "osric-thell",
+  "created": "2026-10-25T04:34:46",
+  "updated": "2026-10-25T04:34:46"
+}

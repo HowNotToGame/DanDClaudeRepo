@@ -1,52 +1,54 @@
-"""NPCs: every named character in a campaign gets a record, and can think for themselves through a subagent.
+"""NPC records and minds: every named character is a person with a record and a mind of their own.
 
-One compact JSON file per character in campaigns/<slug>/npcs/<npc>.json:
+**Records** live beside the minds, one folder per person:
+    campaigns/<slug>/npcs/<npc>/record.json     (companions: campaigns/<slug>/companions/<npc>/record.json)
 
-    name, race, alignment, backstory, relationships   always (relationships may be an empty list)
-    statblock   a creature from the rules data for minor NPCs: "commoner|mm" (also commoner_mm, a 5e.tools
-                bestiary link, or {"ref": "veteran|mm", "ac": 17, "notes": "…"} with overrides)
-    sheet       a character sheet for significant NPCs (tier "major"): a compact stat block whose derived numbers
-                (proficiency, saves, skills, to-hit, damage) are computed here, see `compile_sheet`; or
-                {"file": "banked/hesby-bramble.json"} for a full PC-style sheet kept elsewhere
-    tier        "major" (a significant story NPC: needs a sheet) or "minor"
-    lore        the lore entry about them, if any
-    role, age, appearance, voice, wants, fears          optional colour
-    secrets     what THEY know and keep (their mind sees these)
-    dm_only     truths about them they don't know, and mechanics (their mind never sees these)
-    status      alive | dead | missing | unknown; the dead and historical need no statblock or sheet
-    mind        attitudes toward others, consults (kept by the engine)
+A record holds who they are (race, alignment, role, appearance, voice, backstory, wants, fears, relationships —
+possibly none —, the secrets they keep, and `dm_only` truths they don't know) and how they fight: either a
+**stat block** from the rules data (`"commoner|MM"`, `commoner_mm`, a 5e.tools bestiary link, or `{ref, ac, hp,
+notes}` with overrides) or a **compact character sheet**. Significant (`major`) NPCs always have a sheet.
 
-Their first-person memories live in npcs/memory.jsonl ({"npc": slug, "text": …}).
+A compact sheet stores only inputs (class and level or CR, ability scores, AC, HP, proficiencies, actions,
+spellcasting); `compile_sheet` derives proficiency, saves, skills, to-hit, damage and the save DC and returns a
+5etools-shaped creature, so the stat block renderer and `./dm combat add "<name>"` use it unchanged. A sheet can
+also point at a full PC-style sheet file (`{"file": "banked/x.json"}`).
 
-Minds: the generic `npc` subagent plays any NPC from `./dm npc brief <npc>` (knowledge-limited like a companion's:
-their record minus `dm_only`, their memories, what's tagged `known_by` them, public lore, the scene). Its model is
-fixed (NPC_MODEL / NPC_EFFORT), not a table setting. Companions keep their own personas and agents: for a companion,
-`npc brief` hands over to the companion brief. The `npc-creator` subagent writes records (`./dm npc import`).
+**Minds** reuse the companions' machinery (robodm/companions.py: state, memories, attitudes, recall, the shared
+brief): `npcs/<npc>/state.json` and `memory.jsonl`. Every non-companion NPC is played by a generic subagent,
+`npc-major` for major NPCs and `npc` for the rest. Their model is fixed (haiku; effort medium / low) and is not a
+table setting. Companions keep their own agents.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
-from typing import Any
+from urllib.parse import quote, unquote
 
+from robodm import companions as co
 from robodm.campaign import Campaign
-from robodm.util import (ABILITIES, SKILLS, RoboDMError, ability_mod, append_jsonl, fmt_mod, now_iso,
-                         proficiency_bonus, rank_documents, read_json, read_jsonl, slugify, truncate, write_json,
-                         write_text)
+from robodm.util import (ABILITIES, RoboDMError, ability_mod, fmt_mod, now_iso, read_json, slugify, truncate,
+                         write_json, write_text)
 
-NPC_MODEL = "haiku"          # every NPC mind: cheap and quick; companions have their own (configurable) agents
-NPC_EFFORT = "medium"
-TIERS = ("major", "minor")
-STATUSES = ("alive", "dead", "missing", "unknown")
-ALIGNMENTS = ("lawful good", "neutral good", "chaotic good", "lawful neutral", "neutral", "chaotic neutral",
-              "lawful evil", "neutral evil", "chaotic evil", "unaligned", "any")
-FIELDS = ("name", "slug", "tier", "status", "race", "alignment", "role", "age", "appearance", "voice", "backstory",
-          "wants", "fears", "secrets", "dm_only", "relationships", "statblock", "sheet", "lore", "mind", "created",
-          "updated")
-_ALIGN_ABBR = {"lawful": "L", "chaotic": "C", "good": "G", "evil": "E", "neutral": "N", "unaligned": "U", "any": "A"}
-SIZES = {"tiny": "T", "small": "S", "medium": "M", "large": "L", "huge": "H", "gargantuan": "G"}
+TIERS = ("major", "minor", "background")
+STATUSES = ("alive", "dead", "missing", "historical")
+ALIGNMENTS = tuple(co.ALIGNMENT_GUIDE)
+NPC_MODEL = "haiku"
+AGENTS = {"npc-major": "medium", "npc": "low"}           # agent name → fixed effort (not a table setting)
+SKILLS = {"acrobatics": "dex", "animal handling": "wis", "arcana": "int", "athletics": "str", "deception": "cha",
+          "history": "int", "insight": "wis", "intimidation": "cha", "investigation": "int", "medicine": "wis",
+          "nature": "int", "perception": "wis", "performance": "cha", "persuasion": "cha", "religion": "int",
+          "sleight of hand": "dex", "stealth": "dex", "survival": "wis"}
+ABILITY_NAMES = {"str": "Strength", "dex": "Dexterity", "con": "Constitution", "int": "Intelligence",
+                 "wis": "Wisdom", "cha": "Charisma"}
+SIZE_CODES = {"tiny": "T", "small": "S", "medium": "M", "large": "L", "huge": "H", "gargantuan": "G"}
+# Words that open a name without being one ("Sister Ilsa", "Old Wenna Hollis", "Captain Marda Ironside").
+TITLES = {"sister", "brother", "captain", "lord", "lady", "master", "mistress", "mother", "father", "old", "big",
+          "young", "little", "sergeant", "reeve", "factor", "high", "sir", "dame", "the", "warden", "baron", "iron",
+          "watch-captain", "lord-marshal", "king", "queen", "prince", "princess", "uncle", "aunt", "grandmother",
+          "grandfather", "nan", "granny", "elder", "headman", "steward", "pyrewarden", "brother-captain"}
 
 
 # =============================================================================== storage
@@ -55,657 +57,830 @@ def npcs_dir(camp: Campaign) -> Path:
     return camp.path("npcs")
 
 
-def _path(camp: Campaign, slug: str) -> Path:
-    return npcs_dir(camp) / f"{slug}.json"
+def is_companion(camp: Campaign, slug: str) -> bool:
+    return (co.companions_dir(camp) / slug / "persona.md").exists()
 
 
-def all_slugs(camp: Campaign) -> list[str]:
-    d = npcs_dir(camp)
-    return sorted(p.stem for p in d.glob("*.json")) if d.exists() else []
-
-
-def load(camp: Campaign, slug: str) -> dict:
-    rec = read_json(_path(camp, slug))
-    if not rec:
-        raise RoboDMError(f"No NPC record '{slug}'.")
-    rec.setdefault("slug", slug)
-    return rec
+def record_path(camp: Campaign, slug: str) -> Path:
+    if is_companion(camp, slug):
+        return co.companions_dir(camp) / slug / "record.json"
+    return npcs_dir(camp) / slug / "record.json"
 
 
 def all_records(camp: Campaign) -> list[dict]:
-    return [load(camp, s) for s in all_slugs(camp)]
-
-
-def find(camp: Campaign, name: str) -> str:
-    """The slug of the NPC called `name` (slug, full name, alias or unique prefix/first name)."""
-    slug = slugify(name)
-    slugs = all_slugs(camp)
-    if slug in slugs:
-        return slug
-    for s in slugs:
-        rec = load(camp, s)
-        names = [rec.get("name", "")] + list(rec.get("aliases") or [])
-        if any(slugify(n) == slug for n in names):
-            return s
-    pref = [s for s in slugs if s.startswith(slug + "-") or s.startswith(slug)] or [s for s in slugs if slug in s]
-    if len(pref) == 1:
-        return pref[0]
-    raise RoboDMError(f"No NPC record '{name}'." + (f" Close: {', '.join(pref[:6])}." if pref else "")
-                      + " Make one with `./dm npc add` or the npc-creator agent.")
-
-
-def find_or_none(camp: Campaign, name: str) -> str | None:
-    try:
-        return find(camp, name)
-    except RoboDMError:
-        return None
-
-
-def save(camp: Campaign, rec: dict, overwrite: bool = True) -> Path:
-    rec = normalize(rec)
-    problems = validate(camp, rec)
-    if problems:
-        raise RoboDMError(f"NPC record for {rec.get('name', '?')} isn't valid:\n" + "\n".join(f"- {p}" for p in problems))
-    p = _path(camp, rec["slug"])
-    old = read_json(p)
-    if old and not overwrite:
-        raise RoboDMError(f"{rec['name']} already has a record (npcs/{rec['slug']}.json). Use --overwrite to replace it.")
-    if old:
-        rec.setdefault("created", old.get("created"))
-        rec["mind"] = {**(old.get("mind") or {}), **(rec.get("mind") or {})}
-    rec.setdefault("created", now_iso())
-    rec["updated"] = now_iso()
-    ordered = {k: rec[k] for k in FIELDS if k in rec and rec[k] not in (None, "")}
-    ordered.update({k: v for k, v in rec.items() if k not in ordered and v not in (None, "")})
-    write_json(p, ordered)
-    return p
-
-
-def normalize(rec: dict) -> dict:
-    rec = dict(rec)
-    if not rec.get("name"):
-        raise RoboDMError("An NPC record needs a name.")
-    rec["slug"] = rec.get("slug") or slugify(rec["name"])
-    rec["alignment"] = str(rec.get("alignment") or "").strip().lower()
-    rec["status"] = str(rec.get("status") or "alive").lower()
-    rec["tier"] = str(rec.get("tier") or ("major" if rec.get("sheet") else "minor")).lower()
-    for k in ("secrets", "dm_only"):
-        if isinstance(rec.get(k), str):
-            rec[k] = [rec[k]] if rec[k].strip() else []
-    rels = rec.get("relationships")
-    if rels is None:
-        rels = []
+    """Every record (NPCs and companions), each with `_kind` ("npc" | "companion")."""
     out = []
-    for r in rels if isinstance(rels, list) else [rels]:
-        if isinstance(r, str):                                # "marda-ironside: her trusted captain"
-            who, _, how = r.partition(":")
-            r = {"who": who.strip(), "how": how.strip()}
-        if isinstance(r, dict) and r.get("who"):
-            r = dict(r, who=slugify(str(r["who"])))
-            out.append(r)
-    rec["relationships"] = out
+    for root, kind in ((npcs_dir(camp), "npc"), (co.companions_dir(camp), "companion")):
+        if not root.exists():
+            continue
+        for p in sorted(root.glob("*/record.json")):
+            rec = read_json(p)
+            if isinstance(rec, dict) and rec.get("name"):
+                rec.setdefault("slug", p.parent.name)
+                rec["_kind"] = kind
+                out.append(rec)
+    return out
+
+
+def load(camp: Campaign, slug: str) -> dict | None:
+    p = record_path(camp, slug)
+    rec = read_json(p) if p.exists() else None
+    if rec:
+        rec.setdefault("slug", slug)
+        rec["_kind"] = "companion" if is_companion(camp, slug) else "npc"
     return rec
 
 
-def validate(camp: Campaign | None, rec: dict, db=None) -> list[str]:
-    """What's missing or wrong. The rules data is checked when it's available."""
-    p = []
-    for k in ("race", "alignment", "backstory"):
-        if not str(rec.get(k) or "").strip():
-            p.append(f"{k} is missing")
-    if rec.get("alignment") and rec["alignment"] not in ALIGNMENTS:
-        p.append(f"alignment '{rec['alignment']}' isn't one of: {', '.join(ALIGNMENTS)}")
-    if rec.get("tier") not in TIERS:
-        p.append(f"tier must be major or minor, not '{rec.get('tier')}'")
-    if rec.get("status") not in STATUSES:
-        p.append(f"status must be one of: {', '.join(STATUSES)}")
-    if not isinstance(rec.get("relationships"), list):
-        p.append("relationships must be a list (it may be empty)")
-    living = rec.get("status") not in ("dead",)
-    if living and not rec.get("statblock") and not rec.get("sheet"):
-        p.append("needs a statblock (a creature from the rules data, e.g. commoner|mm) or a sheet")
-    if living and rec.get("tier") == "major" and not rec.get("sheet"):
-        p.append("a major (significant story) NPC needs a character sheet")
-    if rec.get("sheet"):
-        try:
-            if isinstance(rec["sheet"], dict) and rec["sheet"].get("file"):
-                if camp is not None and not read_json(camp.path(rec["sheet"]["file"])):
-                    p.append(f"sheet file {rec['sheet']['file']} not found in the campaign")
-            else:
-                compile_sheet(rec)
-        except (RoboDMError, KeyError, TypeError, ValueError) as e:
-            p.append(f"sheet: {e}")
-    if rec.get("statblock"):
-        ref = statblock_ref(rec["statblock"])
-        if not ref:
-            p.append("statblock needs a creature name, e.g. commoner|mm")
+def _clean(rec: dict) -> dict:
+    return {k: v for k, v in rec.items() if not k.startswith("_")}
+
+
+def first_name(name: str) -> str:
+    words = [w for w in re.split(r"\s+", name.strip()) if w]
+    for w in words:
+        if w.lower().strip(",.") not in TITLES:
+            return w.strip(",.")
+    return words[0] if words else name
+
+
+def name_keys(rec: dict) -> list[str]:
+    """How the narration refers to them: full name, aliases, and the first non-title word (3+ letters)."""
+    keys = [str(rec.get("name", ""))] + [str(a) for a in rec.get("aliases") or []]
+    first = first_name(str(rec.get("name", "")))
+    if len(first) >= 3:
+        keys.append(first)
+    return [k for k in dict.fromkeys(keys) if k]
+
+
+def find_or_none(camp: Campaign, name: str) -> dict | None:
+    if not name or not name.strip():
+        return None
+    recs = all_records(camp)
+    slug = slugify(name)
+    low = name.strip().lower()
+    for test in (lambda r: r["slug"] == slug,
+                 lambda r: str(r.get("name", "")).lower() == low,
+                 lambda r: low in [str(a).lower() for a in r.get("aliases") or []],
+                 lambda r: r.get("lore") == slug):
+        hits = [r for r in recs if test(r)]
+        if len(hits) == 1:
+            return hits[0]
+    hits = [r for r in recs if first_name(str(r.get("name", ""))).lower() == low]
+    if len(hits) == 1:
+        return hits[0]
+    hits = [r for r in recs if r["slug"].startswith(slug)]
+    return hits[0] if len(hits) == 1 else None
+
+
+def find(camp: Campaign, name: str) -> dict:
+    rec = find_or_none(camp, name)
+    if rec is None:
+        raise RoboDMError(f"No NPC record for '{name}'. `./dm npc check` lists who's missing; create one with "
+                          "`./dm npc add \"Name\" …` (minor) or the npc-creator agent (significant).")
+    return rec
+
+
+def who_name(camp: Campaign, who: str) -> str | None:
+    """The name of a relationship's `who`: another record, or a player character. None if neither exists."""
+    rec = find_or_none(camp, who)
+    if rec:
+        return rec["name"]
+    pc = camp.find_pc(who) if who else None
+    return pc["name"] if pc and pc["slug"] == slugify(who) else None
+
+
+def mind_agent(camp: Campaign, rec: dict) -> str:
+    """The subagent that plays this person."""
+    if rec.get("_kind") == "companion" or is_companion(camp, rec["slug"]):
+        return co.agent_name(camp, rec["slug"])
+    return "npc-major" if rec.get("tier") == "major" else "npc"
+
+
+# =============================================================================== stat blocks and links
+
+def statblock_ref(sb) -> tuple[str, str | None, dict]:
+    """(name, source or None, overrides) from any of the accepted spellings."""
+    over: dict = {}
+    if isinstance(sb, dict):
+        over = {k: v for k, v in sb.items() if k not in ("ref", "name")}
+        if sb.get("name") and not sb.get("ref"):
+            sb = sb["name"]
         else:
-            db = db if db is not None else _db()
-            if db is not None and getattr(db, "available", False):
-                rec_db, _ = db.lookup(ref[0], "monster", ref[1])
-                if not rec_db:
-                    p.append(f"statblock '{ref[0]}' isn't in the rules data")
-    return p
+            if sb.get("name"):
+                over["name"] = sb["name"]
+            sb = sb.get("ref", "")
+    s = unquote(str(sb or "")).strip()
+    if "#" in s:
+        s = s.rsplit("#", 1)[1]
+    m = re.fullmatch(r"(.+?)\s*\(([A-Za-z0-9]+)\)", s)
+    if m:
+        return m.group(1).strip(), m.group(2).upper(), over
+    if "|" in s:
+        name, src = s.split("|", 1)
+        return name.strip(), (src.strip().upper() or None), over
+    m = re.fullmatch(r"(.+)_([a-z0-9]+)", s)
+    if m and " " not in m.group(2):
+        return m.group(1).strip(), m.group(2).upper(), over
+    return s, None, over
+
+
+def statblock_url(name: str, source: str) -> str:
+    """The 5e.tools bestiary page for a creature, e.g. http://localhost:5050/bestiary.html#commoner_mm."""
+    base = os.environ.get("ROBODM_LOCAL_5ETOOLS", "http://localhost:5050").rstrip("/")
+    return f"{base}/bestiary.html#{quote(name.lower(), safe=chr(39) + '()!*~')}_{source.lower()}"
 
 
 def _db():
     try:
         from robodm.rules import default_db
 
-        return default_db()
+        db = default_db()
+        return db if getattr(db, "available", True) else None
     except Exception:
         return None
 
 
-# =============================================================================== stat blocks and sheets
-
-def statblock_ref(sb: Any) -> tuple[str, str | None] | None:
-    """(creature name, source) from "commoner|mm", "commoner_mm", "Commoner (MM)", a bestiary link or {"ref": …}."""
-    if isinstance(sb, dict):
-        sb = sb.get("ref") or sb.get("name") or ""
-    s = str(sb or "").strip()
-    if not s:
+def _lookup_monster(db, name: str, source: str | None):
+    if db is None:
         return None
-    if "#" in s:
-        s = s.split("#", 1)[1]
-    m = re.match(r"^(.*?)\s*\(([A-Za-z0-9]+)\)\s*$", s)
-    if m:
-        return m.group(1).strip(), m.group(2).upper()
-    for sep in ("|", "_"):
-        if sep in s:
-            name, src = s.rsplit(sep, 1)
-            if re.fullmatch(r"[A-Za-z0-9]{2,8}", src):
-                return name.replace("%20", " ").strip(), src.upper()
-    return s, None
-
-
-def _parse_type(t: str, race: str) -> Any:
-    t = (t or "").strip()
-    if not t:
-        return {"type": "humanoid", "tags": [race.lower()]} if race else "humanoid"
-    m = re.match(r"^(\w+)\s*\((.+)\)$", t)
-    if m:
-        return {"type": m.group(1).lower(), "tags": [x.strip() for x in m.group(2).split(",")]}
-    return t.lower()
-
-
-def _align_letters(a: str) -> list[str]:
-    a = (a or "").lower().strip()
-    if a in ("neutral", "true neutral"):
-        return ["N"]
-    return [_ALIGN_ABBR[w] for w in a.split() if w in _ALIGN_ABBR] or ["N"]
-
-
-def _level(sheet: dict) -> int:
-    return sum(int(n) for n in re.findall(r"(\d+)", str(sheet.get("class") or "")))
-
-
-def sheet_pb(sheet: dict) -> int:
-    lvl = _level(sheet)
-    if lvl:
-        return proficiency_bonus(min(lvl, 20))
-    from robodm.rules.index import cr_to_float
-
-    cr = cr_to_float(sheet.get("cr")) or 0
-    return 2 if cr < 5 else 2 + int((cr - 1) // 4)
-
-
-def _abilities(sheet: dict) -> dict[str, int]:
-    src = sheet.get("abilities") or sheet
-    return {ab: int(src.get(ab, 10)) for ab in ABILITIES}
-
-
-def _attack_text(act: dict, ab: dict[str, int], pb: int, spell_ab: str | None) -> str:
-    """5etools-tagged attack line from a compact action, so the stat block renderer and the tracker read it."""
-    stat = str(act.get("attack", "str")).lower()
-    if stat.lstrip("+-").isdigit():
-        to_hit, mod = int(stat), 0
-    else:
-        if stat == "finesse":
-            key = "dex" if ab["dex"] >= ab["str"] else "str"
-        elif stat == "spell":
-            key = spell_ab or "int"
-        else:
-            key = stat[:3]
-            if key not in ABILITIES:
-                raise RoboDMError(f"action {act.get('name')}: attack must be str, dex, finesse, spell or a number")
-        mod = ability_mod(ab[key])
-        to_hit = mod + pb + int(act.get("bonus", 0))
-        mod += int(act.get("bonus", 0)) if act.get("magic_damage", True) else 0
-    ranged = bool(act.get("range"))
-    kind = ("ms" if not ranged else "rs") if stat == "spell" else ("rw" if ranged else "mw")
-    where = f"range {act['range']} ft." if ranged else f"reach {int(act.get('reach', 5))} ft."
-    parts = []
-    for i, d in enumerate([act.get("damage")] + list(act.get("extra_damage") or [])):
-        if not d:
-            continue
-        m = re.match(r"^\s*(\d+d\d+)(?:\s*([+-])\s*(\d+))?\s*([a-z]+)?\s*$", str(d), re.I)
-        if not m:
-            raise RoboDMError(f"action {act.get('name')}: damage '{d}' should look like '1d8 slashing'")
-        dice, sign, flat, dtype = m.group(1), m.group(2), m.group(3), (m.group(4) or "").lower()
-        n = (int(flat) * (1 if sign == "+" else -1)) if flat else (mod if i == 0 and act.get("add_mod", True) else 0)
-        expr = f"{dice} {'+' if n >= 0 else '-'} {abs(n)}" if n else dice
-        cnt, faces = (int(x) for x in dice.split("d"))
-        avg = max(1, int(cnt * (faces + 1) / 2) + n)
-        parts.append(f"{avg} ({{@damage {expr}}}) {dtype} damage".replace("  ", " "))
-    hit = f"{{@atk {kind}}} {{@hit {to_hit}}} to hit, {where}, {act.get('target', 'one target')}."
-    if parts:
-        hit += " {@h}" + parts[0] + ("" if len(parts) == 1 else " plus " + " plus ".join(parts[1:])) + "."
-    if act.get("text"):
-        hit += " " + act["text"]
-    return hit
-
-
-def compile_sheet(rec: dict) -> dict:
-    """The NPC's compact sheet as a 5etools-shaped creature (what `format_monster` and `combat_profile` read)."""
-    sheet = rec.get("sheet")
-    if not isinstance(sheet, dict) or sheet.get("file"):
-        raise RoboDMError("no compact sheet")
-    ab = _abilities(sheet)
-    pb = sheet_pb(sheet)
-    saves = sheet.get("saves") or []
-    skills = sheet.get("skills") or {}
-    if isinstance(skills, list):
-        skills = {s: 1 for s in skills}
-    for s in skills:
-        if s.lower() not in SKILLS:
-            raise RoboDMError(f"unknown skill '{s}'")
-    spell = sheet.get("spellcasting") or {}
-    spell_ab = str(spell.get("ability") or "")[:3] or None
-    hp = sheet.get("hp")
-    if hp is None:
-        raise RoboDMError("hp is missing")
-    if sheet.get("ac") is None:
-        raise RoboDMError("ac is missing")
-    speed = sheet.get("speed", 30)
-    m: dict[str, Any] = {
-        "name": rec.get("name", "?"), "source": "NPC",
-        "size": [SIZES.get(str(sheet.get("size", "M")).lower(), str(sheet.get("size", "M"))[:1].upper())],
-        "type": _parse_type(sheet.get("type", ""), str(rec.get("race") or "")),
-        "alignment": _align_letters(rec.get("alignment", "")),
-        "ac": [{"ac": int(sheet["ac"]), "from": [sheet["ac_from"]]} if sheet.get("ac_from") else int(sheet["ac"])],
-        "hp": {"average": int(hp), "formula": str(sheet.get("hit_dice") or "")} if sheet.get("hit_dice") else {"special": str(hp), "average": int(hp)},
-        "speed": speed if isinstance(speed, dict) else {"walk": int(speed)},
-        **ab,
-        "cr": str(sheet.get("cr") or ("—" if _level(sheet) else "0")),
-    }
-    if saves:
-        m["save"] = {s[:3].lower(): fmt_mod(ability_mod(ab[s[:3].lower()]) + pb) for s in saves}
-    if skills:
-        m["skill"] = {s.lower(): fmt_mod(ability_mod(ab[SKILLS[s.lower()]]) + pb * int(v)) for s, v in skills.items()}
-    perc = int(skills.get("perception", 0)) if isinstance(skills, dict) else 0
-    m["passive"] = 10 + ability_mod(ab["wis"]) + pb * perc
-    for key, src in (("senses", "senses"), ("languages", "languages"), ("resist", "resist"), ("immune", "immune"),
-                     ("vulnerable", "vulnerable"), ("conditionImmune", "condition_immune")):
-        v = sheet.get(src)
-        if v:
-            m[key] = v if isinstance(v, list) else [v]
-    traits = list(sheet.get("traits") or [])
-    if sheet.get("class"):
-        traits.insert(0, {"name": "Class", "text": f"{sheet['class']}" + (f" · {sheet['background']} background"
-                                                                         if sheet.get("background") else "")})
-    if traits:
-        m["trait"] = [{"name": t["name"], "entries": [t.get("text", "")]} for t in traits]
-    for section, key in (("action", "actions"), ("bonus", "bonus"), ("reaction", "reactions")):
-        acts = []
-        for act in sheet.get(key) or []:
-            if "attack" in act:
-                acts.append({"name": act["name"], "entries": [_attack_text(act, ab, pb, spell_ab)]})
-            else:
-                acts.append({"name": act["name"], "entries": [act.get("text", "")]})
-        if acts:
-            m[section] = acts
-    if spell:
-        sab = spell_ab or "int"
-        dc, atk = 8 + pb + ability_mod(ab[sab]), pb + ability_mod(ab[sab])
-        spells: dict[str, Any] = {}
-        for lvl, names in (spell.get("spells") or {}).items():
-            entry: dict[str, Any] = {"spells": [f"{{@spell {n}}}" for n in names]}
-            slots = (spell.get("slots") or {}).get(str(lvl))
-            if str(lvl) != "0" and slots:
-                entry["slots"] = int(slots)
-            spells[str(lvl)] = entry
-        m["spellcasting"] = [{"name": "Spellcasting", "type": "spellcasting", "ability": sab, "spells": spells,
-                              "headerEntries": [f"{rec.get('name')} is a spellcaster. Their spellcasting ability is "
-                                                f"{ {'int': 'Intelligence', 'wis': 'Wisdom', 'cha': 'Charisma'}.get(sab, sab) } "
-                                                f"(spell save {{@dc {dc}}}, {{@hit {atk}}} to hit with spell attacks)."]}]
-    return m
-
-
-def creature(camp: Campaign, rec: dict) -> tuple[dict | None, str]:
-    """(5etools-shaped creature, where it came from) for the NPC's stat block or compact sheet."""
-    if isinstance(rec.get("sheet"), dict) and not rec["sheet"].get("file"):
-        return compile_sheet(rec), "sheet"
-    if rec.get("statblock"):
-        ref = statblock_ref(rec["statblock"])
-        db = _db()
-        if ref and db is not None and getattr(db, "available", False):
-            r, _ = db.lookup(ref[0], "monster", ref[1])
-            if r:
-                m = dict(db.get(r))
-                sb = rec["statblock"] if isinstance(rec["statblock"], dict) else {}
-                if sb.get("ac") is not None:
-                    m["ac"] = [int(sb["ac"])]
-                if sb.get("hp") is not None:
-                    m["hp"] = {"average": int(sb["hp"]), "formula": str(sb.get("hit_dice") or "")}
-                return m, f"{m.get('name')} ({m.get('source')})"
-    return None, ""
-
-
-def statblock_text(camp: Campaign, rec: dict) -> str:
-    from robodm.rules.statblock import format_monster
-
-    if isinstance(rec.get("sheet"), dict) and rec["sheet"].get("file"):
-        sheet = read_json(camp.path(rec["sheet"]["file"])) or {}
-        if not sheet:
-            return f"(sheet file {rec['sheet']['file']} is missing)"
-        from robodm.campaign import pc_summary
-
-        return pc_summary(sheet)
-    m, where = creature(camp, rec)
-    if not m:
-        return "(no stat block: the rules data may be missing; `./dm rules status`)"
-    text = format_monster(m)
-    if where != "sheet":
-        sb = rec["statblock"] if isinstance(rec["statblock"], dict) else {}
-        text = f"_{rec['name']} uses the **{where}** stat block{(': ' + sb['notes']) if sb.get('notes') else ''}._\n\n" + text
-    return text
-
-
-def add_to_combat(camp: Campaign, enc, rec: dict, side: str = "enemy", init: int | None = None) -> list[dict]:
-    """Put the NPC in the tracker from their sheet or stat block."""
-    from robodm.campaign import pc_init_bonus, pc_save_bonus
-    from robodm.rules.statblock import combat_profile
-
-    if isinstance(rec.get("sheet"), dict) and rec["sheet"].get("file"):
-        pc = read_json(camp.path(rec["sheet"]["file"])) or {}
-        if not pc:
-            raise RoboDMError(f"{rec['name']}'s sheet file {rec['sheet']['file']} is missing.")
-        c = enc._new(enc._unique_id(rec["name"].split()[0]), rec["name"], kind="npc", side=side, init=init,
-                     init_bonus=pc_init_bonus(pc), dex=pc["abilities"].get("dex", 10), ac=pc.get("ac", 10),
-                     hp=pc["hp"]["current"], max_hp=pc["hp"]["max"],
-                     saves={ab: pc_save_bonus(pc, ab) for ab in ABILITIES}, attacks=pc.get("attacks", []),
-                     size=pc.get("size", "M"), speed=pc.get("speed", 30))
-        enc.say(f"Added **{rec['name']}** (sheet) — HP {c['hp']}/{c['max_hp']}, AC {c['ac']}, init {fmt_mod(c['init_bonus'])}")
-        return [c]
-    m, _ = creature(camp, rec)
-    if not m:
-        raise RoboDMError(f"{rec['name']} has no usable stat block (is the rules data fetched?).")
-    profile = combat_profile(m)
-    return enc.add_monster(profile, side=side, name=rec["name"], init=init)
-
-
-# =============================================================================== what the NPC's mind sees
-
-def memories(camp: Campaign, slug: str) -> list[dict]:
-    return [m for m in read_jsonl(npcs_dir(camp) / "memory.jsonl") if m.get("npc") == slug]
-
-
-def remember(camp: Campaign, slug: str, text: str) -> dict:
-    rec = {"npc": slug, "ts": now_iso(), "session": camp.session.get("number", 0), "text": text.strip()}
-    append_jsonl(npcs_dir(camp) / "memory.jsonl", rec)
+    rec = db.find_exact(name, "monster", source) if source else db.find_exact(name, "monster")
     return rec
 
 
-def attitude(camp: Campaign, slug: str, who: str, change: str, why: str = "") -> dict:
-    rec = load(camp, slug)
-    mind = rec.setdefault("mind", {})
-    att = mind.setdefault("attitude", {})
-    key = slugify(who)
-    cur = att.get(key, {"score": 0, "why": ""})
-    ch = str(change).strip()
-    score = cur["score"] + int(ch) if ch[:1] in "+-" else int(ch)
-    cur = {"score": max(-3, min(3, score)), "why": why or cur.get("why", ""), "ts": now_iso()}
-    att[key] = cur
+# =============================================================================== compact sheets
+
+def total_level(sheet: dict) -> int:
+    return sum(int(n) for n in re.findall(r"(\d+)", str(sheet.get("class") or "")))
+
+
+def prof_bonus(sheet: dict) -> int:
+    lv = total_level(sheet)
+    if lv:
+        return 2 + (max(lv, 1) - 1) // 4
+    from robodm.rules.index import cr_to_float
+
+    cr = cr_to_float(sheet.get("cr"))
+    return max(2, (int(max(cr or 0, 1)) - 1) // 4 + 2)
+
+
+def _mods(sheet: dict) -> dict[str, int]:
+    ab = sheet.get("abilities") or {}
+    return {a: ability_mod(int(ab.get(a, 10))) for a in ABILITIES}
+
+
+def _dmg_split(expr: str) -> tuple[str, str]:
+    m = re.match(r"\s*([0-9d+\-\s]+?)\s+([a-z]+)\s*$", str(expr or ""), re.IGNORECASE)
+    if m:
+        return m.group(1).replace(" ", ""), m.group(2).lower()
+    return str(expr or "").replace(" ", ""), ""
+
+
+def _with_mod(dice: str, mod: int) -> str:
+    return dice if not mod else f"{dice}{'+' if mod > 0 else '-'}{abs(mod)}"
+
+
+def _avg(expr: str) -> int:
+    from robodm import dice
+
+    try:
+        return int(dice.average(expr))
+    except Exception:
+        return 0
+
+
+def _attack_ability(act: dict, mods: dict, sheet: dict) -> str:
+    a = str(act.get("attack", "str")).lower()
+    if a == "finesse":
+        return "str" if mods["str"] >= mods["dex"] else "dex"
+    if a == "spell":
+        return str((sheet.get("spellcasting") or {}).get("ability", "int")).lower()[:3]
+    return a[:3]
+
+
+def _compile_action(act: dict, sheet: dict, mods: dict, pb: int) -> dict:
+    name = str(act.get("name", "Action"))
+    parts = []
+    if act.get("attack") is not None:
+        fixed = isinstance(act["attack"], int) or str(act["attack"]).lstrip("+-").isdigit()
+        ab = None if fixed else _attack_ability(act, mods, sheet)
+        magic = int(act.get("magic", 0))           # a +N weapon: to-hit and damage; `bonus`: to-hit only
+        to_hit = int(act["attack"]) if fixed else mods.get(ab, 0) + pb + magic + int(act.get("bonus", 0))
+        spell = str(act.get("attack")).lower() == "spell"
+        ranged = bool(act.get("range")) and not act.get("reach")
+        tag = ("rs" if ranged else "ms") if spell else ("rw" if ranged else "mw")
+        if act.get("reach") and act.get("range"):
+            tag = "mw,rw"
+        reach = f"reach {act['reach']} ft." if act.get("reach") else ""
+        rng = f"range {act['range']} ft." if act.get("range") else ""
+        where = " or ".join(x for x in (reach, rng) if x) or "reach 5 ft."
+        txt = f"{{@atk {tag}}} {{@hit {to_hit}}} to hit, {where}, {act.get('target', 'one target')}."
+        if act.get("damage"):
+            dice, dtype = _dmg_split(act["damage"])
+            add = 0 if fixed or act.get("add_mod") is False else mods.get(ab, 0)
+            add += (0 if fixed else magic) + int(act.get("damage_bonus", 0))
+            expr = _with_mod(dice, add)
+            txt += f" {{@h}}{_avg(expr)} ({{@damage {expr}}}) {dtype} damage".rstrip()
+            for extra in act.get("extra_damage") or []:
+                d2, t2 = _dmg_split(extra)
+                txt += f" plus {_avg(d2)} ({{@damage {d2}}}) {t2} damage"
+            txt += "."
+        parts.append(txt)
+    sv = act.get("save")
+    if isinstance(sv, dict):
+        ab = str(sv.get("ability", "dex")).lower()[:3]
+        dc = sv.get("dc", "spell")
+        if dc == "spell":
+            sab = str((sheet.get("spellcasting") or {}).get("ability", "int")).lower()[:3]
+            dc = 8 + pb + mods.get(sab, 0)
+        txt = f"{sv.get('who', 'Each creature in the area')} must make a {{@dc {int(dc)}}} {ABILITY_NAMES.get(ab, ab)} saving throw"
+        if sv.get("damage"):
+            dice, dtype = _dmg_split(sv["damage"])
+            txt += f", taking {_avg(dice)} ({{@damage {dice}}}) {dtype} damage on a failed save"
+            txt += ", or half as much damage on a successful one." if sv.get("half", True) else "."
+        else:
+            txt += f". {sv.get('effect', '')}".rstrip()
+        parts.append(txt)
+    if act.get("text"):
+        parts.append(str(act["text"]))
+    return {"name": name, "entries": [" ".join(parts) or "—"]}
+
+
+def compile_sheet(rec: dict) -> dict:
+    """A 5etools-shaped creature from a compact sheet (inputs only; the numbers are derived here)."""
+    sheet = rec.get("sheet") or {}
+    if sheet.get("file"):
+        raise RoboDMError("This sheet is a file; use `sheet_file`.")
+    mods = _mods(sheet)
+    pb = prof_bonus(sheet)
+    ab = sheet.get("abilities") or {}
+    m: dict = {"name": rec.get("name", "NPC"), "source": "NPC",
+               "size": [SIZE_CODES.get(str(sheet.get("size", "medium")).lower(), "M")],
+               "type": str(sheet.get("type") or f"humanoid ({rec.get('race', 'any race')})"),
+               "alignment": [{"special": rec.get("alignment", "")}] if rec.get("alignment") else [],
+               "ac": [{"ac": int(sheet.get("ac", 10)), "from": [sheet["ac_from"]]}] if sheet.get("ac_from")
+               else [int(sheet.get("ac", 10))],
+               "hp": {"average": int(sheet.get("hp", 1)), "formula": str(sheet.get("hit_dice", ""))},
+               "speed": sheet.get("speed") if isinstance(sheet.get("speed"), dict) else {"walk": int(sheet.get("speed", 30))}}
+    for a in ABILITIES:
+        m[a] = int(ab.get(a, 10))
+    saves = [str(s).lower()[:3] for s in sheet.get("saves") or []]
+    if saves:
+        m["save"] = {a: fmt_mod(mods[a] + pb) for a in ABILITIES if a in saves}
+    skills = {}
+    for sk, mult in (sheet.get("skills") or {}).items():
+        key = str(sk).lower()
+        abl = SKILLS.get(key)
+        if abl:
+            skills[key] = fmt_mod(mods[abl] + pb * int(mult or 1))
+    if skills:
+        m["skill"] = skills
+    perc = int(str(skills.get("perception", fmt_mod(mods["wis"]))).replace("+", ""))
+    m["passive"] = 10 + perc
+    m["senses"] = list(sheet.get("senses") or [])
+    m["languages"] = list(sheet.get("languages") or [])
+    for key, field in (("resist", "resist"), ("immune", "immune"), ("vulnerable", "vulnerable"),
+                       ("condition_immune", "conditionImmune")):
+        if sheet.get(key):
+            m[field] = list(sheet[key])
+    if sheet.get("cr") is not None:
+        m["cr"] = str(sheet["cr"])
+    m["trait"] = [{"name": t.get("name", "Trait"), "entries": [t.get("text", "")]} for t in sheet.get("traits") or []]
+    for key, field in (("actions", "action"), ("bonus_actions", "bonus"), ("reactions", "reaction")):
+        acts = [_compile_action(a, sheet, mods, pb) for a in sheet.get(key) or [] if isinstance(a, dict)]
+        if acts:
+            m[field] = acts
+    sc = sheet.get("spellcasting")
+    if isinstance(sc, dict) and sc.get("spells"):
+        sab = str(sc.get("ability", "int")).lower()[:3]
+        dc, hit = 8 + pb + mods.get(sab, 0), pb + mods.get(sab, 0)
+        spells = {}
+        for lvl, names in (sc.get("spells") or {}).items():
+            entry = {"spells": [f"{{@spell {n}}}" for n in names]}
+            if str(lvl) != "0":
+                entry["slots"] = int((sc.get("slots") or {}).get(str(lvl), 0))
+            spells[str(lvl)] = entry
+        m["spellcasting"] = [{"name": "Spellcasting", "headerEntries": [
+            f"Their spellcasting ability is {ABILITY_NAMES.get(sab, sab)} (spell save {{@dc {dc}}}, {{@hit {hit}}} to hit "
+            f"with spell attacks). They have the following spells prepared:"], "spells": spells}]
+    m["_notes"] = [f"NPC character sheet: {sheet.get('class') or 'CR ' + str(sheet.get('cr', '?'))} · proficiency "
+                   f"{fmt_mod(pb)}" + (f" · {sheet['background']}" if sheet.get("background") else "")]
+    return m
+
+
+def sheet_file(camp: Campaign, rec: dict) -> dict | None:
+    f = (rec.get("sheet") or {}).get("file")
+    if not f:
+        return None
+    p = camp.path(*Path(f).parts)
+    data = read_json(p) if p.exists() else None
+    if not isinstance(data, dict):
+        raise RoboDMError(f"{rec.get('name')}: sheet file {f} is missing or unreadable.")
+    return data
+
+
+def creature(camp: Campaign, rec: dict, db=None) -> dict | None:
+    """The 5etools-shaped creature this NPC fights as (stat block with overrides, or the compiled sheet)."""
+    if rec.get("sheet") and not rec["sheet"].get("file"):
+        return compile_sheet(rec)
+    if rec.get("statblock"):
+        name, src, over = statblock_ref(rec["statblock"])
+        db = db or _db()
+        hit = _lookup_monster(db, name, src)
+        if not hit:
+            return None
+        m = dict(db.get(hit))
+        if over.get("ac") is not None:
+            m["ac"] = [int(over["ac"])]
+        if over.get("hp") is not None:
+            m["hp"] = {"average": int(over["hp"]), "formula": str(over["hp"])}
+        return m
+    return None
+
+
+def statblock_text(camp: Campaign, rec: dict, db=None) -> str:
+    from robodm import campaign as cmod
+    from robodm.rules.statblock import format_monster
+
+    lines = []
+    if rec.get("sheet") and rec["sheet"].get("file"):
+        pc = sheet_file(camp, rec)
+        lines.append(f"Character sheet ({rec['sheet']['file']}):")
+        lines.append(cmod.pc_summary(pc, full=True))
+        return "\n".join(lines)
+    m = creature(camp, rec, db)
+    if m is None:
+        return f"_(no stat block found for {rec.get('statblock') or 'this record'})_"
+    text = format_monster(m)
+    if rec.get("sheet"):
+        sheet = rec["sheet"]
+        text = re.sub(r"(?m)^\*\*CR\*\* \? \(0 XP\)$", f"**Level** {sheet.get('class') or '—'} · **PB** "
+                      f"{fmt_mod(prof_bonus(sheet))}", text)
+    else:
+        name, src, over = statblock_ref(rec["statblock"])
+        source = src or m.get("source", "MM")
+        lines.append(f"Stat block: {m.get('name')} ({source}) — {statblock_url(str(m.get('name')), str(source))}")
+        if over:
+            lines.append("Overrides: " + ", ".join(f"{k} {v}" for k, v in over.items()))
+    lines.append(text)
+    return "\n".join(lines)
+
+
+def add_to_combat(camp: Campaign, enc, rec: dict, side: str = "enemy", init: int | None = None, db=None) -> list[dict]:
+    """Put this NPC in the tracker, named as themselves, from their sheet or stat block."""
+    from robodm import campaign as cmod
+    from robodm.rules.statblock import combat_profile
+
+    if rec.get("sheet") and rec["sheet"].get("file"):
+        pc = sheet_file(camp, rec)
+        cid = enc._unique_id(str(rec["name"]).split()[0])
+        c = enc._new(cid, rec["name"], kind="npc", side=side, init=init, init_bonus=cmod.pc_init_bonus(pc),
+                     dex=pc["abilities"].get("dex", 10), ac=pc.get("ac", 10), hp=pc["hp"]["max"], max_hp=pc["hp"]["max"],
+                     saves={ab: cmod.pc_save_bonus(pc, ab) for ab in ABILITIES}, attacks=pc.get("attacks", []),
+                     size=pc.get("size", "M"), speed=pc.get("speed", 30), resist=pc.get("resist", []),
+                     immune=pc.get("immune", []), vulnerable=pc.get("vulnerable", []),
+                     ref={"name": rec["name"], "source": "NPC", "cr": None})
+        enc.say(f"Added **{rec['name']}** (NPC sheet) — HP {c['hp']}/{c['max_hp']}, AC {c['ac']}, "
+                f"init {fmt_mod(c['init_bonus'])}")
+        return [c]
+    m = creature(camp, rec, db)
+    if m is None:
+        raise RoboDMError(f"{rec.get('name')} has no usable stat block or sheet (`./dm npc show {rec['slug']}`).")
+    profile = dict(combat_profile(m), name=rec["name"])      # tracked as themselves, not "Commoner 3"
+    return enc.add_monster(profile, side=side, init=init)
+
+
+# =============================================================================== validation
+
+def validate(camp: Campaign, rec: dict, db=None) -> tuple[list[str], list[str]]:
+    """(problems that block saving, warnings)."""
+    problems, warnings = [], []
+    db = db if db is not None else _db()
+    for k in ("name", "race", "alignment", "backstory"):
+        if not str(rec.get(k) or "").strip():
+            problems.append(f"missing {k}")
+    if rec.get("alignment") and str(rec["alignment"]).lower() not in ALIGNMENTS:
+        problems.append(f"alignment '{rec['alignment']}' must be one of: {', '.join(ALIGNMENTS)}")
+    if rec.get("tier", "minor") not in TIERS:
+        problems.append(f"tier must be one of: {', '.join(TIERS)}")
+    if rec.get("status", "alive") not in STATUSES:
+        problems.append(f"status must be one of: {', '.join(STATUSES)}")
+    rels = rec.get("relationships")
+    if not isinstance(rels, list):
+        problems.append("relationships must be a list (empty if they have none)")
+    else:
+        for r in rels:
+            if not isinstance(r, dict) or not r.get("who") or not r.get("how"):
+                problems.append(f"relationship {r!r} needs who and how")
+            elif not who_name(camp, str(r["who"])) and slugify(str(r["who"])) != slugify(str(rec.get("name", ""))):
+                warnings.append(f"{r['who']} has no record yet")
+    for k in ("secrets", "dm_only", "aliases"):
+        if rec.get(k) is not None and not isinstance(rec[k], list):
+            problems.append(f"{k} must be a list")
+    sheet, sb = rec.get("sheet"), rec.get("statblock")
+    if not sheet and not sb:
+        problems.append("needs a stat block (`\"statblock\": \"commoner|MM\"`) or a character sheet")
+    if rec.get("tier") == "major" and not sheet:
+        problems.append("major NPCs always have a character sheet")
+    if sheet and sb:
+        warnings.append("has both a sheet and a stat block: the sheet is used")
+    if sb and not sheet:
+        name, src, _ = statblock_ref(sb)
+        if db is not None and not _lookup_monster(db, name, src):
+            problems.append(f"no stat block '{name}'{' (' + src + ')' if src else ''} in the rules data")
+    if isinstance(sheet, dict):
+        problems.extend(_sheet_problems(camp, rec, sheet, db))
+    elif sheet is not None:
+        problems.append("sheet must be an object")
+    if db is not None and rec.get("race") and not rec.get("homebrew"):
+        race = re.sub(r"\s*\(.*\)$", "", str(rec["race"])).strip()
+        if not db.find_exact(race, "race") and not db.find_exact(race, "monster"):
+            warnings.append(f"race '{rec['race']}' isn't in the rules data (fine for homebrew; set \"homebrew\": true)")
+    return problems, warnings
+
+
+def _sheet_problems(camp: Campaign, rec: dict, sheet: dict, db) -> list[str]:
+    from robodm import dice
+
+    out = []
+    if sheet.get("file"):
+        try:
+            sheet_file(camp, rec)
+        except RoboDMError as e:
+            out.append(str(e))
+        return out
+    ab = sheet.get("abilities") or {}
+    if set(ab) != set(ABILITIES) or not all(isinstance(v, int) and 1 <= v <= 30 for v in ab.values()):
+        out.append("sheet.abilities needs str, dex, con, int, wis, cha (1–30)")
+    for k in ("ac", "hp"):
+        if not isinstance(sheet.get(k), int) or sheet[k] < 1:
+            out.append(f"sheet.{k} must be a positive number")
+    if not total_level(sheet) and sheet.get("cr") is None:
+        out.append('sheet needs a "class" with levels (e.g. "Fighter 6") or a "cr"')
+    if db is not None and sheet.get("class") and not (rec.get("homebrew") or sheet.get("homebrew")):
+        for cls in re.findall(r"([A-Za-z][A-Za-z' -]*?)\s+\d+", str(sheet["class"])):
+            if not db.find_exact(cls.strip(), "class"):
+                out.append(f"class '{cls.strip()}' isn't in the rules data (set \"homebrew\": true if intended)")
+    for s in sheet.get("saves") or []:
+        if str(s).lower()[:3] not in ABILITIES:
+            out.append(f"save '{s}' isn't an ability")
+    for sk in sheet.get("skills") or {}:
+        if str(sk).lower() not in SKILLS:
+            out.append(f"skill '{sk}' isn't a 5e skill")
+    for key in ("actions", "bonus_actions", "reactions"):
+        for act in sheet.get(key) or []:
+            if not isinstance(act, dict) or not act.get("name"):
+                out.append(f"{key}: every entry needs a name")
+                continue
+            if act.get("damage"):
+                d, _ = _dmg_split(act["damage"])
+                try:
+                    dice.parse(d)
+                except Exception:
+                    out.append(f"{act['name']}: damage '{act['damage']}' isn't a dice expression like \"1d8 slashing\"")
+            a = act.get("attack")
+            if a is not None and not (isinstance(a, int) or str(a).lstrip("+-").isdigit()) and \
+                    str(a).lower() not in ("str", "dex", "con", "int", "wis", "cha", "finesse", "spell"):
+                out.append(f"{act['name']}: attack must be str, dex, finesse, spell or a number")
+    return out
+
+
+# =============================================================================== saving
+
+def save(camp: Campaign, rec: dict, force: bool = False) -> tuple[Path | None, list[str], list[str]]:
+    rec = _clean(rec)
+    if not rec.get("name"):
+        return None, ["missing name"], []
+    rec["slug"] = slugify(rec.get("slug") or rec["name"])
+    rec.setdefault("tier", "minor")
+    rec.setdefault("status", "alive")
+    rec.setdefault("relationships", [])
+    if not rec.get("lore"):                       # their lore entry, when there is one by that name
+        from robodm import lore
+
+        try:
+            e = lore.find(camp, rec["slug"])
+            if e["meta"].get("type") == "npc":
+                rec["lore"] = e["slug"]
+        except RoboDMError:
+            pass
+    problems, warnings = validate(camp, rec)
+    if problems and not force:
+        return None, problems, warnings
+    p = record_path(camp, rec["slug"])
+    old = read_json(p) if p.exists() else None
+    rec["created"] = (old or {}).get("created") or now_iso()
     rec["updated"] = now_iso()
-    write_json(_path(camp, slug), rec)
-    return cur
+    write_json(p, rec)
+    return p, problems, warnings
 
 
-def is_companion(camp: Campaign, slug: str) -> bool:
-    from robodm import companions as co
+def save_text(camp: Campaign, text: str, force: bool = False) -> list[str]:
+    """`./dm npc save -`: one record or a list, as JSON. Returns report lines."""
+    try:
+        data = json.loads(text)
+    except ValueError as e:
+        raise RoboDMError(f"Not valid JSON: {e}")
+    recs = data if isinstance(data, list) else [data]
+    lines = []
+    for rec in recs:
+        if not isinstance(rec, dict):
+            lines.append(f"✘ not a record: {truncate(str(rec), 60)}")
+            continue
+        p, problems, warnings = save(camp, rec, force)
+        if p is None:
+            lines.append(f"✘ {rec.get('name', '?')} not saved: " + "; ".join(problems))
+        else:
+            saved = load(camp, slugify(rec.get("slug") or rec["name"]))
+            lines.append(f"✔ {saved['name']} ({saved.get('tier')}, {stats_line(camp, saved)})"
+                         + (" · ⚠ saved despite: " + "; ".join(problems) if problems else ""))
+        lines.extend(f"   ⚠ {w}" for w in warnings)
+    return lines
 
-    return slug in co.all_slugs(camp)
+
+def stats_line(camp: Campaign, rec: dict) -> str:
+    sheet = rec.get("sheet")
+    if sheet and sheet.get("file"):
+        try:
+            pc = sheet_file(camp, rec)
+            return f"sheet {sheet['file']}: {pc.get('class')} {pc.get('level')}, AC {pc.get('ac')}, HP {pc['hp']['max']}"
+        except RoboDMError as e:
+            return str(e)
+    if sheet:
+        try:
+            from robodm.rules.statblock import combat_profile
+
+            prof = combat_profile(compile_sheet(rec))
+            atk = ", ".join(f"{a['name']} {fmt_mod(a['to_hit'])}" for a in prof["attacks"] if "to_hit" in a)[:80]
+            return (f"sheet: {sheet.get('class') or 'CR ' + str(sheet.get('cr'))}, AC {prof['ac']}, HP {prof['hp']}"
+                    + (f", {atk}" if atk else ""))
+        except Exception as e:  # a half-written sheet still shows up in check
+            return f"sheet (can't compile: {e})"
+    if rec.get("statblock"):
+        name, src, over = statblock_ref(rec["statblock"])
+        return f"stat block {name}{' (' + src + ')' if src else ''}" + (f" with {', '.join(over)}" if over else "")
+    return "no stats"
 
 
-def known_documents(camp: Campaign, slug: str) -> list[dict]:
-    from robodm import companions as co, lore
+def add_quick(camp: Campaign, name: str, **kw) -> tuple[Path | None, list[str], list[str]]:
+    """`./dm npc add`: a minor NPC from flags."""
+    rec = {"name": name.strip(), "tier": kw.get("tier") or "minor", "status": kw.get("status") or "alive"}
+    for k in ("race", "alignment", "role", "age", "appearance", "voice", "backstory", "wants", "fears", "lore"):
+        if kw.get(k):
+            rec[k] = kw[k]
+    if kw.get("statblock"):
+        rec["statblock"] = kw["statblock"]
+    rels = []
+    for r in kw.get("rel") or []:
+        who, _, how = str(r).partition(":")
+        if who.strip() and how.strip():
+            rels.append({"who": slugify(who), "how": how.strip()})
+    rec["relationships"] = rels
+    if not rec.get("lore"):
+        from robodm import lore
 
-    docs = [{"text": m["text"], "show": f"(you remember, s{m.get('session', 0)}) {m['text']}"} for m in memories(camp, slug)]
-    for m in read_jsonl(camp.path("memory.jsonl")):
-        if slug in (m.get("known_by") or []) and not m.get("retired"):
-            docs.append({"text": m["text"], "show": f"(you know, s{m.get('session', 0)}) {m['text']}"})
+        try:
+            rec["lore"] = lore.find(camp, name)["slug"]
+        except RoboDMError:
+            pass
+    return save(camp, rec, force=bool(kw.get("force")))
+
+
+def template(major: bool = False) -> dict:
+    base = {"name": "Full Name", "aliases": [], "tier": "major" if major else "minor", "status": "alive",
+            "race": "human", "alignment": "lawful neutral", "role": "what they do and where",
+            "age": "40s", "appearance": "one or two telling details", "voice": "how they talk; a verbal habit",
+            "backstory": "3–6 sentences: where they come from and what has happened to them (canon first)",
+            "wants": "…", "fears": "…",
+            "relationships": [{"who": "other-npc-slug", "how": "old friend; owes them a debt", "attitude": 1,
+                               "hidden": False}],
+            "secrets": ["things they know and keep"], "dm_only": ["truths about them they don't know; invented details"],
+            "lore": "lore-entry-slug or null"}
+    if major:
+        base["sheet"] = {
+            "class": "Fighter 6", "background": "Soldier", "size": "medium", "type": "humanoid (human)",
+            "ac": 18, "ac_from": "plate", "hp": 52, "hit_dice": "6d10+12", "speed": 30,
+            "abilities": {"str": 16, "dex": 12, "con": 14, "int": 10, "wis": 13, "cha": 11},
+            "saves": ["str", "con"], "skills": {"athletics": 1, "perception": 1}, "senses": [],
+            "languages": ["Common"], "traits": [{"name": "Second Wind", "text": "Once per short rest, regain 1d10+6 HP."}],
+            "actions": [{"name": "Multiattack", "text": "Two longsword attacks."},
+                        {"name": "Longsword", "attack": "str", "reach": 5, "damage": "1d8 slashing"},
+                        {"name": "Heavy Crossbow", "attack": "dex", "range": "100/400", "damage": "1d10 piercing"}],
+            "reactions": [], "gear": ["plate", "longsword", "heavy crossbow"]}
+    else:
+        base["statblock"] = "Commoner|MM"
+    return base
+
+
+# =============================================================================== showing
+
+def show(camp: Campaign, rec: dict, dm: bool = True, stats: bool = True) -> str:
+    st = co.state(camp, rec["slug"])
+    lines = [f"# {rec['name']}  ({rec.get('tier', 'minor')} · {rec.get('status', 'alive')})"]
+    ident = [rec.get("race", "?")] + ([rec["alignment"]] if dm and rec.get("alignment") else []) + \
+        [x for x in (rec.get("role"), rec.get("age")) if x]
+    lines.append(" · ".join(str(x) for x in ident))
+    for k, label in (("appearance", "Looks"), ("voice", "Voice")):
+        if rec.get(k):
+            lines.append(f"**{label}:** {rec[k]}")
+    if dm:
+        lines.append(f"\n{rec.get('backstory', '')}")
+        for k, label in (("wants", "Wants"), ("fears", "Fears")):
+            if rec.get(k):
+                lines.append(f"**{label}:** {rec[k]}")
+    rels = [r for r in rec.get("relationships") or [] if dm or not r.get("hidden")]
+    if rels:
+        lines.append("\n**Relationships**")
+        for r in rels:
+            who = who_name(camp, str(r["who"])) or str(r["who"])
+            att = f" ({int(r['attitude']):+d})" if dm and r.get("attitude") is not None else ""
+            lines.append(f"- {who}: {r['how']}{att}" + (" _(secret)_" if r.get("hidden") else ""))
+    if dm:
+        if rec.get("secrets"):
+            lines.append("\n**Secrets they keep**\n" + "\n".join(f"- {s}" for s in rec["secrets"]))
+        if rec.get("dm_only"):
+            lines.append("\n**DM only**\n" + "\n".join(f"- {s}" for s in rec["dm_only"]))
+        mind = f"\n**Mind:** `{mind_agent(camp, rec)}` · consulted {st.get('consults', 0)}×"
+        if st["attitude"]:
+            mind += " · " + ", ".join(f"{k.replace('-', ' ').title()} {v['score']:+d}" for k, v in st["attitude"].items())
+        lines.append(mind)
+        if rec.get("lore"):
+            lines.append(f"**Lore:** `./dm lore show {rec['lore']}`")
+    if stats:
+        lines.append(f"\n**Stats:** {stats_line(camp, rec)}")
+        if rec.get("statblock") and not rec.get("sheet"):
+            name, src, _ = statblock_ref(rec["statblock"])
+            m = creature(camp, rec)
+            if m:
+                lines.append(statblock_url(str(m.get("name")), str(src or m.get("source"))))
+    return "\n".join(lines)
+
+
+def listing(camp: Campaign, tier: str | None = None) -> list[str]:
+    out = []
+    for rec in sorted(all_records(camp), key=lambda r: (TIERS.index(r.get("tier", "minor")) if r.get("tier") in TIERS else 9,
+                                                        r["name"])):
+        if tier and rec.get("tier") != tier:
+            continue
+        mark = "🧭" if rec["_kind"] == "companion" else {"major": "★", "minor": "·", "background": "·"}.get(rec.get("tier"), "·")
+        out.append(f"{mark} **{rec['name']}** ({rec.get('tier')}, {rec.get('status', 'alive')}) — {rec.get('race')} · "
+                   f"{truncate(str(rec.get('role') or ''), 60)} · {stats_line(camp, rec)}")
+    return out
+
+
+def check(camp: Campaign) -> dict:
+    """Who is missing a record, and which records have problems."""
+    from robodm import lore, world
+
+    recs = all_records(camp)
+    have = {r["slug"] for r in recs} | {r.get("lore") for r in recs if r.get("lore")}
+    names = {str(r.get("name", "")).lower() for r in recs}
+    missing: dict[str, str] = {}
     for e in lore.all_entries(camp):
-        body = co._strip_secrets(e["body"])
-        docs.append({"text": f"{e['meta'].get('name', '')} {e['meta'].get('summary', '')} {body}",
-                     "show": f"(lore) {e['meta'].get('name')}: {truncate(str(e['meta'].get('summary') or body), 220)}"})
-    return docs
+        if e["meta"].get("type") == "npc" and e["slug"] not in have and str(e["meta"].get("name", "")).lower() not in names:
+            missing[e["slug"]] = f"{e['meta'].get('name')} (lore entry)"
+    for slug in co.all_slugs(camp):
+        if slug not in have:
+            meta, _ = co.load_persona(camp, slug)
+            missing[slug] = f"{meta.get('name', slug)} (companion)"
+    for slug, name in world.scene_cast(camp):
+        if slug not in have and str(name).lower() not in names:
+            missing.setdefault(slug, f"{name} (in the scene)")
+    for r in recs:
+        for rel in r.get("relationships") or []:
+            if isinstance(rel, dict) and rel.get("who") and not who_name(camp, str(rel["who"])):
+                missing.setdefault(slugify(str(rel["who"])), f"{rel['who']} (named in {r['name']}'s relationships)")
+    db = _db()
+    invalid = {}
+    for r in recs:
+        problems, _ = validate(camp, r, db)
+        if problems:
+            invalid[r["slug"]] = problems
+    return {"records": len(recs), "missing": missing, "invalid": invalid}
 
 
-def recall(camp: Campaign, slug: str, query: str, limit: int = 8) -> list[str]:
-    return [d["show"] for d in rank_documents(query, known_documents(camp, slug), limit=limit)]
-
+# =============================================================================== the mind
 
 def brief(camp: Campaign, slug: str, situation: str = "", combat: bool = False, record: bool = True) -> str:
-    """The NPC's whole world for one consultation (a companion gets its companion brief)."""
-    from robodm import audit, capture, companions as co, lore, world
-    from robodm.combat import Encounter
+    """Everything this NPC's mind sees for one consultation (never their `dm_only`)."""
+    from robodm import lore, world
 
-    if is_companion(camp, slug):
-        return co.brief(camp, slug, situation=situation, combat=combat, record=record)
-    rec = load(camp, slug)
+    rec = find(camp, slug)
+    if rec["_kind"] == "companion":
+        return co.brief(camp, rec["slug"], situation=situation, combat=combat, record=record)
+    slug = rec["slug"]
+    st = co.state(camp, slug)
     name = rec["name"]
-    present = slug in [s for s, _ in world.scene_cast(camp)]
     lines = [f"# You are {name}"]
-    if rec.get("status") == "dead":
-        lines.append("_(Your record says you are **dead**. Only answer if the DM is deliberately bringing you in: a "
-                     "memory, a ghost, a vision.)_")
-    elif not present:
-        lines.append("_(You're not in the current scene. Answer as yourself, wherever you are, if the DM asks.)_")
-    who = " · ".join(x for x in (str(rec.get("race") or "").title(), str(rec.get("alignment") or "").title(),
-                                  rec.get("role"), (f"age {rec['age']}" if rec.get("age") else "")) if x)
-    lines.append(f"*{who}*" + (f" · voice: {rec['voice']}" if rec.get("voice") else ""))
-    for title, key in (("Who you are", "backstory"), ("How you look", "appearance"), ("What you want", "wants"),
-                       ("What you fear", "fears")):
-        if rec.get(key):
-            lines.append(f"\n## {title}\n{rec[key]}")
+    if rec.get("status") in ("dead", "historical"):
+        lines.append(f"_(You are {rec['status']}. The DM is calling on you as you were (a memory, a vision, a "
+                     "story told): answer only as asked.)_")
+    ident = [x for x in (rec.get("alignment", "").title() if rec.get("alignment") else "", rec.get("race"),
+                         rec.get("role"), rec.get("age")) if x]
+    lines.append("*" + " · ".join(str(x) for x in ident) + "*" + (f" · voice: {rec['voice']}" if rec.get("voice") else ""))
+    lines.append(f"\n## Who you are\n{rec.get('backstory', '')}")
+    if rec.get("appearance"):
+        lines.append(f"- You look: {rec['appearance']}")
+    for k, label in (("wants", "You want"), ("fears", "You fear")):
+        if rec.get(k):
+            lines.append(f"- {label}: {rec[k]}")
     if rec.get("secrets"):
         lines.append("\n## Your secrets (yours to keep or reveal)\n" + "\n".join(f"- {s}" for s in rec["secrets"]))
     rels = rec.get("relationships") or []
-    att = (rec.get("mind") or {}).get("attitude") or {}
-    if rels or att:
+    if rels:
         lines.append("\n## The people in your life")
         for r in rels:
-            score = att.get(r["who"], {}).get("score")
-            lines.append(f"- {r.get('name') or r['who'].replace('-', ' ').title()}: {r.get('how', '')}"
-                         + (f" (attitude {score:+d})" if score is not None else ""))
-        for k, a in sorted(att.items()):
-            if not any(r["who"] == k for r in rels):
-                lines.append(f"- {k.replace('-', ' ').title()}: attitude {a['score']:+d}" + (f" ({a['why']})" if a.get("why") else ""))
+            who = who_name(camp, str(r["who"])) or str(r["who"]).replace("-", " ").title()
+            lines.append(f"- {who}: {r['how']}" + (" (nobody else knows)" if r.get("hidden") else ""))
     guide = co.ALIGNMENT_GUIDE.get(str(rec.get("alignment", "")).lower())
     if guide:
-        lines.append(f"\n## How your alignment tends to colour choices\n{guide} (A tendency, not a script.)")
+        lines.append(f"\n## How your alignment tends to colour choices\n{guide} (A tendency, not a script: who you "
+                     "are comes first.)")
     if rec.get("lore"):
         try:
             e = lore.find(camp, rec["lore"])
             pub = co._strip_secrets(e["body"])
             if pub:
-                lines.append(f"\n## What the world says about you (public lore)\n{truncate(pub, 2500)}")
+                lines.append(f"\n## What the world says about you (public lore)\n{truncate(pub, 1500)}")
         except RoboDMError:
             pass
-    wd = world.load(camp)
+    lines.append(f"\n## What you can do\n{stats_line(camp, rec)}")
+    here = slug in dict(world.scene_cast(camp))
     lines.append("\n## Where things stand")
-    if world.tracking(wd):
-        lines.append(f"- It is {world.fmt_time(wd)}.")
-    if not present:
-        lines.append("- You're elsewhere, not in the scene the party is in.")
-    if present:
-        others = [n for s, n in world.scene_cast(camp) if s != slug]
-        pcs = [pc["name"] for pc in camp.party()]
-        lines.append(f"- You are here{' at ' + wd['scene']['place'] if wd['scene'].get('place') else ''}, with "
-                     + ", ".join(pcs + others) + ".")
-    mems = memories(camp, slug)
-    tagged = [m for m in read_jsonl(camp.path("memory.jsonl")) if slug in (m.get("known_by") or []) and not m.get("retired")]
-    if mems or tagged:
-        lines.append("\n## What you remember (newest last)")
-        lines.extend(f"- {m['text']}" for m in mems[-20:])
-        lines.extend(f"- (known to you) {m['text']}" for m in tagged[-12:])
-    entries = [e for e in lore.all_entries(camp) if e["meta"].get("summary") and e["slug"] != rec.get("lore")]
-    if entries:
-        lines.append("\n## The world as people know it (public lore; DM secrets removed)")
-        lines.extend(f"- {e['meta'].get('name')}: {truncate(str(e['meta']['summary']), 140)}" for e in entries[:30])
-    if present and camp.session.get("active"):
-        said = capture.last_exchanges(camp, n=3, width=600)
-        if said:
-            lines.append("\n## Lately (the last exchanges at the table; the DM's description below wins)")
-            lines.extend(f"- {x}" for x in said)
-    if situation:
-        lines.append(f"\n## Right now (from the DM)\n{situation}")
-    enc = Encounter(camp)
-    if enc.active and (combat or any(slugify(c["name"]) == slug for c in enc.combatants.values())):
-        me = next((c for c in enc.combatants.values() if slugify(c["name"]) == slug), None)
-        lines.append("\n## The fight (what you can see)")
-        lines.append(enc.status_text(reveal=False))
-        if me:
-            atks = "; ".join(a["name"] for a in me.get("attacks", [])) or "see your stat block"
-            lines.append(f"You are **{me['id']}** in the tracker: HP {me['hp']}/{me['max_hp']}, AC {me['ac']} · actions: {atks}")
-    lines.append(f"\n## Answer\nINTENT / DOES / SAYS / HIDES, in that shape. Record what you'll carry from this with "
-                 f"`./dm npc remember {slug} \"…\"` (first person, one or two lines), and a changed feeling toward "
-                 f"someone with `./dm npc attitude {slug} <who> +1 --why \"…\"`.")
+    lines.append("- You are in the current scene." if here else "- You are not in the current scene (the DM is bringing "
+                 "you in, or asking what you'd do from where you are).")
+    lines.extend(co.shared_lines(camp, slug, st, here, situation, combat, "npc", slug))
     if record:
-        mind = rec.setdefault("mind", {})
-        mind["consults"] = int(mind.get("consults", 0)) + 1
-        mind["last_brief_turn"] = audit.current_turn(camp)
-        write_json(_path(camp, slug), rec)
+        co.mark_consulted(camp, slug, st)
     return "\n".join(lines)
 
 
-# =============================================================================== the subagents
+def remember(camp: Campaign, slug: str, text: str, about: str = "") -> dict:
+    rec = find(camp, slug)
+    return co.remember(camp, rec["slug"], text, about)
+
+
+def attitude(camp: Campaign, slug: str, who: str, change: str, why: str = "") -> dict:
+    rec = find(camp, slug)
+    return co.attitude(camp, rec["slug"], who, change, why)
+
+
+def recall(camp: Campaign, slug: str, query: str, limit: int = 8) -> list[str]:
+    rec = find(camp, slug)
+    return co.recall(camp, rec["slug"], query, limit)
+
+
+# =============================================================================== the generic NPC agents
 
 NPC_PROTOCOL = """\
-You play **one named NPC** in a D&D 5e (2014) campaign run by RoboDM: a real person with their own wants, fears,
-secrets and voice. The Dungeon Master (the main Claude) consults you when this character has to decide, react or
-speak at a moment that matters. The DM's message names the character (their slug, e.g. `halda-barrowe`) and maybe the
-campaign (`-c <campaign>`). Substitute them in every command.
+You are **one named non-player character** in a D&D 5e (2014) campaign run by RoboDM: whoever the DM names in its
+message (their slug, `<npc>` below, e.g. `halda-barrowe`; maybe a campaign, `-c <campaign>`: add it to every
+command). You are a full person with your own wants, fears, loyalties and ways of talking, not a prop. The Dungeon
+Master (the main Claude) consults you **every time you speak or decide something**, so answer for this moment only.
 
 ## Every time
 1. Run `./dm npc brief <npc>` (add `--combat` during a fight). It is the ONLY source of who you are and what you
-   know. Run every command exactly as written, from the folder you start in: no `cd`, no full paths, nothing piped
-   or chained.
+   know. Read all of it, including the DM's description of the moment. Run every command exactly as written, from
+   the folder you start in: no `cd`, no full paths, nothing piped or chained.
 2. **Stay inside your knowledge.** You know your record, your own secrets, your memories, public lore, and what
    happened in front of you. You don't know DM secrets, other people's thoughts, or what happened where you weren't.
    If you're unsure whether you'd know something, you don't. More of your memories: `./dm npc recall <npc> "words"`.
-3. **Decide as yourself**, not as a helpful assistant: weigh what you want, fear and owe against the moment. You may
-   agree, refuse, bargain, lie, stall or walk away. Keep it short: the DM narrates.
+3. **Decide as yourself.** Weigh what you want, fear and owe against the moment. You may help, refuse, lie,
+   bargain, stall, threaten or tell the truth: whatever this person would really do. Don't be helpful just because
+   the party asks, and don't be hostile just for drama.
 4. **Never decide for a player character**: not their actions, words or feelings.
-5. **In combat**, propose concrete actions from your stat block as `./dm combat …` commands; the DM runs them.
-6. **Remember** what you'll carry from this beat, first person, one or two lines: `./dm npc remember <npc> "…"`.
-   A changed feeling toward someone: `./dm npc attitude <npc> <who> +1 --why "…"`.
-7. You can't run anything else. The hooks block dice, combat changes and file access.
+5. **In combat**, propose concrete `./dm combat …` commands with your own actions, but don't run them: the DM runs
+   them through the rules gate.
+6. **Remember** what you'll carry from this beat, first person, a line: `./dm npc remember <npc> "…"`. When how you
+   feel about someone changes: `./dm npc attitude <npc> <who> +1 --why "…"`.
+7. You can't run anything else. The hooks block dice, game changes and file access; the DM does all of that.
 
 ## Answer (to the DM, not the players), in this shape
 INTENT: what you want right now, in one line
-DOES: what you do this beat
-SAYS: your words, in your voice (or "—")
-HIDES: what you're deliberately not saying (DM's eyes only), or "—"
+DOES: what you do this beat; in combat, the exact `./dm combat …` commands to run
+SAYS: your words, in your voice (or "—"); what you'd really say now, usually a line or a few
+HIDES: anything you're deliberately not saying (DM's eyes only), or "—"
+FRICTION: 0–3, how far this goes against what the player characters want, and why, in one line
 """
 
 
-def agent_text() -> str:
-    """The generic `npc` subagent. Its model and effort are fixed: every NPC mind runs on NPC_MODEL."""
-    return ("---\nname: npc\ndescription: Plays one named RoboDM NPC (not a companion) with their own mind: wants, "
-            "fears, secrets, voice, and only what that character knows. Use when an NPC in the scene has to decide, "
-            "react or speak at a moment that matters (a negotiation, a lie, a choice, a reaction to news); tell it the "
-            "NPC's slug, the campaign, and the moment from the NPC's point of view. Companions use their own "
-            f"companion agents.\ntools: Bash\nmodel: {NPC_MODEL}\neffort: {NPC_EFFORT}\n---\n\n"
-            "<!-- generated by `./dm npc agent` · edit robodm/npcs.py, not this file -->\n" + NPC_PROTOCOL)
+def agent_text(name: str) -> str:
+    effort = AGENTS[name]
+    who = "a **major** NPC (a significant story character)" if name == "npc-major" else \
+        "a minor or background NPC"
+    desc = (f"Plays {who.replace('**', '')} in RoboDM with their own mind (wants, fears, secrets, voice), limited to what "
+            f"they know. Use every time that NPC speaks or decides; tell it their slug and the moment from their point "
+            "of view. " + ("Minor and background NPCs use the `npc` agent." if name == "npc-major" else
+                           "Major NPCs use `npc-major`; companions use their own agents."))
+    return (f"---\nname: {name}\ndescription: {desc}\ntools: Bash\nmodel: {NPC_MODEL}\neffort: {effort}\n---\n\n"
+            f"<!-- generated by `./dm npc agents` · edit robodm/npcs.py, not this file -->\n"
+            f"You play {who}.\n\n" + NPC_PROTOCOL)
 
 
-def write_agent() -> Path:
-    from robodm.companions import agents_dir
-
-    p = agents_dir() / "npc.md"
-    write_text(p, agent_text())
-    return p
-
-
-# =============================================================================== the cast and what's missing
-
-def named_without_records(camp: Campaign) -> list[tuple[str, str]]:
-    """(slug, name) of characters the campaign names (NPC lore entries, companions) who have no NPC record."""
-    from robodm import companions as co, lore
-
-    have = set(all_slugs(camp))
-    for r in all_records(camp):
-        if r.get("lore"):
-            have.add(r["lore"])
+def write_agents() -> list[Path]:
+    root = co.agents_dir()
     out = []
-    for e in lore.all_entries(camp):
-        if e["meta"].get("type") == "npc" and e["slug"] not in have:
-            out.append((e["slug"], str(e["meta"].get("name") or e["slug"])))
-    for slug in co.all_slugs(camp):
-        if slug not in have and slug not in {x for x, _ in out}:
-            meta, _ = co.load_persona(camp, slug)
-            out.append((slug, meta.get("name", slug)))
+    for name in AGENTS:
+        p = root / f"{name}.md"
+        write_text(p, agent_text(name))
+        out.append(p)
     return out
-
-
-def check(camp: Campaign) -> tuple[list[str], list[tuple[str, str]]]:
-    """(problems in existing records, named characters with no record)."""
-    db = _db()
-    problems = []
-    for r in all_records(camp):
-        for p in validate(camp, r, db):
-            problems.append(f"{r['name']}: {p}")
-    return problems, named_without_records(camp)
-
-
-def import_records(camp: Campaign, data: Any, overwrite: bool = False) -> list[str]:
-    """Save one record, a list of them, or {"npcs": [...]} (from the npc-creator's draft file)."""
-    if isinstance(data, dict) and isinstance(data.get("npcs"), list):
-        data = data["npcs"]
-    recs = data if isinstance(data, list) else [data]
-    saved, errors = [], []
-    for rec in recs:
-        try:
-            save(camp, rec, overwrite=overwrite)
-            saved.append(rec.get("name", "?"))
-        except RoboDMError as e:
-            errors.append(str(e))
-    if errors:
-        raise RoboDMError((f"Saved {len(saved)}: {', '.join(saved)}.\n" if saved else "") + "\n".join(errors))
-    return saved
-
-
-def load_import_file(path: str) -> Any:
-    p = Path(path)
-    if not p.exists():
-        raise RoboDMError(f"No file {path}.")
-    try:
-        return json.loads(p.read_text(encoding="utf-8"))
-    except ValueError as e:
-        raise RoboDMError(f"{path} isn't valid JSON: {e}")
-
-
-def by_slug_or_lore(camp: Campaign) -> dict[str, dict]:
-    """Records keyed by their own slug and by their lore entry's slug (scene casts use either)."""
-    out: dict[str, dict] = {}
-    for r in all_records(camp):
-        out[r["slug"]] = r
-        if r.get("lore"):
-            out.setdefault(r["lore"], r)
-    return out
-
-
-def short(rec: dict) -> str:
-    stat = "sheet" if rec.get("sheet") else ((statblock_ref(rec.get("statblock")) or ("no stats",))[0])
-    return f"{str(rec.get('race') or '?').title()}, {rec.get('alignment') or '?'}, {stat}"
-
-
-def summary_line(rec: dict) -> str:
-    stat = ("sheet" if rec.get("sheet") else
-            (statblock_ref(rec.get("statblock")) or ("—",))[0] if rec.get("statblock") else "—")
-    bits = [str(rec.get("race") or "?").title(), str(rec.get("alignment") or "?"), rec.get("tier", "minor"), stat]
-    if rec.get("status", "alive") != "alive":
-        bits.append(rec["status"])
-    return f"- **{rec['name']}** ({' · '.join(bits)})" + (f" — {rec['role']}" if rec.get("role") else "")

@@ -1,0 +1,112 @@
+{
+  "name": "Rosa Hollis",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful good",
+  "role": "Steamside bathhouse keeper by the Third Vent; Keeper of the Slate of the Vent Games since 1480; settles half of Steamside's quarrels",
+  "age": "48",
+  "appearance": "Broad and loud, with forearms scalded pink from the vents, a scalded-pink apron and a bellow of a laugh. She judges from an upturned tub with Old Marl's wooden spoon.",
+  "voice": "Counts points on her fingers, ends a ruling with and that's the long and short of it, and calls people love. Her stock rulings: not down, not counted; a heel on the chalk is over the chalk.",
+  "backstory": "Rosa Hollis, born 1443, keeps the Hollis bathhouse on the lip of the Third Vent, and the slate of the Vent Games, as Hollis keepers have since Old Marl chalked the first circle about 1330. She won the Bellow seven times as a girl (1456-1462), took the slate from her mother in 1480, dropped the Hollis Stone in 1481 after a dyer's boy broke his foot, and made the Varrow ruling in 1486. From 1489 she drafted the Seven Roots slate, asking each quarter for its rules; the Quiet Year silenced it, and she ran the Silent Games of 1490. On day twelve of 1491 she ran the first loud Games in two years, announced the Long Open, and paid Chadickith 55 crowns. Her husband Edric died in 1479 in a pocket of vent gas on the shore; her daughter Nella runs the pools and her grandson Pip is the chalk-boy.",
+  "wants": "Steamside's quarrels settled on her steps, not in the Watch's cells or the Pyrehouse's hands; the Games kept honest and loud; the bathhouse passed to Nella whole.",
+  "fears": "The burn reaching her patrons; a fire in the bathhouse (the Hollis roof burned in 1402, and she was raised on the story).",
+  "relationships": [
+    {
+      "who": "old-wenna-hollis",
+      "how": "her mother, Keeper of the Slate before her",
+      "attitude": 3
+    },
+    {
+      "who": "marl-hollis",
+      "how": "Old Marl, whom she calls her great-gran; the rail says there are two more greats in it",
+      "attitude": 3
+    },
+    {
+      "who": "big-hesta",
+      "how": "twenty-two-time champion",
+      "attitude": 2
+    },
+    {
+      "who": "tess-aldin",
+      "how": "the Ashward's runner-up, honest and quiet",
+      "attitude": 2
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "the Anvil, who gave her the Catch's rules; the Ashward's likely elder",
+      "attitude": 2
+    },
+    {
+      "who": "gorm-halfhand",
+      "how": "the Hawk's grand old man, who gave her the Hawk's rules",
+      "attitude": 2
+    },
+    {
+      "who": "teo-varrow",
+      "how": "the Knot-man who lobbied her twenty years for the Ash ground",
+      "attitude": 2
+    },
+    {
+      "who": "marda-ironside",
+      "how": "the only Redcollar to win the Open; gave her the Gorget's rules",
+      "attitude": 2
+    },
+    {
+      "who": "joss-marl",
+      "how": "ferryman who claims to be Old Marl's kin; she denies it loudly every year",
+      "attitude": 1
+    },
+    {
+      "who": "dorrik-pell",
+      "how": "three-time Bellow champion",
+      "attitude": 1
+    },
+    {
+      "who": "mother-seld",
+      "how": "sets bones on the bathhouse step",
+      "attitude": 2
+    },
+    {
+      "who": "nan-grell",
+      "how": "cider-seller at the Games",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy who won the Open fair under her spoon",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the giant of the forge up the lane, her neighbour",
+      "attitude": 1
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "House Mostana's factor, whom she owes 300 crowns; calls it a friendship",
+      "attitude": -1,
+      "hidden": true
+    }
+  ],
+  "secrets": [
+    "She owes House Mostana 300 crowns. The Quiet Year emptied the pools, and in Ches 1491 she borrowed the money to re-pipe the Kettle Pool and re-roof the front room. It falls due at the Feast of the Moon. Factor Seipora calls it a friendship and has not pressed. Nobody knows, not even Nella.",
+    "Since day 3 she has let two burn-sick neighbours sit in the cold-spring room under the bathhouse at night: Ansel Tarrant, a dye-worker, and Liss Vary, a laundress, both at Stirring. Cold water and quiet help them keep their tempers, nothing more. She is afraid the Choir will find them, and would take the Order's help if it were offered without fuss.",
+    "The Dead-Washers' Ledger is in the cedar box behind the Spoon Wall, and she has never read past the first page."
+  ],
+  "dm_only": [
+    "She is Okton and Isine's guess for the Kharun commons elder. She has not said she wants it.",
+    "Stat block: Commoner with 9 hit points. Rosa is a strong candidate to be upgraded to a major NPC with a sheet if she takes the elder seat.",
+    "Invented by npc-creator: alignment (lawful good); her attitudes to the wrestlers; her relationship to Okton (lore only says Steamside)."
+  ],
+  "lore": "rosa-hollis",
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 9,
+    "notes": "Social heavyweight, not a fighter: invented Insight +4, Persuasion +4 for the woman who settles Steamside's quarrels. Scalded forearms."
+  },
+  "slug": "rosa-hollis",
+  "created": "2026-10-25T04:40:37",
+  "updated": "2026-10-25T04:40:37"
+}

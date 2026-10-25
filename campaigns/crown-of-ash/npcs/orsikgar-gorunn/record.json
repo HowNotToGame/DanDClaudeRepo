@@ -1,0 +1,156 @@
+{
+  "name": "Orsikgar Gorunn",
+  "aliases": [
+    "Master Orsikgar Gorunn",
+    "Master of the Brimstone Brokers"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "dwarf",
+  "alignment": "lawful neutral",
+  "role": "Master of the Brimstone Brokers and its lamp on the Lamplit Council; buys the guild's and private pits' brimstone, bonds it, and sells it to the Calishite houses at Brimstone Quay",
+  "age": "163",
+  "appearance": "Broad, short and iron-grey, with a braided beard bound in a sulphur-stained cord and yellow fingertips. A scarf rides up over his mouth near the Quay's vent-gas. His left earlobe is missing, and he walks with the rolling gait of a man who spent his youth underground.",
+  "voice": "Gravel and arithmetic. 'Weight and price,' he says, meaning the rest is talk. 'The stone doesn't lie; men do.' Rarely says more than he is paid for.",
+  "backstory": "He came north as a young dwarf with a refugee clan when a southern hold's seams failed, and went to work in the Yellow Pits when they were still an honest mine. He rose from face-hand to pit-boss to broker once he understood that the Calishite factors paid for weight and not for sweat. Forty years ago he founded the Brokers with eleven other men, and bargained with Hask himself for the right to run paid-labour pits beside the crown's convict ones, so that his hands, unlike Samwyn Quarry's, draw wages. House Mostana takes two fifths of the realm's brimstone, and Orsikgar sells a good share of that: he likes Seipora Mostana's candied dates better than he likes Seipora.",
+  "wants": "Steady contracts, honest weights and a free market of buyers; no monopoly on any side. His paid pits kept apart from the convict pits and from the debt-rolls. The guild's name unmarked by what he does at night.",
+  "fears": "A single buyer who can name the price: any scheme that gives one house the whole of Ossmaari brimstone. A vent collapse in the paid pits. The pit-sentenced rising against their overseers.",
+  "relationships": [
+    {
+      "who": "seipora-mostana",
+      "how": "chief buyer and quiet smuggling partner; cordial and mutually watchful",
+      "attitude": 0
+    },
+    {
+      "who": "bryados-weary",
+      "how": "banker and rate-setter; the Brokers bond every cargo through the Moneychangers",
+      "attitude": 1
+    },
+    {
+      "who": "wilmund-redfern",
+      "how": "fellow guild master; respects a man who pays his hands",
+      "attitude": 1
+    },
+    {
+      "who": "samwyn-quarry",
+      "how": "fellow extractor and neighbour on the pit road; despises debt-labour as bad arithmetic",
+      "attitude": -1
+    },
+    {
+      "who": "oselle-velun",
+      "how": "holder of the seal and the mint; her weights are honest, her friends are not",
+      "attitude": 0
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the army the pits supply with brimstone for the engine companies; a customer, not a friend",
+      "attitude": 0
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch inspects the Quay; she cannot be bought, and he has stopped trying",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He is the source of most of the smuggled brimstone the chancery cannot count, about a fifth of the trade, loaded unmanifested aboard Mostana galleys at night with the duty unpaid. It pays his guild's wages in lean years, and he tells himself it is the only honest price.",
+    "The warehouse cellar he rents at the Saltgate shares a wall with a bricked door that he has never opened. House Mostana's porters use the far side. He has never asked."
+  ],
+  "dm_only": [
+    "invented by npc-creator: all of Orsikgar's personal detail: age, the missing earlobe, a southern refugee clan, rising from face-hand to broker, founding the Brokers forty years ago, bargaining with Hask for paid-labour pits, and the verbal habit. Canon gives only name, race (dwarf) and guild.",
+    "invented by npc-creator: he runs most of the smuggled fifth (canon: smuggled brimstone is uncounted, about a fifth of the trade) and rents a Saltgate cellar beside the Velun-era tunnel that House Mostana uses (canon: the tunnel runs from the Keep cellars to the Saltgate warehouses).",
+    "Truth he does not know: Oselle's Saltwater Compact would give House Mostana a forty-year monopoly on Ossmaari brimstone, which would end the Brokers. If he learns it, he flips against Oselle at once and has the coin to fund it.",
+    "invented by npc-creator: alignment and sheet (mountain dwarf Fighter 4, Champion, Dueling).",
+    "Leaning (invented): swing vote on guild and trade matters; will follow whichever lamp keeps the Quay open and the buyers plural."
+  ],
+  "sheet": {
+    "class": "Fighter 4",
+    "background": "Guild Artisan",
+    "size": "medium",
+    "type": "humanoid (dwarf)",
+    "ac": 18,
+    "ac_from": "chain mail, shield",
+    "hp": 40,
+    "hit_dice": "4d10+12",
+    "speed": 25,
+    "abilities": {
+      "str": 19,
+      "dex": 10,
+      "con": 16,
+      "int": 12,
+      "wis": 13,
+      "cha": 8
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "insight": 1,
+      "intimidation": 1,
+      "persuasion": 1
+    },
+    "senses": [
+      "darkvision 60 ft."
+    ],
+    "languages": [
+      "Common",
+      "Dwarvish",
+      "Alzhedo"
+    ],
+    "resist": [
+      "poison"
+    ],
+    "traits": [
+      {
+        "name": "Dwarven Resilience",
+        "text": "Advantage on saving throws against poison, and resistance to poison damage."
+      },
+      {
+        "name": "Fighting Style: Dueling",
+        "text": "+2 damage with a melee weapon wielded in one hand and no other weapon (included in the battleaxe)."
+      },
+      {
+        "name": "Second Wind",
+        "text": "Bonus action: regain 1d10+4 hit points. Once per short or long rest."
+      },
+      {
+        "name": "Action Surge",
+        "text": "On his turn, take one additional action. Once per short or long rest."
+      },
+      {
+        "name": "Improved Critical",
+        "text": "Weapon attacks score a critical hit on a roll of 19 or 20."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Battleaxe",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 slashing",
+        "damage_bonus": 2
+      },
+      {
+        "name": "Handaxe",
+        "attack": "str",
+        "reach": 5,
+        "range": "20/60",
+        "damage": "1d6 slashing"
+      }
+    ],
+    "reactions": [],
+    "gear": [
+      "chain mail",
+      "shield",
+      "battleaxe",
+      "handaxes",
+      "scarf against vent-gas",
+      "guild bond-seal"
+    ]
+  },
+  "slug": "orsikgar-gorunn",
+  "created": "2026-10-25T04:41:52",
+  "updated": "2026-10-25T04:41:52"
+}

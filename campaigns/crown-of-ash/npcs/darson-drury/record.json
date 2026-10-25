@@ -1,0 +1,48 @@
+{
+  "name": "Darson Drury",
+  "aliases": [
+    "Lord Darson Drury"
+  ],
+  "tier": "background",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Lord of Varresh, the coastal brimstone lordship (about 12,000 people) west of Ossmaar across the Brine Water",
+  "age": "early fifties",
+  "appearance": "Thickset and sun-creased, with a grey salt-stiffened beard and an ink-stained thumb. Wears a plain sealskin coat over his mail even at table.",
+  "voice": "Genial and hard-headed. Talks in prices and tolls, and says 'let us call it a fair figure' before every demand.",
+  "backstory": "Drury inherited Varresh from his father and fought the last open war with Ossmaar in 1477, which ended on the Brine Water with neither side the master of the other. Since then he has fought on the quay instead, undercutting Ossmaar's brimstone to win Calishite contracts. Varresh is smaller, poorer in coin and richer in anger than Kharun, and Drury knows it. With the king dead and the realm in a regency, he has the most interest of any neighbour in what happens next.",
+  "wants": "The Calishite brimstone contracts while Ossmaar is leaderless; a weak Kharun, but no army on the Brine Water.",
+  "fears": "Lorard crowned and the Ash Companies on his border again; a Calishite house playing both shores to bleed him.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "commander of the army that held the Brine Water against him in 1477",
+      "attitude": -1
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "her house buys two fifths of Ossmaar's brimstone and courts his; he suspects it plays both shores",
+      "attitude": -1
+    },
+    {
+      "who": "osric-thell",
+      "how": "neighbouring lord; no quarrel, no friendship",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "Since the king died he has quietly doubled his border guard at the Brine Water, to see which way Kharun falls.",
+    "He keeps a factor posing as a salt-buyer at Saltreach, six miles from his border, who sends him word of the barges."
+  ],
+  "dm_only": [
+    "invented by npc-creator: his age, appearance, voice, the 'fair figure' habit, and the 1477 war ending in a stalemate on the Brine Water (canon gives only 'no open war since 1477').",
+    "invented by npc-creator: that the Ash Companies, not any named officer, held the Brine Water; Lorard's personal role in 1477 is not canon.",
+    "invented by npc-creator: the doubled border guard and the factor at Saltreach."
+  ],
+  "lore": null,
+  "statblock": "Knight|MM",
+  "slug": "darson-drury",
+  "created": "2026-10-25T04:34:46",
+  "updated": "2026-10-25T04:34:46"
+}

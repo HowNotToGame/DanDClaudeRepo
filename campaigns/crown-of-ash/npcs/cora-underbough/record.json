@@ -1,0 +1,49 @@
+{
+  "name": "Cora Underbough",
+  "aliases": [
+    "Reeve Cora Underbough"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "halfling",
+  "alignment": "lawful neutral",
+  "role": "Reeve of Thornwater, the river town and grain market at Thorn Bridge, 40 miles east of Kharun by the Shore Road",
+  "age": "late fifties",
+  "appearance": "Small and round-shouldered, ink on her fingers, a pewter reeve's chain over a plain wool gown. A short black ribbon is knotted to the chain; she has worn it since 1484 and never explained it.",
+  "voice": "Dry, unhurried and exact. Answers a question with a count or a price. Says 'by the measure' when she means 'to be fair', and never swears.",
+  "backstory": "Thornwater-born, clerk to the old reeve before she was reeve herself, and she has kept the Thorn Bridge tolls and the grain tallies for the better part of two decades. In 1484 the town rose and Lorard Hask came down the Shore Road: he hanged one man in ten, sixty-one in all, and as reeve she had to stand at his sergeant's elbow while the roll of households was read and the tenth men were counted off. She signed the burial register herself. Since then Thornwater has paid its dues on the day and has not once toasted the crown. Her town eats Thell grain from across the river, and she knows exactly how many days of it the granaries hold.",
+  "wants": "Thornwater fed, lightly taxed and left alone; no second Tithe; a say, at last, in whoever takes the crown.",
+  "fears": "The Lord-Marshal's army coming back down the Shore Road; a short harvest; the Thorn Bridge closed from the Thell side.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "hanged sixty-one of her townsmen in 1484 and made her read him the roll",
+      "attitude": -3
+    },
+    {
+      "who": "osric-thell",
+      "how": "grain supplier across the Thorn; half her town has kin in his barony",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "She keeps the sixty-one names in the burial register and a knotted cord with sixty-one knots in her belt-pouch. The black ribbon is for them.",
+    "Baron Thell has told her privately that he will take Thornwater families across the river if the Lord-Marshal's army comes east again. She has told nobody in Kharun, and has half-agreed.",
+    "She under-reports Thornwater's hearths by about one in ten on the tax roll, so there is grain left in the town after the crown's collectors have gone."
+  ],
+  "dm_only": [
+    "invented by npc-creator: that Cora was already reeve in 1484 and was made to read the roll of households at the Tithe (canon only gives her as the reeve now and the Tithe as 61 hanged).",
+    "invented by npc-creator: her age, appearance, the black ribbon, the knotted cord, her 'by the measure' habit, and her service as old reeve's clerk.",
+    "invented by npc-creator: the private understanding with Osric Thell, and the one-in-ten hearth under-reporting.",
+    "Stats: Noble|MM, AC lowered to 11 (no breastplate); treat as Small (halfling: speed 25 ft., Lucky, Brave, Halfling Nimbleness). The Noble's Insight and Persuasion fit a reeve; she is not a fighter."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Noble|MM",
+    "ac": 11,
+    "notes": "Halfling: Small, speed 25 ft., Lucky, Brave, Halfling Nimbleness. No breastplate; short staff and a ledger rather than a rapier."
+  },
+  "slug": "cora-underbough",
+  "created": "2026-10-25T04:34:20",
+  "updated": "2026-10-25T04:34:20"
+}

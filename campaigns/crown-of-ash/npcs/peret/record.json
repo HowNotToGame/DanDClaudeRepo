@@ -1,0 +1,93 @@
+{
+  "name": "Peret",
+  "aliases": [
+    "Brother Peret",
+    "the knife-man"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "Lay-brother of the Pyrehouse and the Choir's knife-man; released by Halda to Coldwell at the dusk bell on day 2",
+  "age": "forties",
+  "appearance": "A lean lay-brother in Choir grey with narrow clean hands and a thin, soft smile. Hums a hymn under his breath while he works.",
+  "voice": "Soft and kind, as if at a sickbed. Calls the dying 'friend' and tells them to 'go gladly'; hums between sentences.",
+  "backstory": "Peret is a lay-brother of the Pyrehouse's inner circle, the Choir, and the knife that does its quiet work. The warden Kaselle named him as the bearer of the knife that cut Isine at the pyre and as the man who brought covered carts of smiling Ashward dead to the almshouse dead-house, nineteen in three months. At midnight before the Great Pyre he hummed a hymn over a smiling pauper with a narrow wound under the ribs and laid a grey ash wafer on the dead man's tongue; Chadickith ambushed him there with two Choir brothers and knocked him unconscious, then took his plague-road gate key, a tin of three wafers, his stiletto and a list of six Ashward names (two marked done). He was handed to Halda at the Collarhouse, where he only hummed hymns and asked for 'the loxodon', and at the dusk bell on day 2 Halda let Coldwell take him back under Watch escort.",
+  "wants": "To finish the names on his list and keep the Choir's mercy going; to be forgiven by Coldwell for the knife that missed and the dead-house lost.",
+  "fears": "Coldwell's disappointment; the giant's boy and the giant; dying without a hymn to go by.",
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden he serves and fears; took him back from the Watch",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "the 'giant's boy' who ambushed him in the dead-house and took his key and list",
+      "attitude": -2
+    },
+    {
+      "who": "okton",
+      "how": "the giant who broke through the dead-house door; he thinks 'the smith has the coal'",
+      "attitude": -1
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the servant his knife missed",
+      "attitude": -1
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "the Choir's cantor, his sister in song",
+      "attitude": 1
+    },
+    {
+      "who": "garn",
+      "how": "Choir brother and fellow knife; dead",
+      "attitude": 2
+    },
+    {
+      "who": "dacin",
+      "how": "Choir brother",
+      "attitude": 1
+    },
+    {
+      "who": "vesan",
+      "how": "brother who surrendered in the dead-house and swore against the Choir",
+      "attitude": -2
+    },
+    {
+      "who": "wyn",
+      "how": "brother who surrendered in the dead-house and swore against the Choir",
+      "attitude": -2
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Captain who held him a night and gave him back to Coldwell at the dusk bell",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "The Choir's grey wafers are grains of the Last Ember, pyre-ash and dust of the Heartcoal, kept in the iron casket in the Pyrehouse crypt; Coldwell wears the key. He lays a wafer on each dead man's tongue and it flares orange and warms the room.",
+    "The older hymns he hums are to the Lord of Murder, whom the Choir serves behind Kelemvor's mask. He believes the dying go gladly into those hands.",
+    "He knows the six names on his list, why each was marked, and which two are done. The list is in Chadickith's hands now.",
+    "The plague road, a bricked tunnel behind the lye barrels in the almshouse dead-house cellar, runs to an iron gate under the crypt. He carried the gate's key on a neck cord until Chadickith took it.",
+    "He believes the giant's boy carried Isine away from the pyre, and that the smith has the Coal.",
+    "Coldwell was angry that the knife missed."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: his age, looks, the habit of calling the dying 'friend', and the framing of the list (Ashward paupers the Choir selected for a 'gladdening'). Canon has only 'a list of six Ashward names, each with a date and a mark; two marked done'.",
+    "Why Peret asked for 'the loxodon' while in the cells is not canon; the DM may use it (to confess, to curse, to warn).",
+    "His whereabouts since the dusk bell of day 2 are not recorded; presumably with Coldwell in the Pyrehouse.",
+    "Whether the Choir has changed the plague-road gate's lock since Peret reported the key lost is open. Fought in play with HP 27, AC 12, as a Spy.",
+    "Peret's state of the burn is not canon. The wafers infect; treat him as an eater only if the DM decides."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Spy|MM",
+    "notes": "Fights with a narrow stiletto (use the Shortsword line). Chadickith took his stiletto, wafer tin, key and list; he may have another blade. Played as HP 27, AC 12 in the dead-house ambush."
+  },
+  "slug": "peret",
+  "created": "2026-10-25T04:42:18",
+  "updated": "2026-10-25T04:42:18"
+}

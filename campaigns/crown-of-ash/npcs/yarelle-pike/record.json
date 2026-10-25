@@ -1,0 +1,51 @@
+{
+  "name": "Yarelle Pike",
+  "aliases": [
+    "Captain Pike"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watch captain keeping the gates; the first-named of Halda's six captains",
+  "age": "late forties",
+  "appearance": "Tall and weathered, a gate-keeper's squint, her gorget dulled by years on the wall.",
+  "voice": "Dry and measured; counts posts and shifts aloud and says 'by the roster' when she is sure.",
+  "backstory": "The first-named of Halda's six captains and the one Halda leans on for the gates. She stood in the half-ring at the noon hearing on day 3 when the captains ruled the Coal had not chosen Kitwin, and voted with Halda on day 9 to open the gates on Halda's terms. She is quiet about Rook: her postern roster took his two men without a question.",
+  "wants": "A clean roster and the gates kept honestly under whichever council sits.",
+  "fears": "Another traitor on her own rolls; the gates forced from inside.",
+  "relationships": [
+    {
+      "who": "halda-barrowe",
+      "how": "her Watch-Captain, whom she has followed for years",
+      "attitude": 2
+    },
+    {
+      "who": "marda-ironside",
+      "how": "fellow captain",
+      "attitude": 1
+    },
+    {
+      "who": "hesard-rook",
+      "how": "fellow captain whose recommended men she let onto the postern roster",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "a hired sword who has done Watch work at her gates",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You signed Rook's two recommended men onto the postern roster after the roc and never asked who vouched for them. You blame yourself."
+  ],
+  "dm_only": [
+    "Only her name, her rank and her place at the noon hearing are canon. Invented by npc-creator: that she keeps the gates, her age, appearance, voice, alignment, the Knight stat block and the roster guilt.",
+    "The day-9 vote was four captains to one; she is among the four."
+  ],
+  "lore": null,
+  "statblock": "Knight|MM",
+  "slug": "yarelle-pike",
+  "created": "2026-10-25T04:43:54",
+  "updated": "2026-10-25T04:43:54"
+}

@@ -1,0 +1,57 @@
+{
+  "name": "Garford Whitlock",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Hired watcher who tailed Chadickith for the Lord-Marshal's quartermaster's office; beaten senseless and now held in Oselle Velun's household.",
+  "age": "30s",
+  "appearance": "A shabby gentleman's cut gone threadbare, a broken nose and a weak chin; looks like someone who used to be someone.",
+  "voice": "Wheedling and aggrieved, with good vowels gone shabby. Name-drops his house.",
+  "backstory": "Garford Whitlock is a poor cousin of the old house of Whitlock who lives by hired tailing and watching. The quartermaster's office paid him to follow Chadickith from the Blind Barrel on the first day. He saw the Pyrewarden leave a note there, and would have reported it. In the dye-works lane Chadickith grappled him and beat him senseless. Oselle's men carried him off, claiming the Watch's drunk-tank, and he has not been seen since.",
+  "wants": "To get out in one piece and be paid.",
+  "fears": "Chadickith; whoever now holds him.",
+  "relationships": [
+    {
+      "who": "fenwin-thatcher",
+      "how": "the quartermaster's office's man who hired him",
+      "attitude": 0
+    },
+    {
+      "who": "jorson",
+      "how": "the thin man who took him from the lane",
+      "attitude": -1
+    },
+    {
+      "who": "oselle-velun",
+      "how": "the Lady whose household holds him",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who beat him senseless",
+      "attitude": -2
+    },
+    {
+      "who": "norelle-whitlock",
+      "how": "a great lady of his old house, who will not acknowledge him",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "He saw a Pyrewarden leave a note at the Blind Barrel and meant to report it. He told Chadickith, to buy his life, that Oselle's steward has two men watching Okton's forge."
+  ],
+  "dm_only": [
+    "Per the ledger (memory m0037) he is now in Oselle's household's hands. Oselle's side knows from him that a Pyrewarden left a note; they do not know about the Choir.",
+    "Invented by npc-creator: that he is of the Whitlock line (canon gives only the surname; Lady Norelle Whitlock holds an old-house lamp, and Kitford Whitlock burned Dunmarrow in 1463), his looks and voice, and the Scout stat block (no longbow)."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Scout|MM",
+    "notes": "city tail; no longbow"
+  },
+  "slug": "garford-whitlock",
+  "created": "2026-10-25T04:46:14",
+  "updated": "2026-10-25T04:46:14"
+}

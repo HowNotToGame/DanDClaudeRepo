@@ -1,0 +1,46 @@
+{
+  "name": "Tamley Mercer",
+  "aliases": [
+    "Captain Mercer"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watch captain keeping the streets and the market watches",
+  "age": "forties",
+  "appearance": "Soft-spoken and solid, with the ash-smudge of a pious woman who kneels in the street.",
+  "voice": "Soft and devout: 'Kelemvor keep us.' Speaks to a crowd as if each person in it were alone.",
+  "backstory": "One of Halda's six captains, keeping the streets and the market watches. She is devout; half the Watch wavered when the Pyrehouse's smoke went up on day 3, and she knelt to it. She still voted with the other captains that the Coal had not chosen Kitwin and, on day 9, to open the gates.",
+  "wants": "Peace in the streets and the Pyrehouse not driven to violence.",
+  "fears": "The Watch and the Pyrehouse coming to blows; the burn loose in her streets.",
+  "relationships": [
+    {
+      "who": "halda-barrowe",
+      "how": "her Watch-Captain",
+      "attitude": 2
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden she was raised to revere and now doubts",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "wary of the giant's house, though he has done Watch work",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "You still pray at the Pyrehouse and have told no one about the doubts the Choir's silver has given you."
+  ],
+  "dm_only": [
+    "Only her name and rank are canon. Invented by npc-creator: the streets post, her age, devotion, voice, appearance, alignment, the Veteran stat block, and that she knelt at the smoke (canon says only that half the Watch wavered).",
+    "The day-9 vote was four captains to one; she is among the four."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "tamley-mercer",
+  "created": "2026-10-25T04:44:09",
+  "updated": "2026-10-25T04:44:09"
+}

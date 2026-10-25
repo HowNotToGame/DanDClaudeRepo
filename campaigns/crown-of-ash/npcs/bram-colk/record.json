@@ -1,0 +1,50 @@
+{
+  "name": "Bram Colk",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "stoker at the Third Furnace, the alum furnace by the dye-works",
+  "age": "mid-thirties",
+  "appearance": "A chest like a barrel, soot-ringed forearms and a belly that sways when he laughs.",
+  "voice": "Hearty and quick to laugh. Before a bout he claps once, and the rail claps with him.",
+  "backstory": "Bram Colk stokes the Third Furnace, the big alum-boiling furnace by the dye-works in Steamside. His big sister Mattie works the same furnace. He is a Push man and puts everything on the charge. On day twelve of 1491 he met Tess Aldin in the Open quarterfinal and lost in about the time it takes to boil an egg: a sidestep, a heel-hook trip and a pin. He laughed through the ash and clasped wrists with her.",
+  "wants": "To get past a first sidestep; to hear the Third Furnace's name called at the rail again.",
+  "fears": "The furnace crews laid off, as in the Quiet Year; the burn reaching the stokers.",
+  "relationships": [
+    {
+      "who": "mattie-colk",
+      "how": "his big sister, a stoker at the same furnace",
+      "attitude": 3
+    },
+    {
+      "who": "tess-aldin",
+      "how": "pinned him in the 1491 quarterfinal; he clasped wrists with her",
+      "attitude": 2
+    },
+    {
+      "who": "dorrik-pell",
+      "how": "dye-works lane neighbour; the furnace boils the alum the dyers use",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy from the forge up the lane, who won the Open",
+      "attitude": 1
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stat block: Thug (a big, strong labourer; a charging Push wrestler).",
+    "Invented by npc-creator: age; alignment; fears; the dye-works neighbour tie to Dorrik; his goal of getting past the first sidestep."
+  ],
+  "lore": "bram-colk",
+  "statblock": {
+    "ref": "Thug|MM",
+    "notes": "Push wrestler: charges with arms wide; weak against a sidestep."
+  },
+  "slug": "bram-colk",
+  "created": "2026-10-25T04:38:53",
+  "updated": "2026-10-25T04:38:53"
+}

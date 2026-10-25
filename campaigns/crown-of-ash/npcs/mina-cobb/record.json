@@ -1,0 +1,45 @@
+{
+  "name": "Mina Cobb",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "six-year-old Ashward child, clear of the burn; stays with a neighbour",
+  "age": "6",
+  "appearance": "Very small, with a missing front tooth and her sister's dark eyes.",
+  "voice": "Asks 'why?' of everything; whispers when the grown-ups are quiet.",
+  "backstory": "Six, the youngest Cobb. She stayed clear of the burn and lives with a neighbour in the Ashward while her mother, sister and brother are in the giant's cellar. She has been told they are poorly. Okton has promised the Order will shelter her and Tam if their mother dies.",
+  "wants": "Her mother and her sister and her brother to come home.",
+  "fears": "Being left behind. The dark.",
+  "relationships": [
+    {
+      "who": "gwenmund-cobb",
+      "how": "mother",
+      "attitude": 3
+    },
+    {
+      "who": "branda-cobb",
+      "how": "big sister",
+      "attitude": 3
+    },
+    {
+      "who": "tam-cobb",
+      "how": "brother",
+      "attitude": 3
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Level 0 and clear. She touched her father's sickbed linen like Tam, but shows no flush. The neighbour is unnamed.",
+    "Invented by npc-creator: appearance, voice, wants and fears."
+  ],
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 2,
+    "notes": "child; level 0"
+  },
+  "slug": "mina-cobb",
+  "created": "2026-10-25T04:43:43",
+  "updated": "2026-10-25T04:43:43"
+}

@@ -1,0 +1,64 @@
+{
+  "name": "Joss Marl",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "chaotic neutral",
+  "role": "river-ferryman under Kharun's river wall; Knot-trained Open semifinalist",
+  "age": "25",
+  "appearance": "Thin as a ferry pole, brown and stringy, with a rope-hauler's long, loose arms. He laughs at himself.",
+  "voice": "Quick, wry, and always laughing, even on his back in the dust. The rail says nobody can hold him if he gets wet.",
+  "backstory": "Joss Marl was born in 1466 and poles a flat ferry under the river wall. He learned the Knot in Teo Varrow's Quay warehouse, and in the Open he slips grips and takes backs. On day twelve of 1491 he rode Ilk Venn down in the quarterfinal, then lost the semifinal to Tess Aldin when his wet grip slipped and he stumbled over the chalk. He took two crowns, then crossed the plank-walk over the vent barefoot and grinning with a full bucket for the double purse. He says he descends from Old Marl Hollis through a ferryman's daughter, which Rosa denies loudly every year.",
+  "wants": "Coin for a better ferry; a name on the Quay's Knot lineup in the Long Open.",
+  "fears": "Being caught at the river wall by night; the wall's night watch tightening up again.",
+  "relationships": [
+    {
+      "who": "teo-varrow",
+      "how": "his teacher in the Knot, in the Quay warehouse",
+      "attitude": 3
+    },
+    {
+      "who": "tess-aldin",
+      "how": "put him out of the 1491 semifinal over the chalk",
+      "attitude": 1
+    },
+    {
+      "who": "ilk-venn",
+      "how": "rode him down in the 1491 quarterfinal",
+      "attitude": 1
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate, who denies his claim of kinship every year",
+      "attitude": 1
+    },
+    {
+      "who": "marl-hollis",
+      "how": "claims to descend from Old Marl through a ferryman's daughter",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "the new champion; Joss watched him all day",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "He ferries smuggled brimstone past the river wall by night for a Quay crew.",
+    "Since Captain Rook was relieved, the wall's night watch has thin hours, and Joss knows exactly which ones."
+  ],
+  "dm_only": [
+    "The smuggling and the river-wall detail are from the lore's DM secrets. The Quay crew is not named in canon.",
+    "Stat block: Scout (Stealth +6 and Athletics +4 fit the night ferry and the pit).",
+    "Invented by npc-creator: alignment; his wants and fears; whether the Old Marl claim is true (left open)."
+  ],
+  "lore": "joss-marl",
+  "statblock": {
+    "ref": "Scout|MM",
+    "notes": "Knot-trained slipper: wet palms, slips grips and takes backs. Prefers a ferry-pole to a bow."
+  },
+  "slug": "joss-marl",
+  "created": "2026-10-25T04:39:35",
+  "updated": "2026-10-25T04:39:35"
+}

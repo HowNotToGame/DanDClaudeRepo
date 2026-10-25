@@ -1,0 +1,182 @@
+{
+  "name": "Bryados Weary",
+  "aliases": [
+    "Master Bryados Weary",
+    "Master of the Moneychangers"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "tiefling",
+  "alignment": "lawful neutral",
+  "role": "Master of the Moneychangers and its lamp on the Lamplit Council; fixes the daily rate between Ossmaari crowns, embers and cinders and Calishite coin, and lends against cargoes and harvests",
+  "age": "49",
+  "appearance": "Tall, spare and ash-grey, with black eyes showing no white and short curved horns capped in worn brass rings in the moneychangers' fashion. His tail is tucked inside a long coat. His fingers are never still: a coin walked across the knuckles, or weighed on a fingertip.",
+  "voice": "Tired, courteous and exact, as if everything cost a little too much to say. Answers a request with 'At what rate?' and a plea with 'And who stands surety?' Says 'Everything has a rate.'",
+  "backstory": "Born in the quay lanes to a Calishite tiefling singer and a father no one names, he swept a counting-house floor at nine and could tell a clipped coin by its ring at twelve. The old master took him on; he learned the ledgers, and some other trades that quick fingers learn in the quay's back lanes before he put them aside. A tired clerk entered his name on the guild roll as Weary and he kept it, because it made men underestimate him. He has been Master for twelve years, and in that time nobody in Kharun has lent a crown without Bryados knowing the borrower's name.",
+  "wants": "A stable coinage and a government that pays its debts; the Lamplit Council to survive its first winter, because panic is a rate nobody can price. Quiet leverage over every lamp, never used.",
+  "fears": "A run on the guild's strongroom; a debased crown from a Keep short of coin; a mob in the counting-houses. Under it, being owed more by the powerful than they can ever repay, which in Kharun is how moneychangers die.",
+  "relationships": [
+    {
+      "who": "seipora-mostana",
+      "how": "trades rates and notes with her daily; trusts her tally, never her smile",
+      "attitude": 0
+    },
+    {
+      "who": "oselle-velun",
+      "how": "holds the mint and the treasury; his best customer and his largest risk",
+      "attitude": 1
+    },
+    {
+      "who": "orsikgar-gorunn",
+      "how": "the Brokers bond every cargo through his strongroom",
+      "attitude": 1
+    },
+    {
+      "who": "wilmund-redfern",
+      "how": "holds the Oilwrights' notes and presses' mortgage; they get on well",
+      "attitude": 1
+    },
+    {
+      "who": "samwyn-quarry",
+      "how": "holds notes on the furnaces; thinks a man who counts people is bad at counting coin",
+      "attitude": 0
+    },
+    {
+      "who": "wynley-fairweather",
+      "how": "debtor; House Fairweather has borrowed to survive since the attainder",
+      "attitude": 0
+    },
+    {
+      "who": "norelle-whitlock",
+      "how": "holds the Whitlock harvest advances; a punctual payer",
+      "attitude": 0
+    },
+    {
+      "who": "junard-ashdown",
+      "how": "debtor and client; moves a quarterly sum for him that he does not ask about",
+      "attitude": 0
+    },
+    {
+      "who": "tobbton-greenbottle",
+      "how": "fellow guild master; neither trusts the other's silence",
+      "attitude": 0
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the army's pay depends on a stable coin; he wants it paid on time",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "Over the last season he exchanged about twelve thousand crowns' worth of Calishite gold into Ossmaari coin for the Keep, under a chancery seal, with no lender named. The sum is not in the treasury figure the lamps have been given (about forty-one thousand at the Midsummer audit, a year old). He assumes a loan from House Mostana and has told no one; discretion is his whole trade.",
+    "He holds notes on three lamps: House Fairweather has borrowed to survive since the attainder, the Whitlock harvest is advanced a season ahead, and the Oilwrights' presses are mortgaged to his strongroom. He has never used them, and wants every lamp to remember he could.",
+    "For twenty years he has moved a quarterly sum for Lord Junard Ashdown to a midwife in the Vents named Kaslo. He guesses a bastard and has said nothing."
+  ],
+  "dm_only": [
+    "invented by npc-creator: all of Bryados's personal detail: age, appearance (horns capped in brass, ash-grey skin), a singer mother, rise from sweeper to Master twelve years ago, the 'Weary' clerk's error, and the old quay-lane skills. Canon gives only name, race (tiefling) and guild.",
+    "Truth he does not know: the Keep's undeclared gold is from House Mostana under Oselle's Saltwater Compact (see oselle-velun). Twelve thousand crowns is invented; the DM may change the figure. Whether the Keep's treasury is really above forty-one thousand is the DM's call.",
+    "invented by npc-creator: the three notes (Fairweather, Whitlock, Oilwrights) and the quarterly payment Junard Ashdown makes to Kaslo Ashdown through the guild.",
+    "invented by npc-creator: alignment and sheet (tiefling Rogue 4; he left roguery behind but kept the fingers).",
+    "Leaning (invented): a weathervane for stability. He backs whoever keeps the coinage sound, and will turn on Oselle if he learns of the Compact and the sell-swords, because that is a debt he cannot value."
+  ],
+  "sheet": {
+    "class": "Rogue 4",
+    "background": "Guild Artisan",
+    "size": "medium",
+    "type": "humanoid (tiefling)",
+    "ac": 15,
+    "ac_from": "studded leather",
+    "hp": 23,
+    "hit_dice": "4d8",
+    "speed": 30,
+    "abilities": {
+      "str": 8,
+      "dex": 17,
+      "con": 10,
+      "int": 14,
+      "wis": 12,
+      "cha": 16
+    },
+    "saves": [
+      "dex",
+      "int"
+    ],
+    "skills": {
+      "insight": 2,
+      "investigation": 2,
+      "persuasion": 1,
+      "deception": 1,
+      "perception": 1,
+      "sleight of hand": 1
+    },
+    "senses": [
+      "darkvision 60 ft."
+    ],
+    "languages": [
+      "Common",
+      "Infernal",
+      "Alzhedo",
+      "Thieves' Cant"
+    ],
+    "resist": [
+      "fire"
+    ],
+    "traits": [
+      {
+        "name": "Sneak Attack",
+        "text": "Once per turn, 2d6 extra damage on a hit with a finesse or ranged weapon if he has advantage on the attack, or another enemy of the target is within 5 ft. and he does not have disadvantage."
+      },
+      {
+        "name": "Infernal Legacy",
+        "text": "Knows thaumaturgy (Charisma). Can cast hellish rebuke as a 2nd-level spell once per long rest (see Reactions)."
+      },
+      {
+        "name": "Expertise",
+        "text": "Double proficiency in Insight and Investigation (included)."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Rapier",
+        "attack": "dex",
+        "reach": 5,
+        "damage": "1d8 piercing"
+      },
+      {
+        "name": "Hand Crossbow",
+        "attack": "dex",
+        "range": "30/120",
+        "damage": "1d6 piercing"
+      }
+    ],
+    "bonus_actions": [
+      {
+        "name": "Cunning Action",
+        "text": "Dash, Disengage or Hide as a bonus action."
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Hellish Rebuke (1/day)",
+        "save": {
+          "ability": "dex",
+          "dc": 13,
+          "damage": "3d10 fire",
+          "half": true,
+          "who": "The creature that just damaged him (within 60 ft.)"
+        }
+      }
+    ],
+    "gear": [
+      "studded leather",
+      "rapier",
+      "hand crossbow",
+      "assay scales",
+      "brass-capped horns",
+      "strongroom keys"
+    ]
+  },
+  "slug": "bryados-weary",
+  "created": "2026-10-25T04:41:53",
+  "updated": "2026-10-25T04:41:53"
+}

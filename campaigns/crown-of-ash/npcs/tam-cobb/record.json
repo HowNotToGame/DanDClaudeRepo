@@ -1,0 +1,58 @@
+{
+  "name": "Tam Cobb",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Ashward boy; patient in the forge ward",
+  "age": "9",
+  "appearance": "Small, thin and very still, with a flushed face.",
+  "voice": "Few words, whispered; answers a question after looking at his sister first.",
+  "backstory": "Nine, the middle Cobb. He touched his father's sickbed linen and showed the first flush; a warden brought him to the forge ward on day 11, filling the third cot. He sits very still on it. He is too young to be quenched except to save his life, and the ward manages him with brine and by teaching him to bleed the heat.",
+  "wants": "His mother, his sisters and the old street.",
+  "fears": "The grey creeping up his arms. Being left alone.",
+  "relationships": [
+    {
+      "who": "gwenmund-cobb",
+      "how": "mother",
+      "attitude": 3
+    },
+    {
+      "who": "branda-cobb",
+      "how": "big sister, whom he copies",
+      "attitude": 3
+    },
+    {
+      "who": "mina-cobb",
+      "how": "little sister, at the neighbour's",
+      "attitude": 3
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the nurse",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the very large giant",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "You are frightened and are hiding that you are, so your mother will not worry."
+  ],
+  "dm_only": [
+    "Level 0; early stage, only the flush. The locked burn rules govern the rest. Okton has promised to shelter him if his mother dies.",
+    "Invented by npc-creator: appearance, voice habit, wants and fears."
+  ],
+  "lore": "tam-cobb",
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 2,
+    "notes": "child; level 0; the burn at first flush"
+  },
+  "slug": "tam-cobb",
+  "created": "2026-10-25T04:43:43",
+  "updated": "2026-10-25T04:43:43"
+}

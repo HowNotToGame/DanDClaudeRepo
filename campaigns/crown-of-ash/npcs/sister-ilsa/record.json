@@ -1,0 +1,198 @@
+{
+  "name": "Sister Ilsa",
+  "aliases": [
+    "Ilsa",
+    "the cantor"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Cantor of the Pyrehouse's Choir; defected on the night of day 11 and now sits beside Kitwin in Okton's forge ward, a witness under Halda's seal",
+  "age": "forties",
+  "appearance": "Stooped, with a plain scrubbed face and grey wool worn thin at the hem; a grey shawl pulled to her knuckles. Red-rimmed eyes; she has aged a year in two days. Keeps her sleeves down and her hands away from the lamp.",
+  "voice": "Low and level, as if telling something rehearsed in the dark; eyes on the floor when it costs her. Deflects with 'Ask me in the morning' and 'I told myself it was mercy'. Calls Kitwin 'Kit' when she is afraid for him.",
+  "backstory": "Ilsa has been a Pyrehouse singer for decades and the Choir's cantor, the voice that leads its hymns. For four years she sang Kitwin to sleep and held his rage down with the Choir's song, and she sang over three of Garn's drugged 'volunteers', telling herself it was mercy. On day 9 she led the Ashward crowd to Okton's forge until Chadickith asked why the Choir would have knifed Isine if it held the Coal; the crowd turned and she withdrew with the singers. In the crypt, before the roc came, she stood behind a door with a candle and heard Coldwell tell Garn that Kitwin himself would be the willing death at the first sitting. On the night of day 11 she took the boy down the charnel stair at the midnight change, with two loyal Choir who kept to the lane, and came to Okton's forge to beg shelter for him and the holding that Okton and Isine are teaching. She has told Okton, Chadickith and Halda the crypt, the casket, the key, the plan and the drugging; she did not know the full count of Kitwin's mercies.",
+  "wants": "Kitwin sheltered, taught to hold the heat, and never sung to the fire; to answer for what she sang over; to stay near him.",
+  "fears": "Coldwell getting the boy back before the sitting, and herself being the one who sings him to it 'whether I want to or not'; the Choir finding her; the grey on her own hands.",
+  "relationships": [
+    {
+      "who": "kitwin",
+      "how": "sang him to sleep for four years; the nearest he has to a mother",
+      "attitude": 3
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden she served and has betrayed; she fears him",
+      "attitude": -2
+    },
+    {
+      "who": "garn",
+      "how": "Choir brother whose 'volunteers' she sang over; dead",
+      "attitude": -2
+    },
+    {
+      "who": "dacin",
+      "how": "Choir brother who helped her hold Kitwin on his bad night",
+      "attitude": 0
+    },
+    {
+      "who": "peret",
+      "how": "the Choir's knife-man",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who let her in and keeps asking her the hard questions",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the giant who forbids any hymn over the boy under his roof and smelled the ash on her",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Captain who holds her as a witness under seal",
+      "attitude": 0
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the servant the Choir's knife cut; she is ashamed before her",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "She has carried the burn herself for years, a little at her nail-beds and the inside of her wrists, held down by her own singing. She keeps her sleeves down and her hands from the lamp, and she has refused to be looked at; she says 'Ash is on all of us' and 'I'm well enough'.",
+    "She has taken the Choir's wafer at communion and does not trust her own will against a full Choir in full voice; she fears Coldwell will sing her back to the boy.",
+    "In the singing cell behind the casket niche the Choir sings hymns older than the Kelemvor oath. She has led them for decades and never asked whom they name.",
+    "She knew the Choir's dead-house work, that its brothers ended dying paupers with a blade, a wafer and a hymn, and she sang over three of them. She did not know about Kitwin's infirmary mercies until Halda asked.",
+    "Two loyal Choir (a lean man and a stooped older woman) came out with her and are holding the lane."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: her race (human), age, plain looks, her Cleric 5 (Grave domain) sheet, the verbal habit 'Ask me in the morning', and her pet name 'Kit'.",
+    "The older hymns name Bhaal. She does not know; Garn and Coldwell did.",
+    "Canon shows her early in the burn (a nail-bed gone grey; a hand held away from the lamp) but never says she admits it or how she took it. That she eats the wafer, and that a full Choir singing can override her, extends the cursed-wafer lore (the wafer tethers the eater's rage to the hymn); the DM may overrule.",
+    "She declined a Medicine examination on the night of day 11 ('Ask me in the morning'); she has not been examined since.",
+    "Her two companions in the lane are unnamed in canon; the DM may name the lean man."
+  ],
+  "lore": "sister-ilsa",
+  "sheet": {
+    "class": "Cleric 5",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 11,
+    "ac_from": "padded wool vestments",
+    "hp": 27,
+    "hit_dice": "5d8+5",
+    "speed": 30,
+    "abilities": {
+      "str": 8,
+      "dex": 10,
+      "con": 12,
+      "int": 11,
+      "wis": 16,
+      "cha": 14
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "religion": 1,
+      "insight": 1,
+      "medicine": 1,
+      "persuasion": 1,
+      "performance": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Celestial"
+    ],
+    "traits": [
+      {
+        "name": "Circle of Mortality",
+        "text": "Spare the Dying can be cast as a bonus action at range 30 ft.; healing spells on a creature at 0 hit points roll maximum."
+      },
+      {
+        "name": "Channel Divinity (1/short rest)",
+        "text": "Turn Undead, or Path to the Grave: one creature within 30 ft. is cursed until the end of her next turn and takes double damage from the next attack."
+      },
+      {
+        "name": "Cantor's Voice",
+        "text": "Flavour: a trained, steady voice; her hymns are what the Choir uses to hold a host's rage down."
+      },
+      {
+        "name": "Shelter of the Faithful",
+        "text": "Pyrewardens and the devout will hide and feed her."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mace",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d6 bludgeoning"
+      },
+      {
+        "name": "Sacred Flame",
+        "save": {
+          "ability": "dex",
+          "dc": "spell",
+          "damage": "2d8 radiant",
+          "half": false
+        },
+        "text": "Range 60 ft."
+      }
+    ],
+    "bonus_actions": [],
+    "reactions": [],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 3,
+        "3": 2
+      },
+      "spells": {
+        "0": [
+          "Sacred Flame",
+          "Spare the Dying",
+          "Guidance",
+          "Thaumaturgy"
+        ],
+        "1": [
+          "Bane",
+          "False Life",
+          "Bless",
+          "Cure Wounds"
+        ],
+        "2": [
+          "Gentle Repose",
+          "Ray of Enfeeblement",
+          "Calm Emotions",
+          "Silence",
+          "Spiritual Weapon"
+        ],
+        "3": [
+          "Revivify",
+          "Vampiric Touch",
+          "Dispel Magic",
+          "Speak with Dead"
+        ]
+      }
+    },
+    "gear": [
+      "grey wool shawl",
+      "padded wool vestments",
+      "iron mace",
+      "a hooded lantern",
+      "a small hymnal and a hand-censer"
+    ]
+  },
+  "slug": "sister-ilsa",
+  "created": "2026-10-25T04:40:32",
+  "updated": "2026-10-25T04:40:32"
+}

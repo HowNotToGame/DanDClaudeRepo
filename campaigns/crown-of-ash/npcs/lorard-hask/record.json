@@ -1,0 +1,195 @@
+{
+  "name": "Lorard Hask",
+  "aliases": [
+    "the Lord-Marshal",
+    "the Camp Prince"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Lord-Marshal of Ossmaar: commands all arms under the Lamplit Council regency and holds the Marshal's lamp; head of the Ash Companies, with 300 of his men inside Kharun.",
+  "age": "41",
+  "appearance": "Broad, grey at the temples, with a soldier's limp from a Shaar spear. Plain crestless field plate forged by Okton; he eats standing up.",
+  "voice": "Short, clipped sentences. Counts things out loud: soldiers, coins, the dead. Calls everyone by trade or rank (Smith's boy, Sergeant, Priest). Cracks his knuckles one at a time before he says something hard.",
+  "backstory": "Born in 1450 in the Ash Company's camp to Mara, a sellsword quartermaster and the camp-wife of Ivoard Hask, he was acknowledged as the king's firstborn at seven; no temple ever blessed his parents' handfast, so the old nobility call him a sellsword's bastard. He rode with the company at thirteen when Dunmarrow burned, and for twenty years was half-exiled to the South March for openly opposing the Sky Gallows; a Shaar spear left him his limp. In 1484, to stop his father sending the whole town to the Spire, he hanged every tenth man of rebellious Thornwater, sixty-one in all; he believes it saved lives and Thornwater spits at his name. After the king died he gave Kharun ten days to open its gates, lost his sergeant and engine crews to the Gallowsbird, marched three hundred men in on day 9, and at dawn on day 10 put his own quartermaster in irons for staging the riot that was to give his forge search cause. He voted for the Lamplit Council as regency and waits inside Kharun for its first sitting.",
+  "wants": "The throne without having to sack his own capital; under that, the approval of a father who never gave it.",
+  "fears": "Becoming his father, a man who could order a hundred deaths in that soft voice and then sleep; and the letter in his dispatch case coming to light.",
+  "relationships": [
+    {
+      "who": "ivoard-hask",
+      "how": "the king, his acknowledged father; never gave him a word of praise",
+      "attitude": 0
+    },
+    {
+      "who": "oselle-velun",
+      "how": "half-sister by the king's acknowledgement; rival claimant, now a partner in the regency",
+      "attitude": 0
+    },
+    {
+      "who": "kitwin",
+      "how": "the late king's youngest, raised by the Pyrehouse; a boy being used as a banner",
+      "attitude": 1
+    },
+    {
+      "who": "unara",
+      "how": "his quartermaster of eleven years, trained under his mother Mara; he cut her cord and left her in irons",
+      "attitude": -1
+    },
+    {
+      "who": "ashlo",
+      "how": "the quartermaster's runner who threw the first torch at the forge",
+      "attitude": -2
+    },
+    {
+      "who": "fenwin-thatcher",
+      "how": "Unara's deputy, who now keeps the quartermaster's office",
+      "attitude": 1
+    },
+    {
+      "who": "dace",
+      "how": "his sergeant of the bolt-throwers, killed at the engines by the roc",
+      "attitude": 2
+    },
+    {
+      "who": "pellot-rook",
+      "how": "his real father, Hask's sword-brother, dead before he was born",
+      "attitude": 2,
+      "hidden": true
+    },
+    {
+      "who": "hesard-rook",
+      "how": "cousin; the Watch captain who fed the Choir news of the forge so he might be crowned",
+      "attitude": -1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain who held the gates and broke his search with proof",
+      "attitude": 1
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "High Pyrewarden; wanted Kitwin crowned, promised the Pyrehouse's backing through Rook",
+      "attitude": -2
+    },
+    {
+      "who": "okton",
+      "how": "the fire giant smith whose plate he has worn for years",
+      "attitude": 2
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the king's cupbearer, whom he called the king's hand and not a thief",
+      "attitude": 1
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "House Mostana's factor, quiet lender for his soldiers' pay; he thinks he is using her",
+      "attitude": 0
+    },
+    {
+      "who": "wilash-redhand",
+      "how": "Watch sergeant who passes Watch news to the quartermaster's office",
+      "attitude": 1,
+      "hidden": true
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who threw Garn to the roc, then organised the evacuation and stood by the forge",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He is not Ivoard Hask's son. His real father was Pellot Rook, Hask's sword-brother, who died in the South March campaign of 1450 before he was born. Hask took the pregnant Mara and raised the boy as his own.",
+    "He learned it two years ago from his dying mother's letter, which he could not bring himself to burn. It is in a locked dispatch case in his command tent. If it surfaces, his claim dies and his soldiers' faith may die with it.",
+    "He has had the last living witness, the old company surgeon who delivered him, pushed from a wall at Fort Vell.",
+    "On day 11 Hesard Rook asked to see him alone in his cell, greeted him as cousin, and confessed that he fed the Choir news of the forge because Coldwell swore the Pyrehouse would back Lorard if the Coal were recovered. Lorard said: I know what I am. I never asked you to bleed for it. He did not forgive him, and did not call for the rope.",
+    "House Mostana is quietly lending him gold for his soldiers' pay. He knows, and he thinks he is using them.",
+    "He did not know of Unara's scheme. He does not know what the Coal is, only distrusts it on instinct; he meant to wear it once for the crowd and then drop it in the Lake of Steam."
+  ],
+  "dm_only": [
+    "Captain Marda Ironside holds Rook's confession sealed in her strongbox; Halda gets it on day 14 unless Chadickith intervenes. Chadickith heard it from behind the grate. Whether Lorard realised who stood behind the grate is undecided.",
+    "Two veterans of the Ash Companies who remember Pellot Rook are still alive; the Kharun rumour is that Lorard walks just like him.",
+    "He is not infected with the burn. He does not know the Coal is in the Dunmarrow vault, nor what the Choir really is, nor of the Saltwater Compact and the three hundred Calishite sell-swords due under it.",
+    "Invented by npc-creator: the sheet (Fighter 8, Battle Master). It matches the session 2 pit numbers: Strength 17, Dexterity 11, Constitution 15, Athletics +6, Acrobatics +0, speed 25 for the limp. INT 12, WIS 13, CHA 14, plate with Defense style and the maneuvers are guesses. Also invented: that Unara trained under his mother Mara."
+  ],
+  "lore": "lorard-hask",
+  "sheet": {
+    "class": "Fighter 8",
+    "background": "Soldier",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 19,
+    "ac_from": "Okton-forged field plate, Defense style",
+    "hp": 68,
+    "hit_dice": "8d10+16",
+    "speed": 25,
+    "abilities": {
+      "str": 17,
+      "dex": 11,
+      "con": 15,
+      "int": 12,
+      "wis": 13,
+      "cha": 14
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "intimidation": 1,
+      "insight": 1,
+      "perception": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Shaar-Spear Limp",
+        "text": "Speed 25 ft. Disadvantage on Dexterity (Acrobatics) checks."
+      },
+      {
+        "name": "Action Surge",
+        "text": "Once per short rest, one additional action."
+      },
+      {
+        "name": "Combat Superiority",
+        "text": "Five d8 superiority dice (short rest), maneuver DC 14: Commander's Strike, Rally, Precision Attack, Riposte, Maneuvering Attack."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "Two longsword attacks."
+      },
+      {
+        "name": "Longsword",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 slashing"
+      },
+      {
+        "name": "Heavy Crossbow",
+        "attack": "dex",
+        "range": "100/400",
+        "damage": "1d10 piercing"
+      }
+    ],
+    "bonus_actions": [
+      {
+        "name": "Second Wind",
+        "text": "Regains 1d10+8 hit points (short rest)."
+      }
+    ],
+    "gear": [
+      "field plate",
+      "longsword",
+      "heavy crossbow"
+    ]
+  },
+  "slug": "lorard-hask",
+  "created": "2026-10-25T04:42:30",
+  "updated": "2026-10-25T04:44:15"
+}

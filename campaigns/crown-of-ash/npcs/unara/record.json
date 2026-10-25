@@ -1,0 +1,139 @@
+{
+  "name": "Unara",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "The Lord-Marshal's quartermaster of eleven years, stripped of rank and held in irons by the Ash Companies for staging the forge riot; to be tried by the vote of her own company.",
+  "age": "50s",
+  "appearance": "Lean and weathered, close-cropped grey hair, ink-stained fingers and a soldier's scars. Her quartermaster's cord was cut from her shoulder in front of the men.",
+  "voice": "Flat and exact; speaks in tallies. Answers a question with a number first (boots, wagons, days of grain) and a judgement second. Says: by the tally.",
+  "backstory": "Unara learned the quartermaster's trade in the sellsword camps under Mara, Lorard's mother, and took the cord at Lorard's side eleven years ago. She has kept the Ash Companies fed, shod and paid through the South March winters, and she believes the Marshal's claim is only as strong as his army's belief in it. When the king died and the Coal vanished, a grey-shawled woman of the Choir came to her with silver and a promise that the Pyrehouse would open to the Marshal if the Coal were found. She sent her runner Ashlo to make a spark at Okton's forge so the Marshal's dawn search would have cause. Halda Barrowe laid Ashlo and the flame-stamped silver before Lorard; Unara confessed, and Lorard stripped her rank, cut her cord and ordered her held in irons to be tried by the vote of her own company.",
+  "wants": "To spare the Marshal the stain of it, and to be judged by her own company and no one else. Underneath, to see Lorard crowned.",
+  "fears": "That her company will vote to hang her; that she has broken the one man she served; that the Choir was using the Marshal all along.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "the Marshal she has served eleven years; she acted for him without his word",
+      "attitude": 3
+    },
+    {
+      "who": "ashlo",
+      "how": "her runner, whom she sent to make the spark; held in Halda's cells",
+      "attitude": 0
+    },
+    {
+      "who": "fenwin-thatcher",
+      "how": "her deputy in the quartermaster's office, who now keeps its books",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain whose proof undid her",
+      "attitude": -2
+    },
+    {
+      "who": "okton",
+      "how": "the giant whose forge she tried to burn out; the Marshal wears his plate",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who lied to her at the triage tent on the day of the burning, and was not believed",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "The grey-shawled woman approached her first, with silver and a promise to open the Pyrehouse to the Marshal. She took the silver. She does not know the woman's name.",
+    "Lorard did not know. She never told him; she kept it between herself and Ashlo and told Ashlo to say it was for the quartermaster if he was caught.",
+    "She suspects the locked dispatch case in the Marshal's command tent matters more than he lets on: he has not opened it in front of anyone since his mother died, and he changed after Fort Vell. She has never touched it."
+  ],
+  "dm_only": [
+    "She does not know Lorard is not Ivoard's son, or what the dispatch case holds (Mara's letter), or that Rook was his cousin.",
+    "Not decided: the identity of the grey-shawled woman (Sister Ilsa is one candidate; the chandler's loft by the dye-works is the known meeting place). Not decided: how her company votes.",
+    "Invented by npc-creator: that she trained under Mara; the suspicion about the dispatch case; that she took the silver; that she was the quartermaster's envoy at the triage tent on day 1 (memory m0018 says only Lorard's quartermaster); her age and looks; the sheet (Fighter 3 / Rogue 2, Battle Master, Soldier). The gear listed is with the Marshal's stores while she is in irons."
+  ],
+  "lore": "unara",
+  "sheet": {
+    "class": "Fighter 3 / Rogue 2",
+    "background": "Soldier",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 15,
+    "ac_from": "breastplate",
+    "hp": 42,
+    "hit_dice": "3d10+2d8+10",
+    "speed": 30,
+    "abilities": {
+      "str": 12,
+      "dex": 12,
+      "con": 14,
+      "int": 15,
+      "wis": 13,
+      "cha": 12
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "intimidation": 1,
+      "insight": 1,
+      "perception": 1,
+      "investigation": 2,
+      "persuasion": 2
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Combat Superiority",
+        "text": "Four d8 superiority dice (short rest), maneuver DC 12: Commander's Strike, Rally, Precision Attack."
+      },
+      {
+        "name": "Action Surge",
+        "text": "Once per short rest, one additional action."
+      },
+      {
+        "name": "Sneak Attack",
+        "text": "Once per turn, 1d6 extra damage with a finesse or ranged weapon when she has advantage or an ally is within 5 feet of the target."
+      },
+      {
+        "name": "Cunning Action",
+        "text": "Bonus action: Dash, Disengage or Hide."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Shortsword",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d6 piercing"
+      },
+      {
+        "name": "Light Crossbow",
+        "attack": "dex",
+        "range": "80/320",
+        "damage": "1d8 piercing"
+      }
+    ],
+    "bonus_actions": [
+      {
+        "name": "Second Wind",
+        "text": "Regains 1d10+3 hit points (short rest)."
+      }
+    ],
+    "gear": [
+      "breastplate",
+      "shortsword",
+      "light crossbow",
+      "ledger and tally-sticks"
+    ]
+  },
+  "slug": "unara",
+  "created": "2026-10-25T04:44:51",
+  "updated": "2026-10-25T04:44:51"
+}

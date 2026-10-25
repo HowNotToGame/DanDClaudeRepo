@@ -1,0 +1,41 @@
+{
+  "name": "Maeis Hollis",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "headman of the charcoal-burners' camp at the foot of the Dunmar Road, above Cinder Ford",
+  "age": "late sixties",
+  "appearance": "Soot in every crease, a grey stubble, and a burner's cough. Smells of smoke.",
+  "voice": "Taciturn and practical; answers a question about the road with a question about the weather. Frowns instead of arguing.",
+  "backstory": "The headman of a camp of charcoal-burners who tend smoking mounds at the foot of the old Dunmar Road. On day 5 he and two of his burners shared bread with three 'couriers' (Chadickith, Gwenis and Kita) who carried a blanketed crate, and told them the Dunmar Road runs forty-five miles to the burned town and is said to be haunted. His dog whined and shied from Kita and the crate, and he frowned and said nothing. He and two burners saw the couriers go up the Dunmar Road. He has also heard that the Roc Bell at Hadrun has been quiet for days, and that the bird is gone.",
+  "wants": "To keep the camp and the mounds smoking, and to be left alone by Kharun's soldiers.",
+  "fears": "The Marshal's riders, the Pyrehouse's fuel agents, and the haunt on the Dunmar Road.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "the courier who shared bread and asked about the road",
+      "attitude": 1
+    },
+    {
+      "who": "kita-dunmore",
+      "how": "the courier his dog shied from",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "You think the 'couriers' were not couriers, and the crate was not ordinary, and you decided to say nothing."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: age, appearance, voice, fears, and his suspicion beyond the frown in the lore. Shares a surname with Marl, Wenna and Rosa Hollis; kinship is undecided.",
+    "Anyone later travelling the Dunmar Road to the Order's hall (Hesby, Samson, Cassmund and Kaselle) will pass his camp."
+  ],
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "hatchet instead of club"
+  },
+  "slug": "maeis-hollis",
+  "created": "2026-10-25T04:44:06",
+  "updated": "2026-10-25T04:44:06"
+}

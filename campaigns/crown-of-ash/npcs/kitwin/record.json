@@ -1,0 +1,145 @@
+{
+  "name": "Kitwin",
+  "aliases": [
+    "Kitwin the Pyre-Born",
+    "the Pyre-Born",
+    "the Gentle Heir",
+    "Kit"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "The Pyre-Born: the late king's unacknowledged son, raised in the Pyrehouse; crowned in a kindling the Watch refused. Since the night of day 11 a witness under Halda's seal in Okton's forge ward; to be produced to the Lamplit Council on the morning of the first sitting (day 13)",
+  "age": "nineteen",
+  "appearance": "Slight and pale, a head shorter than the wardens, with soft brown curls and his father's heavy-lidded grey eyes that make him look sleepy and sad. Grey acolyte's robe, sleeves rolled to the elbow; fine grey lines under the skin run from wrist to elbow. Ash is ground into the creases of his hands and under his nails.",
+  "voice": "A near-whisper, apologising to the room. Always asks your name and repeats it: 'Chadickith. So I'll remember you, after.' Hums slow funeral hymns under his breath without noticing. Smiles a beat late and a little wrong, then looks embarrassed.",
+  "backstory": "Kitwin is the late King Ivoard Hask's unacknowledged son. His mother Doret, a Pyrehouse acolyte, died of fever when he was a year old, and the Pyrewardens raised him among the pyres; the Ashward calls him the Gentle Heir because he washes their dead with his own hands. For as long as he remembers the Choir sang the heat down in him and he took the hymns for lullabies, and for about four years he tended the Pyrehouse infirmary's dying, easing more than thirty on their way with a pillow or a cup of poppy and taking the heat that rose in him each time for grace. Coldwell told him the dying king named him heir and that the Ember chose him; at the Great Pyre on the night of day 2 he knelt and was crowned, held a smiling old man's hand while Brother Garn killed him, and wept and smiled at once. On the night of day 11 Ilsa led him down the charnel stair to Okton's forge, where he learned the Choir lied, that the old man was drugged, and that Coldwell means to kindle the crown again at the first sitting with him as the willing death. He told Halda plainly what he did in the infirmary, and he stays under her seal, learning the holding from Isine and Okton and sorting nails into heaps; he is to be produced to the council on the morning of day 13.",
+  "wants": "To be good, to end suffering, and to be the son his father never once called him; that no one dies alone or in pain. Now: to learn to hold the heat, and never to hurt the children in the ward.",
+  "fears": "The heat that comes over him when someone dies, and what it says about him; being sent back to the Pyrehouse; that the Brothers who raised him lied to him all his life.",
+  "relationships": [
+    {
+      "who": "sister-ilsa",
+      "how": "sang him to sleep for four years; the nearest he has to a mother. She never cries, and she has been crying",
+      "attitude": 3
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "raised him, taught him the hymns, sat with him when his mother's name was on the Wall; told him the Ember had chosen him",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who held the line at the pyre and told him the truth plainly",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the giant who gave him a cot, a lesson at the anvil and a rule: no hymn under his roof",
+      "attitude": 2
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Captain who asked him straight what he did in the infirmary and holds him under seal; he expects no mercy",
+      "attitude": 0
+    },
+    {
+      "who": "isine-kettle",
+      "how": "sat by her cot after the Choir's knife cut her; she guesses what he did, and teaches him to breathe",
+      "attitude": 2
+    },
+    {
+      "who": "ivoard-hask",
+      "how": "his father, the dead king, who never once called him son",
+      "attitude": 1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the king's elder son and a rival claimant to the crown",
+      "attitude": 0
+    },
+    {
+      "who": "garn",
+      "how": "Choir brother who killed the old man under his hand; dead",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "In the Quiet Year the king had him brought in secret, put the crown in his hands and watched it glow, then sent him away shaking. Kitwin took it for a blessing and has spoken of it to no one.",
+    "He has never said aloud that the heat rising in him at a deathbed frightens him. He took it for grace; now he is not sure what it was.",
+    "He still believes, as Coldwell told him, that the dying king named him heir with his last breath."
+  ],
+  "dm_only": [
+    "The burn: he is late in Stirring, edging toward Frenzied (Medicine check, night of day 11); one bad night or a death near him could tip him. Everyone infected passes Stirring, Frenzied, Berserk in order; he is level 0, so if the burn ran its whole course he would die at the end of Berserk. He is an anomaly: a child that young should have died of it; he lived because he was willing. A rescue does not cure him: only management. If the Heartcoal is destroyed, new infections stop but he keeps the burn.",
+    "Two nights before he came to the forge a dying pit-wife's death, lit by wafer-incense, tipped him so hard that Ilsa, Dacin and two novices had to hold him down and sing until dawn. He does not remember it and thinks he fainted.",
+    "The coal really did kindle for him in the Quiet Year; the Choir deliberately raised him under the smoke once they realised whose son he was. Hask's blood may have helped. The grains in the crown guttered for strangers.",
+    "He does not know the Choir kills. Wyn blurted that he 'must never know'. He has been told about the drugged volunteers and the planned kindling, but not the full dead-house count, and not that Coldwell invented the deathbed naming (Isine's testimony has made that known only to the council's leaders). If it reaches him it may break him.",
+    "Okton's stated conditions for any Quenching of Kitwin: only on his own clear yes while awake, with no hymn sung, in front of a warden and Isine, never forced and never as penance. Ilsa is not to hear it.",
+    "Canon conflict: his lore entry says he is in the Pyrehouse and unseen since day 2. Play (memory m0197 to m0206) has him in Okton's forge ward under Watch seal since the night of day 11. This record follows play; the lore entry needs updating.",
+    "Invented by npc-creator: alignment (neutral good), the CR 1/4 acolyte-like sheet, the nail-sorting job, and that he has spoken to no one of the Quiet Year audience."
+  ],
+  "lore": "kitwin",
+  "sheet": {
+    "cr": "1/4",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 10,
+    "ac_from": "grey acolyte's robe, unarmoured",
+    "hp": 9,
+    "hit_dice": "2d8",
+    "speed": 30,
+    "abilities": {
+      "str": 8,
+      "dex": 11,
+      "con": 10,
+      "int": 11,
+      "wis": 13,
+      "cha": 15
+    },
+    "saves": [],
+    "skills": {
+      "medicine": 1,
+      "religion": 1,
+      "insight": 1,
+      "persuasion": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Ash-hands",
+        "text": "Ash is ground into his hands and never washes out. When he is distressed his palm runs hot enough to darken iron (flavour only)."
+      },
+      {
+        "name": "The Burn (Ashblood)",
+        "text": "He carries the burn, held down by the Choir's hymns and now by cold water, slow counting and the holding Isine and Okton teach. His place in the stages is tracked in the campaign, not on this sheet; follow the locked burn rules. A death nearby can tip him."
+      },
+      {
+        "name": "Gentle Heir",
+        "text": "The Ashward's poor and devout trust him on sight; when people kneel to him, he kneels back."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Club",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d4 bludgeoning",
+        "text": "He has never struck anyone with it."
+      }
+    ],
+    "bonus_actions": [],
+    "reactions": [],
+    "gear": [
+      "grey acolyte's robe",
+      "a small tin of nails he is sorting",
+      "a stub of poppy-wax candle"
+    ]
+  },
+  "slug": "kitwin",
+  "created": "2026-10-25T04:40:32",
+  "updated": "2026-10-25T04:40:32"
+}

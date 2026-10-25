@@ -1,0 +1,74 @@
+{
+  "name": "Big Hesta",
+  "aliases": [
+    "Hesta Crall"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "retired Ashward pit-hand and 22-time champion of the Vent Games Open (1466-1490)",
+  "age": "50",
+  "appearance": "Broad across the shoulders and thick through the middle, with grey-streaked braids pulled back, forearms like ship's cable and a missing front tooth. Her left knee is wrapped in linen.",
+  "voice": "Few words and a wheeze of a laugh; silent before a bout, and she watches her next opponent all morning. Calls people by their trade: 'pit-hand', 'dyer', 'giant's boy'.",
+  "backstory": "Hesta Crall was born in 1441 in the Ashward and worked thirty years as a paid hand in the guild brimstone pits, until her left knee went and she retired at forty-five. She won the Open of the Vent Games twenty-two times between 1466 and 1490, losing a final only to Marda Ironside (1476) and Tess Aldin (1482), and in 1478 she lifted the Old Woman, the last to do it. Since 1484 she has raised her dead sister's five children, and the champion's purse has fed them; she has sold every Factor's Cup House Mostana ever sent her. On day twelve of 1491 she beat Corra Nettle, then lost the semifinal to Chadickith on her back. She let her fistful of ash fall rather than foul, offered it to him to keep, and bailed out of the Long Soak muttering that she was too old to cook.",
+  "wants": "Enough coin and honest work for a strong back that can't kneel, to keep her sister's children fed; one more bout of honour, to be named the champion's challenger once.",
+  "fears": "The knee giving out for good; the purse drying up and the children going hungry; passing out of the Games unremembered.",
+  "relationships": [
+    {
+      "who": "tess-aldin",
+      "how": "rival since 1482; Tess pinned her once, she beat Tess in five finals by Out",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy who put her on her back in the 1491 semifinal; she gave him her fistful of ash to keep",
+      "attitude": 2
+    },
+    {
+      "who": "marda-ironside",
+      "how": "the Redcollar who drove her over the chalk in the 1476 final",
+      "attitude": 1
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate; her book and her rulings are honest",
+      "attitude": 2
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "the old Keeper, who corrects anyone who tells Hesta's bouts wrong",
+      "attitude": 2
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "fellow Ashward legend; both lifted the Old Woman (he in 1459, she in 1478)",
+      "attitude": 2
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "House Mostana's factor, whose house sends the Factor's Cup; Hesta sells every one for the children",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "Her left knee is finished; this was very likely her last Open, and she knows it.",
+    "She would be glad of honest work for a strong back that can't kneel, but she has never asked anyone.",
+    "She hoped a little to be named the champion's challenger, once, for the honour; she said nothing when Chadickith named Marda Ironside instead.",
+    "Her dead sister's five children eat on the purse and on the Factor's Cups she sells. Losing the Open this year hurts."
+  ],
+  "dm_only": [
+    "Her tells, planted in the day-12 narration: the old left knee is wrapped, so she keeps her weight off it and wrestles from her right (fighting her left side, or forcing her to plant on it, costs her); and she tongues the gap in her teeth just before she commits to a lunge, a half-second's warning. She does not know she does the second.",
+    "The party does not yet know about the five children. Lore treats them, the knee and her last-Open feeling as DM secrets.",
+    "Stat block: Gladiator, because Athletics +10 fits lifting the Old Woman (DC 22) in 1478 and twenty-two titles. She fights as a wrestler, unarmoured and unarmed (AC 12 in the pit), not with the block's spear and shield. Lore lists no numbers for her.",
+    "Invented by npc-creator: alignment; that she felt passed over when Chadickith named Marda (he rolled a d3 among Marda, Wynot Northcott and Lorard Hask; she was one of the ten names he considered); her attitudes to the other wrestlers."
+  ],
+  "lore": "big-hesta",
+  "statblock": {
+    "ref": "Gladiator|MM",
+    "notes": "Wrestles unarmoured and unarmed (AC 12 in the pit); Athletics +10 matches lifting the Old Woman (DC 22) in 1478. Old left knee, wrapped: she wrestles from her right and keeps weight off the left."
+  },
+  "slug": "big-hesta",
+  "created": "2026-10-25T04:38:13",
+  "updated": "2026-10-25T04:38:13"
+}

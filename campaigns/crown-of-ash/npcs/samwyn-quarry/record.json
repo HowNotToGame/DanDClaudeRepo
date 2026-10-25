@@ -1,0 +1,147 @@
+{
+  "name": "Samwyn Quarry",
+  "aliases": [
+    "Master Samwyn Quarry",
+    "Master of the Alumners"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "Master of the Alumners' guild and its lamp on the Lamplit Council; owns the alum quarries and the Steamside alum furnaces and holds the largest debt-roll of hired hands in Kharun",
+  "age": "54",
+  "appearance": "A huge, slab-shouldered man powdered pale with alum dust that never leaves the seams of his coat, two fingers gone from his left hand and a white scar through one eyebrow. A chain shirt shows at his collar under a good grey coat; he seems never to take it off.",
+  "voice": "Flat, short sentences, never raised. Counts people by what they owe: 'That's forty on the roll.' 'On the roll' means settled; 'Off the roll' means dead or free, and he seems to think the two much alike.",
+  "backstory": "A quarryman's son who was pit-boss at nineteen, he drove his crews harder than anyone and bought up the debts of hands who could not pay, then put them to his own work under the Debt Law. Fifteen years ago he bought out his old master and took the Alumners' mastership with the same ledger. Alum is the realm's second export after brimstone, and every quarry-hand, stoker and carter in his trade is on his roll one way or another. He sits on the council as Oselle's man in public, because the Lamp Market is hers, but her promise to forgive the crown's debts has made him a sour friend.",
+  "wants": "The Debt Law kept as written, the alum duty frozen, the guild vote kept at two for any guild that holds coin in the Keep; a regency that keeps the quarries and furnaces full of hands.",
+  "fears": "A reckoning of the roll; the debt-hands learning they can count; the burn fever getting into his furnace gangs, where no one could be made to work beside it; the Ashward rising.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "public patron; her forgiveness of crown debts threatens his roll",
+      "attitude": -1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the firm hand he would rather have; the army is a good alum customer",
+      "attitude": 1
+    },
+    {
+      "who": "norelle-whitlock",
+      "how": "fellow believer in order and the Debt Law; the nearest thing to an ally on the council",
+      "attitude": 1
+    },
+    {
+      "who": "bram-colk",
+      "how": "a stoker at his Steamside furnaces; a loud, good worker",
+      "attitude": 1
+    },
+    {
+      "who": "orsikgar-gorunn",
+      "how": "fellow extractor; they share the pit road and overseers' gossip, and he counts the dwarf a friend",
+      "attitude": 1
+    },
+    {
+      "who": "bryados-weary",
+      "how": "banker; holds notes on the furnaces",
+      "attitude": 0
+    },
+    {
+      "who": "wilmund-redfern",
+      "how": "fellow guild master; thinks him soft and slow",
+      "attitude": -1
+    },
+    {
+      "who": "tobbton-greenbottle",
+      "how": "the Dyers buy the most alum; he finds the halfling too quiet to trust",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "the old man whose questions cut the guilds' vote to two",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "In 1481 a roof fell in the Number Four quarry and killed fourteen debt-hands. He buried them in the spoil heap and kept them on his roll as 'absconded', so their debts stayed open and no death-fee or kin could be claimed. He has collected their families' labour-credit ever since.",
+    "He is quietly buying the private debts of Lowfields hearths and Ashward households, because Oselle's promised forgiveness reaches only the crown's debts. If the lamps ever go further, he means to be holding enough paper to make them think twice."
+  ],
+  "dm_only": [
+    "invented by npc-creator: all of Samwyn's personal detail: age, scar and missing fingers, pit-boss at nineteen, the buy-out of his old master fifteen years ago, the chain shirt, the verbal habit of 'on the roll'. Canon gives only name and guild.",
+    "invented by npc-creator: the 1481 roof-fall and fourteen buried men on his roll; the private debt-buying. Both are leverage the DM may use or cut.",
+    "invented by npc-creator: Bram Colk (canon: stoker at the Third Furnace, the alum furnace by the dye-works) works for Samwyn. Overrule if the Third Furnace belongs to someone else.",
+    "invented by npc-creator: alignment and sheet (class-less brawler, CR 1).",
+    "Leaning (invented): publicly Oselle's, privately drifting to Lorard and Norelle's side. He would vote against any extension of debt forgiveness and against the Kharun commons elder, and he is the lamp most likely to take the Choir's silver."
+  ],
+  "sheet": {
+    "cr": "1",
+    "background": "Guild Artisan",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 13,
+    "ac_from": "chain shirt",
+    "hp": 45,
+    "hit_dice": "7d8+14",
+    "speed": 30,
+    "abilities": {
+      "str": 17,
+      "dex": 11,
+      "con": 15,
+      "int": 10,
+      "wis": 12,
+      "cha": 11
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "intimidation": 1,
+      "perception": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Chondathan"
+    ],
+    "traits": [
+      {
+        "name": "Dust-Lunged",
+        "text": "Advantage on saving throws against inhaled poisons and gases (alum dust and vent fumes)."
+      },
+      {
+        "name": "Debt-Master",
+        "text": "Advantage on Charisma (Intimidation) checks against anyone who owes him money."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "Two war pick attacks."
+      },
+      {
+        "name": "War Pick",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 piercing"
+      },
+      {
+        "name": "Heavy Crossbow",
+        "attack": "dex",
+        "range": "100/400",
+        "damage": "1d10 piercing"
+      }
+    ],
+    "reactions": [],
+    "gear": [
+      "chain shirt",
+      "war pick",
+      "heavy crossbow",
+      "debt ledger"
+    ]
+  },
+  "slug": "samwyn-quarry",
+  "created": "2026-10-25T04:41:06",
+  "updated": "2026-10-25T04:41:06"
+}

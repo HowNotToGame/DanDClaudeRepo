@@ -1,0 +1,271 @@
+{
+  "name": "Tamius Coldwell",
+  "aliases": [
+    "High Pyrewarden Coldwell",
+    "Coldwell",
+    "the High Pyrewarden"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "High Pyrewarden of the Pyrehouse and keeper of the Crown of Ash; in secret the fifth leader of the Glad Choir",
+  "age": "sixties",
+  "appearance": "Tall and stooped, his face hidden behind a veil of fine steel chain. Sifts grey ash through his fingers while he talks and reads it like tea leaves. Black-and-grey vestments dusted with ash.",
+  "voice": "Speaks only in the liturgical 'we' and never says 'I'. Slow, courteous, with the cadence of a rite; looks at the ash in his fingers before he answers. His contempt comes out as extra gentleness, or as a sneer at 'a forge-boy lecturing the lamps'.",
+  "backstory": "Coldwell heads the Pyrewardens, the Kelemvor-sworn order that burns Kharun's dead, and keeps the Crown of Ash and the Ember Law rite. He raised Kitwin in the Pyrehouse and, after the king died, swore that the dying king named the boy his heir with his last breath. On the night of day 2 he set the crown on kneeling Kitwin with grey grains packed into its socket, and it kindled after a killing on the dais; at dawn he proclaimed the boy 'kindled', and at noon on day 3 the Watch's captains heard two Choir brothers swear the crown was lit with grains and refused his claim. On day 9 he lit the Long Smoke green-grey and proclaimed that the smith and the Watch had stolen the Coal, but the Ashward crowd he sent to the forge turned on the Choir. At the day-10 council he called Isine Kettle a thief and a liar, denied knowing any servant, and voted alone against the Lamplit regency, whose terms he has not accepted. On day 11 he promised to produce Kitwin on the morning of the first sitting (day 13) and not before; at dawn on day 12 he stood on the Pyrehouse steps and declared the smith's people had stolen the Gentle Heir, yet pressed no charge.",
+  "wants": "Publicly: Kitwin crowned with the Coal, the Coal returned to the Pyrehouse's keeping, and the Pyrehouse's ancient rites honoured. (What he truly wants is in his secrets.)",
+  "fears": "A Doomguide from Kelemvor's true church arriving to ask questions; the casket and the Ember Rolls opened to the lamps; losing both the boy and the Coal.",
+  "relationships": [
+    {
+      "who": "kitwin",
+      "how": "the boy he raised under the smoke; his instrument for the crown",
+      "attitude": 1
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "the Choir's cantor, who vanished with the boy at the midnight change",
+      "attitude": -1
+    },
+    {
+      "who": "peret",
+      "how": "the Choir's knife-man, taken back from the Watch at the dusk bell",
+      "attitude": 1
+    },
+    {
+      "who": "garn",
+      "how": "his trusted brother of the Choir, lost to the Gallowsbird",
+      "attitude": 2
+    },
+    {
+      "who": "dacin",
+      "how": "loyal brother of the Choir, one of the hymn-holders of the boy",
+      "attitude": 2
+    },
+    {
+      "who": "vesan",
+      "how": "Choir brother who swore against him before the Watch",
+      "attitude": -3
+    },
+    {
+      "who": "wyn",
+      "how": "Choir brother who swore against him before the Watch",
+      "attitude": -3
+    },
+    {
+      "who": "yarby-cobb",
+      "how": "pious cobbler he may push for an elder seat; a useful, biddable man",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain who refused his claim and keeps the city and the boy",
+      "attitude": -2
+    },
+    {
+      "who": "chadickith",
+      "how": "the 'giant's boy' who has crossed the Choir at every turn",
+      "attitude": -3
+    },
+    {
+      "who": "okton",
+      "how": "'the giant's smith' who holds, or held, the Coal",
+      "attitude": -3
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the servant who lived when the Choir's knife missed; he called her a thief and a liar",
+      "attitude": -3
+    },
+    {
+      "who": "hesard-rook",
+      "how": "Watch captain he swore the Pyrehouse would back Lorard if the Coal were recovered",
+      "attitude": 1,
+      "hidden": true
+    },
+    {
+      "who": "unara",
+      "how": "Lorard's quartermaster, approached with silver through his grey-shawled agent",
+      "attitude": 0,
+      "hidden": true
+    },
+    {
+      "who": "ashlo",
+      "how": "agitator paid with flame-stamped silver to carry the first torch at the forge",
+      "attitude": -1,
+      "hidden": true
+    },
+    {
+      "who": "oselle-velun",
+      "how": "the Velun heir; the Ember Rolls bear her kings' seals, leverage he has not yet spent",
+      "attitude": 0,
+      "hidden": true
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal, whom he would back if the Coal came to him",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He leads the Glad Choir, the inner circle of about eleven senior wardens, and is its fifth leader. It was founded about 1398 by Thorim Strakeln, a Bhaalist survivor of Saradush who carried the burned-out heart-coal east and sold it to King Uzhar Velun, then took the Kelemvor oath as a mask. The Choir serves Bhaal, the Lord of Murder, behind Kelemvor's mask; the order's formal name, the Last Ember, was the Choir's name for the Coal. Ordinary wardens know none of this.",
+    "He invented the deathbed naming. He reached the king's chamber after Hask was already dead, and said what the Pyrehouse needed him to say. Isine's testimony has made the lie known to the council's leaders, though not yet to the street.",
+    "He wears the key to the iron Last Ember casket on a cord at his neck. The casket stands in an iron-barred niche behind the Choir's singing cell in the crypt below the sanctum, and holds the grains (pyre-ash and dust of the Heartcoal) from which the cursed wafers are made and which lit the crown. The wafers infect whoever eats one and tie the eater's rage to the Choir's hymn; the Choir gives them to dying Ashward paupers who ask to go gladly, with a narrow blade and a hymn, about forty-one since the Quiet Year. He allowed Kitwin to ease the dying in the infirmary.",
+    "The Ember Rolls, the Choir's ledger of every anointed death since about 1401, lie in the crypt. Their early pages carry the seals of Kings Uzhar and Tazhar Velun, and he knows exactly what they prove.",
+    "He means the crown to be kindled again before the lamps at the first sitting, with the casket grains, and he means Kitwin to be the willing death that makes it hold: the boy will be told it is a blessing, and he will say yes. He does not know what the cantor has told the Watch.",
+    "He believes the burn can be mastered and shared. The survivors become Singers who hold the rage under song, and the Choir's hymns are the rival to Okton's Quenching. He wants Okton's blood to make Banked of the Choir's own, with no temper in them at all, and wants the Heartcoal back in the Choir's hands.",
+    "He swore to Captain Hesard Rook that the Pyrehouse would back Lorard for the crown if the Coal were recovered, while proclaiming Kitwin. He plays every side for the Coal.",
+    "His hidden hands: a grey-shawled woman of the Choir ran the signal lamp in the chandler's loft by the dye-works, paid Rook's orderly, and approached Lorard's quartermaster Unara with silver and a promise to open the Pyrehouse to the Marshal. The same flame-stamped silver paid Ashlo to carry the first torch at the forge. Each flame-stamped coin carries a thread of ash-mark tied to the casket, so he can feel roughly where the Choir's coins lie.",
+    "He was angry that the Choir's knife missed Isine at the pyre.",
+    "The Pyrehouse lamp, which he alone may fill, is his lever against the regency; he has not named a warden and has not agreed to its terms.",
+    "Ilsa and the boy vanished together at the midnight change on the night of day 11. He has not decided whether she was taken or fled, and he suspects she took the boy herself."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: his alignment (lawful evil), his Cleric 8 (Death domain) sheet, gear and spell list, and the habit of reading the ash before he answers. His early life is not in canon and is left blank on purpose; why he wears the veil is open for the DM.",
+    "Canon does not say whether Coldwell carries the burn himself or eats the wafer. Left open.",
+    "The plan to burn Kitwin at the first sitting comes from Ilsa, who overheard Coldwell tell Garn in the crypt before the roc came (memory m0201); the DM has recorded it as true. Coldwell does not know she told Chadickith, Okton and Halda.",
+    "The Choir is down to about seven loyal: Garn is dead; Vesan, Wyn and Ilsa have turned. He needs a willing dying person for the kindling; he has no replacement for Kitwin yet.",
+    "The rooftop crossbowman who tried to silence Ashlo, and the hand that laid the ash line and flame-coin at the ward's door on the night of day 10, are not settled in canon; the Choir is the obvious answer."
+  ],
+  "lore": "tamius-coldwell",
+  "sheet": {
+    "class": "Cleric 8",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 15,
+    "ac_from": "chain shirt, shield",
+    "hp": 44,
+    "hit_dice": "8d8+8",
+    "speed": 30,
+    "abilities": {
+      "str": 9,
+      "dex": 10,
+      "con": 12,
+      "int": 13,
+      "wis": 18,
+      "cha": 14
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "insight": 1,
+      "religion": 1,
+      "persuasion": 1,
+      "medicine": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Celestial"
+    ],
+    "traits": [
+      {
+        "name": "Channel Divinity (2/short rest)",
+        "text": "Turn Undead, or Touch of Death: when he hits a creature with a melee attack he can deal an extra 21 necrotic damage."
+      },
+      {
+        "name": "Reaper",
+        "text": "When he casts a necromancy cantrip that targets one creature, it can target two creatures within 5 feet of each other."
+      },
+      {
+        "name": "Divine Strike",
+        "text": "Once per turn on a weapon hit he deals an extra 1d8 necrotic damage (already counted on the mace line)."
+      },
+      {
+        "name": "Shelter of the Faithful",
+        "text": "Pyrehouse wardens and lay ash-bearers will hide and feed him; the Choir will do far more."
+      },
+      {
+        "name": "Chain veil",
+        "text": "His face is never seen; he reads ash, not eyes."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mace",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d6 bludgeoning",
+        "extra_damage": [
+          "1d8 necrotic"
+        ],
+        "text": "The extra 1d8 is Divine Strike, once per turn."
+      },
+      {
+        "name": "Inflict Wounds",
+        "attack": "spell",
+        "reach": 5,
+        "damage": "3d10 necrotic",
+        "text": "1st-level slot; +1d10 per higher slot."
+      },
+      {
+        "name": "Toll the Dead",
+        "save": {
+          "ability": "wis",
+          "dc": "spell",
+          "damage": "2d8 necrotic",
+          "half": false
+        },
+        "text": "Range 60 ft. The damage is 2d12 instead if the target is missing hit points."
+      }
+    ],
+    "bonus_actions": [],
+    "reactions": [],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 3,
+        "3": 3,
+        "4": 2
+      },
+      "spells": {
+        "0": [
+          "Sacred Flame",
+          "Spare the Dying",
+          "Thaumaturgy",
+          "Toll the Dead",
+          "Guidance"
+        ],
+        "1": [
+          "Bane",
+          "Command",
+          "Inflict Wounds",
+          "False Life",
+          "Ray of Sickness"
+        ],
+        "2": [
+          "Hold Person",
+          "Spiritual Weapon",
+          "Blindness/Deafness",
+          "Ray of Enfeeblement"
+        ],
+        "3": [
+          "Animate Dead",
+          "Bestow Curse",
+          "Dispel Magic",
+          "Speak with Dead",
+          "Vampiric Touch"
+        ],
+        "4": [
+          "Blight",
+          "Death Ward"
+        ]
+      }
+    },
+    "gear": [
+      "chain shirt under black-and-grey vestments",
+      "shield",
+      "iron mace",
+      "veil of fine steel chain",
+      "iron key on a neck cord (the Last Ember casket)",
+      "a small bowl of grey ash"
+    ]
+  },
+  "slug": "tamius-coldwell",
+  "created": "2026-10-25T04:39:52",
+  "updated": "2026-10-25T04:39:52"
+}

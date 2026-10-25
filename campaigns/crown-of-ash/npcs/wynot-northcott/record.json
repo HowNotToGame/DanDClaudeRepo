@@ -1,0 +1,82 @@
+{
+  "name": "Wynot Northcott",
+  "aliases": [
+    "the Anvil"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "retired Ashward pit foreman and rag-picker; eight-time Open champion; Okton and Isine's guess for the Ashward elder",
+  "age": "67",
+  "appearance": "Once huge, now stooped but still thick through the shoulders, with hands like shovels and the Ashward's pyre-cough.",
+  "voice": "Slow and gravelly, with the pyre-cough between sentences. He has buried too many to be hurried and rarely wastes a word.",
+  "backstory": "Wynot Northcott was born in 1424 and spent thirty years as a pit foreman in the Ashward, burying half his street. As the Anvil he won the Vent Games Open eight times (1454-1456, 1458-1461 and 1464), the Ashward's greatest Catch wrestler, and in 1459 he lifted the Old Woman. In 1464 he drove the raging Ash Company sergeant Brannoc Hale over the chalk and sat on him until his own men dragged him off, the Sergeant's Fall. He has wrestled the Catch since boyhood and had sixty years of the Belt from the hill-folk in his street, but has never wrestled long. At dusk on day nine of 1491, at Okton's door, he lowered his torch when Chadickith spoke and helped the Ashward seize the agitator.",
+  "wants": "The Ashward fed and decently buried; the Anvil's name not forgotten; a fair seat for the Ashward at the Lamplit Council, whoever sits in it.",
+  "fears": "The burn taking the street children; the coughing season; being asked to bury another street.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate; he gave her the Catch's rules",
+      "attitude": 2
+    },
+    {
+      "who": "big-hesta",
+      "how": "Ashward legend; both lifted the Old Woman",
+      "attitude": 2
+    },
+    {
+      "who": "gorm-halfhand",
+      "how": "old rival in the Opens of the 1460s",
+      "attitude": 1
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "she kept the slate through the Sergeant's Fall and chalked the Fury Rule the next morning",
+      "attitude": 2
+    },
+    {
+      "who": "marda-ironside",
+      "how": "the Redcollar champion; fellow Spoon",
+      "attitude": 1
+    },
+    {
+      "who": "teo-varrow",
+      "how": "fellow old champion and Spoon",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the forge giant, whose door he lowered his torch at",
+      "attitude": 1
+    },
+    {
+      "who": "ashlo",
+      "how": "the agitator he seized at Okton's door on day nine",
+      "attitude": -2
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy whose argument made him lower his torch",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "He is tired. The elder seat feels like another burying, but he would take it if the Ashward asks him.",
+    "He knows he cannot wrestle long: after the second exchange of any bout his old bones betray him."
+  ],
+  "dm_only": [
+    "Lore pit numbers (kept in the notes): STR 14, DEX 10, CON 11; Athletics +6; Acrobatics +0. Old bones: after his second exchange of any bout he has disadvantage on Athletics checks until he rests. He would ask for the Old Rope, or the Catch alone.",
+    "Stat block: Commoner (frail 67-year-old); Athletics +6 in the notes is the lore's number.",
+    "Invented by npc-creator: alignment; voice; what he wants and fears; that he is the man who lowered the torch AND who seized Ashlo (the lore says both)."
+  ],
+  "lore": "wynot-northcott",
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 11,
+    "notes": "Lore pit numbers: STR 14, DEX 10, CON 11; Athletics +6 (a lifetime's expertise), Acrobatics +0. After the second exchange of any bout he has disadvantage on Athletics checks until he rests."
+  },
+  "slug": "wynot-northcott",
+  "created": "2026-10-25T04:40:53",
+  "updated": "2026-10-25T04:40:53"
+}

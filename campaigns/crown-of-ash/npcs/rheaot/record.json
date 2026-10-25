@@ -1,0 +1,41 @@
+{
+  "name": "Rheaot",
+  "aliases": [
+    "Salt-Reeve Rheaot",
+    "Rheaot Velun",
+    "Reeve of the Shore"
+  ],
+  "tier": "background",
+  "status": "historical",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "The salt-reeve who farmed the brimstone-barge tolls and was acclaimed 'Reeve of the Shore' c. 1190 DR; founder of House Velun",
+  "age": "in his forties at the hanging; long dead before the first Pyrehouse",
+  "appearance": "A thick-necked toll-keeper with salt-whitened eyebrows, a reeve's staff and a scale-yard voice. Said by the chroniclers to be taller than he was.",
+  "voice": "Short and level, the voice of a man used to being owed. Counts the cost aloud before he acts.",
+  "backstory": "Rheaot was a salt-reeve of the Ossmaar shore who farmed the tolls on the brimstone barges coming into Kharun. About 1190 he hanged a corrupt tax-farmer from the Kharun quay in front of the barge-guilds, who acclaimed him 'Reeve of the Shore' for it. The Velun kept the title 'Reeve' long after it became 'King'. The Salt Crown, the Ember Keep and the Pyrehouse all came later, long after his death.",
+  "wants": "The barge scales kept honest, and the tolls paid to him and no one else.",
+  "fears": "Being outbid, outlived and made a tool; any man who can read his ledgers better than he can.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "an ancestor of the last Velun with any power",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "The tax-farmer he hanged had been skimming his tolls as well as the guilds'. The hanging was justice and a ledger settled in one stroke, and he knew it."
+  ],
+  "dm_only": [
+    "invented by npc-creator: Rheaot's age, appearance, voice and that the hanged tax-farmer was skimming his own tolls. Canon gives only: a salt-reeve, farmed the barge tolls, hanged a corrupt tax-farmer on the Kharun quay, acclaimed 'Reeve of the Shore' c. 1190.",
+    "Canon (house-velun-and-the-salt-crown DM secrets): the family grandeur was manufactured by court chroniclers under Dhoram; the Velun were never mighty, only good at being owed money. Rheaot himself was real.",
+    "Rheaot has no tie to the Heartcoal (bought by Uzhar c. 1398).",
+    "The 'Salt Reeve's man' who took a fifth of the Vent Games' wagers (1371 to 1453) was a tax-farmer styled after Rheaot's title, not Rheaot himself.",
+    "Stats: Veteran|MM, a toll-reeve in his prime; use for a vision or the like."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "rheaot",
+  "created": "2026-10-25T04:35:29",
+  "updated": "2026-10-25T04:35:29"
+}

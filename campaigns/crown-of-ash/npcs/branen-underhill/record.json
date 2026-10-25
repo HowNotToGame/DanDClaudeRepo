@@ -1,0 +1,46 @@
+{
+  "name": "Branen Underhill",
+  "aliases": [
+    "Captain Underhill"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watch captain keeping Steamside and the Ashward wardens",
+  "age": "late forties",
+  "appearance": "Thickset and greying, with a Thornwater hill-man's slow walk.",
+  "voice": "Slow and tired, with a bitter humour. Says 'I'll say it once.'",
+  "backstory": "One of Halda's six captains, keeping Steamside and the Ashward wardens. Born in Thornwater, he lost kin when Lorard hanged every tenth man there in 1484 after the revolt. On day 9 he cast the one vote against opening the gates to Lorard's army. He kept to the result afterwards and holds the Ashward lanes.",
+  "wants": "Lorard's three hundred out of the walls by the end of the month.",
+  "fears": "A Thornwater tithe in Kharun.",
+  "relationships": [
+    {
+      "who": "halda-barrowe",
+      "how": "his Watch-Captain; he disagreed with her and obeys her",
+      "attitude": 1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal who hanged his kin at Thornwater",
+      "attitude": -3
+    },
+    {
+      "who": "marda-ironside",
+      "how": "fellow captain whose wardens work his Ashward lanes",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You lost a brother to Lorard's tithe at Thornwater and have never forgiven him."
+  ],
+  "dm_only": [
+    "Only his name and rank are canon. Invented by npc-creator: the Steamside and Ashward post, that he is Thornwater-born with kin lost to the Tithe, that he cast the lone 'no' on day 9 (lore says only four to one), his age, voice, appearance, alignment and Veteran stat block. Strike the Thornwater tie if it does not fit.",
+    "Lorard's Thornwater Tithe (1484 DR, sixty-one hanged) is canon."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "branen-underhill",
+  "created": "2026-10-25T04:44:09",
+  "updated": "2026-10-25T04:44:09"
+}

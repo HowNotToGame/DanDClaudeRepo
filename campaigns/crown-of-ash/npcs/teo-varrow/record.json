@@ -1,0 +1,80 @@
+{
+  "name": "Teo Varrow",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Brimstone Quay porter and Kharun's Knot-man; teaches ground wrestling in a Quay warehouse for a cinder a lesson",
+  "age": "55",
+  "appearance": "Grey and bow-legged, with cauliflower ears and a habit of lying down on any floor to show you something.",
+  "voice": "Soft-spoken. His line about teaching: big men learn the Knot fastest, because they have never had to.",
+  "backstory": "Teo Varrow, born 1436, is the son of a Calishite mother and a Kharun porter. He learned the Knot from Calishite galley-hands and caravan guards in the 1450s and 1460s. When the Strangle of 1467 got the Knot barred from the Open, he kept it alive in the back of a Mostana-leased warehouse, teaching anyone who brings a cinder, among them Joss Marl and the odd Redcollar. In 1486 he reached the Open final fighting off his back; Hesta sat on him with his legs wrapped round her and Rosa counted three, the Varrow ruling. He has lobbied Rosa for twenty years for a bout where the guard is honoured, and he wrote most of the Ash ground of her Seven Roots slate, including the two lists of locks.",
+  "wants": "A ground of his own in the Long Open where the guard is honoured; to see the Knot taught openly, not in the back of a warehouse.",
+  "fears": "House Mostana's hand on his warehouse; the Knot barred again; a strangle that kills in the Ash.",
+  "relationships": [
+    {
+      "who": "joss-marl",
+      "how": "his best pupil in the Knot",
+      "attitude": 3
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate, whom he lobbied for twenty years for the Long Open's Ash ground",
+      "attitude": 2
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "she banned the strangle in 1467 and hates it coming back; he respects her and argues with her anyway",
+      "attitude": -1
+    },
+    {
+      "who": "gorm-halfhand",
+      "how": "fellow old champion and Spoon",
+      "attitude": 1
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "fellow old champion and Spoon",
+      "attitude": 1
+    },
+    {
+      "who": "marda-ironside",
+      "how": "fellow Spoon; a Redcollar who might drop in to learn the Knot unseen",
+      "attitude": 1
+    },
+    {
+      "who": "big-hesta",
+      "how": "sat on him in the 1486 final",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "would teach him the Knot; big men learn fastest",
+      "attitude": 2
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "House Mostana leases the warehouse; his foreman's pay sends what he hears to her people as friendship",
+      "attitude": 0,
+      "hidden": true
+    }
+  ],
+  "secrets": [
+    "The warehouse foreman pays him an ember a tenday to keep his ears open, and he suspects what he hears reaches the Mostana factor's people.",
+    "Twenty years of lobbying paid off in the Seven Roots slate; he wrote most of the Ash ground, including the two lists of locks, and he decides who counts as knotted."
+  ],
+  "dm_only": [
+    "The house hears what he hears. If Chadickith trains with him, the house will know what the forge talks about on the mats.",
+    "Stat block: Veteran (Athletics +5; a 55-year-old Open finalist), fighting unarmed on the ground. The Knot's locks and strangles are contested Athletics in the pit rules.",
+    "Invented by npc-creator: alignment; his fears; the notion that Marda might drop in to learn the Knot (lore only says the odd Redcollar who will not admit it)."
+  ],
+  "lore": "teo-varrow",
+  "statblock": {
+    "ref": "Veteran|MM",
+    "notes": "The Knot: fights off his back, sweeps, passes, then locks or strangles. Fights unarmed in the pit."
+  },
+  "slug": "teo-varrow",
+  "created": "2026-10-25T04:39:35",
+  "updated": "2026-10-25T04:39:35"
+}

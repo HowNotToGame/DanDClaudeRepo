@@ -34,7 +34,8 @@ while it's in the party or present in the scene, and it only knows what that cha
 4. Set `draft: false` in the persona once the player has seen it (if it's the player's companion) or once you're
    happy with it.
 5. Make sure they also have an NPC record (race, alignment, relationships, and a character sheet, since companions
-   are significant): `./dm npc show <npc>`, or ask the npc-creator agent. `./dm combat add "<name>"` uses it.
+   are significant): `./dm npc show <npc>`, or ask the npc-creator agent. It's saved in their companion folder,
+   and `./dm combat add "<name>"` uses it.
 6. `./dm companion agent <npc>` writes `.claude/agents/companion-<npc>.md`. New agent files load the next time
    Claude Code starts; until then the generic `companion` agent plays them. Tell the user.
 

@@ -1,0 +1,171 @@
+{
+  "name": "Marda Ironside",
+  "aliases": [
+    "Captain Ironside"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful good",
+  "role": "Watch captain: holds the Collarhouse cells and the guard, runs the recruit yard's bouts, commands the wardens at the forge ward's lane door; Halda's most trusted second and the Watch's second lamp on the Lamplit Council",
+  "age": "35 (born 1456)",
+  "appearance": "About 5 ft 10, rangy and long-armed; dark hair cropped short with a white streak at the left temple; a nose broken in the 1476 Vent Games final.",
+  "voice": "Dry, even and unhurried; answers with the shortest true thing she can say and does not promise what she cannot hold. Taps two fingers on the table before she gives her word.",
+  "backstory": "Human of Chondathan stock, born in Kharun in 1456 and a Redcollar at twenty. In 1476 she won the Open at the Vent Games by driving Big Hesta over the chalk in the final, wrestling the Watch's upper-body style, the Gorget; she is the only Watch officer ever to win it, and her spoon hangs on the Hollis Spoon Wall. She entered once more in 1477, lost the semifinal to Hesta, and then the captaincy took her. For fifteen years she has run the Collarhouse yard's recruit bouts; she wrestles the Gorget with some Linen and never the Ash or the Knot. As captain she holds the cells and the guard. She stood with Halda at the first hearing, took Isine to and from the council, doubled the cell guard over Ashlo and Fenia after the rooftop crossbowman, and guards the forge ward's lane door with two wardens. On day 11 she stood behind the grate and wrote down Rook's talk with Lorard. On day 12 Chadickith named her his challenger for the first bout of the 1492 Vent Games; she will choose the form: long, short or one root.",
+  "wants": "Halda's Watch whole and honest through the first sitting and after; to give Halda the truth in her own time; to meet the champion in a form that suits her.",
+  "fears": "The Watch splitting along Pyrehouse, Marshal and Keep lines; being made to choose between Halda and her given word.",
+  "relationships": [
+    {
+      "who": "halda-barrowe",
+      "how": "her captain and the person she trusts most; she will not lie to her if asked",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "named her his 1492 Champion's Grudge challenger; she respects him as a wrestler and is still measuring him as a man",
+      "attitude": 1
+    },
+    {
+      "who": "hesard-rook",
+      "how": "a fellow captain, now the traitor in her custody; she wrote down his confession",
+      "attitude": -1
+    },
+    {
+      "who": "fenia",
+      "how": "the frightened witness in her inner cells",
+      "attitude": 1
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the cupbearer she escorted to and from the council",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the smith who has armoured the Watch longer than she has lived",
+      "attitude": 1
+    },
+    {
+      "who": "big-hesta",
+      "how": "beat her in 1477 after Marda beat Hesta in 1476; old rival, mutual respect",
+      "attitude": 2
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "keeper of the Vent Games slate; asked Marda for the Gorget rules",
+      "attitude": 1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal whose parentage she holds sealed",
+      "attitude": 0
+    },
+    {
+      "who": "ashlo",
+      "how": "the captured agitator whose cell guard she doubled",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "You hold, sealed in your own strongbox, your written record of Hesard Rook's confession to Lorard on day 11: Rook greeted the Lord-Marshal as 'cousin', and Lorard is Pellot Rook's son, not Ivoard Hask's. You heard it behind the grate with Chadickith.",
+    "You promised Chadickith to keep it from Halda for three days, 'because the Captain has enough to carry before the lamps sit'. After day 14 you will give it to Halda. You will not lie to Halda if she asks you straight.",
+    "You know Chadickith means to keep Lorard's parentage as leverage.",
+    "You were present when Kitwin told Halda he had helped the dying go; you have not spoken of it."
+  ],
+  "dm_only": [
+    "Chadickith's Persuasion 18 won her agreement to hold the record unread by Halda until day 14. Timer: Halda learns on day 14 unless Chadickith changes it.",
+    "Lore gives her pit numbers as STR 15, DEX 14, CON 14, Athletics +6, Acrobatics +5. The sheet computes Athletics +5 at proficiency +3; add +1 for pit bouts (Gorget training) or raise STR to 16 if preferred.",
+    "Grappler is the table's 2024 (XPHB) version; her sheet carries it as a trait.",
+    "Invented by npc-creator: alignment (lawful good), the Fighter 6 (Champion) sheet, HP and AC, and her voice habit (two fingers on the table)."
+  ],
+  "lore": "marda-ironside",
+  "sheet": {
+    "class": "Fighter 6",
+    "background": "Soldier",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 17,
+    "ac_from": "half-plate",
+    "hp": 52,
+    "hit_dice": "6d10+12",
+    "speed": 30,
+    "abilities": {
+      "str": 15,
+      "dex": 14,
+      "con": 14,
+      "int": 10,
+      "wis": 12,
+      "cha": 11
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "acrobatics": 1,
+      "perception": 1,
+      "intimidation": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Second Wind",
+        "text": "Bonus action: regain 1d10+6 hit points. Once per short or long rest."
+      },
+      {
+        "name": "Action Surge",
+        "text": "One additional action on her turn. Once per short or long rest."
+      },
+      {
+        "name": "Fighting Style: Dueling",
+        "text": "+2 damage with a one-handed melee weapon (included below)."
+      },
+      {
+        "name": "Improved Critical",
+        "text": "Champion. Her weapon attacks score a critical hit on a roll of 19 or 20."
+      },
+      {
+        "name": "Grappler (XPHB)",
+        "text": "The table's 2024 version of the feat. A Gorget wrestler: she grapples and shoves with Athletics (+5 on the sheet, +6 in a pit bout)."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "Two weapon attacks, or two unarmed strikes, or an unarmed strike and a grapple in place of an attack."
+      },
+      {
+        "name": "Longsword",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 slashing",
+        "damage_bonus": 2
+      },
+      {
+        "name": "Unarmed Strike",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1 bludgeoning"
+      },
+      {
+        "name": "Light Crossbow",
+        "attack": "dex",
+        "range": "80/320",
+        "damage": "1d8 piercing"
+      }
+    ],
+    "gear": [
+      "blackened half-plate with red-brass gorget (Okton-forged)",
+      "longsword",
+      "light crossbow",
+      "cell keys",
+      "a sealed strongbox at the Collarhouse"
+    ]
+  },
+  "slug": "marda-ironside",
+  "created": "2026-10-25T04:43:09",
+  "updated": "2026-10-25T04:43:09"
+}

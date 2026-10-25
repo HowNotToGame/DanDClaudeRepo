@@ -1,0 +1,50 @@
+{
+  "name": "Mattie Colk",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "stoker at the Third Furnace; four-time winner of the stokers' Kettle wager at the Long Soak",
+  "age": "late thirties",
+  "appearance": "Bram's big sister, with a neck like a bollard and the brick-red face of a woman who works beside a furnace.",
+  "voice": "Grins through the steam and trades jokes about boiled hides. A good loser.",
+  "backstory": "Mattie Colk is Bram Colk's big sister and works the Third Furnace in Steamside. She had won the stokers' wager in the Kettle Pool four years running when Chadickith, last in after the fourth glass, outlasted her at the 1491 Soak. She lay on the stone and slapped it twice in surrender, saying that Rosa would have to burn him two spoons for taking pit and pool. When the champion was hauled out and the bell cleared the pool she raised a cup and shouted that he went down fighting the water.",
+  "wants": "The Kettle wager back next year; to see the Third Furnace's crew stay in work.",
+  "fears": "A stoker taken by the burn; the furnace going cold.",
+  "relationships": [
+    {
+      "who": "bram-colk",
+      "how": "her younger brother, a stoker at the same furnace",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "beat her in the 1491 Kettle wager; she toasted him anyway",
+      "attitude": 2
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate, who lets the stokers run their wager",
+      "attitude": 1
+    },
+    {
+      "who": "mother-seld",
+      "how": "hauls the stokers out of the Kettle Pool when they push too far",
+      "attitude": 1
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stat block: Thug. Her Constitution save was played at +4 in the Soak on day 12 (the generic block has +2); the audit noted that +4 was needed for her line to hold. Her dice that day left no record.",
+    "Invented by npc-creator: age (older than Bram); alignment; her fears; her ties to Rosa and Mother Seld."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Thug|MM",
+    "notes": "Soak champion: Constitution save +4 in the Kettle Pool (as played on day 12, 1491). Won the stokers' wager four years running."
+  },
+  "slug": "mattie-colk",
+  "created": "2026-10-25T04:39:01",
+  "updated": "2026-10-25T04:39:01"
+}

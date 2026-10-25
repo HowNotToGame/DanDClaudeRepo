@@ -1,0 +1,65 @@
+{
+  "name": "Dacin",
+  "aliases": [
+    "Brother Dacin"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful evil",
+  "role": "Senior brother of the Choir and one of its hymn-holders; helps hold Kitwin's rage down; loyal to Coldwell",
+  "age": "fifties",
+  "appearance": "A heavy-shouldered brother in Choir grey with a cropped grey beard and censer-burned fingers.",
+  "voice": "Slow and steady, with the cadence of a hymn. Counts breaths under his voice, as if holding someone down.",
+  "backstory": "Dacin is a senior brother of the Pyrehouse's inner circle, the Choir, and one of those who sing the heat down in Kitwin. Two nights before day 11 an old pit-wife died in the infirmary while Kitwin held her hand, and the smoke of the wafer-incense was thick; the heat came up in the boy so hard that Dacin, two novices and Ilsa had to hold him down and sing until dawn. When Ilsa slipped out at the midnight change on the night of day 11 and took Kitwin down the charnel stair, Dacin was not among those who went with her. He is presumed to be in the Pyrehouse with Coldwell.",
+  "wants": "Kitwin back in the Choir's keeping and the song unbroken; Coldwell's plan carried out at the first sitting.",
+  "fears": "The boy tipping into the rage with no one to sing him down; Coldwell's anger at the cantor's flight.",
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden he serves without question",
+      "attitude": 3
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "the cantor who sang with him and has fled with the boy",
+      "attitude": -1
+    },
+    {
+      "who": "kitwin",
+      "how": "the boy whose rage he helps hold down",
+      "attitude": 1
+    },
+    {
+      "who": "garn",
+      "how": "Choir brother and fellow Singer; dead",
+      "attitude": 2
+    },
+    {
+      "who": "peret",
+      "how": "Choir brother",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy who has crossed the Choir",
+      "attitude": -2
+    }
+  ],
+  "secrets": [
+    "The Choir's older hymns name the Lord of Murder behind Kelemvor's mask, and the wafer ties an eater's rage to the Choir's song.",
+    "Coldwell means the crown to be kindled again before the lamps at the first sitting, with Kitwin as the willing death.",
+    "The Choir burns wafer-incense at every deathbed it tends, and the smoke can tip Kitwin when someone dies near him; the Choir has been careless with this.",
+    "He knows Ilsa has fled with the boy and that she knows the crypt, the casket and the plan."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: Dacin's age, looks, the habit of counting breaths, that he is loyal to Coldwell and stayed in the Pyrehouse, that he knows the plan and the older hymns, that the wafer-incense smoke is what tips Kitwin (canon says only that the incense was burning and the death lit the heat), and the Cult Fanatic block. Canon names him only as one of the four who held Kitwin down two nights before day 11.",
+    "Ilsa left with two unnamed loyal Choir, a lean man and a stooped older woman, who kept to the lane at the forge. The DM may decide whether the lean man is Dacin; as written he is not.",
+    "The Pyrehouse's north postern guard was doubled after Hesby was seen; Dacin may be on it."
+  ],
+  "lore": null,
+  "statblock": "Cult Fanatic|MM",
+  "slug": "dacin",
+  "created": "2026-10-25T04:42:18",
+  "updated": "2026-10-25T04:42:18"
+}

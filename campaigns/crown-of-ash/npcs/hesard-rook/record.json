@@ -1,0 +1,155 @@
+{
+  "name": "Hesard Rook",
+  "aliases": [
+    "Captain Rook"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Watch captain of the river wall until day 9; relieved and confined to quarters pending inquiry as the Choir's leak; refuses to answer the inquiry",
+  "age": "early forties",
+  "appearance": "Compact and tidy, grey at the temples; keeps his gorget and buttons polished even under guard. A reasonable face that gives little away.",
+  "voice": "Smooth and courteous: 'with respect, Captain'. Answers a hard question with a reasonable-sounding one and would rather say nothing than lie twice.",
+  "backstory": "A Kharun Rook, one of the Watch's six captains, commanding the river wall. He stood in Halda's half-ring at the noon hearing on day 3, looked uneasy and left soon after. On days 4 and 5 the false routes for the Coal that only his side had been told, the Weir Gate and then the Mill Gate, drew the Choir's watchers, and two men who joined the postern roster after the roc had come on his recommendation. At the dawn war-table on day 9 his orderly Fenia swore that Rook had him listen at doors and report for coin to a woman at the chandler's by the dye-works. Rook denied it smoothly and called it coercion by the giant's people; the captains believed Fenia. Halda relieved him and confined him to quarters under men not drawn from his own company. He has not been charged. On day 11 he refused the inquiry but asked to see the Lord-Marshal alone, and Halda allowed it.",
+  "wants": "His cousin crowned; Lorard to understand he never meant harm to the ward; the Rook family's secret kept from becoming the Watch's business.",
+  "fears": "The Rook secret out and Lorard's claim dead because of him; the rope; Lorard's soldiers learning it from the Watch.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "cousin: Lorard is his late uncle's son; he betrayed the Watch to see him crowned; Lorard did not forgive him",
+      "attitude": 3,
+      "hidden": true
+    },
+    {
+      "who": "pellot-rook",
+      "how": "late uncle, Ivoard Hask's sword-brother and Lorard's true father",
+      "attitude": 2,
+      "hidden": true
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "swore the Pyrehouse would back Lorard if the Coal were recovered; he now knows he was used",
+      "attitude": -2
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain who relieved him; he knows he betrayed her trust",
+      "attitude": -1
+    },
+    {
+      "who": "marda-ironside",
+      "how": "fellow captain who stood behind the grate and wrote down his confession",
+      "attitude": -1
+    },
+    {
+      "who": "fenia",
+      "how": "his orderly, whom he used as a listener and who testified against him",
+      "attitude": -2
+    },
+    {
+      "who": "chadickith",
+      "how": "the hired sword whose canary trap exposed him",
+      "attitude": -2
+    }
+  ],
+  "secrets": [
+    "Lorard Hask is your cousin. Your late uncle Pellot Rook, Ivoard Hask's sword-brother, was Lorard's true father. You have kept the Rook family's secret for years.",
+    "You fed the Choir news of the forge and of Chadickith's movements, through your orderly and a grey-shawled woman at the chandler's by the dye-works, because Coldwell swore the Pyrehouse would back Lorard for the crown if the Coal were recovered. You wanted your cousin crowned.",
+    "You recommended the two men who joined the postern roster after the roc, and you knew whom they answered to.",
+    "You did not know the Choir meant to burn the ward or the forge. The flame-stamped silver sickened you when you saw it.",
+    "On day 11 you told Lorard all of it in your cell and greeted him as cousin. He said he knew what he was and never asked you to bleed for it. He did not forgive you and did not call for the rope.",
+    "You have refused every question from the Watch since, and asked for no one but Lorard."
+  ],
+  "dm_only": [
+    "Marda Ironside holds the sealed record of the confession until day 14; Chadickith heard every word from behind the grate and keeps it as leverage. Whether Rook knew listeners stood behind the grate is not recorded; decide when it matters.",
+    "Invented by npc-creator: that he knew the two postern men answered to the grey woman (lore says only that they came on his recommendation); his age (early forties, near Lorard's 41); appearance, voice, alignment; the Fighter 5 (Battle Master) sheet.",
+    "His uncle Pellot Rook died in the South March campaign of 1450 DR, before Lorard was born (see lorard-hask).",
+    "Status stays alive: confined to quarters under Watch guard, uncharged."
+  ],
+  "lore": "hesard-rook",
+  "sheet": {
+    "class": "Fighter 5",
+    "background": "City Watch",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 18,
+    "ac_from": "half-plate, shield",
+    "hp": 44,
+    "hit_dice": "5d10+10",
+    "speed": 30,
+    "abilities": {
+      "str": 14,
+      "dex": 12,
+      "con": 14,
+      "int": 12,
+      "wis": 12,
+      "cha": 14
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "insight": 1,
+      "perception": 1,
+      "persuasion": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Second Wind",
+        "text": "Bonus action: regain 1d10+5 hit points. Once per short or long rest."
+      },
+      {
+        "name": "Action Surge",
+        "text": "One additional action on his turn. Once per short or long rest."
+      },
+      {
+        "name": "Fighting Style: Dueling",
+        "text": "+2 damage with a one-handed melee weapon (included below)."
+      },
+      {
+        "name": "Combat Superiority",
+        "text": "Battle Master. 4d8 superiority dice (DC 13), regained on a short or long rest. Maneuvers: Commander's Strike, Disarming Attack, Parry."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "He makes two weapon attacks."
+      },
+      {
+        "name": "Longsword",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 slashing",
+        "damage_bonus": 2
+      },
+      {
+        "name": "Light Crossbow",
+        "attack": "dex",
+        "range": "80/320",
+        "damage": "1d8 piercing"
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Parry (maneuver)",
+        "text": "Expend a superiority die to reduce melee damage to him by the die roll + 2."
+      }
+    ],
+    "gear": [
+      "half-plate with red-brass gorget (confined, held under guard)",
+      "shield",
+      "longsword",
+      "light crossbow"
+    ]
+  },
+  "slug": "hesard-rook",
+  "created": "2026-10-25T04:43:24",
+  "updated": "2026-10-25T04:43:24"
+}

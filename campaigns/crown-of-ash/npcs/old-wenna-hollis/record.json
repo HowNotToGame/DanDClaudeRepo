@@ -1,0 +1,84 @@
+{
+  "name": "Old Wenna Hollis",
+  "aliases": [
+    "Wenna Hollis",
+    "Wenna"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Keeper of the Vent Games slate 1452-1480; now a nearly blind keeper of memory by the Third Vent",
+  "age": "78",
+  "appearance": "Nearly blind from fifty years over the steam, seeing only shapes and light. She sits on a stool by the Third Vent in a heap of damp towels with a cup of cider and a cane.",
+  "voice": "Thin, dry and exact. She calls everyone by their mother's name (You are Gwenna's girl), taps her cane once for yes and twice for no, and says I heard that about things she saw.",
+  "backstory": "Wenna Hollis, born 1413, is Meg Hollis's daughter and Rosa's mother. She kept the slate of the Vent Games from 1452 to 1480, through the Night of Cinders and most of the Ash Reign, until the steam took her eyes. She remembers every final since she was a girl at the Wet Games, and her rulings still stand: the scald tin (1453), the Soak ending at the curfew bell (1454), the Fury Rule (1464), the ban on strangles in the Open and the Empty Spoon (1467). She remembers the giant carrying a small grey boy down the lane in the spring of 1423, and on day twelve of 1491 she invited Chadickith to sit with her some night after the bell.",
+  "wants": "The Games kept honest and loud; the old book in the Hollis house read by someone who will actually read it; to watch the Ash from the rope herself.",
+  "fears": "Strangles back in the Open; the Pyrehouse burning the old book; a fire in the bathhouse.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "her daughter and heir to the slate",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy; she remembers him arriving in 1423 and wants to know why it took sixty-eight years to step on the ash",
+      "attitude": 2
+    },
+    {
+      "who": "gorm-halfhand",
+      "how": "made him buy cider every time he taunted after a win",
+      "attitude": 2
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "she chalked the Fury Rule the morning after he sat on the raging sergeant",
+      "attitude": 1
+    },
+    {
+      "who": "big-hesta",
+      "how": "the Ashward champion of her slate's last years",
+      "attitude": 2
+    },
+    {
+      "who": "teo-varrow",
+      "how": "the man who wants the strangle back in the Ash; she will argue it at the Soak",
+      "attitude": -1
+    },
+    {
+      "who": "okton",
+      "how": "the giant of the forge; she saw him carrying a small grey boy in 1423",
+      "attitude": 1
+    },
+    {
+      "who": "mother-seld",
+      "how": "the bathhouse bonesetter who keeps the step",
+      "attitude": 2
+    },
+    {
+      "who": "nan-grell",
+      "how": "keeps her cup full",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "She saw Brannoc Hale's eyes catch red in 1464, and since the roc she has understood it was the burn.",
+    "She knows where the Dead-Washers' Ledger is and what its old pages say. She thinks the Pyrehouse would burn it, and she would give it to someone who would read it instead.",
+    "She knows about Rosa's debt to House Mostana. She heard Rosa counting coins and crying in Ches, and has said nothing."
+  ],
+  "dm_only": [
+    "Lore: the Fury Rule was written against the burn decades before anyone named it. Wenna knows now; the party does not.",
+    "Stat block: Commoner with 3 hit points (frail). She hears falls better than most people see them; once per bout each corner may Ask Wenna to rule on a call, and if she rules against the corner that asked, the other wrestler scores 1.",
+    "Invented by npc-creator: alignment; her ties to Mother Seld, Nan Grell and Hesta; her attitude to Okton (lore only says she remembers the giant)."
+  ],
+  "lore": "old-wenna-hollis",
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 3,
+    "notes": "Nearly blind (shapes and light only); hearing is sharp, she hears falls better than most people see them."
+  },
+  "slug": "old-wenna-hollis",
+  "created": "2026-10-25T04:40:24",
+  "updated": "2026-10-25T04:40:24"
+}

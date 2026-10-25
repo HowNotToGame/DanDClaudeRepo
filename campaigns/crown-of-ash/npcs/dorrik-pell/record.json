@@ -1,0 +1,50 @@
+{
+  "name": "Dorrik Pell",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "chaotic good",
+  "role": "journeyman at the Steamside dye-works; three-time Bellow champion (1487-1489)",
+  "age": "mid-thirties",
+  "appearance": "Barrel-built and blue to the elbows from the vats, with a grin that hasn't changed since he was sixteen.",
+  "voice": "Loud and good-humoured. He boasts, wheezes when winded, yields without sulking, and says never again at the Long Soak every year.",
+  "backstory": "Dorrik Pell is a journeyman at the Steamside dye-works, and every year since he was sixteen he has boasted that he can throw anything on two legs. He won the Bellow three years running (1487 to 1489) before the Quiet Year ended it, and he wants it back. At the 1491 Open he drew Chadickith in the quarterfinal at six to one, charged, lost the grip, and was driven over the chalk to sit down on the rope. He laughed, wheezed and slapped the ash twice, then told the giant's boy to hold the gate and bought him a cider after. He bought two.",
+  "wants": "The Bellow back; to throw something bigger than himself and brag about it for a year.",
+  "fears": "Another Quiet Year, when nobody was allowed to shout; the dye-works laying off.",
+  "relationships": [
+    {
+      "who": "ilk-venn",
+      "how": "best friend at the dye-works; the Blue Hands money went on Ilk after Dorrik fell",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "shoved him over the chalk in the 1491 quarterfinal; Dorrik bought him two ciders for it",
+      "attitude": 2
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate",
+      "attitude": 1
+    },
+    {
+      "who": "bram-colk",
+      "how": "alum-furnace stoker in the next lane over",
+      "attitude": 1
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stat block: Thug (a barrel-built brawler; a Linen thrower).",
+    "Invented by npc-creator: age; alignment; fears; the tie to Bram Colk."
+  ],
+  "lore": "dorrik-pell",
+  "statblock": {
+    "ref": "Thug|MM",
+    "notes": "Linen thrower for the dye-works Blue Hands; charges, grips the collar and sleeve, and throws."
+  },
+  "slug": "dorrik-pell",
+  "created": "2026-10-25T04:39:19",
+  "updated": "2026-10-25T04:39:19"
+}

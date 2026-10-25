@@ -295,6 +295,10 @@ class Handler(BaseHTTPRequestHandler):
                 return self.json({"entries": views.lore_list(c, view)})
             if path.startswith("/api/lore/"):
                 return self.json(views.lore_entry(c, urllib.parse.unquote(path.split("/", 3)[3]), view))
+            if path == "/api/people":
+                return self.json({"people": views.people_list(c, view)})
+            if path.startswith("/api/people/"):
+                return self.json(views.person(c, urllib.parse.unquote(path.split("/", 3)[3]), view))
             if path.startswith("/api/companion/"):
                 slug = companions.find(c, urllib.parse.unquote(path.split("/", 3)[3]))
                 return self.json(views.companion_card(c, slug, view == "dm"))

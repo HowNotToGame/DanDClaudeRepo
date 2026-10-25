@@ -1,0 +1,45 @@
+{
+  "name": "Ilk Venn",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "dye-worker and the Blue Hands best Linen thrower; captain of the dye-works yard in the Grudge Circuit",
+  "age": "mid-thirties",
+  "appearance": "A barrel-chested dyer, stained blue to the elbows and in the creases of his neck, quieter than his friend Dorrik.",
+  "voice": "Steady and unhurried, with a dyer's patience. He says clean throw of anything done well.",
+  "backstory": "Ilk Venn is a barrel-chested dye-worker and the Blue Hands best thrower in the Linen. In 1489 Rosa Hollis asked him for the Linen rules for her Seven Roots slate, and he gave them. On day twelve of 1491, after his friend Dorrik Pell went out, the dye-workers money went on him; in the quarterfinal Joss Marl slipped his grip twice, got behind him and rode him down for Rosa's three fingers. The rail groaned over the dye-workers wasted wagers.",
+  "wants": "To lead the Blue Hands to a yard win in the Grudge Circuit; to see the dye-workers wagers pay again.",
+  "fears": "The dye-works name sinking for good; the vats going cold.",
+  "relationships": [
+    {
+      "who": "dorrik-pell",
+      "how": "best friend at the dye-works",
+      "attitude": 3
+    },
+    {
+      "who": "joss-marl",
+      "how": "beat him fairly in the 1491 quarterfinal by taking his back",
+      "attitude": 1
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate, who asked him for the Linen rules",
+      "attitude": 2
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stat block: Thug.",
+    "Invented by npc-creator: age; alignment; voice habit; fears. Lore says the Blue Hands are captained by Ilk Venn, with Dorrik Pell shouting, in the Circuit."
+  ],
+  "lore": "ilk-venn",
+  "statblock": {
+    "ref": "Thug|MM",
+    "notes": "Linen thrower: collar-and-sleeve grips, foot sweeps and clean throws."
+  },
+  "slug": "ilk-venn",
+  "created": "2026-10-25T04:39:19",
+  "updated": "2026-10-25T04:39:19"
+}

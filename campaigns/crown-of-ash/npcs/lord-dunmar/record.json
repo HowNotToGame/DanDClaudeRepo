@@ -1,0 +1,47 @@
+{
+  "name": "Lord Dunmar",
+  "aliases": [
+    "Denchton Dunmar",
+    "Lord Denchton Dunmar"
+  ],
+  "tier": "minor",
+  "status": "historical",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "Last lord of Dunmarrow, warden of the high eastern cones of the Cinder Hills, until the burning of 1463",
+  "age": "died 1463 at about sixty",
+  "appearance": "Gaunt and grey, with a hill-lord's stooped shoulders and a heavy iron signet. He wore a mason's mark, three rising lines in a ring, on his ring-seal.",
+  "voice": "Measured, formal in his letters, plain on the wall. Ends every argument by naming what it will cost his people.",
+  "backstory": "The Dunmars held the high eastern cones of the Cinder Hills under a Velun grant from about 1300. When Ivoard Hask took the throne in 1453, Denchton Dunmar swore to him with the other hill lords, grudgingly. In 1460 Hask laid a tithe on the hill lords of grain, charcoal, and a fixed number of prisoners and debtors every year for the Spire, and every hill lord paid but Dunmar. In 1462 he wrote to his neighbours asking them to refuse too. Two answered, and one passed his letter to the Lord-Marshal's office. In 1463 Hask's lieutenant Kitford Whitlock marched on Dunmarrow with the Ash Company and burned the town and keep in a single night. Dunmar died at the gate. Only the lower keep survived.",
+  "wants": "To keep Dunmarrow's people from the Spire. To make sure the truth outlives him.",
+  "fears": "Hask's patience; the Pyrehouse; that he is the only one who understands what the tithe feeds.",
+  "relationships": [
+    {
+      "who": "ivoard-hask",
+      "how": "refused his tithe; Hask's company burned Dunmarrow",
+      "attitude": -3
+    },
+    {
+      "who": "ulric-vane",
+      "how": "the mason's boy who survived and tends his dead",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "His steward learned from a Pyrehouse deserter that the Spire's condemned were being fed to something, and that the tithe was part of it. That is why he refused, not defiance.",
+    "He sealed a strongroom beneath the keep with his own hand and put an iron strongbox of his letters inside. They name the Pyrehouse and the Last Ember plainly.",
+    "He did not know which neighbour passed his letter to the Lord-Marshal's office."
+  ],
+  "dm_only": [
+    "invented by npc-creator: his age at death, appearance, voice, and the mason's mark on his ring-seal (canon: the master mason's mark found the way into the vault).",
+    "Canon: the Choir saw to it that Dunmar's letter reached the Lord-Marshal and that Whitlock came with a full company; the Ember Rolls record the burning as the largest single feeding of the coal in the Ash Reign. Dunmar never knew.",
+    "Canon irony: the vault he sealed now holds the Heartcoal (see dunmarrow DM secrets). Okton wants to try Grim Psychometry on the letters.",
+    "Canon: the Dunmar blood may still live in the hills. No heir is recorded.",
+    "Stats: Knight|MM (a hill lord who died fighting at his own gate); use for a vision or a restless shade."
+  ],
+  "lore": null,
+  "statblock": "Knight|MM",
+  "slug": "lord-dunmar",
+  "created": "2026-10-25T04:35:29",
+  "updated": "2026-10-25T04:35:29"
+}

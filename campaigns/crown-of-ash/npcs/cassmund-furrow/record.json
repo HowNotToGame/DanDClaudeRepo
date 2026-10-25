@@ -1,0 +1,63 @@
+{
+  "name": "Cassmund Furrow",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "homebrew": true,
+  "race": "half-orc",
+  "alignment": "neutral good",
+  "role": "Watch recruit turned Blood Hunter of the Banked; on the road to Dunmarrow through the Lowfields farms with Warden Kaselle Redfern",
+  "age": "24",
+  "appearance": "Tall, earnest and wide-eyed, with a farmer's hands. Carries a lucky coin and wears a Watch collar.",
+  "voice": "Plain and earnest farm speech. Laughs easily, then catches himself. Asks 'Is that all right?' more often than he needs to.",
+  "backstory": "A farm boy turned Watch recruit. The roc's blood put the burn in him on the night of the Great Pyre; Frenzied and willing, he was quenched on day 3. He is quick to laugh and quicker to be afraid of himself. He took part in the hunt for Captain Rook's leak and bagged Rook's tail in an alley, guarded the forge door with Hesby and Samson on the night of the crowd, and walked Ashlo to the Collarhouse. On the morning of day 10 he left Kharun for Dunmarrow, an hour apart from the others, travelling with Warden Kaselle Redfern.",
+  "wants": "To be steady enough that people stop watching his hands; to earn the collar he wears.",
+  "fears": "Hurting someone he loves while the heat is up. Being sent home. That the farm will smell the burn on him.",
+  "relationships": [
+    {
+      "who": "kaselle-redfern",
+      "how": "travelling with him to Dunmarrow",
+      "attitude": 1
+    },
+    {
+      "who": "hesby-bramble",
+      "how": "his sergeant and fellow Banked; looks up to him",
+      "attitude": 2
+    },
+    {
+      "who": "samson-cobb",
+      "how": "fellow Banked and friend",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the giant who quenched him",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "fellow Banked",
+      "attitude": 2
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain he serves",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You carry the burn at Stirring and bleed it off with your knife when it climbs.",
+    "You know the Order's hall is Dunmarrow and that the Heartcoal lies in its vault."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: the Lowfields origin (lore gives only the route), the speech habit, the attitudes.",
+    "His surname matches Nesan Furrow of Steamside; kin is undecided.",
+    "Sheet: banked/cassmund-furrow.json is authoritative (level 2, Hawk from level 3)."
+  ],
+  "sheet": {
+    "file": "banked/cassmund-furrow.json"
+  },
+  "slug": "cassmund-furrow",
+  "created": "2026-10-25T04:43:00",
+  "updated": "2026-10-25T04:43:00"
+}

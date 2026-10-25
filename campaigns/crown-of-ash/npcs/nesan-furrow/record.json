@@ -1,0 +1,46 @@
+{
+  "name": "Nesan Furrow",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "keeper of the Blind Barrel, a plain back-lane house in the Vents (Steamside)",
+  "age": "fifties",
+  "appearance": "Heavy-lidded and unhurried, forever wiping the same cup.",
+  "voice": "Flat and unhurried. Asked what is on offer, he answers with exactly what is on the board and nothing else.",
+  "backstory": "Nesan Furrow keeps the Blind Barrel in the Vents, a plain house of flatbread and thin beer where Calishite dockhands, midwives and the odd silent Pyrewarden all drink. On the evening of the king's funeral he served Chadickith flatbread, and so he saw a grey-hooded Pyrewarden woman stare the giant's boy down over a table and slip a folded grey paper beside his plate. He also saw a man in a brown coat nurse a single cup for an hour and leave just behind the giant's boy. He asked no questions and has told no one.",
+  "wants": "A quiet house with steady custom; to be left out of everyone's quarrels.",
+  "fears": "The Watch or the Choir deciding his house is a nest of something; a brawl that gets his licence pulled.",
+  "relationships": [
+    {
+      "who": "kaslo-ashdown",
+      "how": "regular in his house",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "a customer who asked what was on offer; the giant's boy from the forge",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "He saw a grey-hooded Pyrewarden woman pass Chadickith a folded grey paper, and a man in a brown coat watch it.",
+    "One evening he found a young man in plain clothes dead drunk in the alley behind the Barrel, a lad who by his boots was a Watch recruit and who stank of spirits though he had never drunk. He had the lad carried to the Collarhouse door and told no one."
+  ],
+  "dm_only": [
+    "The grey-hooded woman was Warden Kaselle Redfern; the brown-coat watcher was Garford Whitlock, a hired watcher for Lorard's quartermaster. Nesan knows neither name.",
+    "The drunk recruit was Rook's captured tail, dumped behind the Barrel by the Order before the real run (memory m0110). That Nesan found him and had him carried to the Collarhouse is invented.",
+    "He shares a surname with Cassmund Furrow, a Banked of the Order. No tie is canon; the DM may decide.",
+    "Stat block: Commoner (a cudgel under the bar).",
+    "Invented by npc-creator: age; alignment; voice; what he saw beyond the canon facts; the alley find; wants and fears."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "Keeps a cudgel under the bar (as the Commoner's club)."
+  },
+  "slug": "nesan-furrow",
+  "created": "2026-10-25T04:41:26",
+  "updated": "2026-10-25T04:41:26"
+}

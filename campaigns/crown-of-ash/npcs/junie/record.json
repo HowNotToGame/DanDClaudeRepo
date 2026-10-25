@@ -1,0 +1,50 @@
+{
+  "name": "Junie",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "ragged Ashward girl who loiters near the almshouse",
+  "age": "about 9",
+  "appearance": "Ragged and thin, with the grey-smudged face of the Ashward lanes.",
+  "voice": "Blunt and curious. She trades what she knows for a story, and asks and then what, over and over.",
+  "backstory": "Junie is a ragged Ashward girl of about nine who spends her days around the Ashward almshouse. On the afternoon of the dusk meeting there, while Chadickith watched the almshouse from a hiding place, he offered to tell her a story about the giant he knows. She asked for it, and he told her how Okton saved him from the roc. In return she told him that at night covered carts go into the almshouse dead-house, and that the sisters are forbidden to look.",
+  "wants": "More stories; bread; to know where the dead go.",
+  "fears": "The covered carts at night; the grey singers; going hungry.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "the giant who told her the roc story",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the hero of the roc story; the old giant at the forge she has never met",
+      "attitude": 1
+    },
+    {
+      "who": "wren-tolly",
+      "how": "another Ashward girl who won the egg race",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "She has watched the covered carts come on many nights and counts them on her fingers. She never told the sisters, who would have shooed her away."
+  ],
+  "dm_only": [
+    "Her tip about the carts fed into Chadickith's night in the almshouse dead-house with the Choir (session 1: Peret, Vesan and Wyn, the plague road).",
+    "A child is level 0 under the burn rules (a commoner), so the burn would kill her at the end of Berserk.",
+    "Stat block: Commoner with 3 hit points (a child). Lore gives her no family and no surname.",
+    "Invented by npc-creator: alignment; voice habit (and then what); wants; the tie to Wren Tolly; that she counts the carts."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 3,
+    "notes": "A child."
+  },
+  "slug": "junie",
+  "created": "2026-10-25T04:41:37",
+  "updated": "2026-10-25T04:41:46"
+}

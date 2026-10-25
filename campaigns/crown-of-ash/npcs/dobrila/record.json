@@ -1,0 +1,43 @@
+{
+  "name": "Dobrila",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "loxodon",
+  "alignment": "lawful good",
+  "role": "very old weaver of Hadrun; Radanya's friend and keeper of a box of her things",
+  "age": "about 330 (invented; very old even for a loxodon)",
+  "appearance": "A very old loxodon: stooped and wrinkled, her grey coat thin and her tusks yellowed. Hands never idle on thread.",
+  "voice": "Slow, rumbling and gentle; talks to everyone as if they were still children. Hums while she weaves. Calls Chadickith by a childhood pet-name in front of anyone.",
+  "backstory": "A weaver of Hadrun who survived the Day of the Shadow in 1423, one of the few of the village's living survivors, as loxodons live long. She was Radanya's friend. She keeps a box of Berov and Radanya's things: Berov's carved tusk-comb, Radanya's clay cup and a letter she cannot read. She has watched the human survivors die and their children ring the Roc Bell and tell the story secondhand. She does not know that Chadickith has been quenched, or that the Gallowsbird is dead and the giant has finished the job.",
+  "wants": "To put the box in Chadickith's hands before she dies; to see the Roc Bell quiet for good.",
+  "fears": "That no one is left who remembers Berov and Radanya's faces.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "Radanya's son, whom she held as a child",
+      "attitude": 3
+    },
+    {
+      "who": "okton",
+      "how": "the giant who came too late and then raised Radanya's boy; she has never decided whether to thank or curse him",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "You cannot read the letter in the box, and you have always been ashamed to ask anyone to read it."
+  ],
+  "dm_only": [
+    "The letter is from Radanya to a cousin in Thornwater, written that spring: the weather, a sick goat, and a line saying the great bird had been 'circling the Spire every day this month, fat and wrong.'",
+    "Optional twist from the Hadrun lore: Berov's younger brother was one of the fifty condemned; DM decides whether Dobrila knows.",
+    "Invented by npc-creator: her age, appearance, the pet-name's absence (DM chooses it), her ambivalence toward Okton."
+  ],
+  "statblock": {
+    "ref": "Commoner|MM",
+    "ac": 11,
+    "notes": "loxodon (GGR): trunk, Keen Smell, Loxodon Serenity; very old and frail"
+  },
+  "slug": "dobrila",
+  "created": "2026-10-25T04:44:06",
+  "updated": "2026-10-25T04:44:06"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Corvic Strand",
+  "aliases": [
+    "the Iron Baron"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "chaotic neutral",
+  "role": "Self-styled 'Iron Baron' of Hollowmarch, a hill lordship (about 9,000 people) south-east of Ossmaar, who leads a few hundred hard riders",
+  "age": "mid forties",
+  "appearance": "Rangy and sun-blackened, iron-grey braid wound with iron wire, a notched iron gorget he never takes off, and a band of beaten iron where a baron's circlet would be.",
+  "voice": "Quiet and amused. Calls everyone 'friend' and means it as a warning. Never raises his voice.",
+  "backstory": "Corvic is the son of a hill-captain who held the ruined fort of Hollowmarch under no crown at all. No king ever named him baron; he named himself, in his twenties, and enough men believed it to ride behind him. In the last ten years he has raided the March villages twice, for horses, grain and goats, and both times he drew off before the Ash Companies could close the trap. Now the army sits at Kharun, the March forts hold forty men each, and every scout he sends comes back with the same news.",
+  "wants": "Grain, horses and plunder for his riders; to be called baron by a crown with the power to say it; a place at the treaty table whenever one is set.",
+  "fears": "Being caught between the Ash Companies and the Shaar; his riders drifting away if there is no plunder this winter; a Lord-Marshal who is crowned and finally turns on Hollowmarch.",
+  "relationships": [
+    {
+      "who": "darius-saltmarsh",
+      "how": "Fort Vell's captain, who shuts the Gap on his raiders",
+      "attitude": -2
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal who has driven him off before; feared and respected",
+      "attitude": -2
+    }
+  ],
+  "secrets": [
+    "His scouts have counted Fort Vell's lamps and the watch-forts: he knows each holds about forty men.",
+    "If Lorard is crowned, he means to offer homage and a price. If the realm splits, he means to take the March villages before winter.",
+    "His riders are paid in plunder, not coin. Another winter without a raid and half of them will drift to the Shaar."
+  ],
+  "dm_only": [
+    "invented by npc-creator: his age, appearance, voice, the iron circlet, his father the hill-captain, and the self-naming.",
+    "invented by npc-creator: the scouting of the March and the homage-or-plunder plan. Canon says only that he raided March villages twice in the last decade and that the March is thinner than ever.",
+    "Stats: Bandit Captain|MM (CR 2); a hill warlord rather than a knight. Add a few hundred Bandits and Thugs as his riders."
+  ],
+  "lore": null,
+  "statblock": "Bandit Captain|MM",
+  "slug": "corvic-strand",
+  "created": "2026-10-25T04:34:34",
+  "updated": "2026-10-25T04:34:34"
+}

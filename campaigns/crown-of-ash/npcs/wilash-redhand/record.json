@@ -1,0 +1,66 @@
+{
+  "name": "Wilash Redhand",
+  "aliases": [
+    "Sergeant Wilash Redhand",
+    "Sergeant Redhand"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "half-orc",
+  "alignment": "lawful neutral",
+  "role": "Sergeant of the Kharun Watch at the Collarhouse; Chadickith's sparring partner of twenty years; guarded Isine at the triage tent",
+  "age": "mid-forties",
+  "appearance": "Broad and scarred, tusks filed short under the helmet strap, a red-brass gorget he polishes badly; a laugh like a dropped anvil.",
+  "voice": "Gruff and teasing. Tells people to 'fight small' and calls Chadickith 'the big lump'.",
+  "backstory": "A Kharun half-orc who took the red collar young and has worn it twenty-odd years, now a sergeant. For twenty years he has sparred with Chadickith: Chadickith says he taught Redhand everything, Redhand says it was the other way round and that he taught the big lump to fight dirty and small. He guarded the wounded Isine at the Watch triage tent on day 2, was to escort her through the Saltgate until the Gallowsbird closed it, and took the tent over with Halda's orderlies when she went to the forge. His younger brother is a soldier in the Ash Companies.",
+  "wants": "His younger brother alive when this is over.",
+  "fears": "His brother's death; being found out; a morning when his brother and the boy stand on opposite sides.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "sparring partner of twenty years; a friend he teases",
+      "attitude": 3
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "his captain, whom he serves and is betraying",
+      "attitude": 2
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the cupbearer he guarded at the triage tent",
+      "attitude": 2
+    },
+    {
+      "who": "hesby-bramble",
+      "how": "a fellow sergeant, now Okton's and carried on the rolls as 'ill'",
+      "attitude": 1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "passes Watch news to his quartermaster's office to keep his brother safe",
+      "attitude": 0,
+      "hidden": true
+    },
+    {
+      "who": "unara",
+      "how": "ran the quartermaster's office he reported to until her fall",
+      "attitude": 0,
+      "hidden": true
+    }
+  ],
+  "secrets": [
+    "You pass Watch news to the Lord-Marshal's quartermaster's office, to keep your younger brother safe among the Ash Companies. It was Unara's office; it still takes your reports without her.",
+    "You like Chadickith and tell yourself the news is small. You fear that one day it will come down to your brother or the boy."
+  ],
+  "dm_only": [
+    "Lore: if it comes down to his brother or the boy, he will sell the boy out. Halda and Chadickith do not know he is Lorard's informer (DM-only).",
+    "Invented by npc-creator: his age, appearance, the 'fight small' habit (built from lore's 'taught the big lump to fight dirty and small'), and that Unara ran the office he reported to.",
+    "Dremmel, mentioned beside him in the day-2 journal, has no record."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "wilash-redhand",
+  "created": "2026-10-25T04:43:54",
+  "updated": "2026-10-25T04:43:54"
+}

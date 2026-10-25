@@ -1,0 +1,52 @@
+{
+  "name": "Kaslo Ashdown",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "midwife in the Vents (Steamside) and a regular at the Blind Barrel",
+  "age": "mid-forties",
+  "appearance": "A sturdy woman with a midwife's capable hands, usually found at the same corner table of the Blind Barrel.",
+  "voice": "Leans in and drops her voice, and ends a rumour with a shrug that she is only repeating it.",
+  "backstory": "Kaslo Ashdown is a midwife who works the lanes of the Vents and drinks at the Blind Barrel. On the evening of the king's funeral, while Chadickith was looking for something to eat, she repeated the rumour that the old giant of the Vents made the Crown of Ash. Chadickith joked it off. She did not know the rumour was true, or that the boy she told it to belongs to the giant in question.",
+  "wants": "To hear the news first; to bring her mothers and babies through the interregnum safely.",
+  "fears": "A birthing bed taken by the burn; being named as the source of a rumour that turns out to matter.",
+  "relationships": [
+    {
+      "who": "nesan-furrow",
+      "how": "regular at his Blind Barrel",
+      "attitude": 1
+    },
+    {
+      "who": "mother-seld",
+      "how": "fellow midwife, who keeps the Hollis bathhouse step",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy she repeated the Crown rumour to; he laughed it off",
+      "attitude": 0
+    },
+    {
+      "who": "okton",
+      "how": "the old giant of the Vents whom rumour says forged the Crown of Ash",
+      "attitude": 0
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "The rumour she repeated is true: Okton forged the Crown of Ash (rumour 5 in Kharun Rumours).",
+    "She shares a surname with House Ashdown (Lord Junard Ashdown sits on the Lamplit Council). Nothing in canon links them; the DM may decide.",
+    "Stat block: Commoner (midwife; Medicine as the DM wishes).",
+    "Invented by npc-creator: age; alignment; voice habit; wants and fears; her ties to Nesan and Mother Seld."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "Midwife; Medicine at the DM's discretion."
+  },
+  "slug": "kaslo-ashdown",
+  "created": "2026-10-25T04:41:26",
+  "updated": "2026-10-25T04:41:26"
+}

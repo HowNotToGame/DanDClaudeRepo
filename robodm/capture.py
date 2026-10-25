@@ -88,6 +88,9 @@ def _known_text(camp: Campaign) -> str:
     parts.extend(f"{pc['name']} {pc.get('notes', '')}" for pc in camp.party())
     parts.extend(f"{q['title']} {q.get('notes', '')} {q.get('giver', '')}" for q in camp.quests())
     parts.extend([str(camp.data.get(k, "")) for k in ("name", "premise", "setting", "dm_notes")])
+    from robodm import npcs
+
+    parts.extend(" ".join([str(r.get("name", ""))] + [str(a) for a in r.get("aliases") or []]) for r in npcs.all_records(camp))
     return "\n".join(parts).lower()
 
 

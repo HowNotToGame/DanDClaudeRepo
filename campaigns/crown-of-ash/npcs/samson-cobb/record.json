@@ -1,0 +1,58 @@
+{
+  "name": "Samson Cobb",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "homebrew": true,
+  "race": "giff",
+  "alignment": "lawful good",
+  "role": "former dockworker, Watchman and Blood Hunter of the Banked; on the road to Dunmarrow with Hesby",
+  "age": "31",
+  "appearance": "Broad and quiet, a hippo-headed giff with a scar through one eyebrow. Wears dockworker's gloves and a Watch collar.",
+  "voice": "Slow and sparing; a long rumbling pause before he answers. Closes a promise with 'I said I would.'",
+  "backstory": "A giff who worked the Kharun docks before he took the Watch collar; steady, slow to speak and a keeper of promises. The roc's blood put the burn in him on the night of the Great Pyre; Frenzied and willing, he was quenched on day 3 and now carries the burn at Stirring. He kept watch at the forge sweep, stood behind Chadickith and Okton when the Ashward crowd gathered, and helped walk Ashlo to the Collarhouse. On the morning of day 10 he left for Dunmarrow with Hesby, to help raise the Order's hall.",
+  "wants": "To keep the promises he has made, to Hesby, to Okton and to the Order; to build the hall with his hands.",
+  "fears": "Breaking a promise because the heat took him. Being the monster people expect a big man to be.",
+  "relationships": [
+    {
+      "who": "hesby-bramble",
+      "how": "travelling with his sergeant to Dunmarrow",
+      "attitude": 2
+    },
+    {
+      "who": "cassmund-furrow",
+      "how": "fellow Banked and friend",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the giant who quenched him",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "fellow Banked",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain he serves",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You carry the burn at Stirring and bleed it off with your knife when it climbs.",
+    "You know the Order's hall is Dunmarrow and that the Heartcoal lies in its vault."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: the dock history, the speech habit, the attitudes.",
+    "His surname matches the Ashward Cobbs (Gwenmund, Branda, Tam, Mina) and Yarby Cobb; no kinship is canon, and a giff in Kharun is rare. The DM may tie them or leave it a coincidence.",
+    "Sheet: banked/samson-cobb.json is authoritative (level 2, Owl from level 3)."
+  ],
+  "sheet": {
+    "file": "banked/samson-cobb.json"
+  },
+  "slug": "samson-cobb",
+  "created": "2026-10-25T04:43:20",
+  "updated": "2026-10-25T04:43:20"
+}

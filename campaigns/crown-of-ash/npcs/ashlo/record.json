@@ -1,0 +1,60 @@
+{
+  "name": "Ashlo",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Runner for the Lord-Marshal's quartermaster; the agitator who threw the first torch at Okton's forge. Held in Halda's inner cells.",
+  "age": "about 20",
+  "appearance": "Wiry and quick, with a runner's lean legs and a camp-follower's patched coat; a fading grin that dies when he is looked at.",
+  "voice": "Fast, nervous patter. Tells the truth in a rush when frightened, then insists he only did as he was told.",
+  "backstory": "Ashlo ran messages and errands for the Ash Companies' quartermaster, Unara. On day 9 she told him to make a spark at Okton's forge so the Marshal's dawn search would have cause, and he also took half-pay in silver from a grey-shawled woman of the Choir to carry the first torch. Chadickith caught and questioned him at the forge, and walked him to Halda's Collarhouse, where a hidden crossbowman on a Steamside roof tried to silence him on the way and missed. He now sits in the inner cells under a doubled guard, with Rook's orderly Fenia for company, and has said that Lorard himself knew nothing.",
+  "wants": "To keep from hanging, and to be sent back to the company in one piece.",
+  "fears": "The rooftop crossbowman finishing the job; the Ash Companies voting on him as they will on Unara; Chadickith.",
+  "relationships": [
+    {
+      "who": "unara",
+      "how": "the quartermaster who sent him to make the spark",
+      "attitude": -1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Marshal, whom he has never spoken to; he swears the Marshal knew nothing",
+      "attitude": 1
+    },
+    {
+      "who": "fenwin-thatcher",
+      "how": "the quartermaster's deputy, who hands out the day's errands",
+      "attitude": 0
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Watch-Captain who holds him and believed his account",
+      "attitude": 1
+    },
+    {
+      "who": "fenia",
+      "how": "Rook's orderly, held in the next cell",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who bound and questioned him, then walked him to the Collarhouse",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "He believes the spark was Unara's idea, not the Marshal's: she told him to say it was for the quartermaster if he was caught.",
+    "He can describe the grey-shawled woman who paid him in flame-stamped silver, though he does not know her name."
+  ],
+  "dm_only": [
+    "Who sent the rooftop crossbowman is not settled in canon (the Choir is the obvious answer). Halda holds his silver.",
+    "Invented by npc-creator: his age and looks, the voice, that he can describe the grey woman, and the Commoner stat block."
+  ],
+  "lore": "ashlo",
+  "statblock": "Commoner|MM",
+  "slug": "ashlo",
+  "created": "2026-10-25T04:45:49",
+  "updated": "2026-10-25T04:45:49"
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Mother Seld",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "Steamside's bonesetter and midwife; waits on the Hollis bathhouse step with splints and brine whenever the pit runs",
+  "age": "early sixties",
+  "appearance": "A small, square woman with splints on her belt and the forearms of someone who has set a lifetime of bones.",
+  "voice": "Blunt and practical. Her verdict on a hauled-out champion: boiled, not cooked, he will keep.",
+  "backstory": "Mother Seld sets bones and delivers babies for Steamside, and she waits on the Hollis bathhouse step with splints and brine whenever the pit runs. By the Vent Games rules each wrestler may call her once per bout, with extra time to stop blood. She hauls soakers out of the Kettle Pool when the stokers push too far. On day twelve of 1491 she and Rosa dragged Chadickith out by one tusk and the trunk when he failed the sixth glass just before the curfew bell. She grunted at his eyes, slapped a wet cloth across his head, and said he would keep.",
+  "wants": "Her patients kept alive; her step kept clear; Steamside's babies born safely.",
+  "fears": "The burn reaching a birthing bed; a child coming into the world already sick.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "keeps the bathhouse step for her and sets bones for Rosa's patrons",
+      "attitude": 2
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "the old Keeper of the slate",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "hauled him out of the Kettle Pool",
+      "attitude": 1
+    },
+    {
+      "who": "mattie-colk",
+      "how": "hauls the stokers out of the pool",
+      "attitude": 1
+    },
+    {
+      "who": "kaslo-ashdown",
+      "how": "fellow midwife in the Vents",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "Rosa asked her to look in on two burn-sick neighbours who sit in the cold-spring room at night. She has told no one."
+  ],
+  "dm_only": [
+    "Stat block: Commoner. Treat as proficient in Medicine (+4) with a healer's kit; she can stabilise the dying.",
+    "Lore says only that Steamside's bathhouse bonesetter of the day breathed Tobin Wick back after the 1467 Strangle. She may have been that bonesetter; left open.",
+    "Invented by npc-creator: age; alignment; voice habit beyond her canon line; her Medicine bonus; that Rosa told her about the cold room; her tie to Kaslo Ashdown."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "Healer: treat as Medicine +4 with a healer's kit; stabilises the dying. In the Vent Games she waits on the step, one call per bout per wrestler."
+  },
+  "slug": "mother-seld",
+  "created": "2026-10-25T04:41:09",
+  "updated": "2026-10-25T04:41:09"
+}

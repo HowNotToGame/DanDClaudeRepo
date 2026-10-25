@@ -18,11 +18,12 @@ let mapStamp = Date.now();
 let live = null;            // the DM message being streamed: {el, body, chips, text}
 let sentHere = false;       // this page sent the message the DM is answering
 let loreOpen = null;
+let personOpen = null;
 let phrasings = [""];
 let wasFighting = false;
 
 const PANELS = { scene: "Scene", party: "Party", world: "World", codex: "Codex", settings: "Settings" };
-const CODEX_TABS = [["quests", "Quests"], ["companions", "Companions"], ["memory", "Memory"], ["lore", "Lore"], ["rules", "Rules"], ["log", "Log"]];
+const CODEX_TABS = [["quests", "Quests"], ["companions", "Companions"], ["people", "People"], ["memory", "Memory"], ["lore", "Lore"], ["rules", "Rules"], ["log", "Log"]];
 
 // ------------------------------------------------------------------ helpers
 async function api(path, body) {
@@ -211,6 +212,7 @@ async function renderPanel() {
   else if (panel === "codex") {
     body.innerHTML = PANES[codexTab]();
     if (codexTab === "lore") await renderLore();
+    if (codexTab === "people") await renderPeople();
     if (codexTab === "log") await renderLog();
   }
   body.scrollTop = scroll;
@@ -616,6 +618,7 @@ const PANES = {
       </form><div id="recall-hits" class="list"></div>`;
   },
   lore() { return `<div class="search"><input id="lore-filter" placeholder="Filter lore…"></div><div id="lore-list" class="list"></div>`; },
+  people() { return `<div class="search"><input id="people-filter" placeholder="Filter people…"></div><div id="people-list" class="list"></div>`; },
   rules() { return `<form class="search" id="rules-form"><input id="rules-q" placeholder="Spell, condition, monster, rule…"><button type="submit">Look up</button></form><div id="rules-out" class="card prose hidden"></div>`; },
   log() { return '<div id="log-body" class="list"><p class="empty">Loading…</p></div>'; },
 };
@@ -637,6 +640,26 @@ async function renderLore() {
   };
   draw();
   $("#lore-filter").addEventListener("input", draw);
+}
+
+async function renderPeople() {
+  if (personOpen) {
+    try {
+      const p = await api(withView(`/api/people/${encodeURIComponent(personOpen)}`));
+      $("#drawer-body").innerHTML = `<button type="button" class="ghost small" id="people-back">← Everyone</button>
+        <div class="card prose">${md(p.text)}</div>` + (p.statblock ? `<div class="card prose">${md(p.statblock)}</div>` : "");
+      return;
+    } catch { personOpen = null; }
+  }
+  const { people } = await api(withView("/api/people"));
+  const draw = () => {
+    const f = ($("#people-filter") || {}).value?.toLowerCase() || "";
+    const rows = people.filter(x => !f || [x.name, x.race, x.role, x.tier].join(" ").toLowerCase().includes(f));
+    $("#people-list").innerHTML = rows.map(x => `<button type="button" class="row-btn" data-person="${esc(x.slug)}">${x.companion ? "🧭 " : x.tier === "major" ? "★ " : ""}${esc(x.name)} <span class="meta">${esc([x.race, x.role].filter(Boolean).join(" · "))}${x.status && x.status !== "alive" ? " · " + esc(x.status) : ""}${x.mind ? " · 🗣 " + esc(x.mind) : ""}</span></button>`).join("")
+      || '<p class="empty">No NPC records yet (<code>./dm npc check</code>).</p>';
+  };
+  draw();
+  $("#people-filter").addEventListener("input", draw);
 }
 
 async function renderLog() {
@@ -684,7 +707,7 @@ const AGENT_INFO = {
   "rules-lawyer": ["⚖️", "Audits every turn: pre-checks the first use of a spell, feature or ruling, then post-audits the turn's rules events."],
   companion: ["🗣", "Plays each companion's own mind when the DM consults them."],
   "lore-keeper": ["📜", "Builds and checks the world's lore and canon."],
-  "npc-creator": ["🧑", "Writes NPC records: race, alignment, backstory, relationships, a stat block or a character sheet. (NPC minds themselves always run on haiku.)"],
+  "npc-creator": ["🧑", "Writes NPC records: race, alignment, backstory, relationships, stat block or character sheet."],
 };
 
 function agentDraft(eng) {
@@ -924,7 +947,7 @@ function wire() {
   });
   $("#drawer-tabs").addEventListener("click", e => {
     const b = e.target.closest("button[data-codex]"); if (!b) return;
-    codexTab = b.dataset.codex; store.set("robodm-codex", codexTab); loreOpen = null; renderPanel();
+    codexTab = b.dataset.codex; store.set("robodm-codex", codexTab); loreOpen = null; personOpen = null; renderPanel();
   });
   const body = $("#drawer-body");
   body.addEventListener("click", async e => {
@@ -934,6 +957,9 @@ function wire() {
     const l = e.target.closest("[data-lore]");
     if (l) { loreOpen = l.dataset.lore; renderLore(); return; }
     if (e.target.id === "lore-back") { loreOpen = null; renderPanel(); return; }
+    const pr = e.target.closest("[data-person]");
+    if (pr) { personOpen = pr.dataset.person; renderPeople(); return; }
+    if (e.target.id === "people-back") { personOpen = null; renderPanel(); return; }
     if (e.target.id === "add-phrasing") { phrasings = $$("#recall-form input").map(i => i.value).concat(""); renderPanel(); return; }
     if (e.target.id === "seats-open") { showSeats(); return; }
     const cp = e.target.closest("[data-copy]");

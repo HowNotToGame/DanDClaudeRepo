@@ -1,0 +1,63 @@
+{
+  "name": "Branda Cobb",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "pit-hand's daughter; first patient in the forge ward",
+  "age": "14",
+  "appearance": "Thin and dark-eyed, with grey veins climbing from her wrists and a flush in her face.",
+  "voice": "Short and sharp, then ashamed and quiet. Apologises to the floor.",
+  "backstory": "Fourteen, the eldest Cobb. She nursed her father, one of the Gallowsbird's wounded, and touched his blood; he died raging four days before the ward opened. Brought to the forge ward on the evening of day 10 with a warden's seal and her mother's consent, she has the burn at Stirring, edging toward Frenzied: heat in her palms and a temper that snaps and then shames her. On the morning of day 11 she tried to bleed the heat off, failed, broke a water jug against the wall and wept. Isine says she has days, not weeks, unless the heat is bled off, and that she should be asked clear-headed whether she wants the Quenching.",
+  "wants": "Her mother and the little ones safe; not to become her father; to be allowed to go home.",
+  "fears": "The heat taking her, as it took him. That she is already like him.",
+  "relationships": [
+    {
+      "who": "gwenmund-cobb",
+      "how": "mother, in the next cot",
+      "attitude": 3
+    },
+    {
+      "who": "tam-cobb",
+      "how": "younger brother, in the third cot",
+      "attitude": 3
+    },
+    {
+      "who": "mina-cobb",
+      "how": "baby sister, who is clear",
+      "attitude": 3
+    },
+    {
+      "who": "isine-kettle",
+      "how": "her nurse",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the giant of the house where the Ashward fears for the sick",
+      "attitude": 0
+    },
+    {
+      "who": "chadickith",
+      "how": "the one she told about her father's last night",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "Your father begged you not to let the heat take you, and you were glad when it ended. You have told Chadickith that much. You have not told anyone that on his last night, past reason, you wedged the door shut and sat against it while he begged to be let out, and you did not open it."
+  ],
+  "dm_only": [
+    "Level 0. The burn is climbing; the locked burn and Quenching rules govern the rest. If quenched she would be a ward of the Order, not a soldier.",
+    "What she holds back is open in canon (Chadickith's Insight failed). The door detail is invented by npc-creator; overrule it freely."
+  ],
+  "lore": "branda-cobb",
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 3,
+    "notes": "child; level 0; the burn at Stirring"
+  },
+  "slug": "branda-cobb",
+  "created": "2026-10-25T04:43:43",
+  "updated": "2026-10-25T04:43:43"
+}

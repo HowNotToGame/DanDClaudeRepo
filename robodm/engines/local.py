@@ -34,7 +34,7 @@ DM_TOOL = {"type": "function", "function": {
         "type": "string", "description": "The command after ./dm, e.g. pc check brann athletics --dc 15"}},
         "required": ["command"]}}}
 COMPANION_TOOL = {"type": "function", "function": {
-    "name": "companion", "description": "Ask a companion, or a named NPC in the scene, what they do or say right now.",
+    "name": "companion", "description": "Ask a companion (an NPC with its own mind) what they do or say right now.",
     "parameters": {"type": "object", "properties": {
         "name": {"type": "string", "description": "The companion's name"},
         "situation": {"type": "string", "description": "What is happening and what they're reacting to"}},
@@ -224,12 +224,15 @@ class LocalDM:
 
     @staticmethod
     def _scene_npcs(camp) -> list[str]:
-        """Named NPCs in the scene who have a record (and so a mind), companions excluded."""
+        """Named NPCs in the scene with a record (they speak through the companion tool too)."""
         from robodm import npcs, world
 
-        records = npcs.by_slug_or_lore(camp)
-        comps = set(companions.all_slugs(camp))
-        return [records[s]["name"] for s, _ in world.scene_cast(camp) if s in records and s not in comps]
+        out = []
+        for s, _ in world.scene_cast(camp):
+            rec = npcs.find_or_none(camp, s)
+            if rec and rec["_kind"] == "npc":
+                out.append(rec["name"])
+        return out
 
     def _loop(self, slug: str, messages: list[dict], allow_tools: bool = True) -> str:
         text = self._loop_rounds(slug, messages, allow_tools)
@@ -346,26 +349,18 @@ class LocalDM:
         return data
 
     def _companion(self, slug: str, name: str, situation: str) -> str:
+        from robodm import npcs
+
         camp = campaign.load(slug)
-        if camp.settings.get("companion_agents", "key") == "off":
-            return "Companions are voiced by you in this campaign (companion_agents is off)."
         try:
             cslug = companions.find(camp, name)
         except RoboDMError as e:
-            from robodm import npcs
-
-            nslug = npcs.find_or_none(camp, name)
-            if not nslug:
+            rec = npcs.find_or_none(camp, name)
+            if not rec:
                 return str(e)
-            rec = npcs.load(camp, nslug)
-            self.emit({"kind": "tool", "icon": "🧑", "label": f"consulting {rec['name']}", "sub": True})
-            brief = npcs.brief(camp, nslug, situation=situation, record=True)
-            res = self._call([{"role": "system", "content": brief + prompts.COMPANION_WRAP},
-                              {"role": "user", "content": situation or "What do you do?"}], None, stream=False,
-                             temperature=self.companion["temperature"], max_tokens=self.companion["max_tokens"],
-                             model=self.companion["model"] or None)
-            said = strip_calls(res["content"]) or "(no answer)"
-            return f"{rec['name']} answers (their own choice; you decide outcomes): {said}"
+            return self._npc(camp, rec, situation)
+        if camp.settings.get("companion_agents", "key") == "off":
+            return "Companions are voiced by you in this campaign (companion_agents is off)."
         meta, _ = companions.load_persona(camp, cslug)
         self.emit({"kind": "tool", "icon": "🗣", "label": f"consulting {meta.get('name', cslug)}", "sub": True})
         brief = companions.brief(camp, cslug, situation=situation, record=True)
@@ -375,6 +370,19 @@ class LocalDM:
                          model=self.companion["model"] or None)
         said = strip_calls(res["content"]) or "(no answer)"
         return f"{meta.get('name', cslug)} answers (their own choice; you decide outcomes): {said}"
+
+    def _npc(self, camp, rec: dict, situation: str) -> str:
+        """A named NPC's mind on a local engine: their knowledge-limited brief, the DM's model, a short answer."""
+        from robodm import npcs
+
+        self.emit({"kind": "tool", "icon": "🗣", "label": f"consulting {rec['name']}", "sub": True})
+        brief = npcs.brief(camp, rec["slug"], situation=situation, record=True)
+        res = self._call([{"role": "system", "content": brief + prompts.COMPANION_WRAP},
+                          {"role": "user", "content": situation or "What do you do?"}], None, stream=False,
+                         temperature=self.companion["temperature"], max_tokens=self.companion["max_tokens"],
+                         model=self.companion["model"] or None)
+        said = strip_calls(res["content"]) or "(no answer)"
+        return f"{rec['name']} answers (their own choice; you decide outcomes): {said}"
 
     # ------------------------------------------------------------------ checks after the reply
     def _invented(self, slug: str, reply: str) -> bool:

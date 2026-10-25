@@ -109,8 +109,8 @@ def prompt(camp, data: dict) -> dict | None:
     notes = []
     if names:
         notes.append("RoboDM memory: names from your last reply that aren't recorded anywhere yet: "
-                     + ", ".join(names) + ". If they matter, record them (`./dm lore add …` or `./dm memory add …`; "
-                     "a person also gets an NPC record: `./dm npc add …` or the npc-creator agent).")
+                     + ", ".join(names) + ". If they matter, record them (`./dm lore add …` or `./dm memory add …`); "
+                     "a named person also needs an NPC record (`./dm npc add …`, or the npc-creator agent).")
     notes.extend(companion_notes(camp))
     notes.extend(npc_notes(camp))
     notes.extend(world_notes(camp))
@@ -162,32 +162,6 @@ def companion_notes(camp) -> list[str]:
     return out
 
 
-def npc_notes(camp) -> list[str]:
-    """Characters in the scene who have no NPC record yet: once per character per session."""
-    from robodm import companions as co, npcs, world
-    from robodm.util import read_json, write_json
-
-    if not camp.session.get("active"):
-        return []
-    records = npcs.by_slug_or_lore(camp)
-    comps = set(co.all_slugs(camp))
-    missing = [(s, n) for s, n in world.scene_cast(camp) if s not in records and s not in comps]
-    if not missing:
-        return []
-    path = camp.path(".cache", "npc-notes.json")
-    st = read_json(path) or {}
-    sess = str(camp.session.get("number", 0))
-    told = set(st.get(sess, []))
-    new = [(s, n) for s, n in missing if s not in told]
-    if not new:
-        return []
-    write_json(path, {sess: sorted(told | {s for s, _ in new})})
-    return ["RoboDM NPCs: " + ", ".join(n for _, n in new) + " in the scene " + ("has" if len(new) == 1 else "have")
-            + " no NPC record yet (race, alignment, backstory, relationships, stat block or sheet). A minor one: "
-            "`./dm npc add \"Name\" --race … --alignment … --backstory \"…\" --statblock commoner|mm`; a significant "
-            "one, or several: ask the npc-creator agent."]
-
-
 def companion_stop(camp, reply: str) -> str | None:
     """Flag companions the DM voiced this turn without consulting their agent. In `always` mode, block once."""
     import re
@@ -224,6 +198,72 @@ def companion_stop(camp, reply: str) -> str | None:
     return block
 
 
+def _npc_note_path(camp):
+    return camp.path(".cache", "npc-notes.json")
+
+
+def npc_notes(camp) -> list[str]:
+    """People in the scene, or named in the last reply, who have no NPC record yet (each once per session)."""
+    from robodm import npcs, world
+    from robodm.util import read_json, write_json
+
+    st = read_json(_npc_note_path(camp)) or {}
+    sess = camp.session.get("number", 0)
+    told = set(st.get("told", [])) if st.get("session") == sess else set()
+    names = list(st.get("pending", []))
+    names += [n for s, n in world.scene_cast(camp) if not npcs.find_or_none(camp, s) and not npcs.find_or_none(camp, n)]
+    fresh = [n for n in dict.fromkeys(names) if n not in told and not npcs.find_or_none(camp, n)]
+    write_json(_npc_note_path(camp), {"session": sess, "told": sorted(told | set(fresh)), "pending": []})
+    if not fresh:
+        return []
+    return ["RoboDM NPCs: no NPC record yet for " + ", ".join(fresh) + ". Every named person has a record and a mind: "
+            "create it before they speak (`./dm npc add \"Name\" --race … --alignment … --backstory \"…\" "
+            "--statblock commoner|MM` for a minor one; launch the npc-creator agent for anyone significant or several "
+            "at once)."]
+
+
+def npc_stop(camp, reply: str) -> str | None:
+    """Every named NPC speaks through their own mind. Block once per turn when the reply voices one (their name in
+    the narration of a paragraph with quoted speech) whose brief didn't run this turn."""
+    import re
+
+    from robodm import audit, companions as co, npcs
+    from robodm.util import read_json, write_json
+
+    if not reply:
+        return None
+    paras = [p for p in re.split(r"\n\s*\n", reply) if re.search(r'["“”]', p)]
+    if not paras:
+        return None
+    # Names inside someone's quoted words are mentions, not speakers: look at the narration around the quotes.
+    narration = [re.sub(r'"[^"]*"|“[^”]*”', " ", p) for p in paras]
+    turn = audit.current_turn(camp)
+    missed = []
+    for rec in npcs.all_records(camp):
+        if rec["_kind"] != "npc" or rec.get("status", "alive") not in ("alive", "missing"):
+            continue
+        if not any(re.search(rf"\b{re.escape(k)}\b", n) for k in npcs.name_keys(rec) for n in narration):
+            continue
+        if co.state(camp, rec["slug"]).get("last_brief_turn", -1) >= turn:
+            continue
+        missed.append(rec)
+    if not missed:
+        return None
+    path = camp.path(".cache", "npc-stop.json")
+    if (read_json(path) or {}).get("turn") == turn:
+        return None
+    write_json(path, {"turn": turn, "missed": [r["slug"] for r in missed]})
+    import os
+
+    fix = (" (Web client: start the revised reply with the line [REVISED]; the players will see only that version.)"
+           if os.environ.get("ROBODM_WEB_CLIENT") else "")
+    return ("RoboDM NPC minds: your reply voices " + ", ".join(r["name"] for r in missed) + " without consulting their "
+            "mind. Every named NPC speaks and decides through their own subagent: launch "
+            + ", ".join(f"`{npcs.mind_agent(camp, r)}` (slug {r['slug']})" for r in missed)
+            + " (in parallel, in one message) with the moment from their point of view, then rewrite what they say and "
+            "do to match their answers." + fix)
+
+
 def _set_private_turn(camp, who: str | None) -> None:
     from robodm import audit
 
@@ -254,7 +294,8 @@ def stop(camp, data: dict) -> dict | None:
         names = capture.unrecorded_names(camp, reply, db)
         if names:
             capture.remember_unrecorded(camp, names)
-    comp = companion_stop(camp, reply)
+        _remember_people_without_records(camp, reply)
+    comp = " ".join(x for x in (companion_stop(camp, reply), npc_stop(camp, reply)) if x)
     result = audit.hook_stop(camp, data)
     if comp:
         if result and result.get("decision") == "block":
@@ -262,6 +303,27 @@ def stop(camp, data: dict) -> dict | None:
         else:
             result = {"decision": "block", "reason": comp}
     return result
+
+
+def _remember_people_without_records(camp, reply: str) -> None:
+    """Bold names in the reply that are NPCs in the lore but have no record: noted for the next prompt."""
+    from robodm import capture, lore, npcs
+    from robodm.util import RoboDMError, read_json, write_json
+
+    pending = []
+    for name in capture.candidate_names(reply):
+        if npcs.find_or_none(camp, name):
+            continue
+        try:
+            e = lore.find(camp, name)
+        except RoboDMError:
+            continue
+        if e["meta"].get("type") == "npc":
+            pending.append(str(e["meta"].get("name", name)))
+    if pending:
+        st = read_json(_npc_note_path(camp)) or {}
+        st["pending"] = list(dict.fromkeys(list(st.get("pending", [])) + pending))
+        write_json(_npc_note_path(camp), st)
 
 
 def _captured(argv: list[str]) -> str:

@@ -92,12 +92,12 @@ def classify(name: str, inp: dict) -> tuple[str, str]:
         icon = ("🎲" if rest.startswith(("roll", "pc check", "pc save")) else
                 "⚔️" if rest.startswith("combat") else
                 "⚖️" if rest.startswith(("audit", "ruling", "rules")) else
-                "🗣" if rest.startswith("companion") else
+                "🗣" if rest.startswith(("companion", "npc ")) else
                 "🧠" if rest.startswith(("memory", "recall", "lore", "quest", "session")) else "⚙️")
         return icon, rest[:120]
     if name in ("Agent", "Task"):
         who = inp.get("subagent_type") or "subagent"
-        icon = "⚖️" if who == "rules-lawyer" else "🗣" if str(who).startswith("companion") else "🤖"
+        icon = "⚖️" if who == "rules-lawyer" else "🗣" if str(who).startswith(("companion", "npc")) and who != "npc-creator" else "🤖"
         return icon, f"consulting {who}" + (f": {inp.get('description')}" if inp.get("description") else "")
     if name == "Skill":
         return "📜", f"skill {inp.get('skill', '')}"

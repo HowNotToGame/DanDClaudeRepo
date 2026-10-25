@@ -1,0 +1,48 @@
+{
+  "name": "Jorson",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Oselle Velun's wiry man in the city: carries her offers, wears her silver key pin, and keeps a blade at the small of his back.",
+  "age": "40s",
+  "appearance": "A thin man in a plain coat with a silver key pin. He shows empty hands and keeps a blade at the small of his back.",
+  "voice": "Soft and courteous, never raises his voice. Frames every demand as the Lady asks.",
+  "backstory": "Jorson is a trusted man of Oselle Velun's household. On the first day he offered Chadickith, on the Lady's behalf, a dawn audience at the Ember Keep, two hundred in gold, a safe-conduct and the Keep's infirmary for Isine, in exchange for seeing what the old woman carried; he left an Ember Keep gate token, a silver key, on a barrel. Chadickith laughed it off and told him he had misheard, which Jorson did not believe. His men carried the beaten watcher Garford Whitlock out of the dye-works lane, and on the morning of day 9 he found Chadickith in the Lamp Market and brought him to the Keep.",
+  "wants": "To serve the Lady well and bring her Chadickith.",
+  "fears": "Failing her; vanishing the way the king's taster did.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "the Lady he serves; he carries her offers and her silver keys",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon he courted for the Lady and suspects of lying",
+      "attitude": 0
+    },
+    {
+      "who": "garford-whitlock",
+      "how": "the watcher he and his men carried off; held for the Lady",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He knows the king's taster vanished and has not asked where.",
+    "He knows where Garford Whitlock is held in the Lady's household."
+  ],
+  "dm_only": [
+    "Chadickith's Insight read him as sincere about the offer but ignorant of what is at stake (he does not know what the Coal is). The silver key token he left is free of curses.",
+    "Invented by npc-creator: that he knows of the vanished taster and Garford's location; his age and the Spy stat block."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Spy|MM",
+    "notes": "Oselle's household agent; carries a dagger at the small of his back"
+  },
+  "slug": "jorson",
+  "created": "2026-10-25T04:46:14",
+  "updated": "2026-10-25T04:46:36"
+}

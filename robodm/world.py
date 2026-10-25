@@ -598,6 +598,12 @@ def scene_set(camp: Campaign, place: str | None = None, present: list[str] | Non
             return slug
         except RoboDMError:
             pass
+        from robodm import npcs
+
+        rec = npcs.find_or_none(camp, name)
+        if rec:
+            names[rec["slug"]] = rec["name"]
+            return rec["slug"]
         try:
             e = lore.find(camp, name)
             names[e["slug"]] = e["meta"].get("name", e["slug"])
@@ -840,31 +846,34 @@ def gossip(camp: Campaign, session: int | None = None) -> list[str]:
 
 def brief_lines(camp: Campaign, dm: bool = True) -> tuple[list[str], list[str]]:
     """(scene lines, world lines) for the brief and the web client."""
-    from robodm import lore
+    from robodm import lore, npcs
 
     w = load(camp)
     scene = []
     sc = w["scene"]
     if sc.get("place") or sc.get("present"):
         entries = {e["slug"]: e for e in lore.all_entries(camp)}
+        records = {r["slug"]: r for r in npcs.all_records(camp)}
         if sc.get("place"):
             since = f" (since {fmt_point(sc['since'])})" if sc.get("since") is not None else ""
             scene.append(f"**Where:** {sc['place']}{since}")
-        from robodm import companions as co, npcs
-
-        records = npcs.by_slug_or_lore(camp) if dm else {}
-        comps = set(co.all_slugs(camp)) if dm else set()
         for slug, name in scene_cast(camp):
             e = entries.get(slug)
+            rec = records.get(slug) or next((r for r in records.values() if r.get("lore") == slug), None)
             bits = [f"- **{name}**"]
             if e and e["meta"].get("summary"):
                 bits.append(f"— {truncate(str(e['meta']['summary']), 100)}")
+            elif rec and rec.get("role"):
+                bits.append(f"— {truncate(str(rec['role']), 100)}")
             if dm and e and mind(e["meta"]):
                 bits.append(f"· mind: {fmt_mind(e['meta'])}")
-            if dm and slug not in comps:
-                rec = records.get(slug)
-                bits.append(f"· {npcs.short(rec)} · mind: `npc` agent ({rec['slug']})" if rec else
-                            "· no NPC record yet (`./dm npc add` or the npc-creator agent)")
+            if dm and npcs.is_companion(camp, slug):
+                from robodm import companions as co
+
+                bits.append(f"· speaks through `{co.agent_name(camp, slug)}`" + ("" if rec else " · ⚠ no NPC record yet"))
+            elif dm:
+                bits.append(f"· speaks through `{npcs.mind_agent(camp, rec)}` (slug {rec['slug']})" if rec else
+                            "· ⚠ no NPC record yet")
             scene.append(" ".join(bits))
     world = []
     beats = open_beats(w)

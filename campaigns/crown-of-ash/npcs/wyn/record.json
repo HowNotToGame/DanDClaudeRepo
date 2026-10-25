@@ -1,0 +1,75 @@
+{
+  "name": "Wyn",
+  "aliases": [
+    "Brother Wyn"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Choir brother turned witness: swore before Halda's captains that the Choir lit the crown with casket grains; whereabouts since day 3 not recorded",
+  "age": "twenties",
+  "appearance": "The shorter of the two Choir brothers, narrow-shouldered and young in grey wool, with bitten nails. Cannot hold anyone's eye for long.",
+  "voice": "Stammers and blurts; trails off mid-sentence when he realises what he has said.",
+  "backstory": "Wyn is a younger brother of the Pyrehouse's inner circle, the Choir. He was in the almshouse dead-house with Peret and Vesan when Chadickith ambushed them, and surrendered with the others. Under questioning he blurted that Kitwin does not know what the Choir does and 'must never know'. Okton kept him and Vesan bound at the forge; on the noon of day 3 they were walked to the Collarhouse courtyard, where he swore before Halda's six captains that the Choir lit the crown with grains from the casket in the crypt. Where he is now is not recorded.",
+  "wants": "To be done with the Choir without being a traitor; to keep the Gentle Heir from learning the truth from the wrong mouth.",
+  "fears": "Coldwell; the giant; what Kitwin will think of him.",
+  "relationships": [
+    {
+      "who": "vesan",
+      "how": "fellow Choir brother and fellow witness",
+      "attitude": 2
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden he betrayed before the Watch",
+      "attitude": -3
+    },
+    {
+      "who": "kitwin",
+      "how": "the boy the Choir lied to and he has been ashamed to look at",
+      "attitude": 2
+    },
+    {
+      "who": "peret",
+      "how": "the knife-man he served beside",
+      "attitude": -1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "the Captain he swore before",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "his captor, who walked him to the hearing unharmed",
+      "attitude": 0
+    },
+    {
+      "who": "okton",
+      "how": "the giant who held him bound at the forge",
+      "attitude": -1
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "the cantor he sang under",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "Kitwin does not know what the Choir does. The brothers keep it from him, and Coldwell wants it kept.",
+    "The grey wafers are grains of the Last Ember, kept in the crypt; Coldwell wears the key.",
+    "He has held the hands of the dying while Peret worked, and sung the hymns.",
+    "He sings the older hymns without knowing whom they name."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: age, build and the stammer; that he has held the hands of the dying; that he does not understand the older hymns (they name Bhaal).",
+    "Which brother is 'Choir Brother 1' and which 'Choir Brother 2' in the dead-house combat is not canon. Both played as Cultists (HP 9, AC 12).",
+    "His whereabouts since the hearing on day 3 are not recorded."
+  ],
+  "lore": "wynot-northcott",
+  "statblock": "Cultist|MM",
+  "slug": "wyn",
+  "created": "2026-10-25T04:42:18",
+  "updated": "2026-10-25T04:42:18"
+}

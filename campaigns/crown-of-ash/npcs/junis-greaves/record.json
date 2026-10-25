@@ -1,0 +1,46 @@
+{
+  "name": "Junis Greaves",
+  "aliases": [
+    "Captain Greaves"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Watch captain keeping the harbour chain and the Quay",
+  "age": "forties",
+  "appearance": "Stocky and sunburnt, a tide-table tucked in his gorget strap.",
+  "voice": "Blunt and practical; talks in prices and tides.",
+  "backstory": "One of Halda's six captains, who keeps the harbour chain and the Quay. He voted with Halda on day 9 to open the gates. House Mostana's galleys, the Sixth Daughter and the Patient Gull, lie at anchor under his chain.",
+  "wants": "The harbour open and the grain moving; his wardens paid.",
+  "fears": "A closed harbour starving the city; a gold-bought captain on his own watch.",
+  "relationships": [
+    {
+      "who": "halda-barrowe",
+      "how": "his Watch-Captain",
+      "attitude": 2
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "the Factor whose galleys lie at anchor under his chain; he watches her closely",
+      "attitude": 0
+    },
+    {
+      "who": "chadickith",
+      "how": "knows him as a hired sword on Watch jobs",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "You know House Mostana has been lending gold to Lorard's army, from what the galley crews let slip at your chain; you have told no one."
+  ],
+  "dm_only": [
+    "Only his name, rank and the galleys at anchor are canon. Invented by npc-creator: the harbour-chain post, his age, voice, appearance, alignment, the Veteran stat block, and that he knows of the Mostana loan (the loan itself is canon, see lorard-hask). Remove if unwanted.",
+    "The day-9 vote was four captains to one; he is among the four."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "junis-greaves",
+  "created": "2026-10-25T04:43:54",
+  "updated": "2026-10-25T04:43:54"
+}

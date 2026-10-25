@@ -1,0 +1,162 @@
+{
+  "name": "Kaselle Redfern",
+  "aliases": [
+    "Warden Kaselle Redfern",
+    "Warden Kaselle"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "Junior Pyrewarden warden of Kelemvor who exposed the Choir's dead-house killings; sheltered at Okton's forge; now travelling to Dunmarrow with Cassmund Furrow",
+  "age": "late twenties (28)",
+  "appearance": "Cropped dark hair and a scar along the left jaw; smells only of lye, ash and lavender.",
+  "voice": "Quiet and exact, the voice of someone used to speaking in a room with the dead. Ends a hard truth with 'that is all I know'.",
+  "backstory": "A junior warden of the Pyrehouse, sworn to Kelemvor, who spent her years washing and burning the Ashward's dead. In three months she counted nineteen Ashward dead carried to the almshouse dead-house at night in covered carts, every one wearing the same smile. She left Chadickith a grey burial-notice note at the Blind Barrel (the knife that cut Isine was kept in the Pyrehouse; not every warden is glad of it) and met him at the almshouse at the dusk bell. She named Brother Peret as the knife-bearer and led Chadickith to the dead-house cellar to wait for the midnight cart, where she hid behind the shroud-stacks; one of the Choir nearly found her. She helped search Peret, was kept safe at the forge by Okton, described the Pyrehouse to Chadickith and Okton (walled cemetery, the sanctum above, the crypt below with the Last Ember casket, the plague-road gate from the dead-house tunnel) and guarded the barred forge while the others walked the brothers to the Collarhouse. On the morning of day 10 she left Kharun for Dunmarrow with the Order's party, separately and an hour apart from the others, travelling the Lowfields farms with Cassmund.",
+  "wants": "The Choir stopped and the Ashward's dying let go in peace and honesty; a place where a warden can serve Kelemvor without the smoke.",
+  "fears": "The High Pyrewarden hanging her; the Watch being sold; the Choir finding her on the road.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "the giant's boy she trusted with the dead-house; he and Okton are her only allies",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "kept her safe at the forge when Chadickith asked; she is a little afraid of him and very grateful",
+      "attitude": 1
+    },
+    {
+      "who": "peret",
+      "how": "the Choir knife-man she watched murder a pauper; now held by the Pyrehouse",
+      "attitude": -3
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden who would hang her if he knew",
+      "attitude": -3
+    },
+    {
+      "who": "cassmund-furrow",
+      "how": "her travelling companion on the road to Dunmarrow",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You wrote the note at the Blind Barrel, hooded, and you counted the nineteen dead yourself over three months.",
+    "You know the Choir's methods: a narrow stiletto under the ribs, a grey ash wafer laid on the tongue, a hymn that tells the dying to 'go gladly'. You know the dead-house's plague-road gate opens into a tunnel to the Pyrehouse crypt.",
+    "You saw Peret's folded list of six Ashward names, each with a date and a mark, two of them marked done.",
+    "You were left guarding the forge's sealed hearth slab and told only that nobody must touch it."
+  ],
+  "dm_only": [
+    "Lore calls her a sincere junior warden unsettled by the Glad Choir, intended as an ally; possibly watched or a trap if the DM wants to complicate it. Chadickith's Insight on her failed on day 1, but she is sincere.",
+    "Left Kharun on the morning of day 10 and should reach Dunmarrow about five or six days later.",
+    "Her surname matches Wilmund Redfern, master of the Oilwrights (a lamp on the council). No canon link; the DM can make it a family tie.",
+    "Invented by npc-creator: her age (28), alignment, the Cleric 3 (Grave domain) sheet, her voice habit, that she came to the Pyrehouse as a child novice, and that she was never told what lies under the hearth slab."
+  ],
+  "lore": null,
+  "sheet": {
+    "class": "Cleric 3",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 16,
+    "ac_from": "chain shirt, shield",
+    "hp": 24,
+    "hit_dice": "3d8+6",
+    "speed": 30,
+    "abilities": {
+      "str": 10,
+      "dex": 12,
+      "con": 14,
+      "int": 11,
+      "wis": 16,
+      "cha": 13
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "medicine": 1,
+      "insight": 1,
+      "religion": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Circle of Mortality",
+        "text": "Grave domain. Healing spells cast on a creature at 0 hit points use the highest number on each die. Spare the dying is a bonus action with a 30-foot range."
+      },
+      {
+        "name": "Eyes of the Grave",
+        "text": "Action: until the end of her next turn she knows the location of undead within 60 feet not behind total cover. Three uses per long rest."
+      },
+      {
+        "name": "Channel Divinity (1 use per rest)",
+        "text": "Turn Undead; or Path to the Grave: action, curse a creature she can see within 30 feet until the end of her next turn; the next attack that hits it makes it vulnerable to all that attack's damage."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mace",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d6 bludgeoning"
+      },
+      {
+        "name": "Sacred Flame (cantrip)",
+        "save": {
+          "ability": "dex",
+          "dc": "spell",
+          "damage": "1d8 radiant",
+          "half": false,
+          "who": "One creature she can see within 60 feet"
+        }
+      }
+    ],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "spells": {
+        "0": [
+          "Guidance",
+          "Sacred Flame",
+          "Thaumaturgy",
+          "Spare the Dying"
+        ],
+        "1": [
+          "Bane",
+          "False Life",
+          "Bless",
+          "Cure Wounds",
+          "Healing Word",
+          "Protection from Evil and Good"
+        ],
+        "2": [
+          "Gentle Repose",
+          "Ray of Enfeeblement",
+          "Lesser Restoration",
+          "Spiritual Weapon"
+        ]
+      }
+    },
+    "gear": [
+      "chain shirt",
+      "shield",
+      "mace",
+      "ash-grey warden's cloak",
+      "holy symbol of Kelemvor (the scales)",
+      "a sachet of lavender",
+      "lye soap"
+    ]
+  },
+  "slug": "kaselle-redfern",
+  "created": "2026-10-25T04:43:38",
+  "updated": "2026-10-25T04:43:38"
+}

@@ -12,7 +12,7 @@ import re
 from robodm import audit, battlemap as bm, campaign as campaign_mod, capture, companions, lore, memory, recall, snapshots, world
 from robodm.campaign import Campaign
 from robodm.combat import Encounter, health_word
-from robodm.util import ABILITIES, ability_mod, read_jsonl, truncate
+from robodm.util import ABILITIES, RoboDMError, ability_mod, read_jsonl, truncate
 
 ATTITUDE_WORDS = {3: "devoted", 2: "warm", 1: "friendly", 0: "neutral", -1: "wary", -2: "cold", -3: "hostile"}
 PLAYER_RECALL_KINDS = {"memory", "summary", "transcript", "lore", "quest", "pc", "combat"}
@@ -251,6 +251,37 @@ def lore_entry(camp: Campaign, slug: str, view: str) -> dict:
     return {"slug": e["slug"], "name": e["meta"].get("name"), "type": e["meta"].get("type"),
             "summary": e["meta"].get("summary", ""), "body": e["body"] if view == "dm" else strip_dm(e["body"]),
             "related": e["meta"].get("related", []) or []}
+
+
+def people_list(camp: Campaign, view: str) -> list[dict]:
+    """NPC records for the People tab. Players see who the party could know of: no `hidden` records, no stats."""
+    from robodm import npcs
+
+    dm = view == "dm"
+    rows = []
+    for r in npcs.all_records(camp):
+        if not dm and r.get("hidden"):
+            continue
+        rows.append({"slug": r["slug"], "name": r["name"], "race": r.get("race", ""), "role": r.get("role", ""),
+                     "tier": r.get("tier", "minor") if dm else "", "status": r.get("status", "alive"),
+                     "companion": r["_kind"] == "companion",
+                     "mind": npcs.mind_agent(camp, r) if dm else ""})
+    order = {"major": 0, "minor": 1, "background": 2, "": 1}
+    return sorted(rows, key=lambda x: (0 if x["companion"] else 1, order.get(x["tier"], 1), x["name"]))
+
+
+def person(camp: Campaign, slug: str, view: str) -> dict:
+    """One NPC record: the player view drops alignment, backstory, secrets, DM-only notes, hidden bonds and stats."""
+    from robodm import npcs
+
+    dm = view == "dm"
+    rec = npcs.find(camp, slug)
+    if not dm and rec.get("hidden"):
+        raise RoboDMError("No such person.")
+    out = {"slug": rec["slug"], "name": rec["name"], "text": npcs.show(camp, rec, dm=dm, stats=dm)}
+    if dm:
+        out["statblock"] = npcs.statblock_text(camp, rec)
+    return out
 
 
 def search(camp: Campaign, queries: list[str], view: str) -> list[dict]:

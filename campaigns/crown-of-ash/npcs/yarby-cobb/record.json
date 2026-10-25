@@ -1,0 +1,47 @@
+{
+  "name": "Yarby Cobb",
+  "aliases": [
+    "Cobbler Cobb"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Pious Ashward cobbler and lay ash-bearer; the man Okton and Isine expect Coldwell to push for an elder seat",
+  "age": "fifties",
+  "appearance": "Leather-stained fingers, a bent back from the last, and a smear of grey ash on his brow from the morning rite.",
+  "voice": "Slow and earnest, quoting the liturgy; says 'If the Lord of the Dead allows' before any promise.",
+  "backstory": "Yarby Cobb mends boots in a lane of the Ashward and carries ash for the Pyrehouse's rites, a pious man the street trusts with small matters. In the talk of the elder seats since day 10, Okton and Isine guessed that Coldwell would push him as the Pyrehouse's candidate against hearth-voted elders; nothing in canon says he has been asked or agreed. He reveres the High Pyrewarden and the Gentle Heir and knows nothing of the Choir.",
+  "wants": "To serve the Lord of the Dead and the Ashward; to see the Pyrehouse's rites honoured and the Gentle Heir safe.",
+  "fears": "The street's scorn; the Ashward turning on the Pyrehouse; being made to choose between them.",
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden he reveres",
+      "attitude": 2
+    },
+    {
+      "who": "kitwin",
+      "how": "the Gentle Heir who washes the Ashward's dead",
+      "attitude": 2
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "old Ashward pit foreman the street also names for an elder; a possible rival",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He has noticed that the Ashward's dead come to the Pyrehouse smiling, and has told himself it is the Lord's mercy."
+  ],
+  "dm_only": [
+    "Invented by npc-creator: nearly everything about him except the name, the trade (cobbler) and his piety, which come from the lore note that Coldwell may push 'a pious cobbler, Yarby Cobb'. Invented: his age, looks, voice, that he lives in the Ashward and is a lay ash-bearer, and his ignorance of the Choir.",
+    "Cobb is a common Ashward name; any kinship with Gwenmund Cobb's family (Branda, Tam, Mina) or Samson Cobb is not canon.",
+    "Which seat he would stand for is open (the Ashward elder, or Kharun commons). The draft bars wardens and priests but not lay ash-bearers, and bars guild members from standing in the Kharun commons moot."
+  ],
+  "lore": null,
+  "statblock": "Commoner|MM",
+  "slug": "yarby-cobb",
+  "created": "2026-10-25T04:42:18",
+  "updated": "2026-10-25T04:42:18"
+}

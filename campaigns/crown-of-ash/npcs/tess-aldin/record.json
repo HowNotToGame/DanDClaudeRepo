@@ -1,0 +1,69 @@
+{
+  "name": "Tess Aldin",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "paid hand in the guild brimstone pits on the Ossar Shore; 1482 Open champion and 1491 runner-up",
+  "age": "34",
+  "appearance": "Lean and hard-jawed, her scalp shaved to a blue stubble and her knuckles wrapped in grey linen. She wrestles barefoot with the linen tied at the knee.",
+  "voice": "Quiet. She watches the slate rather than the crowd and doesn't raise her arms when she wins. Her parting line to the champion: 'Next year, giant's boy.'",
+  "backstory": "Tess Aldin was born in 1457 in the Ashward and works the guild brimstone pits. At twenty-five she pinned Big Hesta in the 1482 final to take the Open, then lost five finals to her, each by Out. In 1488 her younger brother Aldo went to the Spire and the Gallowsbird took him; she shaved her head that day and has kept it shaved since. On day twelve of 1491 she sidestepped and heel-hooked Bram Colk in the quarterfinal, put Joss Marl out over the chalk in the semifinal, and lost the final to Chadickith by Down. She cried 'Ash' as the third finger came down, took six crowns, and sat beside him in the Long Soak.",
+  "wants": "The rematch with the giant's boy and the Open back; to see no more Ashward young go up to the Spire.",
+  "fears": "Losing someone else of her blood; the burn reaching the pits and her pit-mates.",
+  "relationships": [
+    {
+      "who": "big-hesta",
+      "how": "old rival and the Ashward's other great wrestler; pinned her once, lost five finals to her",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "beat her in the 1491 final by Down; she told him 'Next year, giant's boy'",
+      "attitude": 2
+    },
+    {
+      "who": "bram-colk",
+      "how": "put him on his face in the 1491 quarterfinal; he laughed and clasped wrists with her",
+      "attitude": 1
+    },
+    {
+      "who": "joss-marl",
+      "how": "put him out of the 1491 semifinal when his wet grip slipped",
+      "attitude": 1
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate",
+      "attitude": 1
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "the Ashward's greatest Catch wrestler before her time",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "quietly glad the forge killed the bird that took her brother; would stand with the Order if asked plainly",
+      "attitude": 2,
+      "hidden": true
+    }
+  ],
+  "secrets": [
+    "Her brother Aldo went to the Spire in 1488 and the Gallowsbird took him. She is quietly glad the forge killed the bird, and she would stand with the Order if asked plainly.",
+    "If ever named challenger, she would call the Push: her sidestep is deadliest there, and one Out ends it."
+  ],
+  "dm_only": [
+    "Stat block: Veteran (a hardened pit-hand; Athletics +5), lower than Hesta's Gladiator because Hesta beat her in five finals. Lore gives no numbers for her.",
+    "Invented by npc-creator: alignment; her feeling toward Wynot and Rosa; the Bram and Joss attitudes."
+  ],
+  "lore": "tess-aldin",
+  "statblock": {
+    "ref": "Veteran|MM",
+    "notes": "Pit wrestler: barefoot and unarmoured in the bout. Tests the ash with her toes, keeps low, sidesteps a charge and hooks the leading ankle; goes for the two-on-one and the outside trip."
+  },
+  "slug": "tess-aldin",
+  "created": "2026-10-25T04:38:13",
+  "updated": "2026-10-25T04:38:13"
+}

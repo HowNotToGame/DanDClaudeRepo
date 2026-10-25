@@ -1,0 +1,163 @@
+{
+  "name": "Wynley Fairweather",
+  "aliases": [
+    "Heir of Fairweather",
+    "Young Fairweather"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "half-elf",
+  "alignment": "neutral good",
+  "role": "Heir of House Fairweather and the youngest of the three old-house lamps on the Lamplit Council; holds a diminished manor above Greyvine and no title, because the house's attainder was never lifted",
+  "age": "33",
+  "appearance": "Lean and grey-eyed, with the fine bones and faintly pointed ears of the elf-blooded old houses and a grave, watchful stillness. Wears his father's riding coat re-cut to fit him, and a plain steel ring on a cord where the Fairweather signet should be.",
+  "voice": "Quiet and careful, a man who has learned that words are evidence. Pauses before answering and will often answer a question with 'Is that what is being asked?' Says 'I will not promise what I cannot hold.'",
+  "backstory": "Sixteen when the Velun Plot failed in 1474. His father, Lord Hallam Fairweather, was one of the forty condemned and chained at the Sky Gallows in a single tenday; Wynley watched from the Gallows Road with his mother, who died of lung fever the next winter. The crown seized the house's titles and the Saltreach salt-pans, leaving a manor above Greyvine and a hill of debts, and no Lord Fairweather was ever invested, only an heir. He kept the house alive for seventeen years with a steward's help and a sword-master's training, and kept his head down. Oselle's lamp on the council is the first time in seventeen years that the house has been counted.",
+  "wants": "His father's name pardoned and the attainder lifted, so that he may be Lord Fairweather in fact; the Saltreach pans back; the Sky Gallows pulled down; his father's bones and signet, if the roc left anything.",
+  "fears": "The quiet knock at dawn that took his father. Being used as a prop of Oselle's innocence. Discovering that someone he sits beside sold his father.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "gave him the lamp, the first recognition his house has had in seventeen years; he owes her and knows it",
+      "attitude": 1
+    },
+    {
+      "who": "tobbton-greenbottle",
+      "how": "the only other lamp who lost kin to the Spire; the older man looks out for him",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "the Hadrun man who killed the roc; he hopes the old man knows the hill road to Old Wound",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "Watch-Captain who opened the gates on her own terms; he respects an officer who says no",
+      "attitude": 1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "Hask's son and the army that backed his father's hangman; he has not yet decided whether the son carries the father's sin",
+      "attitude": -1
+    },
+    {
+      "who": "ivoard-hask",
+      "how": "the late king who had his father chained at the Spire",
+      "attitude": -3
+    },
+    {
+      "who": "junard-ashdown",
+      "how": "suspects his house sold the Plot's names and took the Saltreach pans for it, with no proof",
+      "attitude": -2
+    },
+    {
+      "who": "norelle-whitlock",
+      "how": "a Whitlock lived while his father hanged; he finds her cold and her house convenient",
+      "attitude": -1
+    },
+    {
+      "who": "bryados-weary",
+      "how": "banker; holds Fairweather's notes and has been patient",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He has quietly hired two hill-guides to take him up to Old Wound, the roc's eyrie above Hadrun, to look for his father's remains and signet in the nest. He has told no lamp, not wanting Lorard or Oselle to see a Plot-heir gathering relics.",
+    "He suspects someone in the old houses sold the Plot's names, because the Ashdowns kept their lands and took Saltreach. He has no proof, and has not decided what he would do with it.",
+    "He has not decided whether he can serve Oselle, whose dynasty raised the Spire, or anyone, while Hask's son holds the army."
+  ],
+  "dm_only": [
+    "invented by npc-creator: all of Wynley's personal detail: age 33 (so sixteen in 1474), half-elf blood, his father Lord Hallam Fairweather, his mother's death, the manor above Greyvine, the steel ring, the attainder being the reason he is only an heir, and the verbal habits. Canon gives only: heir of House Fairweather since his father went to the Spire after the Velun Plot.",
+    "invented by npc-creator: the Saltreach salt-pans were Fairweather's and confiscated; the hill-guides and the plan to climb to Old Wound. A hook for the party: Chadickith knows the hill roads and killed the roc.",
+    "Canon: the roc's nest at Old Wound holds the signet rings of the Velun Plot nobles. Whether Hallam Fairweather's signet is there, and whether any bones are, is the DM's call.",
+    "Truth he does not know (invented in Junard's record): Aldred Ashdown did sell the names, and Junard holds the receipt.",
+    "invented by npc-creator: alignment and sheet (half-elf Fighter 3, Champion, Dueling, rapier).",
+    "Leaning (invented): Oselle's vote on Velun-law matters, but the lamp most likely to demand the Sky Gallows be pulled down and the Plot's records opened. He would break with Oselle if she hid them."
+  ],
+  "sheet": {
+    "class": "Fighter 3",
+    "background": "Noble",
+    "size": "medium",
+    "type": "humanoid (half-elf)",
+    "ac": 16,
+    "ac_from": "breastplate",
+    "hp": 28,
+    "hit_dice": "3d10+6",
+    "speed": 30,
+    "abilities": {
+      "str": 16,
+      "dex": 14,
+      "con": 14,
+      "int": 8,
+      "wis": 12,
+      "cha": 12
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "perception": 1,
+      "insight": 1,
+      "history": 1,
+      "persuasion": 1
+    },
+    "senses": [
+      "darkvision 60 ft."
+    ],
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "traits": [
+      {
+        "name": "Fey Ancestry",
+        "text": "Advantage on saving throws against being charmed, and magic cannot put him to sleep."
+      },
+      {
+        "name": "Fighting Style: Dueling",
+        "text": "+2 damage with a melee weapon wielded in one hand and no other weapon (included in the rapier)."
+      },
+      {
+        "name": "Second Wind",
+        "text": "Bonus action: regain 1d10+3 hit points. Once per short or long rest."
+      },
+      {
+        "name": "Action Surge",
+        "text": "On his turn, take one additional action. Once per short or long rest."
+      },
+      {
+        "name": "Improved Critical",
+        "text": "Weapon attacks score a critical hit on a roll of 19 or 20."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Rapier",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d8 piercing",
+        "damage_bonus": 2
+      },
+      {
+        "name": "Longbow",
+        "attack": "dex",
+        "range": "150/600",
+        "damage": "1d8 piercing"
+      }
+    ],
+    "reactions": [],
+    "gear": [
+      "breastplate",
+      "rapier",
+      "longbow",
+      "his father's riding coat",
+      "steel ring on a cord"
+    ]
+  },
+  "slug": "wynley-fairweather",
+  "created": "2026-10-25T04:42:33",
+  "updated": "2026-10-25T04:42:33"
+}

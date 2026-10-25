@@ -46,8 +46,8 @@ LENGTH = {"concise": "Keep replies under about 120 words.", "standard": "Keep re
           "rich": "Replies can run to about 350 words when the scene deserves it."}
 
 COMPANIONS = """\
-COMPANIONS AND NPCS — characters with their own minds: {names}. At a decision point (they're asked something, \
-danger, a choice that matters to them), call the companion tool with what is happening and play them as it answers."""
+COMPANIONS AND NAMED NPCS — characters with their own minds: {names}. Every time one of them speaks or decides, \
+call the companion tool with their name and what is happening, and play them as it answers."""
 
 TEXT_PROTOCOL = """\
 TOOL FORMAT: to run a dm command, write it on its own line inside tags, like

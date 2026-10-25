@@ -1,0 +1,53 @@
+{
+  "name": "Ulric Vane",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral good",
+  "role": "gravekeeper of Dunmarrow; lives in the ruined chapel and tends the headstones on the Order's new ground",
+  "age": "mid-forties, looks twenty years older",
+  "appearance": "Old before his time: lean, grey and stooped, with a mattock, a tethered goat and moss under his nails.",
+  "voice": "Wary, lonely, tells it straight. Says the names on the headstones aloud when he passes them, in the middle of other talk.",
+  "backstory": "A stonemason's boy who survived the night in 1463 when Hask's Ash Company burned Dunmarrow, and has tended its graves ever since: twenty-three headstones among far more dead. He lives in the ruined chapel by the keep and scrapes the moss off the stones, saying the names. When the Order's hunters came he agreed to let them build a hall on three conditions: never build over the graves, keep the names, and let him stay as keeper. He helped them open the sealed vault by the master mason's mark, and he saw them carry an iron box shaped like a coffin down into the keep.",
+  "wants": "That the dead are not forgotten; to stay as keeper; a little company that will not leave.",
+  "fears": "Soldiers in grey and red. The names being lost when he is gone.",
+  "relationships": [
+    {
+      "who": "lord-dunmar",
+      "how": "his lord, who died at the gate in 1463",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who bargained for the hall and kept his terms",
+      "attitude": 1
+    },
+    {
+      "who": "gwenis-dunmore",
+      "how": "one of the hunters now living at the keep",
+      "attitude": 1
+    },
+    {
+      "who": "kita-dunmore",
+      "how": "one of the hunters now living at the keep",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You took the iron box carried down into the keep for the entombment of one of the Order's dead, and asked nothing. Chadickith refused to say what the vault will hold, saying knowing would put you in danger.",
+    "You know every name on the stones, and some of the unmarked dead's names too."
+  ],
+  "dm_only": [
+    "He does not know about the Heartcoal. The Choir does not know the site.",
+    "Conflict: lore calls him both 'old' and 'a stonemason's boy' in 1463, which is 28 years ago. Reconciled as an apprentice of about eighteen then, aged by hard years. The age and the unmarked-dead detail are invented by npc-creator."
+  ],
+  "lore": "ulric-vane",
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "mattock instead of club"
+  },
+  "slug": "ulric-vane",
+  "created": "2026-10-25T04:44:06",
+  "updated": "2026-10-25T04:44:06"
+}

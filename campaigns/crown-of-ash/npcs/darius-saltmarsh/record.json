@@ -1,0 +1,43 @@
+{
+  "name": "Darius Saltmarsh",
+  "aliases": [
+    "Captain Darius Saltmarsh"
+  ],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Captain in the Ash Companies and acting commander of Fort Vell, the South March headquarters that holds the Vell Gap (garrison 180), 42 miles south of Kharun",
+  "age": "late forties",
+  "appearance": "Wind-cured and lean, close-cropped grey hair, an old Shaaran arrow scar through his left eyebrow, and a plain grey captain's surcoat worn thin at the elbows.",
+  "voice": "Flat garrison cadence. Reports in numbers and names, and closes with 'That is the state of it.'",
+  "backstory": "Born in a South March fort town and sworn into the Ash Companies at sixteen. He has spent his whole service on the March, most of it under Lorard Hask, learning the Gap, the Shaaran horse-traders and the habits of Hollowmarch's riders. He rose to captain of a foot company at Fort Vell and became acting commander when the fort's commandant marched north with the field army. He now holds the Gap with a hundred and eighty men, and the four watch-forts behind him with forty apiece, while the army that should back him sits outside Kharun.",
+  "wants": "To hold the Gap, keep his men paid and alive until the army comes home, and receive one clear order from someone entitled to give it.",
+  "fears": "Corvic Strand or a Shaar clan testing the thin March; a muddled order from Kharun; being left holding a story that is not his.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "his Lord-Marshal for twenty years on the March; loyal, and a little in awe",
+      "attitude": 2
+    },
+    {
+      "who": "corvic-strand",
+      "how": "the Iron Baron of Hollowmarch, whose riders he turns back at the Gap",
+      "attitude": -2
+    }
+  ],
+  "secrets": [
+    "Two years ago, after the death of Lorard's mother at Fort Vell, he signed the garrison report that the old company surgeon fell from the wall in the night. He saw the Lord-Marshal's escort leave the wall-walk that evening, and has never let himself ask what that means.",
+    "The Gap is thinner than the rolls say: fever and leave have left him about a hundred and forty fit men, and he has told nobody in Kharun."
+  ],
+  "dm_only": [
+    "invented by npc-creator: his age, appearance, 'That is the state of it', his long service under Lorard, and that he became acting commander because the proper commandant marched north with the field army (canon gives only 'acting commander' and the garrison of 180).",
+    "invented by npc-creator: that Darius signed the report on the surgeon's death. Canon (lorard-hask DM secrets) says only that Lorard had the last witness, the old company surgeon who delivered him, pushed from a wall at Fort Vell two years ago. Darius suspects, he does not know. The DM may drop this.",
+    "invented by npc-creator: the real strength of the garrison (about 140 fit of 180)."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "darius-saltmarsh",
+  "created": "2026-10-25T04:34:34",
+  "updated": "2026-10-25T04:34:34"
+}

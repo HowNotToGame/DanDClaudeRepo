@@ -30,7 +30,6 @@ SPEEDS = ("fast", "balanced", "thorough")
 AGENT_MODELS = {"fast": {"rules-lawyer": "haiku", "lore-keeper": "sonnet", "companion": "haiku", "npc-creator": "sonnet"},
                 "balanced": {"rules-lawyer": "sonnet", "lore-keeper": "sonnet", "companion": "sonnet", "npc-creator": "sonnet"},
                 "thorough": {"rules-lawyer": "opus", "lore-keeper": "opus", "companion": "opus", "npc-creator": "opus"}}
-# NPC minds (the generic `npc` agent) are not a table setting: they always run on npcs.NPC_MODEL / NPC_EFFORT.
 BRIEF_BUDGETS = {"fast": 6000, "balanced": 9000, "thorough": 14000}
 # Rules commands whose result the engine computes itself (dice, arithmetic, resistances, death saves…): in fast
 # mode they pass the post-audit automatically when there was no override and the narration matched the dice.

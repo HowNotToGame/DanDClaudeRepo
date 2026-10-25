@@ -1,0 +1,216 @@
+{
+  "name": "Halda Barrowe",
+  "aliases": [
+    "the Watch-Captain"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watch-Captain of Kharun: commands the Kharun Watch (the Redcollars) from the Collarhouse by the Saltgate, chairs her captains, holds a Watch lamp on the Lamplit Council",
+  "age": "mid-fifties",
+  "appearance": "An iron-grey braid, a broken nose, blackened half-plate and a red-brass gorget; a clove-stick always working at the corner of her mouth.",
+  "voice": "Gravel and short orders. Chews clove-sticks and points with them. Calls everyone 'lad' or 'lass' whatever their size, species or rank.",
+  "backstory": "Came up through the Kharun Watch over thirty-odd years to its captaincy; has hired Chadickith for odd jobs on Okton's word for years and still treats him as a promising recruit. On the night the king died she sealed the gates and swore the Watch would keep the peace 'until the Coal chooses'. Her captains ruled on day 3 that the Coal did not choose Kitwin. She found the leak on her staff through Chadickith's canary trap, relieved and confined Captain Rook on day 9, and opened the gates that noon on her terms (the Watch keeps the city; Lorard's men enter by column, no pillage). On day 10 she chaired the noon council, voted for the Lamplit Council and holds a Watch lamp on it, and allowed a trial burn ward at Okton's forge on conditions of her own, keeping the two worst-gone Watchmen in her own cellar. By day 12 she holds Kitwin and Sister Ilsa under Watch seal as witnesses and has told Coldwell on the Pyrehouse steps that Kitwin will be produced at the first sitting.",
+  "wants": "Kharun not to burn, her watchmen paid, and a pension somewhere far away. Kitwin produced 'as a boy, not a banner'.",
+  "fears": "Soldiers loose inside the walls; a priest or a mob deciding who rules; the Watch tearing along Pyrehouse, Marshal and Keep lines.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "hires him on Okton's word; treats him as a promising recruit; her steadiest help",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "has armoured her Watch for eighty years; she works with him, but the Watch comes first",
+      "attitude": 1
+    },
+    {
+      "who": "marda-ironside",
+      "how": "her most trusted captain and second; the Watch's second lamp",
+      "attitude": 3
+    },
+    {
+      "who": "hesard-rook",
+      "how": "the captain she relieved and confined as the Choir's leak; it cost her",
+      "attitude": -2
+    },
+    {
+      "who": "fenia",
+      "how": "Rook's orderly; her witness in the cells",
+      "attitude": 1
+    },
+    {
+      "who": "yarelle-pike",
+      "how": "captain of the gates",
+      "attitude": 2
+    },
+    {
+      "who": "junis-greaves",
+      "how": "captain of the harbour chain",
+      "attitude": 2
+    },
+    {
+      "who": "tamley-mercer",
+      "how": "captain of the streets",
+      "attitude": 2
+    },
+    {
+      "who": "branen-underhill",
+      "how": "captain of Steamside and the Ashward wardens",
+      "attitude": 1
+    },
+    {
+      "who": "wilash-redhand",
+      "how": "a sergeant she trusts with the triage tent and escorts",
+      "attitude": 2
+    },
+    {
+      "who": "hesby-bramble",
+      "how": "her former sergeant, now Okton's and carried on the rolls as 'ill'",
+      "attitude": 2
+    },
+    {
+      "who": "isine-kettle",
+      "how": "the king's cupbearer: 'no one is given up at my table'",
+      "attitude": 2
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal; she let his column in on her terms; wary respect",
+      "attitude": 1
+    },
+    {
+      "who": "oselle-velun",
+      "how": "fellow voter for the regency; wary of the Keep",
+      "attitude": 1
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the High Pyrewarden whose claim she refused; she holds his Choir's silver",
+      "attitude": -2
+    },
+    {
+      "who": "kitwin",
+      "how": "under her Watch seal as a witness; wants him produced as a boy, not a banner",
+      "attitude": 1
+    },
+    {
+      "who": "sister-ilsa",
+      "how": "a Choir cantor sheltered at the forge; a witness under Watch seal",
+      "attitude": 0
+    },
+    {
+      "who": "joris-marsh",
+      "how": "her Watchman lost to the burn, kept in her cellar",
+      "attitude": 2
+    },
+    {
+      "who": "gwenet-marlow",
+      "how": "her Watchman lost to the burn, kept in her cellar",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "For fifteen years you commanded the Sky Gallows details and anointed hundreds of the condemned with pyre-ash by your own hand. You have nightmares about it you tell no one.",
+    "Before the king died you quietly sounded out all three heirs and House Mostana about what the Watch's loyalty was worth: a year's pay for your people and passage across the Lake for yourself. You let that lapse when you swore the oath; Mostana might remember.",
+    "You saw the real Heartcoal on day 3 and posted only your own wardens on the Saltgate postern so the Order's run could pass. You know it is no longer in Kharun.",
+    "Kitwin told you he helped the dying go with a pillow or a cup of poppy for about four years, more than thirty people, some perhaps not dying at all. You have not charged him; it is for the Watch and the first sitting.",
+    "If Okton ever turned on the Watch, you would side with the Watch against his ward."
+  ],
+  "dm_only": [
+    "Does NOT know Lorard's parentage: Marda holds the sealed record of Rook's confession and gives it to Halda on day 14 unless Chadickith changes that (see lorard-hask).",
+    "Wilash Redhand, whom she trusts, is Lorard's informer; she does not know.",
+    "Unclear whether she was told the Coal went to Dunmarrow (Hesby carried her the whole message before the run). Treat the destination as known only to the Order unless the DM decides.",
+    "As of day 12 she does not know the Choir means to burn Kitwin at the first sitting (Ilsa's private word).",
+    "The old v1 Touched note is retired (ash carries no burn). The negotiating-with-all-heirs secret is the old v1 one, not seen in play: her conduct since day 1 has been straight. Play it as a lapsed plan, or one Mostana tries to revive.",
+    "Invented by npc-creator: age 54, alignment, the Fighter 7 Battle Master sheet and scores, and the districts of her captains (see their records)."
+  ],
+  "lore": "halda-barrowe",
+  "sheet": {
+    "class": "Fighter 7",
+    "background": "Soldier",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 18,
+    "ac_from": "half-plate, shield",
+    "hp": 67,
+    "hit_dice": "7d10+21",
+    "speed": 30,
+    "abilities": {
+      "str": 16,
+      "dex": 12,
+      "con": 16,
+      "int": 10,
+      "wis": 14,
+      "cha": 12
+    },
+    "saves": [
+      "str",
+      "con"
+    ],
+    "skills": {
+      "athletics": 1,
+      "intimidation": 1,
+      "perception": 1,
+      "insight": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Second Wind",
+        "text": "Bonus action: regain 1d10+7 hit points. Once per short or long rest."
+      },
+      {
+        "name": "Action Surge",
+        "text": "One additional action on her turn. Once per short or long rest."
+      },
+      {
+        "name": "Fighting Style: Dueling",
+        "text": "+2 damage with a one-handed melee weapon (included below)."
+      },
+      {
+        "name": "Combat Superiority",
+        "text": "Battle Master. 5d8 superiority dice (DC 14), regained on a short or long rest. Maneuvers: Commander's Strike, Rally, Parry, Precision Attack, Riposte. Know Your Enemy."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "She makes two weapon attacks."
+      },
+      {
+        "name": "Longsword",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d8 slashing",
+        "damage_bonus": 2
+      },
+      {
+        "name": "Light Crossbow",
+        "attack": "dex",
+        "range": "80/320",
+        "damage": "1d8 piercing"
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Parry (maneuver)",
+        "text": "Expend a superiority die to reduce melee damage to her by the die roll + 3."
+      }
+    ],
+    "gear": [
+      "blackened half-plate with red-brass gorget (Okton-forged)",
+      "shield",
+      "longsword",
+      "light crossbow",
+      "clove-sticks",
+      "the Watch-Captain's seal"
+    ]
+  },
+  "slug": "halda-barrowe",
+  "created": "2026-10-25T04:42:53",
+  "updated": "2026-10-25T04:42:53"
+}

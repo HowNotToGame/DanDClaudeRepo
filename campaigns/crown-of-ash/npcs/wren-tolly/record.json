@@ -1,0 +1,46 @@
+{
+  "name": "Wren Tolly",
+  "aliases": [],
+  "tier": "background",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "ten-year-old Ashward girl; winner of the 1491 children's egg heat and the egg-race final",
+  "age": "10",
+  "appearance": "Small and fierce, with a spoon in her fist and murder in her eye.",
+  "voice": "Short, flat sentences and a glare. She does not smile while she holds a prize.",
+  "backstory": "Wren Tolly is a ten-year-old Ashward girl. On day twelve of 1491 she won the children's egg heat and then the egg-race final, carrying her steaming egg the full forty paces without a wobble while two dye-workers and a bath-stoker dropped theirs behind her. The rail lifted her onto a barrel. She took one crown and a dozen eggs, and held her crown in both fists like she expected someone to take it.",
+  "wants": "To keep her crown and her eggs; to win again next year.",
+  "fears": "Someone taking her prize; the coughing sickness in the Ashward lanes.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate who judged her egg race",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the giant's boy who won the pit the same day",
+      "attitude": 1
+    },
+    {
+      "who": "junie",
+      "how": "another Ashward girl her own age or near",
+      "attitude": 2
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stat block: Commoner with 3 hit points (a child). Lore gives no family for her.",
+    "Invented by npc-creator: alignment; her voice; fears; the friendship with Junie; Ashward home (the lore says Ashward only)."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "hp": 3,
+    "notes": "A child. Steady hands: won the egg race with a clean run (DC 10 Acrobatics twice)."
+  },
+  "slug": "wren-tolly",
+  "created": "2026-10-25T04:40:54",
+  "updated": "2026-10-25T04:40:54"
+}

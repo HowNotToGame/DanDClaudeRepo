@@ -1,0 +1,124 @@
+{
+  "name": "Isine Kettle",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful good",
+  "role": "the late king's cupbearer and body-servant; nurse-in-charge of the forge ward under Watch protection",
+  "age": "58",
+  "appearance": "Small and grey, with a scullion's forearms and a courtier's posture. Her left palm is wrapped over a deep burn shaped like a ridged lump of coal.",
+  "voice": "Clipped and formal, keeping a servant's courtesy even when terrified ('If it please you, ser'). Folds and refolds any cloth in her hands.",
+  "backstory": "For thirty years she was King Ivoard's cupbearer and body-servant: she tasted his wine, dressed his wounds and kept his silences. A young kitchen maid in 1453, she remembers the giant who made the crown. On the night the king died she pried the Heartcoal from the crown with his own knife, obeying his last order ('Break it. Not them, none of them. Break it.'), and fled. A Choir knife cut her at the pyre; she nursed the roc's wounded at the Collarhouse triage tent and came to Okton's forge on day 3, where he taught her to bleed the heat off. She testified at the noon council on day 10 and is now nurse-in-charge of the forge ward.",
+  "wants": "To obey her king's last order, and then to sleep. To heal: she would rather be a surgeon than a soldier. To stand a full day without shaking before she asks for the Quenching.",
+  "fears": "The Pyrewardens, and High Pyrewarden Coldwell above all. Dying on a cot.",
+  "relationships": [
+    {
+      "who": "okton",
+      "how": "teacher and host; she asked him what 'break it' means",
+      "attitude": 2
+    },
+    {
+      "who": "ivoard-hask",
+      "how": "the king she served for thirty years and obeyed at his last",
+      "attitude": 1
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "arrived at the deathbed after the king was gone; called her thief and liar",
+      "attitude": -3
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "refused to give her up at the council",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "carried her to safety; she gave him the Saltgate pass",
+      "attitude": 2
+    },
+    {
+      "who": "oselle-velun",
+      "how": "asked only whether the king suffered; Isine answered 'He was tired'",
+      "attitude": 0
+    },
+    {
+      "who": "gwenmund-cobb",
+      "how": "her patient in the forge ward",
+      "attitude": 2
+    },
+    {
+      "who": "branda-cobb",
+      "how": "her patient; the one she worries for most",
+      "attitude": 2
+    },
+    {
+      "who": "tam-cobb",
+      "how": "her youngest patient",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "You carry the burn at Stirring and hold it with Okton's teaching. Since the Coal left the city you no longer hear its pulse; the quiet is a relief and a strange emptiness.",
+    "You know the king's taster was bribed. You do not know by whom, nor that your own sickness came from the same cups.",
+    "You do not know where the Coal lies. You want the Quenching in about a week, with your yes given freely."
+  ],
+  "dm_only": [
+    "The poison is the king's own wine: Oselle's bribed taster slipped pale tincture into Ivoard's cups, and Isine tasted the same cups some nights. She has not connected it. About two-thirds recovered by day 10.",
+    "She is an anomaly: she touched the Heartcoal barehanded and lived because she was willing. She is level 0; the locked burn rules govern the end of Berserk and the Quenching.",
+    "Conflict: memory m0018 calls her 'Oselle's household servant'; lore and play make her the king's cupbearer. This record follows lore. Open: whether she misses the Coal's pulse more than she lets on.",
+    "Invented by npc-creator: the sheet numbers (commoner-level, frail), the speech details beyond lore, her attitude toward Oselle."
+  ],
+  "lore": "isine-kettle",
+  "sheet": {
+    "cr": "0",
+    "background": "Courtier's servant",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 10,
+    "hp": 5,
+    "hit_dice": "1d8",
+    "speed": 30,
+    "abilities": {
+      "str": 9,
+      "dex": 10,
+      "con": 9,
+      "int": 11,
+      "wis": 13,
+      "cha": 12
+    },
+    "skills": {
+      "insight": 1,
+      "medicine": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Carries the burn (Stirring)",
+        "text": "A hot temper held down by discipline and by bleeding the heat off. Level 0; see the locked burn rules."
+      },
+      {
+        "name": "Recovering from slow poison",
+        "text": "Tremor nearly gone; weak when tired."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Paring Knife",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d4 piercing"
+      }
+    ],
+    "gear": [
+      "paring knife",
+      "linen and brine"
+    ]
+  },
+  "slug": "isine-kettle",
+  "created": "2026-10-25T04:43:20",
+  "updated": "2026-10-25T04:43:20"
+}

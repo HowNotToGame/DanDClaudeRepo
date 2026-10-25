@@ -100,6 +100,13 @@ def _dir(camp: Campaign, slug: str) -> Path:
     return companions_dir(camp) / slug
 
 
+def mind_dir(camp: Campaign, slug: str) -> Path:
+    """Where a mind keeps its state and memories: the companion's folder, else the NPC's (robodm/npcs.py). The
+    functions below (state, memories, attitudes, recall, the shared parts of the brief) work for both."""
+    d = _dir(camp, slug)
+    return d if (d / "persona.md").exists() else camp.path("npcs", slug)
+
+
 def all_slugs(camp: Campaign) -> list[str]:
     d = companions_dir(camp)
     return sorted(p.name for p in d.iterdir() if (p / "persona.md").exists()) if d.exists() else []
@@ -154,7 +161,7 @@ def save_persona(camp: Campaign, slug: str, meta: dict, sections: dict[str, str]
 
 
 def state(camp: Campaign, slug: str) -> dict:
-    st = read_json(_dir(camp, slug) / "state.json") or {}
+    st = read_json(mind_dir(camp, slug) / "state.json") or {}
     st.setdefault("status", "away")
     st.setdefault("history", [])
     st.setdefault("attitude", {})
@@ -166,11 +173,11 @@ def state(camp: Campaign, slug: str) -> dict:
 
 
 def save_state(camp: Campaign, slug: str, st: dict) -> None:
-    write_json(_dir(camp, slug) / "state.json", st)
+    write_json(mind_dir(camp, slug) / "state.json", st)
 
 
 def memories(camp: Campaign, slug: str) -> list[dict]:
-    return read_jsonl(_dir(camp, slug) / "memory.jsonl")
+    return read_jsonl(mind_dir(camp, slug) / "memory.jsonl")
 
 
 # =============================================================================== lifecycle
@@ -220,7 +227,7 @@ def remember(camp: Campaign, slug: str, text: str, about: str = "") -> dict:
     rec = {"ts": now_iso(), "session": camp.session.get("number", 0), "text": text.strip()}
     if about:
         rec["about"] = slugify(about)
-    append_jsonl(_dir(camp, slug) / "memory.jsonl", rec)
+    append_jsonl(mind_dir(camp, slug) / "memory.jsonl", rec)
     return rec
 
 
@@ -296,8 +303,7 @@ def recall(camp: Campaign, slug: str, query: str, limit: int = 8) -> list[str]:
 
 def brief(camp: Campaign, slug: str, situation: str = "", combat: bool = False, record: bool = True) -> str:
     """The companion's whole world for one consultation."""
-    from robodm import audit, lore
-    from robodm.combat import Encounter
+    from robodm import lore
 
     meta, sections = load_persona(camp, slug)
     st = state(camp, slug)
@@ -330,12 +336,27 @@ def brief(camp: Campaign, slug: str, situation: str = "", combat: bool = False, 
     where = {"party": f"travelling with the party ({', '.join(party) or 'the player characters'})",
              "present": "present in the current scene (not part of the party)", "away": "away", "dead": "dead"}
     lines.append(f"- You are {where.get(st['status'], st['status'])}.")
-    from robodm import world
+    lines.extend(shared_lines(camp, slug, st, st["status"] in ACTIVE, situation, combat, "companion",
+                              meta.get("combatant", slug)))
+    if record:
+        mark_consulted(camp, slug, st)
+    return "\n".join(lines)
 
+
+def shared_lines(camp: Campaign, slug: str, st: dict, here: bool, situation: str = "", combat: bool = False,
+                 group: str = "companion", combatant: str | None = None) -> list[str]:
+    """The parts of a mind's brief that don't depend on who they are (companions and NPCs alike): the time and the
+    scene, attitudes and agenda, memories and what's known to them, public lore, what was just said at the table,
+    the DM's description of the moment, and the fight as they can see it. `group`: `companion` or `npc` (the
+    commands they're told to use)."""
+    from robodm import lore, world
+    from robodm.combat import Encounter
+
+    lines = []
     wd = world.load(camp)
     if world.tracking(wd):
         lines.append(f"- It is {world.fmt_time(wd)}.")
-    if st["status"] in ACTIVE and (wd["scene"].get("place") or wd["scene"].get("present")):
+    if here and (wd["scene"].get("place") or wd["scene"].get("present")):
         others = [n for s, n in world.scene_cast(camp) if s != slug]
         lines.append(f"- Here{' at ' + wd['scene']['place'] if wd['scene'].get('place') else ''}"
                      + (f", with {', '.join(others)}" if others else "") + ".")
@@ -351,12 +372,12 @@ def brief(camp: Campaign, slug: str, situation: str = "", combat: bool = False, 
         lines.extend(f"- {m['text']}" for m in mems[-25:])
         lines.extend(f"- (known to you) {m['text']}" for m in tagged[-15:])
         if len(mems) > 25:
-            lines.append(f"_({len(mems) - 25} older memories: `./dm companion recall {slug} \"words\"`)_")
+            lines.append(f"_({len(mems) - 25} older memories: `./dm {group} recall {slug} \"words\"`)_")
     entries = [e for e in lore.all_entries(camp) if e["meta"].get("summary")]
     if entries:
         lines.append("\n## The world as people know it (public lore; DM secrets removed)")
         lines.extend(f"- {e['meta'].get('name')}: {truncate(str(e['meta']['summary']), 160)}" for e in entries[:40])
-    if st["status"] in ACTIVE and camp.session.get("active"):
+    if here and camp.session.get("active"):
         # What was said at the table, not the DM's log (that's full of rulings and numbers no character sees).
         from robodm import capture
 
@@ -368,7 +389,7 @@ def brief(camp: Campaign, slug: str, situation: str = "", combat: bool = False, 
         lines.append(f"\n## Right now (from the DM)\n{situation}")
     enc = Encounter(camp)
     if (combat or enc.active) and enc.active:
-        me = next((c for c in enc.combatants.values() if slugify(c["name"]) == slug or c["id"] == meta.get("combatant", slug)), None)
+        me = next((c for c in enc.combatants.values() if slugify(c["name"]) == slug or c["id"] == (combatant or slug)), None)
         lines.append("\n## The fight (what you can see)")
         lines.append(enc.status_text(reveal=False))
         if me:
@@ -381,14 +402,19 @@ def brief(camp: Campaign, slug: str, situation: str = "", combat: bool = False, 
             lines.append("```\n" + bm.render_text(enc.state["map"], enc.combatants, (enc.current() or {}).get("id"),
                                                  reveal=False) + "\n```")
     lines.append(f"\n## Answer\nUse the INTENT / DOES / SAYS / HIDES / FRICTION shape. Record memories with "
-                 f"`./dm companion remember {slug} \"…\"`.")
-    if record:
-        st["last_brief_turn"] = audit.current_turn(camp)
-        st["consults"] = int(st.get("consults", 0)) + 1
-        st["interject"] = None          # they're being heard now; they can raise it again if it's still open
-        st.pop("voiced_unconsulted", None)
-        save_state(camp, slug, st)
-    return "\n".join(lines)
+                 f"`./dm {group} remember {slug} \"…\"`.")
+    return lines
+
+
+def mark_consulted(camp: Campaign, slug: str, st: dict) -> None:
+    """This mind was consulted this turn (the stop hooks check it before a reply that voices them)."""
+    from robodm import audit
+
+    st["last_brief_turn"] = audit.current_turn(camp)
+    st["consults"] = int(st.get("consults", 0)) + 1
+    st["interject"] = None          # they're being heard now; they can raise it again if it's still open
+    st.pop("voiced_unconsulted", None)
+    save_state(camp, slug, st)
 
 
 def dm_summary(camp: Campaign) -> list[str]:

@@ -1,0 +1,64 @@
+{
+  "name": "Gorm Halfhand",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "half-orc",
+  "alignment": "neutral good",
+  "role": "Brimstone Quay porter and ex-Ash Company soldier; the Hawk's grand old man in Kharun",
+  "age": "55",
+  "appearance": "Grey-tusked and broad, with two fingers missing from his left hand.",
+  "voice": "Slow, courteous and amused; he calls everyone rider, hums Shaaran riding songs, and claps once, softly, for a good throw by anyone.",
+  "backstory": "Gorm Halfhand was born about 1436 and served eight years in the Ash Companies on the South March before he lost two fingers of his left hand at Fort Vell. He learned the Hawk there from Shaaran horse-traders and won three Opens with it (1462, 1463 and 1465), dancing the hawk dance on the chalk each time. Old Wenna made him buy a round of cider for taunting every time, and he bought it gladly. He gave Rosa the Hawk's rules for the Seven Roots slate and insisted there be no weight classes. He cheered the Long Open on day twelve and bailed out of the Soak humming one last riding song.",
+  "wants": "The Hawk given a fair ground in the Long Open; to keep soldiers and commons rubbing shoulders at the rope.",
+  "fears": "Soldiers inside the walls entering the Games and a company's men on the ash, as the Sergeant's Fall taught Steamside to fear.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate; he gave her the Hawk's rules",
+      "attitude": 2
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "made him buy cider for taunting after every win",
+      "attitude": 2
+    },
+    {
+      "who": "wynot-northcott",
+      "how": "old rival for the Open in the 1460s",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the new champion; claps once for a good throw by anyone",
+      "attitude": 2
+    },
+    {
+      "who": "teo-varrow",
+      "how": "fellow old champion and Spoon",
+      "attitude": 1
+    },
+    {
+      "who": "big-hesta",
+      "how": "fellow Open veteran",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "A few of Lorard's soldiers inside the walls wrestle the Hawk, and they have asked him whether soldiers may enter in 1492. He has not told Rosa. He remembers the Sergeant's Fall, and he is not sure what he would say to her."
+  ],
+  "dm_only": [
+    "Lore: the Sergeant's Fall (1464) was the burn; Gorm does not know that.",
+    "Lorard Hask wrestled the Hawk with Shaaran horse-traders at Fort Vell, where Gorm learned it. They may have crossed paths. Not canon; the DM may use it.",
+    "Stat block: Veteran (ex-soldier, Athletics +5). Half-orc traits are not in the generic block.",
+    "Invented by npc-creator: alignment; the wording of his wants and fears."
+  ],
+  "lore": "gorm-halfhand",
+  "statblock": {
+    "ref": "Veteran|MM",
+    "notes": "Half-orc: darkvision 60 ft, Relentless Endurance, Savage Attacks (not in the generic block). Lost two fingers of his left hand at Fort Vell. The Hawk: an open start, leg grabs, no weight classes, the hawk dance."
+  },
+  "slug": "gorm-halfhand",
+  "created": "2026-10-25T04:40:24",
+  "updated": "2026-10-25T04:40:24"
+}

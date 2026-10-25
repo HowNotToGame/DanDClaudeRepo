@@ -1,0 +1,64 @@
+{
+  "name": "Kita Dunmore",
+  "aliases": [],
+  "tier": "major",
+  "status": "alive",
+  "homebrew": true,
+  "race": "human",
+  "alignment": "chaotic good",
+  "role": "Watchwoman turned Blood Hunter of the Banked; scout, and one of the three who carried the Heartcoal; at Dunmarrow with her sister Gwenis",
+  "age": "22",
+  "appearance": "Lanky, a bandaged shoulder, a dry grin; two shortswords at her hips and a Watch collar.",
+  "voice": "Dry and quick; jokes to keep the heat down, then goes quiet and exact when it rises. Never says 'sorry' when she can say something rude instead.",
+  "backstory": "A young Watchwoman who took the roc's blood on the night of the Great Pyre; Frenzied and willing, she was quenched on day 3 and now carries the burn at Stirring. She is Gwenis's younger sister and fiercely protective of her. In the hunt for the Choir's leak she spotted a runner outside the forge and tried to tail Captain Rook's orderly (the tail went wrong; Cassmund bagged him later). She and Chadickith ambushed a Choir scout on the Gallows Road and hanged him as a bandit. She carried the Heartcoal's casket through the Cinder Hills without trouble, scouted Dunmarrow's chapel, and stayed with Gwenis to hold the ground.",
+  "wants": "To keep Gwenis safe and make the hall a place worth the cost; to prove the jokes are not all there is to her.",
+  "fears": "The heat taking her sister. Being the one the Coal does not frighten. Her own laughter turning cruel.",
+  "relationships": [
+    {
+      "who": "gwenis-dunmore",
+      "how": "elder sister; she would burn the world down for her",
+      "attitude": 3
+    },
+    {
+      "who": "chadickith",
+      "how": "ran the Coal out with him and helped him hang a Choir scout",
+      "attitude": 2
+    },
+    {
+      "who": "okton",
+      "how": "the giant who quenched her",
+      "attitude": 2
+    },
+    {
+      "who": "cassmund-furrow",
+      "how": "fellow Banked and Watch comrade",
+      "attitude": 1
+    },
+    {
+      "who": "hesby-bramble",
+      "how": "her sergeant and fellow Banked",
+      "attitude": 1
+    },
+    {
+      "who": "ulric-vane",
+      "how": "the gravekeeper at Dunmarrow",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "You and Chadickith hanged a Choir scout from a thorn tree on the Gallows Road and dressed him as a bandit.",
+    "The Heartcoal's heat never pulled at you the way it pulls at Chadickith. You held its casket easily, and the charcoal-burners' dog shied from you. You have told no one how much that frightens you.",
+    "You know the Heartcoal lies in the vault under Dunmarrow's keep."
+  ],
+  "dm_only": [
+    "Open hook from the Order's lore: Kita carried the Coal easily and Maeis Hollis's dog shied from her. The reason is undecided.",
+    "Invented by npc-creator: the cause of her shoulder wound (assumed the roc night), her fear about the Coal, the voice habit, the attitudes.",
+    "Sheet: banked/kita-dunmore.json is authoritative (level 2, Crow from level 3)."
+  ],
+  "sheet": {
+    "file": "banked/kita-dunmore.json"
+  },
+  "slug": "kita-dunmore",
+  "created": "2026-10-25T04:43:00",
+  "updated": "2026-10-25T04:43:00"
+}

@@ -1,0 +1,176 @@
+{
+  "name": "Oselle Velun",
+  "aliases": [
+    "the Lady of Lamps",
+    "Oselle Velun-Hask",
+    "Princess Oselle"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human (elf-blooded)",
+  "alignment": "lawful evil",
+  "role": "The Lady of Lamps: holds the Ember Keep, the treasury, the chancery, the mint and the royal seal; author of the Lamplit Council regency and heir of House Velun.",
+  "age": "35",
+  "appearance": "Tall, fine-boned, dark-haired, with the faintly pointed ears of her elf-blooded Velun grandmother. Always in grey silk and long kid gloves over a scarred wrist and hands.",
+  "voice": "Speaks softly so people lean in, and never raises her voice. Gives a small gift (a ring, a date, a secret) before she asks for anything, and opens with: Let us be honest with one another, sometimes before a lie.",
+  "backstory": "Born in 1456 to Queen Ylia Velun and the Ash King, Oselle grew up a hostage in her father's court, shielding a mother kept like a prize for twenty-seven years. In 1480 she was there when Ylia tried to pry the coal from the Crown of Ash and was burned; Oselle burned her own hands to the bone pulling her away, and Ylia died nine days later, officially of fever. She took her mother's name the morning after her father died. Now she holds the Keep, the treasury (about forty-one thousand in gold), the mint, the seal, a household guard of a hundred and fifty, the surviving noble houses and the Lamp Market guilds, with Calishite gold behind her. She proposed the Lamplit Council and conceded in public that her final reading is only a delay. She wants the crown, not the Coal.",
+  "wants": "To restore her mother's line and name, and never again to live at a tyrant's whim; the crown without the Coal.",
+  "fears": "Cages: being kept, owned and displayed as her mother was. And fire.",
+  "relationships": [
+    {
+      "who": "ivoard-hask",
+      "how": "her father, jailer of her mother and herself",
+      "attitude": -1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "half-brother by the king's acknowledgement; rival claimant and regency partner",
+      "attitude": 0
+    },
+    {
+      "who": "kitwin",
+      "how": "unacknowledged half-brother, the boy the Pyrehouse raised",
+      "attitude": 0
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "House Mostana's factor; partner in the Saltwater Compact and supplier of the pale tincture",
+      "attitude": 1,
+      "hidden": true
+    },
+    {
+      "who": "jorson",
+      "how": "her silver-key man in the city, who carries her offers",
+      "attitude": 2
+    },
+    {
+      "who": "garford-whitlock",
+      "how": "the watcher her men took off Chadickith's hands; held in her household",
+      "attitude": -1
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who refused her offer and took her gift; she wants him neutral or kind",
+      "attitude": 1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "Watch-Captain and regency partner; the Keep's grain carts go out under her guard",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the smith who set the coal in the crown; she blames him for her mother's death",
+      "attitude": -2
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "High Pyrewarden; the kind of priest who could cage her",
+      "attitude": -2
+    },
+    {
+      "who": "isine-kettle",
+      "how": "her father's cupbearer, whose testimony she went white at; she declined to ask for her",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "She poisoned her father: for months a bribed taster slipped pale tincture, supplied by House Mostana, into his wine. She believes she killed him, and she would do it again. The taster is at the bottom of the harbour.",
+    "The Saltwater Compact, signed in her own hand with House Mostana: a forty-year monopoly on Ossmaari brimstone and a yearly levy of five hundred labourers from the Ashward and the pits, shipped across the Lake of Steam. In return, gold and three hundred Calishite sell-swords due by galley within the month of the king's death. The original is in Seipora Mostana's strongbox, a copy in the Keep's chancery.",
+    "House Mostana made her an ember-glass that glows red when warmed. She can fake a kindling at the rite. She would rather have the real Coal locked away and fed humanely on the already-condemned.",
+    "She knows the Coal is out of Kharun and that Halda's wardens opened a door for it. She does not know where, with whom, or about Dunmarrow, and she does not know that Rook was exposed as the leak.",
+    "She blames Okton for her mother's death, because he set the coal."
+  ],
+  "dm_only": [
+    "She does not know that her great-grandfather Uzhar brought the coal to Kharun (c. 1398), raised the Sky Gallows to feed it, and that the Velun kings knelt to it in secret for half a century. Uzhar's mass hanging after the Burners' Rising (1423) sent the roc to destroy Hadrun: her family's executions killed Chadickith's parents. Ylia knew all of it; her 1480 attempt to destroy the coal was atonement and she told no one. Proof: the Ember Rolls in the Pyrehouse crypt (Coldwell knows). Decided: she does not know; flip it if you want her complicit.",
+    "She did not kill the king: the Coal did (see Ivoard Hask). Isine tasted from the same cups, which is the slow poison in her.",
+    "She does not know Lorard is not Ivoard's son (so no blood between them), nor that Rook was his cousin.",
+    "Invented by npc-creator: the sheet (Rogue 6, Mastermind, poisoner's kit); lawful evil (her reforms are sincere and the Compact tips her; soften to lawful neutral if you like); race human with elf blood as flavour only (no half-elf traits on the sheet); Jorson as her household agent; Elvish as a language."
+  ],
+  "lore": "oselle-velun",
+  "sheet": {
+    "class": "Rogue 6",
+    "background": "Noble",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 13,
+    "ac_from": "leather armor under grey silk",
+    "hp": 39,
+    "hit_dice": "6d8+6",
+    "speed": 30,
+    "abilities": {
+      "str": 8,
+      "dex": 14,
+      "con": 12,
+      "int": 14,
+      "wis": 14,
+      "cha": 17
+    },
+    "saves": [
+      "dex",
+      "int"
+    ],
+    "skills": {
+      "deception": 2,
+      "persuasion": 2,
+      "insight": 2,
+      "investigation": 2,
+      "perception": 1,
+      "history": 1
+    },
+    "languages": [
+      "Common",
+      "Elvish"
+    ],
+    "traits": [
+      {
+        "name": "Sneak Attack",
+        "text": "Once per turn, 3d6 extra damage with a finesse or ranged weapon when she has advantage or an ally is within 5 feet of the target."
+      },
+      {
+        "name": "Cunning Action",
+        "text": "Bonus action: Dash, Disengage or Hide."
+      },
+      {
+        "name": "Master of Tactics",
+        "text": "Can use the Help action as a bonus action, from 30 feet away."
+      },
+      {
+        "name": "Master of Intrigue",
+        "text": "Mimics speech and accent after hearing a person speak for 1 minute."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Dagger",
+        "attack": "finesse",
+        "reach": 5,
+        "range": "20/60",
+        "damage": "1d4 piercing"
+      },
+      {
+        "name": "Hand Crossbow",
+        "attack": "dex",
+        "range": "30/120",
+        "damage": "1d6 piercing"
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Uncanny Dodge",
+        "text": "Halves the damage of an attack from a creature she can see that hits her."
+      }
+    ],
+    "gear": [
+      "leather armor under silk",
+      "dagger",
+      "hand crossbow",
+      "poisoner's kit",
+      "ember-glass",
+      "the royal seal"
+    ]
+  },
+  "slug": "oselle-velun",
+  "created": "2026-10-25T04:44:34",
+  "updated": "2026-10-25T04:44:34"
+}

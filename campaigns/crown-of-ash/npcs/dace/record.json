@@ -1,0 +1,43 @@
+{
+  "name": "Dace",
+  "aliases": [
+    "Sergeant Dace"
+  ],
+  "tier": "minor",
+  "status": "dead",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Ash Company sergeant of the Lord-Marshal's bolt-throwers; killed with eleven of his crew at the engines in Pyre Square by the Gallowsbird on the night of day 2.",
+  "age": "40s",
+  "appearance": "Square, sunburned, with a sergeant's voice worn to a rasp and powder-black thumbs from winding the engines.",
+  "voice": "Barks short orders and counts the crew off by name. Says: steady, lads.",
+  "backstory": "Dace was an Ash Company sergeant who commanded Lorard's four light bolt-throwers on their carts outside the walls. When the Gallowsbird struck the Great Pyre, Lorard sent a rider for the engines and Halda let the crews through the Saltgate wicket on foot, carrying the machines broken down. Dace had them rebuilt and loaded in the square, with Chadickith helping to aim the third. He fired it true and was taken by the roc with eleven of his crew when it came down on the engines.",
+  "wants": "To bring the roc down and keep his crews alive.",
+  "fears": "The stoop of the roc; losing the engines before they are loaded.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "his Marshal, who sent for the engines",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon who helped load and aim the third bolt-thrower under fire",
+      "attitude": 1
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stats are the numbers used in the Pyre fight: HP 22, AC 16 (Guard block with 22 HP). He fired bolt-thrower 3 once (19 to hit, 23 damage); the roc killed him in round 7 with beak and talons.",
+    "Invented by npc-creator: his age, looks and voice; the name alone is canon (gazetteer and Gallowsbird lore). Played as a ghost or a memory he would be a steady, plain man."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Guard|MM",
+    "hp": 22,
+    "notes": "Ash Company sergeant; HP 22 and AC 16 as used in the Pyre fight"
+  },
+  "slug": "dace",
+  "created": "2026-10-25T04:45:49",
+  "updated": "2026-10-25T04:45:49"
+}

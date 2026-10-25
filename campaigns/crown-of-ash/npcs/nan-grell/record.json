@@ -1,0 +1,45 @@
+{
+  "name": "Nan Grell",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "cider-seller at the Third Vent; minds wrestlers' gear behind her kegs",
+  "age": "fifties",
+  "appearance": "Broad in the back, with one bad eye she squints with when bargaining.",
+  "voice": "Brisk and mercenary, with a ladle in one fist. She calls people love and quotes the champion's price before anyone has asked.",
+  "backstory": "Nan Grell sells hot cider at the Third Vent and minds wrestlers' gear behind her kegs, keeping Chadickith's greataxe safe through the Open. She stitches sail-cloth smocks for wrestlers too big for any in Rosa's slops chest, in an hour. On day twelve of 1491 she charged the champion three crowns for about a hundred and fifty cups at two cinders each, bit one of the crowns out of habit, and bellowed to the hollow that the champion was buying. The Third Vent smelled of hot apples instead of sulphur for a few minutes.",
+  "wants": "Coin and a good pitch at the Games; the rail loud and thirsty.",
+  "fears": "Another Quiet Year when nobody drank; the Watch taxing her kegs.",
+  "relationships": [
+    {
+      "who": "rosa-hollis",
+      "how": "Keeper of the Slate, who gives her the cider pitch",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the champion whose round paid her three crowns and whose axe she minded",
+      "attitude": 2
+    },
+    {
+      "who": "old-wenna-hollis",
+      "how": "keeps the old Keeper's cup full",
+      "attitude": 2
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Stat block: Commoner.",
+    "Invented by npc-creator: age; alignment; voice habit beyond what she said; her attitudes; that she keeps Wenna's cup full."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Commoner|MM",
+    "notes": "A bad eye: disadvantage on sight-based checks to one side. Broad-backed and strong for a Commoner."
+  },
+  "slug": "nan-grell",
+  "created": "2026-10-25T04:41:09",
+  "updated": "2026-10-25T04:41:09"
+}

@@ -1,0 +1,174 @@
+{
+  "name": "Tobbton Greenbottle",
+  "aliases": [
+    "Master Tobbton Greenbottle",
+    "Master of the Dyers"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "halfling",
+  "alignment": "neutral good",
+  "role": "Master of the Dyers' guild and its lamp on the Lamplit Council; owns the largest dye-works in Steamside, beside the Third Vent",
+  "age": "71",
+  "appearance": "Small and round and white-haired, with hands stained blue-green to the elbow in a way no scrubbing shifts. Keeps a tiny green glass bottle on a cord at his belt, the family's old sign. Walks as if on soft ground and is never where you expect him when you turn.",
+  "voice": "Soft, unhurried and a little sing-song. Speaks of people as dyers speak of colours: a 'fast colour' is loyal, a 'fugitive colour' fades when the light gets hard. Opens with 'Well, now.'",
+  "backstory": "Grandson of Verina Greenbottle, the halfling charcoal-boss of the Burners' Rising, who was hanged in Kharun in 1423 while fifty of her followers went to the Sky Gallows in a single tenday. His father carried Tobbton, aged three, out of the Cinder Hills before the roc fell on Hadrun, and the family kept the name and learned dyeing instead of charcoal. He rose to Master of the Dyers thirty years ago by being, in his own word, fast: he never fades, never bleeds and never speaks first. He pays his dye-workers on the day, keeps Steamside's best vats, and has said for seventy years that he has no politics. He is lying, and has been waiting a long time for a government that would take the Spire down.",
+  "wants": "To see the Sky Gallows pulled down and the names of the Burners' fifty read aloud in the Collarhouse; a pardon on his grandmother's name; his workers safe and paid.",
+  "fears": "Another Rising, another Spire: a riot that burns the Lamp Market and hands every soldier an excuse. The burn reaching the Steamside vats, where his people work shoulder to shoulder in the heat. Dying the last Greenbottle, since he is childless.",
+  "relationships": [
+    {
+      "who": "wilmund-redfern",
+      "how": "old friend from neighbouring lanes; takes tea with him on rest-days",
+      "attitude": 2
+    },
+    {
+      "who": "wynley-fairweather",
+      "how": "the only other lamp who lost kin to the Spire; he watches over the younger man",
+      "attitude": 2
+    },
+    {
+      "who": "chadickith",
+      "how": "the Hadrun-born roc-killer; both were children in the year of the Rising and the roc",
+      "attitude": 2
+    },
+    {
+      "who": "oselle-velun",
+      "how": "promised to end the Sky Gallows; he is waiting to see whether the dye holds",
+      "attitude": 1
+    },
+    {
+      "who": "dorrik-pell",
+      "how": "journeyman in his Steamside dye-works; blue to the elbow like himself",
+      "attitude": 1
+    },
+    {
+      "who": "ilk-venn",
+      "how": "dye-worker and captain of the Blue Hands, his works' wrestling team",
+      "attitude": 1
+    },
+    {
+      "who": "bryados-weary",
+      "how": "banker; fair and exact, and neither trusts the other's silence",
+      "attitude": 0
+    },
+    {
+      "who": "orsikgar-gorunn",
+      "how": "fellow guild master; no quarrel, no warmth",
+      "attitude": 0
+    },
+    {
+      "who": "samwyn-quarry",
+      "how": "his alum supplier; distrusts a man who counts people",
+      "attitude": -1
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the Pyrehouse is a customer; he has dyed grey for it for years and is no longer easy about it",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "The grey shawls of the Choir are dyed in his vats, pyre-ash grey, one fixed lot a year for the Pyrehouse. Three weeks before the king died an order came through for sixty extra shawls, paid in flame-stamped silver. He took it for a funeral order and has told no one; he is no longer sure.",
+    "His grandmother's name matters to him more than anything he has said on the council. He has already asked the Watch, quietly, whether the Sky Gallows' records survived.",
+    "For twenty years he has supplied the Ashward almshouse with dyed bandage linen, unbilled, and does not want it known. Kindness is a fugitive colour in Kharun."
+  ],
+  "dm_only": [
+    "invented by npc-creator: Tobbton is Verina Greenbottle's grandson (canon names only Verina, 'a halfling charcoal-boss', hanged in Kharun in 1423; Tobbton's guild-master seat is canon, kinship is not). Overrule if the surname is coincidence.",
+    "invented by npc-creator: his age, appearance, voice, the green glass bottle, his father fleeing Hadrun before the roc, being childless, and the dye-colour habit of speech.",
+    "invented by npc-creator: the Choir's grey shawls are dyed in his vats and an order for sixty extras arrived three weeks before the king died, paid in flame-stamped silver (canon: the Choir's flame-stamped silver reached Rook's orderly, Unara and Ashlo). It implies the Choir has more members than the Pyrehouse admits.",
+    "invented by npc-creator: the free linen for the Ashward almshouse; that Tobbton knows who Chadickith is; that Dorrik Pell and Ilk Venn work in his dye-works rather than another master's.",
+    "Canon: Verina Greenbottle's iron token lies in the roc's nest at Old Wound (gallowsbird lore). Tobbton does not know where it went.",
+    "invented by npc-creator: alignment and sheet (class-less halfling, CR 1/2).",
+    "Leaning (invented): swing vote, with the Ashward in his heart. He would back Chadickith's elder seats and the end of the Gallows, and sides with Wynley on anything touching the Plot."
+  ],
+  "sheet": {
+    "cr": "1/2",
+    "background": "Guild Artisan",
+    "size": "small",
+    "type": "humanoid (halfling)",
+    "ac": 13,
+    "ac_from": "leather armor",
+    "hp": 22,
+    "hit_dice": "5d6+5",
+    "speed": 25,
+    "abilities": {
+      "str": 8,
+      "dex": 15,
+      "con": 12,
+      "int": 13,
+      "wis": 14,
+      "cha": 13
+    },
+    "saves": [
+      "dex",
+      "wis"
+    ],
+    "skills": {
+      "stealth": 1,
+      "insight": 1,
+      "perception": 1,
+      "persuasion": 1,
+      "investigation": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Halfling",
+      "Alzhedo"
+    ],
+    "traits": [
+      {
+        "name": "Lucky",
+        "text": "When he rolls a 1 on an attack roll, ability check or saving throw, he can reroll the die and must use the new roll."
+      },
+      {
+        "name": "Brave",
+        "text": "Advantage on saving throws against being frightened."
+      },
+      {
+        "name": "Halfling Nimbleness",
+        "text": "Can move through the space of any creature that is of a size larger than his."
+      },
+      {
+        "name": "Naturally Stealthy",
+        "text": "Can attempt to hide even when obscured only by a creature at least one size larger than himself."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Dagger",
+        "attack": "finesse",
+        "reach": 5,
+        "range": "20/60",
+        "damage": "1d4 piercing"
+      },
+      {
+        "name": "Sling",
+        "attack": "dex",
+        "range": "30/120",
+        "damage": "1d4 bludgeoning"
+      },
+      {
+        "name": "Mordant Splash (1/day)",
+        "save": {
+          "ability": "con",
+          "dc": 11,
+          "damage": "2d6 acid",
+          "half": true,
+          "who": "One creature that a thrown flask of caustic mordant hits (within 20 ft.)"
+        }
+      }
+    ],
+    "reactions": [],
+    "gear": [
+      "leather armor",
+      "dagger",
+      "sling",
+      "flask of caustic mordant",
+      "green glass bottle charm"
+    ]
+  },
+  "slug": "tobbton-greenbottle",
+  "created": "2026-10-25T04:41:24",
+  "updated": "2026-10-25T04:41:24"
+}

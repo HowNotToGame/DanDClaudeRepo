@@ -1,0 +1,119 @@
+{
+  "name": "Seipora Mostana",
+  "aliases": [
+    "Factor Seipora Mostana",
+    "the Factor"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "neutral evil",
+  "role": "Factor in Kharun of House Mostana, the Calishite trading house across the Lake of Steam; holds the Saltwater Compact aboard the galley Sixth Daughter.",
+  "age": "40s",
+  "appearance": "Plump, bejewelled and unhurried, in Calishite silks. Always eating candied dates from a silver box and offering them round.",
+  "voice": "Warm and unhurried. Calls every deal a friendship and every threat a misunderstanding between friends. When she is thinking she counts under her breath in Calishite.",
+  "backstory": "The third daughter of House Mostana of Calimshan, Seipora was sent across the Lake of Steam as the house's factor in Kharun, where its warehouses crowd Brimstone Quay and its galleys Sixth Daughter and Patient Gull ride at anchor, waiting. She trades brimstone, alum, dyes, silk and debts, lends to the Lamp Market, gives alms in the Ashward and says the house wants only stability and open gates. In truth she lends to every heir: she backs Oselle through the Saltwater Compact and Lorard with gold for his soldiers' pay, so whoever wins owes her. Her mother will name an heir when she comes home with a prize big enough, and she has not found one yet. This year she means to carry the house's Factor's Cup to the Vent Games champion at the forge herself.",
+  "wants": "The brimstone monopoly, and to go home to Calimshan with a prize big enough that her mother names her heir.",
+  "fears": "Going home empty-handed.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "partner in the Saltwater Compact, in her own hand; the house supplied her pale tincture and her ember-glass",
+      "attitude": 1,
+      "hidden": true
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the other horse she backs; lends him gold for his soldiers' pay",
+      "attitude": 0,
+      "hidden": true
+    },
+    {
+      "who": "chadickith",
+      "how": "the forge-raised Vent Games contender; a hook into the forge, to whom she means to carry the Factor's Cup in person",
+      "attitude": 1
+    },
+    {
+      "who": "okton",
+      "how": "the fire giant smith of the Third Vent, where the Coal once lay; she wants a hook into his forge",
+      "attitude": 0
+    },
+    {
+      "who": "orsikgar-gorunn",
+      "how": "Master of the Brimstone Brokers and a guild lamp; her natural friend in the trade",
+      "attitude": 1
+    },
+    {
+      "who": "rosa-hollis",
+      "how": "Steamside bathhouse keeper who owes the house three hundred crowns, due at the Feast of the Moon; she calls it a friendship and has not pressed",
+      "attitude": 0
+    },
+    {
+      "who": "teo-varrow",
+      "how": "Quay porter and Knot-teacher whose warehouse talk reaches her people",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "The Saltwater Compact: Oselle signed it in her own hand. A forty-year monopoly on Ossmaari brimstone and a yearly levy of five hundred labourers, shipped across the Lake of Steam, in return for gold and three hundred Calishite sell-swords due by galley within the month of the king's death. The original is in the strongbox aboard the Sixth Daughter.",
+    "The house supplied the pale tincture that weakened the king, and the ember-glass Oselle means to use to fake a kindling.",
+    "A syl-pasha in Calimshan who collects the relics of dead gods has offered a fortune for the Heartcoal. She suspects what it is, would sell it in a heartbeat, and would keep it well away from her own skin.",
+    "The Coal is out of Kharun. She does not know where. The regency squeezes her: army pay now comes from the Keep treasury, so her loans to Lorard buy less, and the Compact would not survive a lamp-vote if it came to light. She wants a new hook into whoever matters, and the forge is an obvious place to start."
+  ],
+  "dm_only": [
+    "She does not know the Coal lies in the Dunmarrow vault, that Lorard is not Ivoard's son (a lever worth a fortune to her), or what the Choir is.",
+    "When the Calishite sell-swords land, a third armed force stands inside a city that has only just opened its gates.",
+    "Invented by npc-creator: the sheet (class-less, CR 2: a merchant-spy, not a fighter); alignment neutral evil; the guild-ally bond with Orsikgar Gorunn; Calishite as her language; two Veteran-class house guards and the crew of the Sixth Daughter within call (not on the sheet)."
+  ],
+  "lore": null,
+  "sheet": {
+    "cr": "2",
+    "background": "Guild Merchant",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 12,
+    "ac_from": "jewelled silks and a girdle of fine mail",
+    "hp": 38,
+    "hit_dice": "7d8+7",
+    "speed": 30,
+    "abilities": {
+      "str": 8,
+      "dex": 12,
+      "con": 12,
+      "int": 16,
+      "wis": 14,
+      "cha": 17
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "persuasion": 2,
+      "insight": 2,
+      "deception": 1,
+      "investigation": 1,
+      "perception": 1
+    },
+    "languages": [
+      "Common",
+      "Calishite"
+    ],
+    "actions": [
+      {
+        "name": "Jewelled Stiletto",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d4 piercing"
+      }
+    ],
+    "gear": [
+      "jewelled stiletto",
+      "silver box of candied dates",
+      "key to the Compact strongbox"
+    ]
+  },
+  "slug": "seipora-mostana",
+  "created": "2026-10-25T04:45:08",
+  "updated": "2026-10-25T04:45:24"
+}

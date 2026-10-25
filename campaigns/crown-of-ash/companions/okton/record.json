@@ -1,0 +1,175 @@
+{
+  "name": "Okton",
+  "tier": "major",
+  "status": "alive",
+  "homebrew": true,
+  "race": "fire giant",
+  "alignment": "lawful neutral",
+  "role": "smith of Steamside, armourer to the Kharun Watch, founder of the Order of the Banked Fire and maker of the Banked (the Quenching)",
+  "age": "ancient: a young warrior in the host of 1369 DR",
+  "appearance": "Eighteen feet tall. Skin like cooled iron, a beard of dull red wire in brass rings, a hammer-scarred apron the size of a sail. His eyes can catch red when blood runs hot.",
+  "voice": "Slow, dry, careful: deep heavy Common (Giant when moved), short sentences, forge metaphors (quench, temper, bank the fire). Counts time in heats, hums forge-songs, tastes metal and judges its maker. Calls Chadickith 'Small Tusk'.",
+  "backstory": "For about eighty years Okton has kept the vent-forge in Steamside, armouring Kharun's guard for King Uzhar and then Ivoard Hask. In 1423 he drove the roc off Hadrun and carried the orphaned loxodon boy Chadickith home; he has raised him 68 years. In 1453 Hask had him forge the Crown of Ash and set the Heartcoal in it, and the burn has lived in him since, held at a controlled Stirring. He made the Quenching and founded the Order. On the night of day 2 he killed the Gallowsbird at the Great Pyre as a plain fire giant; on day 3 he quenched five raging Watchmen. He keeps the Order's first house and a trial burn ward at the forge.",
+  "wants": "To deal with the Heartcoal once the Order can survive the aftermath; meanwhile to contain the burn, shelter the sick, deny the Choir and keep the Coal's resting place secret. For Small Tusk: that he lives, learns, and one day understands him.",
+  "fears": "Becoming what the roc was, in front of the boy he raised. Not trusting his own hands near the Coal.",
+  "relationships": [
+    {
+      "who": "chadickith",
+      "how": "foster son, raised at the forge; quenched in Okton's blood",
+      "attitude": 3
+    },
+    {
+      "who": "isine-kettle",
+      "how": "forge-ward nurse; he teaches her to bleed the heat off",
+      "attitude": 1
+    },
+    {
+      "who": "gwenmund-cobb",
+      "how": "ward patient; refused the Quenching, a sound refusal",
+      "attitude": 1
+    },
+    {
+      "who": "hesby-bramble",
+      "how": "a Banked he quenched",
+      "attitude": 2
+    },
+    {
+      "who": "gwenis-dunmore",
+      "how": "a Banked he quenched",
+      "attitude": 2
+    },
+    {
+      "who": "kita-dunmore",
+      "how": "a Banked he quenched",
+      "attitude": 2
+    },
+    {
+      "who": "cassmund-furrow",
+      "how": "a Banked he quenched",
+      "attitude": 2
+    },
+    {
+      "who": "samson-cobb",
+      "how": "a Banked he quenched",
+      "attitude": 2
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "works with her; 'Halda sells everyone'",
+      "attitude": -1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "fond of him; he respects craft",
+      "attitude": 1
+    },
+    {
+      "who": "kitwin",
+      "how": "smells the burn on the boy; wary",
+      "attitude": -1
+    },
+    {
+      "who": "oselle-velun",
+      "how": "she hates him; he believes she is right to",
+      "attitude": -1
+    }
+  ],
+  "secrets": [
+    "You deserted. As a young warrior you marched in the fire giant host of the Bhaalspawn warlord Yaga-Shura in 1369 and left before the end. That is why you have no ordning and no kin near Ossmaar. Chadickith does not know.",
+    "In 1453 Ivoard Hask brought you the coal and ordered a crown. You knew it for Yaga-Shura's burned-out heart. Refusing would have cost you the forge and the boy, so you set it in a band of cold iron, believing it would bind the hunger to one wearer. The coal touched you as you worked; the burn has been in you since. Chadickith knows you forged the band, not whose heart it was.",
+    "Every blood-rite stirs the burn, which is why you fought the Gallowsbird as a plain fire giant and keep the rest of your craft sealed. The Quenching is built from fire-priest rites you watched in Yaga-Shura's host. Each one takes a piece of your strength and sometimes a year. Six have lived; one, a dying Watch veteran, died raging. You never quench without a lucid yes.",
+    "You can unmake the Coal: a fire giant's forge, fed with a fire giant's own heart's blood, at a cost to yourself. New infections would stop; the burning keep it, and the Quenching still works. You told Isine only: one day, not by one man alone.",
+    "The Heartcoal lies in the vault under Dunmarrow's keep. If it were brought to you the burn would want it: you would reach out a little too eagerly before you mastered yourself. 'Put it down, Small Tusk. On the anvil. Not in my hand.'",
+    "You promised Gwenmund Cobb the Order will shelter Tam and Mina if she dies."
+  ],
+  "dm_only": [
+    "Canon conflict, resolved for lore v2: companions/okton/persona.md is still the v1 draft (gladness, Kindled/Glad track, 'close to the edge', unspoken charge that the Banked must kill him; agenda a4). Lore says these are void; this record follows v2. His lore entry also opens 'use the MM fire giant unchanged'; its v2 block supersedes that.",
+    "HP 315 is the approved base; Quenching costs are tracked in play (locked block), never in speech. Craft rank 3. Full kit sealed: unsealed he ends a Pyre-scale fight in a round or two. He does not know why Oselle hates him (she blames the giant who set the coal for her mother's death), nor how the 1423 roc was fed.",
+    "Invented by npc-creator: languages; background 'Smith of Steamside'; age phrase; Tackle and Siege Monster omitted; some attitudes (companion state has Halda, Lorard, Kitwin, Oselle, Isine, Gwenmund, Chadickith)."
+  ],
+  "lore": "okton",
+  "sheet": {
+    "class": "Blood Hunter 18",
+    "background": "Smith of Steamside",
+    "size": "huge",
+    "type": "giant (fire giant)",
+    "ac": 18,
+    "ac_from": "plate armor",
+    "hp": 315,
+    "hit_dice": "fire giant 13d12+78, Blood Hunter 9 x 13, Tough 36 = 315",
+    "speed": 30,
+    "abilities": {
+      "str": 25,
+      "dex": 9,
+      "con": 23,
+      "int": 10,
+      "wis": 14,
+      "cha": 13
+    },
+    "saves": [
+      "dex",
+      "con",
+      "cha"
+    ],
+    "skills": {
+      "athletics": 1,
+      "perception": 1,
+      "survival": 1,
+      "insight": 1,
+      "arcana": 1
+    },
+    "languages": [
+      "Giant",
+      "Common"
+    ],
+    "immune": [
+      "fire"
+    ],
+    "traits": [
+      {
+        "name": "Feats",
+        "text": "Tough. Sentinel. Great Weapon Master (-5 to hit for +10 damage). Alert (+5 initiative). Great Weapon Fighting: each greatsword die counts as at least 3."
+      },
+      {
+        "name": "Blood Hunter",
+        "text": "Rite Die d10, Rite DC 20. Rites: Binding (empowered, any size), Agony, Dread, Exposure, Marking, Blindness; free once per rest, then Vital Sacrifice (roll twice, take lower). A Rite replaces one attack with a bonus-action weapon attack. Crimson Offering +1d10 fire; Brand once per rest free; Anchor: CHA save or 4 Rite Dice necrotic. Rite Die added to INT/WIS/CHA saves and STR/DEX/CON checks and saves. Sinister Insight, Grim Psychometry."
+      },
+      {
+        "name": "Order of the Pale Moon",
+        "text": "Feral Senses. Roc form (progenitor): Gargantuan, fly 120 ft, keeps his HP, mental scores, skills, fire immunity and class features; natural weapons use Rite Die and DC 20. Hybrid Form: +10 ft speed, climb, Rite Die claws. Shifted: magical attacks, resists non-magical non-silvered B/P/S, regains CON modifier HP at turn start under half HP. Shifts at will; advantage vs Branded creatures."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "Two greatsword attacks, or one Rock."
+      },
+      {
+        "name": "Greatsword",
+        "attack": "str",
+        "reach": 10,
+        "damage": "6d6 slashing"
+      },
+      {
+        "name": "Rock",
+        "attack": "str",
+        "range": "60/240",
+        "damage": "4d10 bludgeoning"
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Sentinel",
+        "text": "Opportunity attack when a creature attacks someone else within reach or leaves reach."
+      }
+    ],
+    "gear": [
+      "plate armor",
+      "greatsword",
+      "smith's tools"
+    ]
+  },
+  "slug": "okton",
+  "created": "2026-10-25T04:39:28",
+  "updated": "2026-10-25T04:42:23"
+}

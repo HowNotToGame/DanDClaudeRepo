@@ -1,0 +1,46 @@
+{
+  "name": "Joris Marsh",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Watchman lost to the burn: Berserk, held in the Collarhouse cellar under Halda's roof",
+  "age": "thirties",
+  "appearance": "A Redcollar gone grey-veined at the wrists, eyes red in poor light, restrained in the cellar.",
+  "voice": "None now: snarling and the grind of teeth, no words. Before the burn: a steady gate-watch voice that sang flat in the mess.",
+  "backstory": "A Watchman wounded by the Gallowsbird's blood on the night of the Great Pyre while the Watch funnelled the crowd. One of seven confined raging in the Collarhouse cellar; five were quenched on day 3. He and Gwenet Marlow were Berserk with no lucid window and have been left. Okton will not quench them without a lucid yes and sits with them waiting for one. Halda keeps them under her roof.",
+  "wants": "Nothing he can say; the rage wants the nearest living thing. Under it, if anything is left, to go home.",
+  "fears": "None he can voice.",
+  "relationships": [
+    {
+      "who": "halda-barrowe",
+      "how": "his Watch-Captain, who keeps him in her cellar",
+      "attitude": 0
+    },
+    {
+      "who": "okton",
+      "how": "the giant who sits with him waiting for a lucid yes",
+      "attitude": 0
+    },
+    {
+      "who": "gwenet-marlow",
+      "how": "fellow Watchman in the next restraints",
+      "attitude": 0
+    }
+  ],
+  "secrets": [],
+  "dm_only": [
+    "Under the locked rules the weak (class level 3 or lower, or CR 1/2 or lower) die at the end of Berserk; he is a Guard (CR 1/8). Okton told Chadickith the lost ones fail within a few days if the rage never lets go, yet it is now day 12 and Joris still lives: the ashblood lore marks the timing as open (decide when it matters, and record it).",
+    "Okton quenches only with a lucid yes. No Quenching numbers are recorded here.",
+    "Invented by npc-creator: age, appearance, the restraints, and that he was wounded funnelling the crowd (canon: seven Watchmen were confined raging after the roc)."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Guard|MM",
+    "notes": "Berserk from the burn: the rage never leaves, no saves, no choices. He attacks the nearest creature and is held in restraints in the Collarhouse cellar."
+  },
+  "slug": "joris-marsh",
+  "created": "2026-10-25T04:44:20",
+  "updated": "2026-10-25T04:44:20"
+}

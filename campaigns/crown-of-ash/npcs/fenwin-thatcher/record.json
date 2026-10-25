@@ -1,0 +1,71 @@
+{
+  "name": "Fenwin Thatcher",
+  "aliases": [],
+  "tier": "minor",
+  "status": "alive",
+  "hidden": true,
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Deputy in the Lord-Marshal's quartermaster's office, who ran its hired watchers; now keeps the office while Unara is in irons.",
+  "age": "50s",
+  "appearance": "Stooped, ink-fingered, balding, with a ledger under his arm and a tally-stick behind his ear; an old soldier gone to clerking.",
+  "voice": "Dry and precise; answers by the ledger. Says: it is written, or it is not.",
+  "backstory": "Fenwin Thatcher is an old Ash Company soldier who took to clerking and became Unara's deputy in the Lord-Marshal's quartermaster's office. He hired the watchers and paid the informants, among them Garford Whitlock, the man who was tailing Chadickith from the Blind Barrel on the first day and never reported back. When Unara was put in irons he was left with the books and the keys, and with the Marshal's wary trust. He did not know of the spark at the forge.",
+  "wants": "To keep the quartermaster's office running and keep his own neck out of Unara's trial.",
+  "fears": "Being tried beside her; the Marshal looking at the books and asking questions.",
+  "relationships": [
+    {
+      "who": "unara",
+      "how": "his quartermaster for years; now in irons",
+      "attitude": 1
+    },
+    {
+      "who": "lorard-hask",
+      "how": "the Marshal he now answers to directly",
+      "attitude": 1
+    },
+    {
+      "who": "garford-whitlock",
+      "how": "the hired watcher he lost; guesses Oselle's people took him",
+      "attitude": -1
+    },
+    {
+      "who": "ashlo",
+      "how": "a runner of the office",
+      "attitude": 0
+    },
+    {
+      "who": "wilash-redhand",
+      "how": "Watch sergeant who feeds the office Watch news",
+      "attitude": 1,
+      "hidden": true
+    },
+    {
+      "who": "seipora-mostana",
+      "how": "House Mostana's factor, whose loans against the army's pay pass through his books",
+      "attitude": 0
+    },
+    {
+      "who": "chadickith",
+      "how": "the loxodon his watcher was set to tail",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "He hired Garford Whitlock on the quartermaster's order to follow Chadickith, and knows Chadickith was with Isine and was tailed. He lost his watcher and knows nothing of the dead-house.",
+    "House Mostana's gold for the army's pay passes through the office books, and Unara kept the details of it close."
+  ],
+  "dm_only": [
+    "Canon conflict resolved by npc-creator: session 1 memories m0023 and m0037 call him 'Lorard's quartermaster Fenwin Thatcher', but Unara is the quartermaster of eleven years. Resolved as Unara's deputy, who ran the hired watchers; memory m0018's 'Lorard's quartermaster' at the triage tent is read as Unara. Hidden because the party has only ever heard the title, not his name.",
+    "He did not know of the spark; Unara kept it between herself and Ashlo. Invented: whether he suspected, his age, looks and voice, and that the Mostana loans pass through his books.",
+    "Stat block Guard|MM: swap the spear for a short sword and a tally-stick."
+  ],
+  "lore": null,
+  "statblock": {
+    "ref": "Guard|MM",
+    "notes": "deputy quartermaster, an old soldier turned clerk; short sword instead of spear"
+  },
+  "slug": "fenwin-thatcher",
+  "created": "2026-10-25T04:45:49",
+  "updated": "2026-10-25T04:46:36"
+}

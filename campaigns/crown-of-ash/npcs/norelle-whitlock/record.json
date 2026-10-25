@@ -1,0 +1,147 @@
+{
+  "name": "Norelle Whitlock",
+  "aliases": [
+    "Lady Norelle Whitlock",
+    "the Lady of Whitlock"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Lady of House Whitlock and one of the three old-house lamps on the Lamplit Council; holds the Whitlock olive, vine and barley terraces in the Lowfields",
+  "age": "61",
+  "appearance": "Straight as a pike, grey hair braided close and pinned with a plain steel clasp, a thin white scar along her left jaw from a duel at nineteen. Dresses in dark wool cut like a riding habit; under it, quietly, a shirt of mail.",
+  "voice": "Clipped and formal, a soldier's sister. Opens with 'So.' and closes hard points with 'That is the whole of it.' Uses 'one' when she wants a rebuke to sound like a rule.",
+  "backstory": "The younger child of old Lord Edric Whitlock, she was trained with the blade beside her brother Kitford because her father had no spare sons. When Ivoard Hask took the crown in 1453 the Whitlocks sided with him, and House Whitlock kept its lands through every purge, including the Velun Plot of 1474 that hanged forty of her peers. Kitford rose to be Hask's lieutenant and burned Dunmarrow for him in 1463; he died of a wasting fever in 1477 and left her the house. She never married and has no heir. She has run the estates for fourteen years with a clenched hand and has never decided whether the house's survival is a victory or an old shame.",
+  "wants": "An heir of the right blood for House Whitlock before she dies; order, and an army paid on time; tenants who keep to their holdings. She would soften the eighteen-lamp elder-seat draft so that hearth-moots cannot outvote the estates.",
+  "fears": "Dying with the name ended. Kitford's sickness coming back in the burn fever. Being remembered as the house that lived while the others hanged, and burned Dunmarrow.",
+  "relationships": [
+    {
+      "who": "lorard-hask",
+      "how": "the Lord-Marshal and the only force that can hold the realm; the Whitlocks have stood with the Ash Companies since 1453",
+      "attitude": 1
+    },
+    {
+      "who": "oselle-velun",
+      "how": "Hask's daughter and Velun's heir; neither house's friend, and she remembers which side the Whitlocks chose",
+      "attitude": -1
+    },
+    {
+      "who": "ivoard-hask",
+      "how": "the late king; her house's patron and its jailer, whom she does not mourn",
+      "attitude": 0
+    },
+    {
+      "who": "garford-whitlock",
+      "how": "poor cadet-branch cousin who sells his eyes for coin; she once paid his debts",
+      "attitude": -1
+    },
+    {
+      "who": "wynley-fairweather",
+      "how": "his father hanged in 1474 while her house lived; she avoids his eye",
+      "attitude": 0
+    },
+    {
+      "who": "junard-ashdown",
+      "how": "fellow survivor of the Plot; distrusts his smile and his questions",
+      "attitude": -1
+    },
+    {
+      "who": "samwyn-quarry",
+      "how": "fellow believer in order and the Debt Law; the nearest thing to an ally on the council",
+      "attitude": 1
+    },
+    {
+      "who": "bryados-weary",
+      "how": "holds the Whitlock harvest advances; she pays on the day",
+      "attitude": 0
+    },
+    {
+      "who": "chadickith",
+      "how": "the old man who pressed the council into fairer shape; she thinks him a meddler but concedes he reads a room",
+      "attitude": 0
+    }
+  ],
+  "secrets": [
+    "Kitford's last year was no ordinary wasting. He woke raving, hungered for the hearth and the forge, struck a servant bloody and begged to be chained. She had him kept in the cellar of the Whitlock manor and told the household and the Marshal's hall it was a fever. When she first heard of the burn at the Great Pyre she knew the look of it.",
+    "Her nearest kin of the right blood is Garford Whitlock, a cadet cousin who sells his eyes for coin. She has not spoken to him in years and does not know he has been taken by Oselle's people."
+  ],
+  "dm_only": [
+    "invented by npc-creator: that Norelle is Kitford Whitlock's younger sister (canon names Kitford, Hask's lieutenant who burned Dunmarrow in 1463 and died in 1477, but no kin), and all her personal detail: age, scar, father Lord Edric, no marriage, no heir, fourteen years as Lady, mail under her gown, the verbal habit.",
+    "invented by npc-creator: Garford Whitlock is a cadet-branch cousin and her nearest male blood. Check against his record and overrule if there is no kinship. If kept, Oselle's people holding Garford is leverage over Norelle that Oselle has not yet noticed or used.",
+    "invented by npc-creator: Kitford was kept bound in the Whitlock cellar in his last season. Canon tension: the Dunmarrow lore says his death was the burn's slow early signs, but the locked rules say a creature of class level 4 or higher never dies of the burn. Norelle knows only what she saw; the DM decides whether something else killed him.",
+    "invented by npc-creator: alignment and sheet (class-less swordswoman, CR 1/2, with Parry).",
+    "Leaning (invented): Lorard's bloc with Samwyn. She would vote against the elder seats as drafted and for army pay from the treasury, and abstain on anything touching the Spire."
+  ],
+  "sheet": {
+    "cr": "1/2",
+    "background": "Noble",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 15,
+    "ac_from": "chain shirt",
+    "hp": 18,
+    "hit_dice": "4d8",
+    "speed": 30,
+    "abilities": {
+      "str": 9,
+      "dex": 14,
+      "con": 11,
+      "int": 14,
+      "wis": 13,
+      "cha": 15
+    },
+    "saves": [
+      "int",
+      "wis"
+    ],
+    "skills": {
+      "history": 1,
+      "insight": 1,
+      "persuasion": 1,
+      "intimidation": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Chondathan"
+    ],
+    "traits": [
+      {
+        "name": "Commanding Presence",
+        "text": "Allies within 30 ft. who can hear and understand her have advantage on saving throws against being frightened."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Rapier",
+        "attack": "finesse",
+        "reach": 5,
+        "damage": "1d8 piercing"
+      },
+      {
+        "name": "Dagger",
+        "attack": "finesse",
+        "reach": 5,
+        "range": "20/60",
+        "damage": "1d4 piercing"
+      }
+    ],
+    "reactions": [
+      {
+        "name": "Parry",
+        "text": "Adds 2 to her AC against one melee attack that would hit her. She must see the attacker and be wielding a melee weapon."
+      }
+    ],
+    "gear": [
+      "rapier",
+      "dagger",
+      "mail shirt under dark wool",
+      "Whitlock signet",
+      "steel hair clasp"
+    ]
+  },
+  "slug": "norelle-whitlock",
+  "created": "2026-10-25T04:42:31",
+  "updated": "2026-10-25T04:42:31"
+}

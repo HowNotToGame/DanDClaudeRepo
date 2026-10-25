@@ -1,0 +1,46 @@
+{
+  "name": "Pellot Rook",
+  "aliases": [],
+  "tier": "minor",
+  "status": "historical",
+  "race": "human",
+  "alignment": "neutral",
+  "role": "Sword-brother of Ivoard Hask in the Ash Company; killed in the South March campaign of 1450; Lorard Hask's real father.",
+  "age": "about 30 when he died in 1450",
+  "appearance": "Broad-shouldered, with a loose, rolling walk that Ash Company veterans still recognise in the Lord-Marshal.",
+  "voice": "Easy and warm, quick to laugh; calls Hask Ivo, which nobody else dared.",
+  "backstory": "Pellot Rook came from a Kharun river-wall family and joined the Ash Company young. He and Ivoard Hask were sword-brothers through the campaigns that made Hask's name, and he was handfast to Mara, the company's quartermaster. He was killed in the South March campaign of 1450, and Mara was with his child. Hask took Mara in and raised the boy as his own. Pellot's nephew Hesard Rook became a captain of the Kharun Watch.",
+  "wants": "To see the South March campaign won and to keep Mara safe.",
+  "fears": "Dying before he can provide for Mara; Hask's ambition outrunning his conscience.",
+  "relationships": [
+    {
+      "who": "ivoard-hask",
+      "how": "sword-brother in the Ash Company",
+      "attitude": 3
+    },
+    {
+      "who": "lorard-hask",
+      "how": "his son by Mara, born after his death",
+      "attitude": 3,
+      "hidden": true
+    },
+    {
+      "who": "hesard-rook",
+      "how": "his nephew, a boy when he died",
+      "attitude": 2
+    }
+  ],
+  "secrets": [
+    "He and Mara, the company's quartermaster, are handfast, and he has told no one."
+  ],
+  "dm_only": [
+    "Lorard Hask, the Lord-Marshal, is his son; he died in 1450 before Lorard was born and never knew him. Whether Pellot knew Mara was with child when he died is undecided here.",
+    "Invented by npc-creator: that he came from a Kharun river-wall family, joined young, and was handfast to Mara (canon gives only that he was Hask's sword-brother and Lorard's father, and that Hask took the pregnant Mara); his age, looks, voice and manner of death; the Veteran stat block.",
+    "Kharun rumour 2: ask any old Ash Company veteran about Pellot Rook and watch them go quiet. Two veterans who remember him are still alive."
+  ],
+  "lore": null,
+  "statblock": "Veteran|MM",
+  "slug": "pellot-rook",
+  "created": "2026-10-25T04:46:14",
+  "updated": "2026-10-25T04:46:36"
+}

@@ -1,0 +1,141 @@
+{
+  "name": "Wilmund Redfern",
+  "aliases": [
+    "Master Wilmund Redfern",
+    "Master of the Oilwrights"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Master of the Oilwrights' guild and its lamp on the Lamplit Council; sells the lamp-oil that keeps the Lamp Market lit, and tallow and pyre-oil to the Pyrehouse",
+  "age": "63",
+  "appearance": "Stooped and heavy-handed, with lamp-black ground into the creases of his knuckles and one thumbnail burned away. Smells of rendered fat and hot wicks. Wears a plain brown guild coat with a small brass lamp pinned at the collar.",
+  "voice": "Slow and measured, a man used to measuring by the pint. Rarely says no outright; says 'That would want thinking on.' Closes every bargain with 'Mind the flame.'",
+  "backstory": "Born over a tallow-render on the lowest lane of the Lamp Market and put to the olive presses of the Lowfields at eleven. He came back at twenty to marry the presser's daughter, Hedda, and rose in the Oilwrights by never short-weighing a pint, a virtue Hask's honest-weights law made profitable. Hedda died in a warehouse fire in 1469 that took half a lane with her, and he has never stood easy near an open flame since. He has been Master for twenty-two years, and the hanging lamps of the Lamp Market, which burn day and night against the ash-gloom, are his guild's pride and its business. He backed Oselle's council from the first and was privately pleased that it was called Lamplit.",
+  "wants": "To keep the Lamp Market lit and the Oilwrights' hold on every pint sold inside the walls; honest weights under whatever government comes; a regency that lasts at least until the winter oil contracts are paid.",
+  "fears": "Fire, above everything since Hedda; the Lamp Market going dark under a riot or a siege; being the master who let his guild's seal be used for something foul.",
+  "relationships": [
+    {
+      "who": "oselle-velun",
+      "how": "the Lady who named the council; the Lamp Market's patron and his guild's best friend at the Keep",
+      "attitude": 2
+    },
+    {
+      "who": "kaselle-redfern",
+      "how": "niece, daughter of his late brother; went into the Pyrewardens against his wishes",
+      "attitude": 2
+    },
+    {
+      "who": "tobbton-greenbottle",
+      "how": "old friend; grew up on neighbouring lanes and still takes a dish of tea with him",
+      "attitude": 2
+    },
+    {
+      "who": "bryados-weary",
+      "how": "banker; holds the Oilwrights' notes and the presses' mortgage",
+      "attitude": 1
+    },
+    {
+      "who": "samwyn-quarry",
+      "how": "fellow guild master; dislikes his debt-roll and his furnace smoke on the lamp glass",
+      "attitude": -1
+    },
+    {
+      "who": "orsikgar-gorunn",
+      "how": "fellow guild master; respects a man who pays his hands",
+      "attitude": 1
+    },
+    {
+      "who": "tamius-coldwell",
+      "how": "the Pyrehouse's High Pyrewarden; his guild's biggest single customer, and a customer who over-buys",
+      "attitude": -1
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "Watch-Captain who held the gates; he trusts her honest scales",
+      "attitude": 1
+    },
+    {
+      "who": "chadickith",
+      "how": "the old man who pressed the council fairer at the noon sitting; he did not expect to like him",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "The Pyrehouse has bought about three times the oil and tallow that the burning of the dead could need, every year for a decade, always paid in advance and in silver. He has said nothing: the Pyrehouse is a quarter of his guild's trade, and he does not want to know what the Long Smoke is really fed.",
+    "The signal lamp the Choir flashed from the chandler's loft on the dye-works lane burned Oilwright oil in casks bearing the guild's seal. He learned this on day 10 and has not told the Watch, because it would put the guild's books under Halda's eyes and might hang a chandler who paid his dues.",
+    "He is afraid for his niece Kaselle, who has crossed the Choir, and he does not know where she is."
+  ],
+  "dm_only": [
+    "invented by npc-creator: everything personal about Wilmund. Age, appearance, voice, his wife Hedda and her death in the 1469 warehouse fire, twenty-two years as Master, an unnamed son who runs the presses, and that the council's name pleased him. Canon gives only his name, his guild and his seat.",
+    "invented by npc-creator: Warden Kaselle Redfern (Pyrewardens) is the daughter of Wilmund's late brother. Check against her own record and overrule if she is no kin.",
+    "invented by npc-creator: the Pyrehouse over-buys oil and tallow; what the surplus feeds is the DM's call (canon says the Choir keeps the Long Smoke fed).",
+    "invented by npc-creator: the chandler on the dye-works lane was an Oilwrights member who paid his dues; the signal lamp burned guild oil; the chandler has not been seen since day 9.",
+    "invented by npc-creator: alignment and sheet (class-less merchant, CR 1/4).",
+    "Leaning (invented): a dependable vote for Oselle. He turns against the Pyrehouse and the Choir if he learns what the oil fed, and against Oselle if his guild's seal is implicated in anything."
+  ],
+  "sheet": {
+    "cr": "1/4",
+    "background": "Guild Artisan",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 11,
+    "ac_from": "leather apron",
+    "hp": 22,
+    "hit_dice": "4d8+4",
+    "speed": 30,
+    "abilities": {
+      "str": 11,
+      "dex": 10,
+      "con": 13,
+      "int": 13,
+      "wis": 14,
+      "cha": 13
+    },
+    "saves": [
+      "wis"
+    ],
+    "skills": {
+      "insight": 1,
+      "persuasion": 1,
+      "perception": 1,
+      "investigation": 1
+    },
+    "senses": [],
+    "languages": [
+      "Common",
+      "Alzhedo"
+    ],
+    "traits": [
+      {
+        "name": "Oilwright's Nose",
+        "text": "Advantage on Wisdom (Perception) checks that rely on smell, and on Intelligence (Investigation) checks to identify an oil, fuel or wick and its source."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Cudgel",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d4 bludgeoning"
+      },
+      {
+        "name": "Flask of Oil",
+        "attack": "dex",
+        "range": "20",
+        "text": "On a hit the target is covered in oil. If it takes any fire damage before the oil dries (after 1 minute), it takes an extra 5 fire damage."
+      }
+    ],
+    "reactions": [],
+    "gear": [
+      "brass lamp pin",
+      "cudgel",
+      "flasks of oil",
+      "guild seal ring"
+    ]
+  },
+  "slug": "wilmund-redfern",
+  "created": "2026-10-25T04:40:52",
+  "updated": "2026-10-25T04:40:52"
+}
