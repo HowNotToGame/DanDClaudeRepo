@@ -105,6 +105,17 @@ gives their persona, memories, attitudes, agenda and what they know (DM secrets 
 do from that, not from what you know as DM; let them disagree with the players; record their memories with
 `dm companion remember <npc> "…"`. Create one with `dm companion new "Name" --from-lore <entry>`.
 
+## Named NPCs (records and minds)
+Every named person has a record: race, alignment, backstory, relationships, the secrets they keep, and a stat block
+or character sheet (`dm npc show <npc>`, `dm npc statblock <npc>`, `dm npc list`). In Claude Code each one speaks
+through their own subagent; here you play them yourself, but **every time a named NPC speaks or decides, read their
+mind first**: `dm npc brief <npc> --situation "the moment from their point of view"`. Answer as them from that brief
+only (their knowledge, never the DM-only notes), and record what they'll carry with `dm npc remember <npc> "…"` and
+`dm npc attitude <npc> <who> +1 --why "…"`. A new named walk-on needs a record before they speak:
+`dm npc add "Name" --race … --alignment … --backstory "…" --statblock "Commoner|MM"`; significant people get a
+character sheet (`dm npc template --major`, then `dm npc save --file <json>`). `dm npc check` lists who's missing.
+In a fight, `dm combat add "<NPC name>"` uses their own sheet or stat block.
+
 ## Time and the living world
 `dm time set 1 08:00` once, then `dm time advance 3h --reason "…"` whenever time passes (rests advance it themselves).
 A clock for every deadline or threat (`dm clock add "…" --deadline "day 13 dawn" --public` or `--segments 6 --per 1d`),

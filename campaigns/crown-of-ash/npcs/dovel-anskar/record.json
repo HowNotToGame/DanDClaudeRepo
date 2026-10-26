@@ -1,0 +1,125 @@
+{
+  "name": "Dovel Anskar",
+  "aliases": [
+    "Warden Dovel Anskar",
+    "Warden Anskar"
+  ],
+  "tier": "major",
+  "status": "alive",
+  "race": "human",
+  "alignment": "lawful neutral",
+  "role": "Pyrewarden of nineteen years who burns the Watch's dead; the Pyrehouse's lamp on the Lamplit Council (named day 13, pending the final reading)",
+  "age": "mid-forties",
+  "appearance": "Grey robe worn shiny at the cuffs, forearms scarred pale from years at the pyre-grates, ash under the nails he never quite scrubs out.",
+  "voice": "Quiet and careful; speaks in the order of a rite (first this, then that); says 'with respect' before he disagrees.",
+  "backstory": "Dovel Anskar has burned the Kharun Watch's dead for nineteen years, which makes him one of the few Pyrewardens the Redcollars greet by name. He is no orator and has never sat near the High Pyrewarden's table. At the first sitting of the Lamplit Council on day 13, Tamius Coldwell named him for the Pyrehouse's lamp; the seat passed 9 to 3 with his name read aloud, and Lady Oselle holds the final reading for up to a tenday so the moots can hear the name first.",
+  "wants": "To do the seat honestly without losing his place at the grates, and to keep his family fed and his child well.",
+  "fears": "Being asked to choose between the Pyrehouse that pays for his child's care and a vote he believes is right.",
+  "relationships": [
+    {
+      "who": "tamius-coldwell",
+      "how": "his superior, who named him for the lamp; he owes the Pyrehouse for his child's care",
+      "attitude": 0
+    },
+    {
+      "who": "halda-barrowe",
+      "how": "he has burned her watchmen's dead for nineteen years; she knows his face",
+      "attitude": 1
+    }
+  ],
+  "secrets": [
+    "The Pyrehouse has paid for his sick child's care; he feels the debt every time Coldwell speaks to him."
+  ],
+  "dm_only": [
+    "Lore: chosen by Coldwell because he is publicly clean and owes the Pyrehouse for a sick child, which makes him steerable; he is not openly sworn to the Choir.",
+    "invented (not npc-creator, written during the verification pass): age, looks, voice, the Cleric 3 sheet, his attitude toward Halda, and the wants/fears wording. Overrule freely."
+  ],
+  "lore": "dovel-anskar",
+  "sheet": {
+    "class": "Cleric 3",
+    "background": "Acolyte",
+    "size": "medium",
+    "type": "humanoid (human)",
+    "ac": 14,
+    "ac_from": "leather apron over hide",
+    "hp": 21,
+    "hit_dice": "3d8+3",
+    "speed": 30,
+    "abilities": {
+      "str": 12,
+      "dex": 10,
+      "con": 13,
+      "int": 11,
+      "wis": 15,
+      "cha": 10
+    },
+    "saves": [
+      "wis",
+      "cha"
+    ],
+    "skills": {
+      "medicine": 1,
+      "religion": 1,
+      "insight": 1
+    },
+    "languages": [
+      "Common"
+    ],
+    "traits": [
+      {
+        "name": "Pyre-hardened",
+        "text": "Years at the grates: advantage on saves against smoke inhalation and on checks to endure heat."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Mace",
+        "attack": "str",
+        "reach": 5,
+        "damage": "1d6 bludgeoning"
+      },
+      {
+        "name": "Sacred Flame",
+        "save": {
+          "ability": "dex",
+          "dc": "spell",
+          "damage": "1d8 radiant",
+          "half": false,
+          "who": "One creature he can see within 60 feet"
+        }
+      }
+    ],
+    "spellcasting": {
+      "ability": "wis",
+      "slots": {
+        "1": 4,
+        "2": 2
+      },
+      "spells": {
+        "0": [
+          "sacred flame",
+          "spare the dying",
+          "light"
+        ],
+        "1": [
+          "bless",
+          "cure wounds",
+          "ceremony"
+        ],
+        "2": [
+          "gentle repose",
+          "lesser restoration"
+        ]
+      }
+    },
+    "gear": [
+      "mace",
+      "pyre-tongs",
+      "a warden's ash-bag",
+      "holy symbol of Kelemvor"
+    ]
+  },
+  "slug": "dovel-anskar",
+  "created": "2026-10-26T12:15:56",
+  "updated": "2026-10-26T12:15:56"
+}

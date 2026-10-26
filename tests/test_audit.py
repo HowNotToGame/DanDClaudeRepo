@@ -293,6 +293,12 @@ class AuditTests(RoboDMTestCase):
         self.assertEqual(json.loads(r)["hookSpecificOutput"]["permissionDecision"], "deny")   # the gate still runs
 
 
+def _write(path, text: str, newline: str) -> None:
+    """Path.write_text(newline=…) needs Python 3.10; the suite runs on 3.9 too."""
+    with open(path, "w", encoding="utf-8", newline=newline) as fh:
+        fh.write(text)
+
+
 class LauncherTests(RoboDMTestCase):
     """`./dm` (sh) and `dm.cmd` must find a Python that runs, even when `python3` is a broken placeholder."""
 
@@ -310,12 +316,12 @@ class LauncherTests(RoboDMTestCase):
         d.mkdir(exist_ok=True)
         real = Path(sys.executable).as_posix()
         for name in broken:
-            (d / name).write_text("#!/bin/sh\necho 'Python was not found' >&2\nexit 49\n", newline="\n")
-            (d / f"{name}.cmd").write_text("@echo Python was not found 1>&2\r\n@exit /b 49\r\n", newline="")
+            _write(d / name, "#!/bin/sh\necho 'Python was not found' >&2\nexit 49\n", newline="\n")
+            _write(d / f"{name}.cmd", "@echo Python was not found 1>&2\r\n@exit /b 49\r\n", newline="")
             (d / name).chmod(0o755)
         for name in working:  # like the py launcher, accept and drop a leading -3
-            (d / name).write_text(f'#!/bin/sh\n[ "$1" = "-3" ] && shift\nexec "{real}" "$@"\n', newline="\n")
-            (d / f"{name}.cmd").write_text(f'@echo off\r\nif "%~1"=="-3" shift\r\n"{Path(sys.executable)}" '
+            _write(d / name, f'#!/bin/sh\n[ "$1" = "-3" ] && shift\nexec "{real}" "$@"\n', newline="\n")
+            _write(d / f"{name}.cmd", f'@echo off\r\nif "%~1"=="-3" shift\r\n"{Path(sys.executable)}" '
                                            '%1 %2 %3 %4 %5 %6 %7 %8 %9\r\n', newline="")
             (d / name).chmod(0o755)
         return d
