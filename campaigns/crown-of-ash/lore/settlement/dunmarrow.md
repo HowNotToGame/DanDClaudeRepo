@@ -5,7 +5,7 @@ summary: "Razed castle town in the high Cinder Hills, burned by Ivoard Hask's As
 tags: [dunmarrow, redoubt, order, cinder-hills]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:05:50"
+updated: "2026-10-21T01:23:02"
 status: the Order's hall (founding)
 related: [order-of-the-banked-fire, okton, ash-reign, ossmaar, ulric-vane]
 ---
@@ -35,3 +35,5 @@ Beneath the keep, behind a fallen stair and a beam in the lower hall, lies a doo
 - The Choir does not know the site. Hask's old survivors do, and some of Dunmar's blood may still live in the hills.
 - The charcoal-burners' dog whined and shied from Kita and the casket on the way up; Maeis Hollis frowned and said nothing. Maeis and two burners saw "couriers with a crate" go up the Dunmar Road.
 - Okton wants to try Grim Psychometry on Lord Dunmar's letters.
+
+**Update (session 2):** The full story of the burning: see the-burning-of-dunmarrow.

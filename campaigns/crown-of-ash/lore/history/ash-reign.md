@@ -6,7 +6,7 @@ tags: [history, timeline, hask, velun]
 related: [ivoard-hask, ossmaar, crown-of-ash, heartcoal, sky-gallows, okton, lorard-hask, oselle-velun, kitwin, hadrun, gallowsbird, pyrewardens, order-of-the-banked-fire, lamplit-council, dunmarrow]
 canon: true
 created_session: 1
-updated: "2026-10-19T12:04:22"
+updated: "2026-10-21T01:23:01"
 ---
 
 # The Ash Reign (1453–1491 DR)
@@ -67,3 +67,5 @@ updated: "2026-10-19T12:04:22"
 - Okton was not infected by the roc in 1423. He was infected when he set the coal in the crown in 1453. His blood ritual, which makes the Banked, came only in the last few years (see okton and order-of-the-banked-fire).
 - **Days 7–8 (secret):** the Coal was sealed in the vault under Dunmarrow's keep (see heartcoal).
 - **Day 11 (secret):** Rook's confession, overheard by Chadickith and written down by Marda Ironside, records that Lorard is Pellot Rook's son. Marda gives it to Halda on day 14 unless Chadickith intervenes.
+
+**Update (session 2):** **Deeper history (draft pages):** house-velun-and-the-salt-crown (c. 1190-1453), origins-of-the-pyrewardens (c. 1240-1454), the-ember-law (1453-1491, with the coal's earlier custody), the-burners-rising-and-the-day-of-the-shadow (1423), the-burning-of-dunmarrow (1463), the-quiet-year (1490-91) and, DM-only, the-heart-of-yaga-shura (1369).

@@ -8,12 +8,12 @@
   "level": 5,
   "background": "Giant Foundling",
   "abilities": {
-    "str": 16,
-    "dex": 13,
+    "str": 18,
+    "dex": 9,
     "con": 16,
-    "int": 8,
-    "wis": 13,
-    "cha": 10
+    "int": 10,
+    "wis": 11,
+    "cha": 12
   },
   "ac": 15,
   "speed": 30,
@@ -46,26 +46,6 @@
   "spells": [],
   "attacks": [
     {
-      "name": "Greataxe",
-      "to_hit": 6,
-      "damage": [
-        [
-          "1d12+3",
-          "slashing"
-        ]
-      ]
-    },
-    {
-      "name": "Hybrid talons (Rite Die d6)",
-      "to_hit": 6,
-      "damage": [
-        [
-          "1d6+3",
-          "slashing"
-        ]
-      ]
-    },
-    {
       "name": "Beast Form talons (giant owl; Rite Die d6)",
       "to_hit": 4,
       "damage": [
@@ -76,29 +56,60 @@
       ]
     },
     {
-      "name": "Unarmed strike (trunk)",
-      "to_hit": 6,
+      "name": "Hand crossbow",
+      "to_hit": 2,
       "damage": [
         [
-          "4",
-          "bludgeoning"
+          "1d6-1",
+          "piercing"
         ]
+      ],
+      "kind": "ranged",
+      "range": [
+        30,
+        120
       ]
     },
     {
-      "name": "Hand crossbow",
-      "to_hit": 4,
+      "name": "Greataxe",
+      "to_hit": 7,
       "damage": [
         [
-          "1d6+1",
-          "piercing"
+          "1d12+4",
+          "slashing"
         ]
-      ]
+      ],
+      "kind": "melee",
+      "reach": 5
+    },
+    {
+      "name": "Unarmed strike (trunk)",
+      "to_hit": 7,
+      "damage": [
+        [
+          "5",
+          "bludgeoning"
+        ]
+      ],
+      "kind": "melee",
+      "reach": 5
+    },
+    {
+      "name": "Hybrid talons (Rite Die d6)",
+      "to_hit": 7,
+      "damage": [
+        [
+          "1d6+4",
+          "slashing"
+        ]
+      ],
+      "kind": "melee",
+      "reach": 5
     }
   ],
   "resources": {
     "Strike of the Giants (Fire)": {
-      "max": 2,
+      "max": 3,
       "used": 0,
       "reset": "long"
     },
@@ -131,9 +142,10 @@
     "Iron gate key on a cord (Peret's; opens the plague road gate to the Pyrehouse crypt)",
     "Peret's list of six Ashward names with marks and dates",
     "Redcollar gorget (loaned by Okton) and a red peace-cord for the greataxe",
-    "Alchemist's supplies (gift from Oselle Velun, for Grim Psychometry)"
+    "Alchemist's supplies (gift from Oselle Velun, for Grim Psychometry)",
+    "Stokers' Kettle-wager pot: about 30 cinders (3 embers)"
   ],
-  "gold": 10,
+  "gold": 57,
   "xp": 0,
   "death_saves": {
     "success": 0,
@@ -164,5 +176,5 @@
   ],
   "notes": "Age 76 (young for a loxodon). Egotistical know-it-all who gets humbled often. Born in Hadrun (Cinder Hills) to Berov and Radanya, who died when a blood-raged roc destroyed the village in 1423 DR, when he was 8. Raised for 68 years by Okton, a fire giant smith of Kharun, who calls him 'Small Tusk'. Member of Okton's Order of the Banked Fire and now HAS undergone the blood ritual: Okton quenched him in round 6 of the roc fight (class changed from Barbarian 3 / Storm Herald to Blood Hunter 3 / Pale Moon, giant owl curse). 7 ft, 318 lb, tortoiseshell coat of lion-tan and bistre fur. AC 15 = Natural Armor (12 + CON). Vital Sacrifice (owl flight, day 8): max HP 16 until a long rest (normal max 35). LEVEL 4 (milestone): STR 16, Grappler. Normal max HP 45; Vital Sacrifice reduction of 19 until a long rest. LEVEL 5 (day 9 dawn war-table). Normal max HP 55 (restored by long rest, day 9).",
   "created": "2026-10-15T05:34:10",
-  "updated": "2026-10-18T01:02:48"
+  "updated": "2026-10-25T20:12:17"
 }

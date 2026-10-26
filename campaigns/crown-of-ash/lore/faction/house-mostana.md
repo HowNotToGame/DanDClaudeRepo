@@ -7,7 +7,7 @@ status: active
 related: [oselle-velun, lorard-hask, heartcoal, kharun, kharun-watch, ossmaar, ivoard-hask, lamplit-council]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:03:59"
+updated: "2026-10-23T13:47:23"
 ---
 
 # House Mostana
@@ -34,3 +34,5 @@ They have not shown their hand. The galleys still ride at anchor. The Lamplit Co
 - **The regency squeezes them.** Army pay now comes from the Keep treasury, so their loans to Lorard buy less. The Saltwater Compact would have to survive lamp-votes if it ever comes to light. Seipora will want a new hook into whoever matters, and the forge (where everyone now knows the Coal once lay) is an obvious place to start asking.
 - **Oselle's ember-glass**, made by the house, is still unused (see oselle-velun).
 - **The Heartcoal is out of Kharun** (Oselle knows that much). Seipora does not know where. Her Calimshan buyer is still waiting.
+
+**Update (session 2):** **The Vent Games (DM):** the Factor's Cup (a silver cup of candied dates and an invitation to the factor's table, sent to each Vent Games champion since 1479) is public custom. In 1467 the factor of the day paid 50 crowns into the scald tin to keep the house's name off the Strangle. Rosa Hollis owes the house 300 crowns, due at the Feast of the Moon; Seipora has not pressed. This year Seipora means to carry the Cup to the forge herself, because a forge-raised champion is the hook into the forge she wanted. Teo Varrow, the Quay's Knot-teacher, passes the warehouse talk to her people.

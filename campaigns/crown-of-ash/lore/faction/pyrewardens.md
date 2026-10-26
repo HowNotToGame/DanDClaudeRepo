@@ -8,7 +8,7 @@ related: [kitwin, crown-of-ash, heartcoal, ashblood, kharun, sky-gallows, ivoard
 aliases: [the Order of the Last Ember, the Pyrehouse]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:05:50"
+updated: "2026-10-21T01:23:02"
 ---
 
 # The Pyrewardens (the Order of the Last Ember)
@@ -43,3 +43,5 @@ Undertakers, executioners' chaplains, keepers of the dead. A realm that executed
 - **Okton's blood rite:** their whisper that "the giant makes monsters of the sick" suggests they know of it. They want his blood to make Banked of their own with no temper at all (see order-of-the-banked-fire).
 - **The Ember Rolls:** the Choir's ledger of every anointed death since about 1401, kept in the crypt. Its early pages bear the seals of Kings Uzhar and Tazhar Velun, which makes it proof of the Velun dynasty's guilt (see oselle-velun).
 - The ordinary wardens know nothing. Exposing the Choir would topple Kitwin's claim. It would also leave Kharun with no one willing to burn its dead.
+
+**Update (session 2):** Older history: see origins-of-the-pyrewardens.

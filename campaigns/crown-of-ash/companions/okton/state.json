@@ -10,8 +10,8 @@
   "attitude": {
     "chadickith": {
       "score": 3,
-      "why": "raised him for 68 years; quenched him in his own blood tonight to keep him alive",
-      "ts": "2026-10-18T18:52:46"
+      "why": "He lived through the Pyre because I bled into him, and he is Banked now. The love is no lighter for the guilt, but I now see what I cost him.",
+      "ts": "2026-10-19T12:17:38"
     },
     "lorard-hask": {
       "score": 1,
@@ -32,14 +32,25 @@
       "score": -1,
       "why": "believes she hates him, and she does",
       "ts": "2026-10-18T18:52:47"
+    },
+    "gwenmund-cobb": {
+      "score": 1,
+      "why": "She heard the price of the Quenching in plain words and refused it. She will hold the heat with Isine. Her refusal was sound.",
+      "ts": "2026-10-19T12:17:33"
+    },
+    "isine-kettle": {
+      "score": 1,
+      "why": "She came to my forge carrying the burn and a slow poison, and she is willing to learn to bleed the heat.",
+      "ts": "2026-10-19T12:17:34"
     }
   },
   "agenda": [
     {
       "id": "a1",
       "text": "Bring the Gallowsbird down tonight, before it takes Small Tusk or more of Kharun",
-      "status": "open",
-      "ts": "2026-10-18T18:52:47"
+      "status": "done",
+      "ts": "2026-10-18T18:52:47",
+      "closed": "2026-10-19T12:17:31"
     },
     {
       "id": "a2",
@@ -58,9 +69,22 @@
       "text": "Make sure the Banked can put me down when I turn (unspoken)",
       "status": "open",
       "ts": "2026-10-18T18:52:48"
+    },
+    {
+      "id": "a5",
+      "text": "Teach Isine Kettle to bleed off the heat, so the Order can shelter the burn without another Quenching",
+      "status": "open",
+      "ts": "2026-10-19T12:17:32"
+    },
+    {
+      "id": "a6",
+      "text": "Shelter Tam and Mina Cobb in the Order if their mother dies, and keep the forge ward running until the burn is cured or lost",
+      "status": "open",
+      "ts": "2026-10-19T12:17:33"
     }
   ],
   "interject": null,
-  "last_brief_turn": -1,
-  "consults": 0
+  "last_brief_turn": 122,
+  "consults": 20,
+  "stop_block_turn": 118
 }

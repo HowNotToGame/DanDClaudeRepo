@@ -8,7 +8,7 @@ related: [ivoard-hask, ossmaar, kharun, oselle-velun, kitwin, heartcoal, kharun-
 aliases: [the Lord-Marshal, the Camp Prince]
 canon: true
 created_session: 0
-updated: "2026-10-19T12:05:50"
+updated: "2026-10-24T02:07:55"
 ---
 
 # Lorard Hask, the Lord-Marshal
@@ -48,3 +48,5 @@ Blunt, honest, tired. He promises to tear down the Sky Gallows, end the Pyre-tit
 - House Mostana is quietly lending him gold for his soldiers' pay, so the house backs him and Oselle at once. He knows, and he thinks he's using them. The regency's guarantee of army pay from the treasury makes that loan less necessary, which Mostana will notice.
 - Sergeant Wilash Redhand of the Watch passes Watch news to his quartermaster's office, now without Unara.
 - He respects Okton, whose plate he has worn for years.
+
+**Update (session 2):** **In the pit (public):** human, 41, broad, with the Shaar-spear limp (speed 25). In twenty years on the South March he wrestled the Hawk with Shaaran horse-traders at Fort Vell and in camp bouts with his soldiers; he wins most of them and suspects they let him. He has never wrestled at the Vent Games. Pit numbers: STR 17, DEX 11, CON 15; Athletics +6, Acrobatics +0; the limp gives him disadvantage on Sidesteps and other Dexterity (Acrobatics) checks in the pit. If named, he would most likely call the Hawk (one fall in the Rope) or the Long Open, and accept rather than refuse a straight challenge in front of his men, though on his own terms (no colours, Rosa's rules, his own second).

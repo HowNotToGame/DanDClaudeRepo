@@ -1,20 +1,30 @@
 {
   "time": {
-    "t": 15540,
+    "t": 18090,
     "calendar": "simple"
   },
   "scene": {
-    "since": 15540,
-    "place": "Okton's forge, Steamside",
+    "since": 17970,
+    "place": "The Collarhouse long hall, Kharun (first sitting of the Lamplit Council)",
     "present": [
-      "okton",
-      "isine-kettle",
-      "gwenmund-cobb"
+      "halda-barrowe",
+      "marda-ironside",
+      "oselle-velun",
+      "lorard-hask",
+      "tamius-coldwell",
+      "kitwin",
+      "sister-ilsa",
+      "okton"
     ],
     "names": {
       "okton": "Okton",
-      "isine-kettle": "Isine Kettle",
-      "gwenmund-cobb": "Gwenmund Cobb"
+      "kitwin": "Kitwin",
+      "sister-ilsa": "Sister Ilsa",
+      "halda-barrowe": "Halda Barrowe",
+      "marda-ironside": "Marda Ironside",
+      "oselle-velun": "Oselle Velun",
+      "lorard-hask": "Lorard Hask",
+      "tamius-coldwell": "Tamius Coldwell"
     }
   },
   "clocks": [
@@ -29,9 +39,10 @@
       "public": true,
       "faction": "lamplit-council",
       "on_fill": "the eighteen lamps sit for the first time",
-      "status": "running",
+      "status": "stopped",
       "created": "2026-10-18T23:26:40",
-      "history": []
+      "history": [],
+      "closed": "2026-10-25T20:12:34"
     },
     {
       "id": "k2",
@@ -62,6 +73,22 @@
       "status": "running",
       "created": "2026-10-18T23:26:41",
       "history": []
+    },
+    {
+      "id": "k4",
+      "name": "First sitting of the Lamplit Council",
+      "segments": null,
+      "filled": 0,
+      "per": null,
+      "next_tick": null,
+      "deadline": 18000,
+      "public": true,
+      "faction": "lamplit-council",
+      "on_fill": "the eighteen lamps sit for the first time",
+      "status": "done",
+      "created": "2026-10-25T20:12:34",
+      "history": [],
+      "closed": "2026-10-26T01:43:33"
     }
   ],
   "factions": {
@@ -132,7 +159,9 @@
     }
   },
   "timers": [],
-  "last_long_rest": {},
+  "last_long_rest": {
+    "chadickith": 17640
+  },
   "offscreen": [],
-  "updated": "2026-10-18T23:27:05"
+  "updated": "2026-10-26T02:35:13"
 }
