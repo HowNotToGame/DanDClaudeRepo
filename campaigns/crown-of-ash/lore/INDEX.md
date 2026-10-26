@@ -1,6 +1,6 @@
 # Crown of Ash — World Bible Index
 
-_58 entries · generated 2026-10-26T02:47 · edit the entries, not this file_
+_58 entries · generated 2026-10-26T17:01 · edit the entries, not this file_
 
 ## Region
 - [Ossmaar](region/ossmaar.md) [regency] — A small, brimstone-rich Border Kingdom on the steaming south shore of the Lake of Steam; its tyrant king is dead, and since day 10 a Lamplit Council governs as regency.
